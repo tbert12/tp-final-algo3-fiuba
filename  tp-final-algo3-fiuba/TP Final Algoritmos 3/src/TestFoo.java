@@ -11,5 +11,4 @@ public class TestFoo {
 		int y = 4;
 		assertEquals("x*y da 20",20,x*y);
 	}
-
 }
