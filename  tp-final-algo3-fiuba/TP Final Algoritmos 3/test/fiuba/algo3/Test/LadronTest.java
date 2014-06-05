@@ -9,7 +9,7 @@ public class TestUnitariosLadron {
 	public void LadronPoseeCaracterista(){
         Ladron ladron = Ladron new();
         ladron.sexo = "masculino";
-		Assert.assertEquals(ladron.PoseeCaracteristica("masculino"), true);
+		Assert.assertEquals(ladron.sexo,"masculino" );
 
 	}
 
