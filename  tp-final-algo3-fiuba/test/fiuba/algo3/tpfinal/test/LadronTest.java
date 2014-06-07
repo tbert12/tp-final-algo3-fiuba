@@ -13,4 +13,9 @@ public class LadronTest {
 		Assert.assertEquals(ladron.Sexo(),"femenino");
 	}
 
+	@Test
+	public void LadronNoEsFemenino() {
+		Ladron ladron = new Ladron("masculino","","","","");
+		Assert.assertNotEquals(ladron.Sexo(),"femenino");
+	}
 }
