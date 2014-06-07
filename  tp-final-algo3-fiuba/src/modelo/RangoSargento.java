@@ -5,7 +5,7 @@ public class RangoSargento implements Rango {
 	private int VelocidadDeViaje = 1500;
 
 	@Override
-	public int Viajar(int CantidadKilometros) {
+	public int CostoDeViaje(int CantidadKilometros) {
 		return CantidadKilometros/VelocidadDeViaje;
 	}
 

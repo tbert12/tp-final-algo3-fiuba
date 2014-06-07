@@ -2,6 +2,6 @@ package modelo;
 
 public interface Rango {
 	
-	public abstract int Viajar(int CantidadKilometros);
+	public abstract int CostoDeViaje(int CantidadKilometros);
 
 }
