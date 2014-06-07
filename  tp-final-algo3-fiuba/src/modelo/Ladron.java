@@ -17,4 +17,20 @@ public class Ladron {
 		return this.Sexo;
 	}
 	
+	public String Hobby(){
+		return this.Hobby;
+	}
+	
+	public String Cabello(){
+		return this.Cabello;
+	}
+	
+	public String Senia(){
+		return this.Senia;
+	}
+	
+	public String Vehiculo(){
+		return this.Vehiculo;
+	}
+	
 }
