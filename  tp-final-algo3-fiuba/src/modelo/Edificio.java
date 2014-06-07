@@ -1,6 +1,18 @@
 package modelo;
 
 public class Edificio {
-	String PistaFacil,PistaMedia,PistaDificil,PistaMuyDificil;
+	
+	
+	private String Pista,Nombre;
+	
+	public Edificio(String UnNombre, String UnaPista){
+		this.Nombre = UnNombre;
+		this.Pista = UnaPista;
+	}
+	
+	public String getPista(){
+		return Pista;
+	}
 	
 }
+
