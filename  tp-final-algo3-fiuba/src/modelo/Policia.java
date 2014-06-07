@@ -5,12 +5,28 @@ public class Policia {
 	private Rango Rango = new RangoNovato();
 	private int CantidadDeArrestos = 0;
 	private Tiempo Tiempo;
-	private Pais Pais;
+	private Pais PaisActual;
 
 	public Rango getRango() {
 		return this.Rango;
 	}
 
+	public void setTiempo(Tiempo tiempo){
+		this.Tiempo = tiempo;
+	}
+	
+	public void setPaisActual(Pais pais){
+		this.PaisActual = pais;
+	}
+	
+	public Pais getPais(){
+		return this.PaisActual;
+	}
+	
+	public Tiempo getTiempo(){
+		return this.Tiempo;
+	}
+	
 	public void AddArresto() {
 		CantidadDeArrestos++;
 		if ( CantidadDeArrestos >= 20 ){
