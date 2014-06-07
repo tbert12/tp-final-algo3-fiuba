@@ -1,8 +1,9 @@
 package fiuba.algo3.tpfinal.test;
 
+import modelo.Ladron;
+
 import org.junit.Assert;
 import org.junit.Test;
-import fiuba.algo3.tpfinal.clases.Ladron;
 
 
 public class LadronTest {

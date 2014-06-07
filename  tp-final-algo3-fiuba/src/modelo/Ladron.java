@@ -1,4 +1,4 @@
-package fiuba.algo3.tpfinal.clases;
+package modelo;
 
 public class Ladron {
 	private String Sexo,Hobby,Cabello,Senia,Vehiculo;
