@@ -2,6 +2,7 @@ package modelo;
 
 public class Ladron {
 	private String Sexo,Hobby,Cabello,Senia,Vehiculo;
+	private Trayectoria Trayectoria;
 	
 	
 	public Ladron(String UnSexo,String UnHobby,String UnCabello,String UnaSenia,String UnVehiculo){
