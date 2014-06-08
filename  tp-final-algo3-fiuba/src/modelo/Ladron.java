@@ -1,7 +1,7 @@
 package modelo;
 
 public class Ladron {
-	private String Sexo,Hobby,Cabello,Senia,Vehiculo;
+	private String Nombre,Sexo,Hobby,Cabello,Senia,Vehiculo;
 	private Trayectoria Trayectoria;
 	
 	
@@ -12,6 +12,10 @@ public class Ladron {
 		this.Cabello = UnCabello;
 		this.Senia = UnaSenia;
 		this.Vehiculo = UnVehiculo;
+	}
+	
+	public String toString(){
+		return Nombre;
 	}
 	
 	public String Sexo(){
@@ -33,5 +37,6 @@ public class Ladron {
 	public String Vehiculo(){
 		return this.Vehiculo;
 	}
+	
 	
 }

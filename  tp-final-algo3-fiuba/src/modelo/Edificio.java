@@ -13,6 +13,8 @@ public class Edificio {
 	public String getPista(){
 		return Pista;
 	}
-	
+	public String toString(){
+		return Nombre;
+	}
 }
 
