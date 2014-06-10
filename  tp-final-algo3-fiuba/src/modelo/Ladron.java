@@ -14,6 +14,10 @@ public class Ladron {
 		this.Vehiculo = UnVehiculo;
 	}
 	
+	public void addTrayectoria(Trayectoria trayecto){
+		this.Trayectoria = trayecto;
+	}
+	
 	public String toString(){
 		return Nombre;
 	}
