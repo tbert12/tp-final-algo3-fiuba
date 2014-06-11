@@ -13,7 +13,7 @@ public class Edificio {
 	public String getPista(){
 		return Pista;
 	}
-	public String toString(){
+	public String getNombre(){
 		return Nombre;
 	}
 }
