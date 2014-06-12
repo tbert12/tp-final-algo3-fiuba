@@ -17,7 +17,7 @@ public class EdificioTest {
 		Assert.assertEquals(UnEdificio.getPista(),pista);
 		
 	}
-	
+	@Test
 	public void testNombreEdificioEsCorrect0() {
 		
 		Assert.assertEquals(UnEdificio.getNombre(),nombre);

@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.exepciones.ErrorNoHayMasPaisesParaAvanzar;
+
 public class Trayectoria {
 	
 	private Pais PaisActual;

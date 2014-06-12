@@ -13,7 +13,7 @@ public class Pais {
 	public Edificio getEdificio(int indice){
 		return Edificios[indice];
 	}
-	public String Nombre(){
+	public String getNombre(){
 		return Nombre;
 	}
 
