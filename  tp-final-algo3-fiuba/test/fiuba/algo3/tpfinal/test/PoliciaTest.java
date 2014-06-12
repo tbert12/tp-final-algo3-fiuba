@@ -42,9 +42,7 @@ public class PoliciaTest {
 	@Test
 	public void PoliciaNoCambiadeRangoConCuatroArrestos(){
 		Policia Jugador = new Policia();
-		for (int i=0;i<4;i++){
-			Jugador.AddArresto();
-		}
+		this.SumarArrestos(4,Jugador);
 		Assert.assertFalse(Jugador.getRango() instanceof RangoDetective);
 	}
 	
