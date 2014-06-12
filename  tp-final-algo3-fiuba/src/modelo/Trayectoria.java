@@ -13,14 +13,14 @@ public class Trayectoria {
 		this.PaisFinal = Paises[-1];
 	}
 	
-	public Pais avanzar(){
+	public Pais avanzar() throws ErrorNoHayMasPaisesParaAvanzar{
 		if (indice < Paises.length){
 			indice += 1;
 			PaisActual = Paises[indice];
 			return PaisActual;
 		}
 		else {
-			throw new ErrorNoHayMasPaisesParaAvanzar;
+			throw new ErrorNoHayMasPaisesParaAvanzar();
 		}
 	}
 	
