@@ -2,22 +2,16 @@ package modelo;
 
 public class Caracteristicas {
 	
-	private String Nombre,Sexo,Hobby,Cabello,Senia,Vehiculo;
+	private String Sexo,Hobby,Cabello,Senia,Vehiculo;
 
-	public Caracteristicas(String Nombre,String Sexo,String Hobby,String Cabello,String Senia,String Vehiculo){
-		this.Nombre = Nombre;
+	public Caracteristicas(String Sexo,String Hobby,String Cabello,String Senia,String Vehiculo){
 		this.Sexo = Sexo;
 		this.Hobby = Hobby;
 		this.Cabello = Cabello;
 		this.Senia = Senia;
 		this.Vehiculo = Vehiculo;
 	}
-	
-	public String getNombre() {
-		return this.Nombre;
-	}
 
-	
 	public String getSexo() {
 		return this.Sexo;
 	}

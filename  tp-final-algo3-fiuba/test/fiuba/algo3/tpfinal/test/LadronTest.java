@@ -1,5 +1,6 @@
 package fiuba.algo3.tpfinal.test;
 
+import modelo.Caracteristicas;
 import modelo.Ladron;
 
 import org.junit.Assert;
@@ -16,7 +17,8 @@ public class LadronTest {
 	
 	@Test
 	public void LadronEsFemenino() {
-		Ladron ladron = new Ladron(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		Assert.assertEquals(ladron.Sexo(),Sexo[1]);
 		Assert.assertEquals(ladron.Hobby(), Hobbie[0]);
 		Assert.assertEquals(ladron.Cabello(),Cabello[3]);
@@ -26,7 +28,8 @@ public class LadronTest {
 
 	@Test
 	public void LadronNoEsFemenino() {
-		Ladron ladron = new Ladron("Masculino","","","","");
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		Assert.assertNotEquals(ladron.Sexo(),Sexo[1]);
 	}
 

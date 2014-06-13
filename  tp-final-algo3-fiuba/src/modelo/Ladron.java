@@ -2,15 +2,22 @@ package modelo;
 
 public class Ladron {
 	private Caracteristicas Caracteristicas;
+	private String Nombre;
 	private Trayectoria Trayectoria;
 	
 	
-	public Ladron(Caracteristicas caracteristicas){
+	public Ladron(String Nombre,Caracteristicas caracteristicas){
+		this.Nombre = Nombre;
 		this.Caracteristicas = caracteristicas;
 	}
 	
 	public void addTrayectoria(Trayectoria trayecto){
 		this.Trayectoria = trayecto;
+	}
+	
+	
+	public String getNombre(){
+		return this.Nombre;
 	}
 	
 	public String Sexo(){
