@@ -30,7 +30,7 @@ public class LadronTest {
 	public void LadronNoEsFemenino() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
-		Assert.assertNotEquals(ladron.Sexo(),Sexo[1]);
+		Assert.assertNotEquals(ladron.Sexo(),Sexo[0]);
 	}
 
 }
