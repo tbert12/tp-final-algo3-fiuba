@@ -43,4 +43,7 @@ public class Ladron {
 	public Pais PaisFinal(){
 		return Trayectoria.paisFinal();
 	}
+	public boolean CompararCaracteristicas(Caracteristicas otrasCaracteriscas){
+		return Caracteristicas.CompararCon(otrasCaracteriscas);
+	}
 }
