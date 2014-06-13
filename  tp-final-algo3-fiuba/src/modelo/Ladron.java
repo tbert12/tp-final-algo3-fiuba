@@ -42,5 +42,7 @@ public class Ladron {
 		return this.Vehiculo;
 	}
 	
-	
+	public Pais PaisFinal(){
+		return Trayectoria.paisFinal();
+	}
 }
