@@ -2,8 +2,6 @@ package modelo;
 
 public class Viaje {
 	
-	
-	
 	public void viajarHacia(Policia UnPolicia,Pais PaisDestino){
 		Pais PaisActual = UnPolicia.getPais();
 		
@@ -12,7 +10,7 @@ public class Viaje {
 		int tiempoDeViaje = UnPolicia.CostoDeViaje(kilometrosAViajar);
 		
 		UnPolicia.setPaisActual(PaisDestino);
-		UnPolicia.CostoDeViaje(tiempoDeViaje);
+		UnPolicia.ReducirHoras(tiempoDeViaje);
 		
 	}
 }

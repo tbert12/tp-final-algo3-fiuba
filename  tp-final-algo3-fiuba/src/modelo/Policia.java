@@ -47,4 +47,11 @@ public class Policia {
 		return this.Rango.CostoDeViaje(kilometrosAViajar);
 	}
 
+	public void ReducirHoras(int horas){
+		Tiempo.ReducirHoras(horas);
+	}
+	
+	public boolean TiempoAgotado(){
+		return Tiempo.TiempoAgotado();
+	}
 }
