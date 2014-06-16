@@ -1,6 +1,10 @@
 package fiuba.algo3.tpfinal.test;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import modelo.Edificio;
 import modelo.Pais;
 
@@ -21,14 +25,20 @@ public class PaisTest {
 	public void testElNombreDelPaisEsCorrecto() {
 		
 		assertEquals( UnPais.getNombre(), nombre );
-	
-	}
+	}	
 	
 	@Test
-	public void testLosEdificiosDelPaisSonCorrectos() {
+	public void testLosNombresDeLosEdificiosSonCorrectos(){
 		
-		for (int i=0; i<3; i++){
-			assertEquals( UnPais.getEdificio(i), edificios[i] );
+		ArrayList<String> NombresDeEdificios = UnPais.getNombresDeEdificios();
+		
+		Iterator<String> Iterador = NombresDeEdificios.iterator();
+		int i = 0;
+		while( Iterador.hasNext() ){
+			String NombreActual = Iterador.next();
+			assertEquals( NombreActual, edificios[i].getNombre() );
+			i++;
 		}
 	}
 }
+
