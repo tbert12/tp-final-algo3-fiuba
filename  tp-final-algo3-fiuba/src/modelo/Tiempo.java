@@ -10,6 +10,10 @@ public class Tiempo {
 	public void ReducirHoras(int CantidadDeHoras){
 		Horas = Horas - CantidadDeHoras;
 	}
+	public int Horas(){
+		return this.Horas;
+	}
+	
 	public boolean TiempoAgotado(){
 		if (Horas <= 0 ){ 
 			return true;}

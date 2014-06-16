@@ -33,4 +33,25 @@ public class CaracteristicasTest {
 	public void VehiculoEsCorrecto() {
 		assertEquals(UnaCaracteristica.getVehiculo(),Vehiculo);
 	}
+	
+	@Test
+	public void SexoNoEsCorrecto() {
+		assertNotEquals(UnaCaracteristica.getSexo(),"femenino");
+	}
+	@Test
+	public void HobbyNoEsCorrecto() {
+		assertNotEquals(UnaCaracteristica.getHobby(),"alpinismo");
+	}
+	@Test
+	public void CabelloNoEsCorrecto() {
+		assertNotEquals(UnaCaracteristica.getCabello(),"rojo");
+	}
+	@Test
+	public void SeniaNoEsCorrecto() {
+		assertNotEquals(UnaCaracteristica.getSenia(),"joyas");
+	}
+	@Test
+	public void VehiculoNoEsCorrecto() {
+		assertNotEquals(UnaCaracteristica.getVehiculo(),"limusina");
+	}
 }
