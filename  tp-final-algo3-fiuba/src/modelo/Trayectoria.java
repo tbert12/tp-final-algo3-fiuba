@@ -1,6 +1,6 @@
 package modelo;
 
-import modelo.exepciones.ErrorNoHayMasPaisesParaAvanzar;
+import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
 
 public class Trayectoria {
 	
