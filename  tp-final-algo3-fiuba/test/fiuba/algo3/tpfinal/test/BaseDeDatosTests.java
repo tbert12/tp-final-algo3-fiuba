@@ -142,4 +142,21 @@ public class BaseDeDatosTests {
 		Assert.assertFalse( PaisesDestino.contains(Alemania) );
 		
 	}
+	
+	public void PruebaPidoDestinosCasoPaisEquivocadoVuelveAlAnteriorDondeHabiaEncontradoPistas() throws ErrorNoHayPais{
+		Pais[] PaisesDelTrayecto = {Argentina,Cuba,Argelia,Alemania};
+		Trayectoria trayecto = new Trayectoria(PaisesDelTrayecto);
+		LadronUno.addTrayectoria(trayecto);
+		BaseDeDatos Base = CrearBase();
+		Pais unPais = crearPais("Brasil");
+		Base.addPais(unPais);
+		
+		ArrayList<Pais> PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, Argentina);
+		//Ahora El Ladron Esta en Cuba, pero se viajo a Brasil (Por Error)
+		PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, unPais);
+		//Tengo que tener la posibilidad de Volver a Argentina
+		Assert.assertTrue( PaisesDestino.contains(Argentina) );
+		
+		
+	}
 }
