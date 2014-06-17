@@ -94,16 +94,19 @@ public class PoliciaTest {
 		Assert.assertEquals(HorasDeViajeDetective, HorasDeViajeEsperadasDetective);
 	}
 	@Test
-	public void PersistenciaFunciona() throws ParserConfigurationException, TransformerException, SAXException, IOException {
+	public void PersistenciaFuncionaCon2Policias() throws ParserConfigurationException, TransformerException, SAXException, IOException {
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		Document doc = db.newDocument();
 		
 		Policia unPolicia = new Policia("Juan",15);
+		Policia otroPolicia = new Policia("Pepe",35);
+		Element otroPoliciaSerializado = otroPolicia.Serializar(doc);
 		Element policiaSerializado = unPolicia.Serializar(doc);
 		Assert.assertNotNull(policiaSerializado);
 		doc.appendChild(policiaSerializado);
+		doc.getFirstChild().appendChild(otroPoliciaSerializado);
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
 		DOMSource source = new DOMSource(doc);
@@ -120,9 +123,15 @@ public class PoliciaTest {
 		doc = dBuilder.parse(archivo);
 		doc.getDocumentElement().normalize();
 		
-		Policia policiaCargado = Policia.Hidratar(doc);
+		Policia policiaCargado = Policia.Hidratar(doc,1);
 		Assert.assertNotNull(policiaCargado);
-		Assert.assertEquals(policiaCargado.getNombre(),unPolicia.getNombre());
-		Assert.assertTrue(policiaCargado.getRango() instanceof RangoInvestigador);
+		Assert.assertEquals(policiaCargado.getNombre(),otroPolicia.getNombre());
+		Assert.assertTrue(policiaCargado.getRango() instanceof RangoSargento);
+		Policia otroPoliciaCargado = Policia.Hidratar(doc,0);
+		Assert.assertNotNull(otroPoliciaCargado);
+		Assert.assertEquals(otroPoliciaCargado.getNombre(),unPolicia.getNombre());
+		Assert.assertTrue(otroPoliciaCargado.getRango() instanceof RangoInvestigador);
 	}
+
+	
 }

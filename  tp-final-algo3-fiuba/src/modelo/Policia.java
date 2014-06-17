@@ -1,7 +1,6 @@
 package modelo;
 
 import org.w3c.dom.Element;
-
 import org.w3c.dom.Document;
 
 public class Policia {
@@ -79,12 +78,39 @@ public class Policia {
 		return elementoPolicia;
 	}
 		
-	public static Policia Hidratar(Document doc){
-		Element elementoPolicia = (Element)doc.getElementsByTagName("Policia").item(0);
+	public static Policia Hidratar(Document doc, int Pos){
+		//Como se va a guardar en orden acorde a la posicion dada
+		//Le paso por parametro la posicion, para poder hidratar el correcto.
+		Element elementoPolicia = (Element)doc.getElementsByTagName("Policia").item(Pos);
 		Policia nuevoPolicia = new Policia(elementoPolicia.getAttribute("Nombre"),Integer.parseInt(elementoPolicia.getAttribute("Arrestos")));
 		return nuevoPolicia;
 		
 		
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Policia other = (Policia) obj;
+		if (Nombre == null) {
+			if (other.Nombre != null)
+				return false;
+		} else if (!Nombre.equals(other.Nombre))
+			return false;
+		return true;
 	}
 		
 		
