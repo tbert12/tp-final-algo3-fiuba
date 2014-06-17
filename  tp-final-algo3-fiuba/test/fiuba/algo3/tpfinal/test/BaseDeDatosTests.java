@@ -30,6 +30,8 @@ public class BaseDeDatosTests {
 	Pais Cuba = crearPais("Cuba");
 	Pais Argelia = crearPais("Argelia");
 	Pais Alemania = crearPais("Alemania");
+	Pais Rusia = crearPais("Rusia");
+	Pais Peru = crearPais("Peru");
 	
 	
 	public Ladron CrearLadron(String Nombre,String Sexo,String Hobby,String Cabello,String Senia,String Vehiculo){
@@ -54,6 +56,8 @@ public class BaseDeDatosTests {
 		unaBase.addPais(Cuba);
 		unaBase.addPais(Argelia);
 		unaBase.addPais(Alemania);
+		unaBase.addPais(Rusia);
+		unaBase.addPais(Peru);
 		return unaBase;
 	}
 	
@@ -125,6 +129,8 @@ public class BaseDeDatosTests {
 		PaisesEsperados.add(Cuba);
 		PaisesEsperados.add(Argelia);
 		PaisesEsperados.add(Alemania);
+		PaisesEsperados.add(Rusia);
+		PaisesEsperados.add(Peru);
 		
 		Assert.assertEquals(PaisesdeBase,PaisesEsperados);		
 	}
@@ -137,12 +143,15 @@ public class BaseDeDatosTests {
 		BaseDeDatos Base = CrearBase();
 		ArrayList<Pais> PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, Argentina);
 		
+		//Se espera un pais de la trayectoria y otros dos que no esten.
 		Assert.assertTrue( PaisesDestino.contains(Cuba) );
-		Assert.assertFalse( PaisesDestino.contains(Argelia) );
-		Assert.assertFalse( PaisesDestino.contains(Alemania) );
-		
+		Assert.assertTrue( PaisesDestino.contains(Peru) );
+		Assert.assertTrue( PaisesDestino.contains(Rusia) );
+		//TODO No Pasa Esta
+		Assert.assertFalse( PaisesDestino.contains(Argentina) );
 	}
 	
+	@Test
 	public void PruebaPidoDestinosCasoPaisEquivocadoVuelveAlAnteriorDondeHabiaEncontradoPistas() throws ErrorNoHayPais{
 		Pais[] PaisesDelTrayecto = {Argentina,Cuba,Argelia,Alemania};
 		Trayectoria trayecto = new Trayectoria(PaisesDelTrayecto);
@@ -154,9 +163,11 @@ public class BaseDeDatosTests {
 		ArrayList<Pais> PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, Argentina);
 		//Ahora El Ladron Esta en Cuba, pero se viajo a Brasil (Por Error)
 		PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, unPais);
-		//Tengo que tener la posibilidad de Volver a Argentina
+		//Espero la posibilidad de Volver a Argentina pero no ir a Cuba
 		Assert.assertTrue( PaisesDestino.contains(Argentina) );
-		
+		Assert.assertFalse (PaisesDestino.contains(Cuba) );
+		//No debo poder viajar al mismo Pais que estoy
+		Assert.assertFalse (PaisesDestino.contains(unPais) );
 		
 	}
 }
