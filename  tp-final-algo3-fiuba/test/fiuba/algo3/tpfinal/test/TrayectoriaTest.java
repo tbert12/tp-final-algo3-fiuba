@@ -2,10 +2,11 @@ package fiuba.algo3.tpfinal.test;
 
 
 	
-	import modelo.Pais;
+	import java.util.ArrayList;
+
+import modelo.Pais;
 import modelo.Trayectoria;
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
-import modelo.excepcion.ErrorNoHayPais;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -15,40 +16,36 @@ import static org.mockito.Mockito.*;
 	
 	@SuppressWarnings("unused")
 	public class TrayectoriaTest {
-		
+		private Pais Argentina = new Pais("ARGENTINA",null);
+		private Pais Brasil = new Pais("Brasil",null);
 		
 		@Test(expected = ErrorNoHayMasPaisesParaAvanzar.class)
-		public void TrayectoriaPruebaAvanzarExcepcion() throws ErrorNoHayMasPaisesParaAvanzar,ErrorNoHayPais{
-			Pais Argentina = new Pais("ARGENTINA",null);
-			Pais pais[] = {Argentina};
-			Trayectoria Trayectoria = new Trayectoria(pais);
-			assertEquals(0, Trayectoria.avanzar());
+		public void TrayectoriaPruebaAvanzarExcepcion() throws ErrorNoHayMasPaisesParaAvanzar{
+			ArrayList<Pais> ListaPaises = new ArrayList<Pais>();
+			ListaPaises.add(Argentina);
+			Trayectoria UnaTrayectoria = new Trayectoria(ListaPaises);
 			
-		}
-		
-		@Test(expected = ErrorNoHayPais.class)
-		public void TrayectoriaPruebasPaisActualYFinal() throws ErrorNoHayPais{
-			Pais pais[] = {};
-			assertEquals(0, new Trayectoria(pais));
+			assertEquals(UnaTrayectoria.avanzar(),ErrorNoHayMasPaisesParaAvanzar.class);
 			
 		}
 			
 		@Test
-		public void TrayectoriaAvanzar() throws ErrorNoHayMasPaisesParaAvanzar, ErrorNoHayPais{
-			Pais Argentina = new Pais("ARGENTINA",null);
-			Pais Brasil = new Pais("Brasil",null);
-			Pais pais[]={Argentina,Brasil};
-			Trayectoria Trayectoria = new Trayectoria(pais);
-			assertEquals(Brasil, Trayectoria.avanzar());
+		public void TrayectoriaAvanzar() throws ErrorNoHayMasPaisesParaAvanzar{
+			ArrayList<Pais> ListaPaises = new ArrayList<Pais>();
+			ListaPaises.add(Argentina);
+			ListaPaises.add(Brasil);
+			Trayectoria UnaTrayectoria = new Trayectoria(ListaPaises);
+			
+			assertEquals(UnaTrayectoria.avanzar(),Brasil);
 		}
 		
 		@Test
-		public void TrayectoPaisActualYFinal() throws ErrorNoHayPais, ErrorNoHayMasPaisesParaAvanzar{
-			Pais Argentina = new Pais("ARGENTINA",null);
-			Pais pais[]= {Argentina};
-			Trayectoria Trayectoria = new Trayectoria(pais);
-			assertEquals(Argentina, Trayectoria.paisActual());
-			assertEquals(Argentina, Trayectoria.paisFinal());
+		public void TrayectoPaisActualYFinal() throws ErrorNoHayMasPaisesParaAvanzar{
+			ArrayList<Pais> ListaPaises = new ArrayList<Pais>();
+			ListaPaises.add(Argentina);
+			Trayectoria UnaTrayectoria = new Trayectoria(ListaPaises);
+			assertEquals(Argentina, UnaTrayectoria.paisActual());
+			assertEquals(Argentina, UnaTrayectoria.paisFinal());
 		}
 	}
 			/*

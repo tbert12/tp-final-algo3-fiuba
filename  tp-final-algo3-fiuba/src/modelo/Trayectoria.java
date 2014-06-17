@@ -1,28 +1,27 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
-import modelo.excepcion.ErrorNoHayPais;
 public class Trayectoria {
 	
-	private Pais PaisActual;
+	private Iterator<Pais> IteradorPaisActual;
 	private Pais PaisFinal;
-	private Pais[] Paises;
-	private int indice = 0;
+	private Pais PaisActual;
+	private ArrayList<Pais> Paises;
+	//private int indice = 0;
 
-	public Trayectoria (Pais[] Paises) throws ErrorNoHayPais{
-		if (Paises.length == 0){
-			throw new ErrorNoHayPais();
-		}
-		
+	public Trayectoria (ArrayList<Pais> Paises){
 		this.Paises = Paises;
-		this.PaisActual = Paises[0];
-		this.PaisFinal = Paises[Paises.length-1];
+		this.IteradorPaisActual = Paises.iterator();
+		this.PaisActual = IteradorPaisActual.next();
+		this.PaisFinal = Paises.get(Paises.size() -1);
 	}
 	
 	public Pais avanzar() throws ErrorNoHayMasPaisesParaAvanzar{
-		if (indice < Paises.length-1){
-			indice += 1;
-			PaisActual = Paises[indice];
+		if (IteradorPaisActual.hasNext()){
+			PaisActual = IteradorPaisActual.next();
 			return PaisActual;
 		}
 		else {
@@ -31,16 +30,14 @@ public class Trayectoria {
 	}
 	
 	public Pais PaisAnterior(){
-		int indiceAnterior = indice - 1; 
-		Pais PaisAnterior = Paises[indiceAnterior];
+		int indiceAnterior = Paises.indexOf(PaisActual) - 1; 
+		Pais PaisAnterior = Paises.get(indiceAnterior);
 		return PaisAnterior;
 	}
 	
-	public boolean EstaEnTrayectoria(Pais pais){
-		for (int i = 0; i < Paises.length ; i++){
-			if (Paises[i] == pais) return true;
-		}
-		return false;
+	public boolean EstaEnTrayectoria(Pais UnPais){
+		
+		return Paises.contains(UnPais);
 	}
 	
 	public Pais paisActual(){

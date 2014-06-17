@@ -137,7 +137,12 @@ public class BaseDeDatosTests {
 	
 	@Test
 	public void PruebaPidoDestinos() throws ErrorNoHayPais{
-		Pais[] PaisesDelTrayecto = {Argentina,Cuba,Argelia,Alemania};
+		ArrayList<Pais> PaisesDelTrayecto = new ArrayList<Pais>();
+		PaisesDelTrayecto.add(Argentina);
+		PaisesDelTrayecto.add(Cuba);
+		PaisesDelTrayecto.add(Argelia);
+		PaisesDelTrayecto.add(Alemania);
+		
 		Trayectoria trayecto = new Trayectoria(PaisesDelTrayecto);
 		LadronUno.addTrayectoria(trayecto);
 		BaseDeDatos Base = CrearBase();
@@ -156,7 +161,12 @@ public class BaseDeDatosTests {
 	
 	@Test
 	public void PruebaPidoDestinosCasoPaisEquivocadoVuelveAlAnteriorDondeHabiaEncontradoPistas() throws ErrorNoHayPais{
-		Pais[] PaisesDelTrayecto = {Argentina,Cuba,Argelia,Alemania};
+		ArrayList<Pais> PaisesDelTrayecto = new ArrayList<Pais>();
+		PaisesDelTrayecto.add(Argentina);
+		PaisesDelTrayecto.add(Cuba);
+		PaisesDelTrayecto.add(Argelia);
+		PaisesDelTrayecto.add(Alemania);
+		
 		Trayectoria trayecto = new Trayectoria(PaisesDelTrayecto);
 		LadronUno.addTrayectoria(trayecto);
 		BaseDeDatos Base = CrearBase();
