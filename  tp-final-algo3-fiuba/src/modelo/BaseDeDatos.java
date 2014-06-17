@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 public class BaseDeDatos {
 
@@ -30,23 +31,38 @@ public class BaseDeDatos {
 	}
 	
 	public ArrayList<Pais> PosiblesPaisesAViajar(Ladron Ladron, Pais Pais){
+		int posicionDestino;
+		int randomPos;
+		Pais aux;
 		ArrayList<Pais> PosiblesPaises = new ArrayList<Pais>();
-		/*Pais PaisDestino;
+		Pais PaisDestino;
+		
 		if ( Pais == Ladron.PaisActual() ){
 			PaisDestino = Ladron.Avanzar();
 		}
 		else {
 			PaisDestino = Ladron.PaisActual();
+			 
 		}
-		PosiblesPaises.add(PaisDestino);
-		while ( PosiblesPaises.size() < 3 ){
-			
-		}
-		*/
-		return PosiblesPaises;
+		posicionDestino = Paises.indexOf(PaisDestino);
 		
+		PosiblesPaises.add(PaisDestino);
+		randomPos=0;
+		//IMPORTANTE : el pais destino queda en la lista siempre a la izq 
+		// Entonces en el juego la respuesta correcta siempre seria lo de la izq
+		// hay havias formas de cambiarlo... ver si es necesario 
+		while ( PosiblesPaises.size() < 3 ){
+			while (posicionDestino == randomPos){
+				randomPos = (int)(Math.random()*Paises.size());
+			}
+			aux = Paises.get(randomPos);
+			
+			PosiblesPaises.add(aux);
+		}
+		
+		return PosiblesPaises;
 	}
-
+	
 	public ArrayList<Pais> ObtenerPaises() {
 		return this.Paises;
 	}

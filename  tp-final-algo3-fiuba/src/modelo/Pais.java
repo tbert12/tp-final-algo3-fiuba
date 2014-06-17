@@ -2,10 +2,11 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
+
+import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 
-import modelo.excepciones.ErrorEdificioNoEstaEnPais;
-
+@SuppressWarnings("unused")
 public class Pais {
 	
 	private String Nombre;
