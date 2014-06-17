@@ -7,6 +7,7 @@ public class BaseDeDatos {
 
 	private ArrayList<Ladron> Ladrones = new ArrayList<Ladron>();
 	private ArrayList<Pais> Paises = new ArrayList<Pais>();
+	private final int CANTIDADPOSIBLESDESTINOS = 3;
 	
 	public void addSospechoso(Ladron ladron){
 		this.Ladrones.add(ladron);
@@ -29,36 +30,29 @@ public class BaseDeDatos {
 		
 	}
 	
-	public ArrayList<Pais> PosiblesPaisesAViajar(Ladron Ladron, Pais Pais){
-		int posicionDestino;
-		int randomPos;
-		Pais aux;
+	public ArrayList<Pais> PosiblesPaisesAViajar(Ladron Ladron, Pais PaisActual){
 		ArrayList<Pais> PosiblesPaises = new ArrayList<Pais>();
 		Pais PaisDestino;
 		
-		if ( Pais == Ladron.PaisActual() ){
+		if ( PaisActual == Ladron.PaisActual() ){
+			//Se le delega al ladron, si no tiene mas para avanzar, devuelve el anterior
+			//Como que vuelva a buscar mas pistas.
 			PaisDestino = Ladron.Avanzar();
 		}
 		else {
-			PaisDestino = Ladron.PaisActual();
+			//Hay que hacer volver al pais anterior donde se equivoco
+			PaisDestino = Ladron.PaisAnterior();
 			 
 		}
-		posicionDestino = Paises.indexOf(PaisDestino);
-		
 		PosiblesPaises.add(PaisDestino);
-		randomPos=0;
-		//IMPORTANTE : el pais destino queda en la lista siempre a la izq 
-		// Entonces en el juego la respuesta correcta siempre seria lo de la izq
-		// hay havias formas de cambiarlo... ver si es necesario 
-		while ( PosiblesPaises.size() < 3 ){
-			while (posicionDestino == randomPos){
-				randomPos = (int)(Math.random()*Paises.size());
-			}
-			aux = Paises.get(randomPos);
-			
-			PosiblesPaises.add(aux);
-		}
 		
+		while ( PosiblesPaises.size() < this.CANTIDADPOSIBLESDESTINOS ){
+			Pais PaisRandom = Paises.get((int)(Math.random()*Paises.size()));
+			while (Ladron.PasaPor(PaisRandom) || PaisActual == PaisRandom ){
+				PaisRandom = Paises.get((int)(Math.random()*Paises.size()));;
+			}
+			PosiblesPaises.add(PaisRandom);
+		}
 		return PosiblesPaises;
 	}
 	

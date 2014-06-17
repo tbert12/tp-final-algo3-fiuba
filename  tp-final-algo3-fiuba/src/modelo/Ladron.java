@@ -52,15 +52,22 @@ public class Ladron {
 	public Pais PaisActual(){
 		return this.Trayectoria.paisActual();
 	}
+	
+	public Pais PaisAnterior(){
+		return Trayectoria.PaisAnterior();
+	}
+	
+	public boolean PasaPor(Pais pais){
+		return this.Trayectoria.EstaEnTrayectoria(pais);
+	}
 
 	public Pais Avanzar() {
-		Pais PaisActual = Trayectoria.paisActual();
 		try{
 			return this.Trayectoria.avanzar();
 		}
 		catch (ErrorNoHayMasPaisesParaAvanzar e){
 			//TODO Devolver un pais anterior al actual, lo necesito en Base
-			return PaisActual;
+			return PaisAnterior();
 		}
 	}
 }

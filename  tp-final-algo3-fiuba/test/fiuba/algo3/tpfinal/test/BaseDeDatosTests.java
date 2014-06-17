@@ -145,10 +145,13 @@ public class BaseDeDatosTests {
 		
 		//Se espera un pais de la trayectoria y otros dos que no esten.
 		Assert.assertTrue( PaisesDestino.contains(Cuba) );
-		Assert.assertTrue( PaisesDestino.contains(Peru) );
-		Assert.assertTrue( PaisesDestino.contains(Rusia) );
+		//Assert.assertTrue( PaisesDestino.contains(Peru) );
+		//Assert.assertTrue( PaisesDestino.contains(Rusia) );
 		//TODO No Pasa Esta
 		Assert.assertFalse( PaisesDestino.contains(Argentina) );
+		Assert.assertFalse( PaisesDestino.contains(Argelia) );
+		Assert.assertFalse( PaisesDestino.contains(Alemania) );
+
 	}
 	
 	@Test
@@ -167,7 +170,13 @@ public class BaseDeDatosTests {
 		Assert.assertTrue( PaisesDestino.contains(Argentina) );
 		Assert.assertFalse (PaisesDestino.contains(Cuba) );
 		//No debo poder viajar al mismo Pais que estoy
-		Assert.assertFalse (PaisesDestino.contains(unPais) );
+		Assert.assertFalse ( PaisesDestino.contains(unPais) );
+		
+		Assert.assertTrue( PaisesDestino.contains(Peru) );
+		Assert.assertTrue( PaisesDestino.contains(Rusia) );
+		
+		Assert.assertFalse( PaisesDestino.contains(Argelia) );
+		Assert.assertFalse( PaisesDestino.contains(Alemania) );
 		
 	}
 }

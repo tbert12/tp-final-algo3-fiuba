@@ -30,6 +30,19 @@ public class Trayectoria {
 		}
 	}
 	
+	public Pais PaisAnterior(){
+		int indiceAnterior = indice - 1; 
+		Pais PaisAnterior = Paises[indiceAnterior];
+		return PaisAnterior;
+	}
+	
+	public boolean EstaEnTrayectoria(Pais pais){
+		for (int i = 0; i < Paises.length ; i++){
+			if (Paises[i] == pais) return true;
+		}
+		return false;
+	}
+	
 	public Pais paisActual(){
 		return PaisActual;
 	}
