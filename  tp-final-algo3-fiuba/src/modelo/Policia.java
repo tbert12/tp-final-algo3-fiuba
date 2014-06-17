@@ -1,16 +1,31 @@
 package modelo;
 
+import org.w3c.dom.Element;
+
+import org.w3c.dom.Document;
+
 public class Policia {
 	
+	private String Nombre = "";
 	private Rango Rango = new RangoNovato();
 	private int CantidadDeArrestos = 0;
 	private Tiempo Tiempo;
 	private Pais PaisActual;
 
+	public Policia(String Nombre, int CantidadDeArrestos){
+		this.Nombre = Nombre;
+		this.CantidadDeArrestos = CantidadDeArrestos;
+		ChequeoDeRango();
+		
+	}
+
+	public String getNombre(){
+		return this.Nombre;
+	}
 	public Rango getRango() {
 		return this.Rango;
 	}
-
+	
 	public void setTiempo(Tiempo tiempo){
 		this.Tiempo = tiempo;
 	}
@@ -29,6 +44,10 @@ public class Policia {
 	
 	public void AddArresto() {
 		CantidadDeArrestos++;
+		ChequeoDeRango();
+		
+	}
+	private void ChequeoDeRango(){
 		if ( CantidadDeArrestos >= 20 ){
 			this.Rango = new RangoSargento();
 			return;
@@ -42,7 +61,6 @@ public class Policia {
 			return;
 		}
 	}
-
 	public int CostoDeViaje(int kilometrosAViajar) {
 		return this.Rango.CostoDeViaje(kilometrosAViajar);
 	}
@@ -54,4 +72,23 @@ public class Policia {
 	public boolean TiempoAgotado(){
 		return Tiempo.TiempoAgotado();
 	}
-}
+	public Element Serializar(Document doc){
+		Element elementoPolicia =doc.createElement("Policia");
+		elementoPolicia.setAttribute("Nombre",this.Nombre);
+		elementoPolicia.setAttribute("Arrestos",""+this.CantidadDeArrestos);
+		return elementoPolicia;
+	}
+		
+	public static Policia Hidratar(Document doc){
+		Element elementoPolicia = (Element)doc.getElementsByTagName("Policia").item(0);
+		Policia nuevoPolicia = new Policia(elementoPolicia.getAttribute("Nombre"),Integer.parseInt(elementoPolicia.getAttribute("Arrestos")));
+		return nuevoPolicia;
+		
+		
+	}
+		
+		
+				
+		
+		
+	}
