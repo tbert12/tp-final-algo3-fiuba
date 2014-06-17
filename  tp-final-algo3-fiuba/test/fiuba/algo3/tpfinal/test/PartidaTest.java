@@ -26,19 +26,6 @@ public class PartidaTest {
 	private Edificio fiuba = new Edificio("fiuba", "fiuba pista");
 	private Edificio[] edificios = {biblioteca,puerto,fiuba};
 	
-	public ArrayList<String> NombresDeEdificiosAMostrar(){
-		Pais PaisActual = UnPolicia.getPais();
-		
-		return PaisActual.getNombresDeEdificios();
-	}
-	private Pais pais = new Pais("Argentina",edificios);
-	@Test
-	public void TestObtenerNombresDeEdificios() {
-		assertEquals("fiuba", pais.getNombresDeEdificios().get(2));
-		assertEquals("puerto", pais.getNombresDeEdificios().get(1));
-		assertEquals("biblioteca", pais.getNombresDeEdificios().get(0));
-	}
-	
 	
 
 
