@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
+
 public class Ladron {
 	private Caracteristicas Caracteristicas;
 	private String Nombre;
@@ -45,5 +47,20 @@ public class Ladron {
 	}
 	public boolean CompararCaracteristicas(Caracteristicas otrasCaracteriscas){
 		return Caracteristicas.CompararCon(otrasCaracteriscas);
+	}
+	
+	public Pais PaisActual(){
+		return this.Trayectoria.paisActual();
+	}
+
+	public Pais Avanzar() {
+		Pais PaisActual = Trayectoria.paisActual();
+		try{
+			return this.Trayectoria.avanzar();
+		}
+		catch (ErrorNoHayMasPaisesParaAvanzar e){
+			//TODO Devolver un pais anterior al actual, lo necesito en Base
+			return PaisActual;
+		}
 	}
 }
