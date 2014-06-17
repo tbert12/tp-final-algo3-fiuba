@@ -160,23 +160,25 @@ public class BaseDeDatosTests {
 		Trayectoria trayecto = new Trayectoria(PaisesDelTrayecto);
 		LadronUno.addTrayectoria(trayecto);
 		BaseDeDatos Base = CrearBase();
-		Pais unPais = crearPais("Brasil");
-		Base.addPais(unPais);
+		Pais Brasil = crearPais("Brasil");
+		Base.addPais(Brasil);
 		
 		ArrayList<Pais> PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, Argentina);
+		
 		//Ahora El Ladron Esta en Cuba, pero se viajo a Brasil (Por Error)
-		PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, unPais);
-		//Espero la posibilidad de Volver a Argentina pero no ir a Cuba
-		Assert.assertTrue( PaisesDestino.contains(Argentina) );
+		PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, Brasil);
+		
+		Assert.assertTrue(PaisesDestino.size() == 3);
+		
+		Assert.assertFalse ( PaisesDestino.contains(Brasil) );
 		Assert.assertFalse (PaisesDestino.contains(Cuba) );
-		//No debo poder viajar al mismo Pais que estoy
-		Assert.assertFalse ( PaisesDestino.contains(unPais) );
-		
-		Assert.assertTrue( PaisesDestino.contains(Peru) );
-		Assert.assertTrue( PaisesDestino.contains(Rusia) );
-		
 		Assert.assertFalse( PaisesDestino.contains(Argelia) );
 		Assert.assertFalse( PaisesDestino.contains(Alemania) );
+		
+		//Espero la posibilidad de Volver a Argentina pero no puedo ir a Cuba
+		Assert.assertTrue( PaisesDestino.contains(Argentina) );
+		Assert.assertTrue( PaisesDestino.contains(Peru) );
+		Assert.assertTrue( PaisesDestino.contains(Rusia) );
 		
 	}
 }
