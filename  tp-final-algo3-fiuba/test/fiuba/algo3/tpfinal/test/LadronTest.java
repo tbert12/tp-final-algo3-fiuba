@@ -89,10 +89,7 @@ public class LadronTest {
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		Assert.assertFalse(ladron.CompararCaracteristicas(OtrasCaracteristicasDelLadron));
 	}
- 
-
-	
-	
+ 	
 	@Test
 	public void TestOrdenDeArresto(){
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);

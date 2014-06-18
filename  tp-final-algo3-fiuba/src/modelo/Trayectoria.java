@@ -10,7 +10,6 @@ public class Trayectoria {
 	private Pais PaisFinal;
 	private Pais PaisActual;
 	private ArrayList<Pais> Paises;
-	//private int indice = 0;
 
 	public Trayectoria (ArrayList<Pais> Paises){
 		this.Paises = Paises;

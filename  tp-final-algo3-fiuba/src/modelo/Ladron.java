@@ -69,7 +69,7 @@ public class Ladron {
 			return this.Trayectoria.avanzar();
 		}
 		catch (ErrorNoHayMasPaisesParaAvanzar e){
-			//TODO Devolver un pais anterior al actual, lo necesito en Base
+			//Devolver un pais anterior al actual, lo necesito en Base
 			return PaisAnterior();
 		}
 	}
