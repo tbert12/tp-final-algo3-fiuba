@@ -3,6 +3,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import modelo.excepcion.ErrorElPaisNoEsta;
+
 public class BaseDeDatos {
 
 	private ArrayList<Ladron> Ladrones = new ArrayList<Ladron>();
@@ -57,7 +59,17 @@ public class BaseDeDatos {
 		return PosiblesPaises;
 	}
 	
-	public ArrayList<Pais> ObtenerPaises() {
-		return this.Paises;
+	public Pais ObtenerPaisPorNombre(String NombrePais) throws ErrorElPaisNoEsta{
+		
+		Iterator<Pais> iterador = Paises.iterator();
+		while(iterador.hasNext()){
+			Pais UnPais = iterador.next();
+			if( NombrePais.equals(UnPais.getNombre()) ){
+				return UnPais;
+			}
+		}
+		
+		throw new ErrorElPaisNoEsta();
+		
 	}
 }

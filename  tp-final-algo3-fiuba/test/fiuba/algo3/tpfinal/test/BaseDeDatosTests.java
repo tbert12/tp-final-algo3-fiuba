@@ -8,7 +8,6 @@ import modelo.Ladron;
 import modelo.Pais;
 import modelo.Edificio;
 import modelo.Trayectoria;
-import modelo.excepcion.ErrorNoHayPais;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -118,6 +117,7 @@ public class BaseDeDatosTests {
 		Assert.assertEquals(Sospechosos, SospechososEsperados);
 	}
 	
+	/*
 	@Test
 	public void PruebaAgregoPais(){
 		BaseDeDatos Base = CrearBase();
@@ -134,9 +134,9 @@ public class BaseDeDatosTests {
 		
 		Assert.assertEquals(PaisesdeBase,PaisesEsperados);		
 	}
-	
+	*/
 	@Test
-	public void PruebaPidoDestinos() throws ErrorNoHayPais{
+	public void PruebaPidoDestinos(){
 		ArrayList<Pais> PaisesDelTrayecto = new ArrayList<Pais>();
 		PaisesDelTrayecto.add(Argentina);
 		PaisesDelTrayecto.add(Cuba);
@@ -150,8 +150,8 @@ public class BaseDeDatosTests {
 		
 		//Se espera un pais de la trayectoria y otros dos que no esten.
 		Assert.assertTrue( PaisesDestino.contains(Cuba) );
-		//Assert.assertTrue( PaisesDestino.contains(Peru) );
-		//Assert.assertTrue( PaisesDestino.contains(Rusia) );
+		Assert.assertTrue( PaisesDestino.contains(Peru) );
+		Assert.assertTrue( PaisesDestino.contains(Rusia) );
 		//TODO No Pasa Esta
 		Assert.assertFalse( PaisesDestino.contains(Argentina) );
 		Assert.assertFalse( PaisesDestino.contains(Argelia) );
@@ -160,7 +160,7 @@ public class BaseDeDatosTests {
 	}
 	
 	@Test
-	public void PruebaPidoDestinosCasoPaisEquivocadoVuelveAlAnteriorDondeHabiaEncontradoPistas() throws ErrorNoHayPais{
+	public void PruebaPidoDestinosCasoPaisEquivocadoVuelveAlAnteriorDondeHabiaEncontradoPistas(){
 		ArrayList<Pais> PaisesDelTrayecto = new ArrayList<Pais>();
 		PaisesDelTrayecto.add(Argentina);
 		PaisesDelTrayecto.add(Cuba);

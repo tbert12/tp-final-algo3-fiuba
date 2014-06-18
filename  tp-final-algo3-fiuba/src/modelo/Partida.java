@@ -1,8 +1,10 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import modelo.excepcion.ErrorEdificioNoEstaEnPais;
+import modelo.excepcion.ErrorElPaisNoEsta;
 
 public class Partida {
 	private Policia UnPolicia;
@@ -18,6 +20,14 @@ public class Partida {
 		this.BasedeDatos = UnaBase;
 		this.ObjetoRobado = UnObjeto;
 		this.CostosDeViajes = new Viaje();	
+	}
+	
+	public String ValorObjetoRobado(){
+		return ObjetoRobado.getValor();
+	}
+	
+	public String NombreObjetoRobado(){
+		return ObjetoRobado.getNombre();
 	}
 	
 	public ArrayList<String> NombresDeEdificiosAMostrar(){
@@ -47,6 +57,31 @@ public class Partida {
 			}
 			
 			//no se que se haria con los ladrones flitrados, supongo enviar los nombres para mostrar en pantalla.
+	}
+	
+	public ArrayList<String> NombresPaisesAViajar(){
+		
+		ArrayList<Pais> PosiblesPaises = BasedeDatos.PosiblesPaisesAViajar(UnLadron, UnPolicia.getPais());
+		ArrayList<String> NombresPaisesAViajar = new ArrayList<String>();
+		
+		Iterator<Pais> iterador = PosiblesPaises.iterator();
+		while(iterador.hasNext()){
+			Pais UnPais = iterador.next();
+			NombresPaisesAViajar.add( UnPais.getNombre() );
+		}
+		
+		return NombresPaisesAViajar;
+	}
+	
+	public boolean ViajarHacia(String NombrePais){
+		try{
+			Pais PaisDestino = BasedeDatos.ObtenerPaisPorNombre(NombrePais);
+			CostosDeViajes.viajarHacia(UnPolicia, PaisDestino);
+			return true;
+		}
+		catch(ErrorElPaisNoEsta e){
+			return false;
+		}
 	}
 	
 }
