@@ -15,10 +15,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -27,10 +23,11 @@ import org.xml.sax.SAXException;
 public  class CarmenSanDiego {
 	private static String nombreArchivoPolicias = "RegistroPolicias.xml";
 	private static String nombreArchivoLadrones = "RegistroLadrones.xml";
-	public static List<Policia> ListadoPolicias = new ArrayList<Policia>();
-	public static List<Ladron> ListadoLadrones = new ArrayList<Ladron>();
-	public static int CantidadDePolicias = 0;
-	public static int CantidadDeLadrones = 0;
+	private static String nombreArchivoCarmen = "ConfiguracionCarmen.xml";
+	private static List<Policia> ListadoPolicias = new ArrayList<Policia>();
+	private static List<Ladron> ListadoLadrones = new ArrayList<Ladron>();
+	private static int CantidadDePolicias = 0;
+	private static int CantidadDeLadrones = 0;
 	
 	public void LevantarPoliciasDelXML() throws ParserConfigurationException, SAXException, IOException{
 		File archivo = new File(nombreArchivoPolicias);
@@ -40,7 +37,7 @@ public  class CarmenSanDiego {
 			Document doc = dBuilder.newDocument();
 			doc = dBuilder.parse(archivo);
 			doc.getDocumentElement().normalize();
-			for (int i = 0; i <CantidadDePolicias;i++){
+			for (int i = 0; i <getCantidadDePolicias();i++){
 				Policia policia = Policia.Hidratar(doc,i);
 				ListadoPolicias.add(policia);
 			}
@@ -55,11 +52,17 @@ public  class CarmenSanDiego {
 			Document doc = dBuilder.newDocument();
 			doc = dBuilder.parse(archivo);
 			doc.getDocumentElement().normalize();
-			for (int i = 0;i < CantidadDeLadrones;i++){
+			for (int i = 0;i < getCantidadDeLadrones();i++){
 				Ladron ladron = Ladron.ladronHidratar(doc,i);
 				ListadoLadrones.add(ladron);
 			}
 		}
+	}
+	public void BajarConfiguracionAXML() throws ParserConfigurationException{
+		Document doc = crearDoc();
+		Element elementoCarmen = doc.createElement("Carmen");
+		elementoCarmen.setAttribute("NumeroPolicias",""+CarmenSanDiego.getCantidadDePolicias());
+		elementoCarmen.setAttribute("NumeroLadrones",""+CarmenSanDiego.getCantidadDeLadrones());
 	}
 	private Document crearDoc() throws ParserConfigurationException{
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -104,11 +107,11 @@ public  class CarmenSanDiego {
 
 	public void AgregarPolicia(Policia unPolicia){
 		ListadoPolicias.add(unPolicia);
-		CantidadDePolicias++;
+		setCantidadDePolicias(getCantidadDePolicias() + 1);
 	}
 	public void AgregarLadron(Ladron unLadron){
 		ListadoLadrones.add(unLadron);
-		CantidadDeLadrones++;
+		setCantidadDeLadrones(getCantidadDeLadrones() + 1);
 	}
 	public Boolean LadronEstaEnJuego(Ladron unLadron){
 		return ListadoLadrones.contains(unLadron);
@@ -128,6 +131,18 @@ public  class CarmenSanDiego {
 	}
 	public Boolean ArchivoLadronesExiste(){
 		return ArchivoExiste(nombreArchivoLadrones);
+	}
+	public static int getCantidadDePolicias() {
+		return CantidadDePolicias;
+	}
+	 static void setCantidadDePolicias(int cantidadDePolicias) {
+		CantidadDePolicias = cantidadDePolicias;
+	}
+	public static int getCantidadDeLadrones() {
+		return CantidadDeLadrones;
+	}
+	public static void setCantidadDeLadrones(int cantidadDeLadrones) {
+		CantidadDeLadrones = cantidadDeLadrones;
 	}
 	
 	}
