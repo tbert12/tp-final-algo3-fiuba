@@ -34,7 +34,19 @@ public class Partida {
 			return "ERROR";
 		}
 		
-	} 
+	}
 	
+	public void FiltrarLadron(String unSexo,String unHobby,String unCabello,String unaSenia,String unVehiculo){
+			Caracteristicas CaracteristicasAFiltrar = new Caracteristicas(unSexo,unHobby,unCabello,unaSenia,unVehiculo);
+			ArrayList<Ladron> PosiblesLadrones = BasedeDatos.FiltarPorCaracteristicas(CaracteristicasAFiltrar);
+			
+			if (PosiblesLadrones.size() == 1){
+				//Hay solo un ladron, hay que emitir la orden de arresto
+				Ladron UnicoLadron = PosiblesLadrones.get(0);
+				UnicoLadron.EmitirOrdenDeArresto();
+			}
+			
+			//no se que se haria con los ladrones flitrados, supongo enviar los nombres para mostrar en pantalla.
+	}
 	
 }
