@@ -5,12 +5,18 @@ import org.w3c.dom.Document;
 
 public class Policia {
 	
+	
 	private String Nombre = "";
 	private Rango Rango = new RangoNovato();
 	private int CantidadDeArrestos = 0;
 	private Tiempo Tiempo;
 	private Pais PaisActual;
 
+	//CONSTANTES
+	private final int HorasHeridaArmaDeFuego = 4;
+	private final int HorasHeridaCuchillo = 2;
+	private final int HorasDormir = 8;
+	
 	public Policia(String Nombre, int CantidadDeArrestos){
 		this.Nombre = Nombre;
 		this.CantidadDeArrestos = CantidadDeArrestos;
@@ -36,16 +42,24 @@ public class Policia {
 	public Pais getPais(){
 		return this.PaisActual;
 	}
-	
-	public Tiempo getTiempo(){
-		return this.Tiempo;
-	}
-	
+
 	public void AddArresto() {
 		CantidadDeArrestos++;
 		ChequeoDeRango();
 		
 	}
+	
+	public void HeridaArmaDeFuego(){
+		this.Tiempo.ReducirHoras(HorasHeridaArmaDeFuego);
+	}
+	
+	public void HeridaCuclillo(){
+		this.Tiempo.ReducirHoras(HorasHeridaCuchillo);
+	}
+	public void Dormir(){
+		this.Tiempo.ReducirHoras(HorasDormir);
+	}
+	
 	private void ChequeoDeRango(){
 		if ( CantidadDeArrestos >= 20 ){
 			this.Rango = new RangoSargento();

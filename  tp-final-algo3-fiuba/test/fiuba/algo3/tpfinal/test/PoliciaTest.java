@@ -5,6 +5,7 @@ import modelo.RangoDetective;
 import modelo.RangoInvestigador;
 import modelo.RangoNovato;
 import modelo.RangoSargento;
+import modelo.Tiempo;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -67,6 +68,20 @@ public class PoliciaTest {
 		
 		this.SumarArrestos(10,Jugador);
 		Assert.assertTrue(Jugador.getRango() instanceof RangoSargento);
+	}
+	
+	@Test
+	public void PoliciaDormir(){
+		Policia UnPolicia = new Policia("Pedraza",0);
+		Tiempo UnTiempo = new Tiempo(200);
+		UnPolicia.setTiempo(UnTiempo);
+		int TiempoAntesDeDormir = UnTiempo.Horas();
+		int HorasDormir = 8;
+		
+		UnPolicia.Dormir();
+		
+		Assert.assertEquals(TiempoAntesDeDormir - HorasDormir , UnTiempo.Horas());
+	
 	}
 	
 	@Test
