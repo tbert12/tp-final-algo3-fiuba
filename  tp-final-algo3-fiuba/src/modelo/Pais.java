@@ -36,20 +36,19 @@ public class Pais {
 		}
 		return NombresEdificios;
 	}
-	public String getPistaDeEdificio(String NombreEdificio) throws ErrorEdificioNoEstaEnPais{
+	private Edificio getEdificio(String NombreDeEdficio)throws ErrorEdificioNoEstaEnPais{
 		for (int i=0; i<Edificios.length; i++){
-			if( Edificios[i].getNombre() == NombreEdificio ){
-				return Edificios[i].getPista();
+			if( Edificios[i].getNombre() == NombreDeEdficio ){
+				return Edificios[i];
 			}
 		}
 		throw new ErrorEdificioNoEstaEnPais();
 	}
+	
+	public String getPistaDeEdificio(String NombreEdificio) throws ErrorEdificioNoEstaEnPais{
+		return getEdificio(NombreEdificio).getPista();
+	}
 	public int getEdificoVecesVisitado(String NombreEdificio) throws ErrorEdificioNoEstaEnPais{
-		for (int i=0; i<Edificios.length; i++){
-			if( Edificios[i].getNombre() == NombreEdificio ){
-				return Edificios[i].VecesVisitado();
-			}
-		}
-		throw new ErrorEdificioNoEstaEnPais();
+		return getEdificio(NombreEdificio).VecesVisitado();
 	}
 }

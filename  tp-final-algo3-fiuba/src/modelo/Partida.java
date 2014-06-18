@@ -7,29 +7,38 @@ import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 import modelo.excepcion.ErrorElPaisNoEsta;
 
 public class Partida {
+	private int EdificiosVisitadosEnPaisFinal = 0;
 	private Policia UnPolicia;
+	private boolean LadronAtrapado; 
 	private int PoliciaHorasSinDormir;
 	private Ladron UnLadron;
 	private BaseDeDatos BasedeDatos;
 	private Viaje CostosDeViajes;
 	private ObjetoRobado ObjetoRobado;
 	
+	
 	public Partida(Policia UnPolicia,Ladron UnLadron,BaseDeDatos UnaBase,ObjetoRobado UnObjeto){
 	
 		this.UnPolicia = UnPolicia;
 		this.PoliciaHorasSinDormir = 0;
+		this.LadronAtrapado = false;
 		this.UnLadron = UnLadron;
 		this.BasedeDatos = UnaBase;
 		this.ObjetoRobado = UnObjeto;
 		this.CostosDeViajes = new Viaje();	
 	}
 	
-	public void ReducirHorasalPolicia(int horas){
+	public boolean SeTerminoLaPartida(){
+		return this.LadronAtrapado;
+	}
+	
+	private void ReducirHorasalPolicia(int horas){
 		this.UnPolicia.ReducirHoras(horas);
 		this.PoliciaHorasSinDormir += horas;
 		if (this.PoliciaHorasSinDormir > 15){
 			this.UnPolicia.ReducirHoras(8);
-		}		
+		}
+		
 	}
 	
 	public String ValorObjetoRobado(){
@@ -47,6 +56,24 @@ public class Partida {
 	
 	public String MostrarPistaDeEdificio(String NombreEdificio){
 		Pais PaisActual = UnPolicia.getPais();
+		if ( PaisActual == UnLadron.PaisFinal() ){
+			if( EdificiosVisitadosEnPaisFinal == 0 ){
+				EdificiosVisitadosEnPaisFinal++;
+				return "Hay Algo Raro";
+			}
+			if (EdificiosVisitadosEnPaisFinal == 1){
+				EdificiosVisitadosEnPaisFinal++;
+				return "Hay Olor a Dope";
+			}
+			if (EdificiosVisitadosEnPaisFinal == 2){
+				EdificiosVisitadosEnPaisFinal++;
+				if ( UnLadron.TieneOrdenDeArresto() ){
+					this.LadronAtrapado = true;
+					return "Atrapado";
+				}
+			return "No Atrapado";
+			}
+		}
 		String PistaDeEdificio;
 		int VecesVisitado;
 		try{
@@ -62,7 +89,6 @@ public class Partida {
 		else if (VecesVisitado == 0) ReducirHorasalPolicia(1);
 		else ReducirHorasalPolicia(3);
 		return PistaDeEdificio;
-		
 	}
 	
 	public void FiltrarLadron(String unSexo,String unHobby,String unCabello,String unaSenia,String unVehiculo){
@@ -92,17 +118,17 @@ public class Partida {
 		return NombresPaisesAViajar;
 	}
 	
-	public boolean ViajarHacia(String NombrePais){
+	public void ViajarHacia(String NombrePais) throws ErrorElPaisNoEsta {
 		int HorasDeViaje;
+		Pais PaisDestino;
 		try{
-			Pais PaisDestino = BasedeDatos.ObtenerPaisPorNombre(NombrePais);
-			HorasDeViaje = CostosDeViajes.viajarHacia(UnPolicia, PaisDestino);
-			ReducirHorasalPolicia(HorasDeViaje);
-			return true;
+			PaisDestino = BasedeDatos.ObtenerPaisPorNombre(NombrePais);
 		}
 		catch(ErrorElPaisNoEsta e){
-			return false;
+			return;
 		}
+		HorasDeViaje = CostosDeViajes.viajarHacia(UnPolicia, PaisDestino);
+		ReducirHorasalPolicia(HorasDeViaje);
 		
 	}
 	
