@@ -14,9 +14,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import modelo.Caracteristicas;
 import modelo.Ladron;
-import modelo.Policia;
-import modelo.RangoInvestigador;
-import modelo.RangoSargento;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -43,7 +40,21 @@ public class LadronTest {
 	}
 	
 	@Test
-	public void LadronEsFemenino() {
+	public void LadronNombreEsCorrecto() {
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
+		Assert.assertEquals(ladron.getNombre(),"Menem");	
+	}
+	
+	@Test
+	public void LadronNombreNoEsCorrecto() {
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
+		Assert.assertNotEquals(ladron.getNombre(),"Carlitos Menem");	
+	}
+	
+	@Test
+	public void LadronCaracteristicasSonCorrectas() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		Assert.assertEquals(ladron.Sexo(),Sexo[1]);
@@ -54,12 +65,34 @@ public class LadronTest {
 	}
 
 	@Test
-	public void LadronNoEsFemenino() {
+	public void LadronCaracteristicasNoSonCorrectas() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		Assert.assertNotEquals(ladron.Sexo(),Sexo[0]);
+		Assert.assertNotEquals(ladron.Hobby(), Hobbie[1]);
+		Assert.assertNotEquals(ladron.Cabello(),Cabello[0]);
+		Assert.assertNotEquals(ladron.Senia(),Senia[2]);
+		Assert.assertNotEquals(ladron.Vehiculo(),Vehiculo[1]);
 	}
+	
+	@Test
+	public void LadronCompararCaracteristicasEsTrue() {
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
+		Assert.assertTrue(ladron.CompararCaracteristicas(CaracteristicasDelLadron));
+	}
+	
+	@Test
+	public void LadronCompararCaracteristicasEsFalse() {
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Caracteristicas OtrasCaracteristicasDelLadron = new Caracteristicas(Sexo[0],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
+		Assert.assertFalse(ladron.CompararCaracteristicas(OtrasCaracteristicasDelLadron));
+	}
+ 
 
+	
+	
 	@Test
 	public void TestOrdenDeArresto(){
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
@@ -71,6 +104,10 @@ public class LadronTest {
 		
 		Assert.assertTrue(ladron.TieneOrdenDeArresto());
 	}
+	
+	
+	
+	
 	@Test
 	public void PersistenciaFuncionaCon2Ladrones() throws ParserConfigurationException, TransformerException, SAXException, IOException {
 
