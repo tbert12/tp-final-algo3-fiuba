@@ -6,17 +6,17 @@ public class Ladron {
 	private Caracteristicas Caracteristicas;
 	private String Nombre;
 	private Trayectoria Trayectoria;
-	
+	private boolean OrdenDeArresto;
 	
 	public Ladron(String Nombre,Caracteristicas caracteristicas){
 		this.Nombre = Nombre;
 		this.Caracteristicas = caracteristicas;
+		this.OrdenDeArresto = false;
 	}
 	
 	public void addTrayectoria(Trayectoria trayecto){
 		this.Trayectoria = trayecto;
 	}
-	
 	
 	public String getNombre(){
 		return this.Nombre;
@@ -69,5 +69,12 @@ public class Ladron {
 			//TODO Devolver un pais anterior al actual, lo necesito en Base
 			return PaisAnterior();
 		}
+	}
+	public void EmitirOrdenDeArresto(){
+		OrdenDeArresto = true;
+	}
+	
+	public boolean TieneOrdenDeArresto(){
+		return OrdenDeArresto;
 	}
 }

@@ -26,6 +26,7 @@ public class BaseDeDatos {
 				LadronesCoincidentes.add(LadronActual);
 			}
 		}
+		
 		return LadronesCoincidentes;
 		
 	}
