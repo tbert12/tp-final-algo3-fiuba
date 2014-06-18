@@ -2,7 +2,7 @@ package modelo;
 
 public class Viaje {
 	
-	public void viajarHacia(Policia UnPolicia,Pais PaisDestino){
+	public int viajarHacia(Policia UnPolicia,Pais PaisDestino){
 		Pais PaisActual = UnPolicia.getPais();
 		
 		int kilometrosAViajar = PaisActual.DistanciaAPais(PaisDestino.getNombre()); //Calculo de kilometros entre paises
@@ -10,7 +10,7 @@ public class Viaje {
 		int tiempoDeViaje = UnPolicia.CostoDeViaje(kilometrosAViajar);
 		
 		UnPolicia.setPaisActual(PaisDestino);
-		UnPolicia.ReducirHoras(tiempoDeViaje);
+		return tiempoDeViaje;
 		
 	}
 }

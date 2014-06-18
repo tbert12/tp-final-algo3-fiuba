@@ -44,4 +44,12 @@ public class Pais {
 		}
 		throw new ErrorEdificioNoEstaEnPais();
 	}
+	public int getEdificoVecesVisitado(String NombreEdificio) throws ErrorEdificioNoEstaEnPais{
+		for (int i=0; i<Edificios.length; i++){
+			if( Edificios[i].getNombre() == NombreEdificio ){
+				return Edificios[i].VecesVisitado();
+			}
+		}
+		throw new ErrorEdificioNoEstaEnPais();
+	}
 }

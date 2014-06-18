@@ -8,6 +8,7 @@ import modelo.excepcion.ErrorElPaisNoEsta;
 
 public class Partida {
 	private Policia UnPolicia;
+	private int PoliciaHorasSinDormir;
 	private Ladron UnLadron;
 	private BaseDeDatos BasedeDatos;
 	private Viaje CostosDeViajes;
@@ -16,10 +17,19 @@ public class Partida {
 	public Partida(Policia UnPolicia,Ladron UnLadron,BaseDeDatos UnaBase,ObjetoRobado UnObjeto){
 	
 		this.UnPolicia = UnPolicia;
+		this.PoliciaHorasSinDormir = 0;
 		this.UnLadron = UnLadron;
 		this.BasedeDatos = UnaBase;
 		this.ObjetoRobado = UnObjeto;
 		this.CostosDeViajes = new Viaje();	
+	}
+	
+	public void ReducirHorasalPolicia(int horas){
+		this.UnPolicia.ReducirHoras(horas);
+		this.PoliciaHorasSinDormir += horas;
+		if (this.PoliciaHorasSinDormir > 15){
+			this.UnPolicia.ReducirHoras(8);
+		}		
 	}
 	
 	public String ValorObjetoRobado(){
@@ -37,19 +47,28 @@ public class Partida {
 	
 	public String MostrarPistaDeEdificio(String NombreEdificio){
 		Pais PaisActual = UnPolicia.getPais();
+		String PistaDeEdificio;
+		int VecesVisitado;
 		try{
-			return PaisActual.getPistaDeEdificio(NombreEdificio);
+			PistaDeEdificio = PaisActual.getPistaDeEdificio(NombreEdificio);
+			VecesVisitado = PaisActual.getEdificoVecesVisitado(NombreEdificio);
 		}
 		catch (ErrorEdificioNoEstaEnPais e){
 			return "ERROR";
 		}
+		if ( PistaDeEdificio.equals("Herida de Cuchillo") ) ReducirHorasalPolicia(2);
+		else if ( PistaDeEdificio.equals("Herida de Bala") ) ReducirHorasalPolicia(3);
+		if (VecesVisitado == 1) ReducirHorasalPolicia(2);
+		else if (VecesVisitado == 0) ReducirHorasalPolicia(1);
+		else ReducirHorasalPolicia(3);
+		return PistaDeEdificio;
 		
 	}
 	
 	public void FiltrarLadron(String unSexo,String unHobby,String unCabello,String unaSenia,String unVehiculo){
 			Caracteristicas CaracteristicasAFiltrar = new Caracteristicas(unSexo,unHobby,unCabello,unaSenia,unVehiculo);
 			ArrayList<Ladron> PosiblesLadrones = BasedeDatos.FiltarPorCaracteristicas(CaracteristicasAFiltrar);
-			
+			ReducirHorasalPolicia(3);
 			if (PosiblesLadrones.size() == 1){
 				//Hay solo un ladron, hay que emitir la orden de arresto
 				Ladron UnicoLadron = PosiblesLadrones.get(0);
@@ -74,14 +93,17 @@ public class Partida {
 	}
 	
 	public boolean ViajarHacia(String NombrePais){
+		int HorasDeViaje;
 		try{
 			Pais PaisDestino = BasedeDatos.ObtenerPaisPorNombre(NombrePais);
-			CostosDeViajes.viajarHacia(UnPolicia, PaisDestino);
+			HorasDeViaje = CostosDeViajes.viajarHacia(UnPolicia, PaisDestino);
+			ReducirHorasalPolicia(HorasDeViaje);
 			return true;
 		}
 		catch(ErrorElPaisNoEsta e){
 			return false;
 		}
+		
 	}
 	
 }
