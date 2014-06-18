@@ -71,18 +71,20 @@ public class PoliciaTest {
 	}
 	
 	@Test
-	public void PoliciaDormir(){
+	public void PoliciaReducirHoras(){
 		Policia UnPolicia = new Policia("Pedraza",0);
 		Tiempo UnTiempo = new Tiempo(200);
 		UnPolicia.setTiempo(UnTiempo);
+		
 		int TiempoAntesDeDormir = UnTiempo.Horas();
-		int HorasDormir = 8;
+		int HorasAReducir = 8;
 		
-		UnPolicia.Dormir();
+		UnPolicia.ReducirHoras(HorasAReducir);;
 		
-		Assert.assertEquals(TiempoAntesDeDormir - HorasDormir , UnTiempo.Horas());
+		Assert.assertEquals(TiempoAntesDeDormir - HorasAReducir , UnTiempo.Horas());
 	
 	}
+	
 	
 	@Test
 	public void PoliciaNoCambiadeRangoConCuatroArrestos(){

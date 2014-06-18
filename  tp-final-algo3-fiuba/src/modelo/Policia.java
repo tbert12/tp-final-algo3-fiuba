@@ -12,11 +12,6 @@ public class Policia {
 	private Tiempo Tiempo;
 	private Pais PaisActual;
 
-	//CONSTANTES
-	private final int HorasHeridaArmaDeFuego = 4;
-	private final int HorasHeridaCuchillo = 2;
-	private final int HorasDormir = 8;
-	
 	public Policia(String Nombre, int CantidadDeArrestos){
 		this.Nombre = Nombre;
 		this.CantidadDeArrestos = CantidadDeArrestos;
@@ -49,6 +44,7 @@ public class Policia {
 		
 	}
 	
+	/*
 	public void HeridaArmaDeFuego(){
 		this.Tiempo.ReducirHoras(HorasHeridaArmaDeFuego);
 	}
@@ -59,7 +55,7 @@ public class Policia {
 	public void Dormir(){
 		this.Tiempo.ReducirHoras(HorasDormir);
 	}
-	
+	*/
 	private void ChequeoDeRango(){
 		if ( CantidadDeArrestos >= 20 ){
 			this.Rango = new RangoSargento();
