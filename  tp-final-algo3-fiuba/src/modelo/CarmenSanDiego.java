@@ -27,6 +27,7 @@ import org.xml.sax.SAXException;
 public  class CarmenSanDiego {
 	private static String nombreArchivoPolicias = "RegistroPolicias.xml";
 	public static List<Policia> ListadoPolicias = new ArrayList<Policia>();
+	public static List<Ladron> ListadoLadrones = new ArrayList<Ladron>();
 	public static int CantidadDePolicias = ListadoPolicias.size();
 	
 	public void LevantarPoliciasDelXML() throws ParserConfigurationException, SAXException, IOException{

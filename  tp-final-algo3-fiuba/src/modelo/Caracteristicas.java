@@ -1,5 +1,9 @@
 package modelo;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 public class Caracteristicas {
 	
 	private String Sexo,Hobby,Cabello,Senia,Vehiculo;
@@ -34,21 +38,39 @@ public class Caracteristicas {
 	
 	public boolean CompararCon(Caracteristicas otrasCaracteristicas){
 		if (otrasCaracteristicas.getSexo() != null){
-			if (otrasCaracteristicas.getSexo() != this.Sexo) return false;
+			
+			if (!otrasCaracteristicas.getSexo().equals(this.Sexo))return false;
+			
 		}
 		if (otrasCaracteristicas.getHobby() != null){
-			if (otrasCaracteristicas.getHobby() != this.Hobby) return false;
+			if (!otrasCaracteristicas.getHobby().equals(this.Hobby)) return false;
+		
+				
 		}
 		if (otrasCaracteristicas.getCabello() != null){
-			if (otrasCaracteristicas.getCabello() != this.Cabello) return false;
+			if (!otrasCaracteristicas.getCabello().equals(this.Cabello)) return false;
 		}
 		if (otrasCaracteristicas.getSenia() != null){
-			if (otrasCaracteristicas.getSenia() != this.Senia) return false;
+			if (!otrasCaracteristicas.getSenia().equals(this.Senia)) return false;
 		}
 		if (otrasCaracteristicas.getVehiculo() != null){
-			if (otrasCaracteristicas.getVehiculo() != this.Vehiculo) return false;
+			if (!otrasCaracteristicas.getVehiculo().equals(this.Vehiculo)) return false;
 		}
 		return true;
+	}
+
+	public Node serializar(Document doc) {
+		Element elementoCaracteristica = doc.createElement("Caracteristicas");
+		elementoCaracteristica.setAttribute("Sexo",this.Sexo);
+		elementoCaracteristica.setAttribute("Senia", this.Senia);
+		elementoCaracteristica.setAttribute("Hobby", this.Hobby);
+		elementoCaracteristica.setAttribute("Cabello",this.Cabello);
+		elementoCaracteristica.setAttribute("Vehiculo",this.Vehiculo);
+		return elementoCaracteristica;
+	}
+	public static Caracteristicas hidratar(Node elementoCaracteristica){
+		Caracteristicas caracteristicas = new Caracteristicas(((Element)elementoCaracteristica).getAttribute("Sexo"),((Element)elementoCaracteristica).getAttribute("Hobby"),((Element)elementoCaracteristica).getAttribute("Cabello"),((Element)elementoCaracteristica).getAttribute("Senia"),((Element)elementoCaracteristica).getAttribute("Vehiculo"));
+		return caracteristicas;
 	}
 	
 	

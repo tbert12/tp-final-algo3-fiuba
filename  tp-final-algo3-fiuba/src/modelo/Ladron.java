@@ -1,16 +1,19 @@
 package modelo;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
 
 public class Ladron {
-	private Caracteristicas Caracteristicas;
+	private Caracteristicas CaracteristicasDelLadron;
 	private String Nombre;
 	private Trayectoria Trayectoria;
 	private boolean OrdenDeArresto;
 	
 	public Ladron(String Nombre,Caracteristicas caracteristicas){
 		this.Nombre = Nombre;
-		this.Caracteristicas = caracteristicas;
+		this.CaracteristicasDelLadron = caracteristicas;
 		this.OrdenDeArresto = false;
 	}
 	
@@ -23,30 +26,30 @@ public class Ladron {
 	}
 	
 	public String Sexo(){
-		return Caracteristicas.getSexo();
+		return CaracteristicasDelLadron.getSexo();
 	}
 	
 	public String Hobby(){
-		return Caracteristicas.getHobby();
+		return CaracteristicasDelLadron.getHobby();
 	}
 	
 	public String Cabello(){
-		return Caracteristicas.getCabello();
+		return CaracteristicasDelLadron.getCabello();
 	}
 	
 	public String Senia(){
-		return Caracteristicas.getSenia();
+		return CaracteristicasDelLadron.getSenia();
 	}
 	
 	public String Vehiculo(){
-		return Caracteristicas.getVehiculo();
+		return CaracteristicasDelLadron.getVehiculo();
 	}
 	
 	public Pais PaisFinal(){
 		return Trayectoria.paisFinal();
 	}
 	public boolean CompararCaracteristicas(Caracteristicas otrasCaracteriscas){
-		return Caracteristicas.CompararCon(otrasCaracteriscas);
+		return CaracteristicasDelLadron.CompararCon(otrasCaracteriscas);
 	}
 	
 	public Pais PaisActual(){
@@ -76,5 +79,22 @@ public class Ladron {
 	
 	public boolean TieneOrdenDeArresto(){
 		return OrdenDeArresto;
+	}
+	public Element serializarLadron(Document doc){
+		Element elementoLadron = doc.createElement("Ladron");
+		Element elementoCaracteristicas = doc.createElement("Caracteristica");
+		elementoLadron.appendChild(elementoCaracteristicas);
+		elementoCaracteristicas.appendChild(this.CaracteristicasDelLadron.serializar(doc));
+		elementoLadron.setAttribute("Nombre",this.Nombre);
+		return elementoLadron;
+	}
+	public static Ladron ladronHidratar(Document doc,int pos){
+		Element elementoLadron = (Element)doc.getElementsByTagName("Ladron").item(pos);
+		Element elementoCaracteristicas = (Element)doc.getElementsByTagName("Caracteristica").item(pos);
+		Caracteristicas caracteristicas = Caracteristicas.hidratar(elementoCaracteristicas.getChildNodes().item(0));
+		Ladron nuevoLadron = new Ladron(elementoLadron.getAttribute("Nombre"),caracteristicas);
+		
+		
+		return nuevoLadron;
 	}
 }
