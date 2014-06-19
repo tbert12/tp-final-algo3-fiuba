@@ -12,11 +12,15 @@ import modelo.ObjetoRobado;
 import modelo.Pais;
 import modelo.Partida;
 import modelo.Policia;
+import modelo.Tiempo;
+import modelo.Trayectoria;
+import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 
 import org.junit.Test;
 
 public class PartidaTest {
 	private Policia UnPolicia;
+	private Tiempo UnTiempo;
 	private BaseDeDatos UnaBaseDeDatos;
 	private Ladron UnLadron;
 	private ObjetoRobado UnObjeto;
@@ -25,6 +29,8 @@ public class PartidaTest {
 	
 	private void CrearDatos(){
 		UnPolicia = new Policia("Gorgori",0);
+		UnTiempo = new Tiempo(200);
+		UnPolicia.setTiempo(UnTiempo);
 		UnaBaseDeDatos = new BaseDeDatos();
 		UnObjeto = new ObjetoRobado("Pintura","muy valioso");
 		
@@ -43,6 +49,17 @@ public class PartidaTest {
 		Pais[] LosPaises = {Argentina,Cuba,Argelia,Alemania,Rusia,Peru};
 		Paises = LosPaises;
 		
+		ArrayList<Pais> PaisesDelTrayecto = new ArrayList<Pais>();
+		PaisesDelTrayecto.add(Argentina);
+		PaisesDelTrayecto.add(Cuba);
+		PaisesDelTrayecto.add(Argelia);
+		PaisesDelTrayecto.add(Alemania);
+		
+		Trayectoria trayecto = new Trayectoria(PaisesDelTrayecto);
+		UnLadron.addTrayectoria(trayecto);
+		
+		UnPolicia.setPaisActual(Argentina);
+		
 		UnaBaseDeDatos.addPais(Argentina);
 		UnaBaseDeDatos.addPais(Cuba);
 		UnaBaseDeDatos.addPais(Argelia);
@@ -58,7 +75,7 @@ public class PartidaTest {
 	}
 	
 	private Pais crearPais(String Nombre){
-		Edificio[] Edificios = {new Edificio("Lugarde"+Nombre,"Pistade"+Nombre)};
+		Edificio[] Edificios = {new Edificio("Lugarde"+Nombre,"Pistade"+Nombre),new Edificio("2Lugarde"+Nombre,"2Pistade"+Nombre)};
 		Pais unPais = new Pais(Nombre,Edificios);
 		return unPais;
 	}
@@ -69,4 +86,60 @@ public class PartidaTest {
 		assertFalse(UnaPartida.SeTerminoLaPartida());
 	}
 	
+	@Test
+	public void ReducirHorasAlPolicaNoDuerme(){
+		//Si reduzco menos de 15 horas el policia no tiene que dormir
+		CrearDatos();
+		int HorasAReducir = 12;
+		int HorasIniciales = UnTiempo.Horas();
+		UnaPartida.ReducirHorasalPolicia(HorasAReducir);
+		
+		assertEquals(HorasIniciales - HorasAReducir,UnTiempo.Horas() );
+	}
+	
+	@Test
+	public void ReducirHorasAlPolicaSIDuerme(){
+		//Si reduzco mas de 15 horas el policia tiene que dormir
+		CrearDatos();
+		int HorasADormir = 8;
+		int HorasAReducir = 18;
+		int HorasIniciales = UnTiempo.Horas();
+		UnaPartida.ReducirHorasalPolicia(HorasAReducir);
+		
+		assertEquals(HorasIniciales - (HorasAReducir + HorasADormir) ,UnTiempo.Horas() );
+	}
+	
+	@Test
+	public void NombreYValorObjetoRobado(){
+		CrearDatos();
+		assertEquals(UnObjeto.getNombre(),UnaPartida.NombreObjetoRobado());
+		assertEquals(UnObjeto.getValor(),UnaPartida.ValorObjetoRobado());
+	}
+	
+	@Test
+	public void NombresPosiblesEdificiosAMostrar(){
+		CrearDatos();
+		ArrayList<String> PosiblesEdificios = UnaPartida.NombresDeEdificiosAMostrar();
+		
+		Pais Argentina = Paises[0];
+		
+		String NombreEdificio1 = (Argentina.getNombresDeEdificios()).get(0);
+		String NombreEdificio2 = (Argentina.getNombresDeEdificios()).get(1);
+		
+		assertTrue(PosiblesEdificios.contains(NombreEdificio1));
+		assertTrue(PosiblesEdificios.contains(NombreEdificio2));
+	}
+	
+	@Test
+	public void MostrarPistaDeEdificio() throws ErrorEdificioNoEstaEnPais{
+		CrearDatos();
+		Pais Argentina = Paises[0];
+		
+		String NombreEdificio = (Argentina.getNombresDeEdificios()).get(0);
+		
+		String UnaPista = UnaPartida.MostrarPistaDeEdificio(NombreEdificio);
+		
+		assertEquals(UnaPista, Argentina.getPistaDeEdificio(NombreEdificio));
+		
+	}
 }

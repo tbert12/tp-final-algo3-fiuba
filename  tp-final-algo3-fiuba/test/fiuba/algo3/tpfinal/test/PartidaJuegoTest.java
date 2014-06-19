@@ -12,6 +12,8 @@ import modelo.ObjetoRobado;
 import modelo.Pais;
 import modelo.Partida;
 import modelo.Policia;
+import modelo.Tiempo;
+import modelo.Trayectoria;
 import modelo.excepcion.ErrorElPaisNoEsta;
 
 import org.junit.Test;
@@ -31,9 +33,9 @@ public class PartidaJuegoTest {
 	private ObjetoRobado unObjeto;
 	
 	
-	private Edificio Bolsa = new Edificio("bolsa","“Le dicen que tenía el cabello castaño”");
+	private Edificio Bolsa = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
 	private Edificio Banco = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
-	private Edificio Aeropuerto = new Edificio("AeroPuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
+	private Edificio Aeropuerto = new Edificio("Aeropuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
 	private Edificio[] edificios = {Bolsa,Banco,Aeropuerto};
 	private String nombre = "Buenos Aires";
 	private Pais Argentina = new Pais(nombre,edificios);
@@ -58,8 +60,21 @@ public class PartidaJuegoTest {
 		unaBase = new BaseDeDatos();
 		ArrayList<String> ListaDeEdificios;
 		unObjeto = new ObjetoRobado("Bandera Antigua","Poco Valioso");
+		
 		unLadron = new Ladron("Roberto",CaracteristicasDelLadron);
+		ArrayList<Pais> PaisesDeLadron = new ArrayList<Pais>();
+		PaisesDeLadron.add(Argentina);
+		PaisesDeLadron.add(Inglaterra);
+		PaisesDeLadron.add(Usa);
+		
+		Trayectoria trayecto = new Trayectoria(PaisesDeLadron);
+		unLadron.addTrayectoria(trayecto);
+		
 		unPolicia = new Policia("Tylen Perez",0);
+		unPolicia.setPaisActual(unLadron.PaisActual());
+		Tiempo UnTiempo = new Tiempo(154);
+		unPolicia.setTiempo(UnTiempo);
+		
 		unaBase.addPais(Argentina);
 		unaBase.addPais(Inglaterra);
 		unaBase.addPais(Usa);
@@ -70,12 +85,6 @@ public class PartidaJuegoTest {
 		
 		assertEquals(unaPartida.NombreObjetoRobado(),"Bandera Antigua");
 		assertEquals(unaPartida.ValorObjetoRobado(),"Poco Valioso");
-		
-		try{
-			unaPartida.ViajarHacia("Buenos Aires"); 
-		}
-		catch(ErrorElPaisNoEsta e){	
-		}
 		
 		assertEquals(unPolicia.getPais(),Argentina);
 		

@@ -16,6 +16,10 @@ public class Partida {
 	private Viaje CostosDeViajes;
 	private ObjetoRobado ObjetoRobado;
 	
+	//Constantes
+	private final int HorasADormir = 8;
+	private final int HorasDespierto = 15;
+	
 	
 	public Partida(Policia UnPolicia,Ladron UnLadron,BaseDeDatos UnaBase,ObjetoRobado UnObjeto){
 	
@@ -32,11 +36,11 @@ public class Partida {
 		return this.LadronAtrapado;
 	}
 	
-	private void ReducirHorasalPolicia(int horas){
+	public void ReducirHorasalPolicia(int horas){
 		this.UnPolicia.ReducirHoras(horas);
 		this.PoliciaHorasSinDormir += horas;
-		if (this.PoliciaHorasSinDormir > 15){
-			this.UnPolicia.ReducirHoras(8);
+		if (this.PoliciaHorasSinDormir > HorasDespierto){
+			this.UnPolicia.ReducirHoras(HorasADormir);
 		}
 		
 	}
