@@ -15,17 +15,15 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
 public  class CarmenSanDiego {
 	private static String nombreArchivoPolicias = "RegistroPolicias.xml";
 	private static String nombreArchivoLadrones = "RegistroLadrones.xml";
-	private static String nombreArchivoCarmen = "ConfiguracionCarmen.xml";
 	private static List<Policia> ListadoPolicias = new ArrayList<Policia>();
 	private static List<Ladron> ListadoLadrones = new ArrayList<Ladron>();
-	private static int CantidadDePolicias = 0;
-	private static int CantidadDeLadrones = 0;
 	
 	public void LevantarPoliciasDelXML() throws ParserConfigurationException, SAXException, IOException{
 		File archivo = new File(nombreArchivoPolicias);
@@ -35,13 +33,16 @@ public  class CarmenSanDiego {
 			Document doc = dBuilder.newDocument();
 			doc = dBuilder.parse(archivo);
 			doc.getDocumentElement().normalize();
-			for (int i = 0; i <getCantidadDePolicias();i++){
+			Element rootElement = doc.getDocumentElement();
+			NodeList nodos = rootElement.getChildNodes();
+			for (int i = 0; i< nodos.getLength();i++){
 				Policia policia = Policia.Hidratar(doc,i);
 				ListadoPolicias.add(policia);
 			}
 		}
 	
 	}
+	
 	public void LevantarLadronesDelXML() throws ParserConfigurationException, SAXException, IOException{
 		File archivo = new File(nombreArchivoLadrones);
 		if (archivo.exists()){
@@ -50,33 +51,15 @@ public  class CarmenSanDiego {
 			Document doc = dBuilder.newDocument();
 			doc = dBuilder.parse(archivo);
 			doc.getDocumentElement().normalize();
-			for (int i = 0;i < getCantidadDeLadrones();i++){
+			Element rootElement = doc.getDocumentElement();
+			NodeList nodos = rootElement.getChildNodes();
+			for (int i = 0;i < nodos.getLength();i++){
 				Ladron ladron = Ladron.ladronHidratar(doc,i);
 				ListadoLadrones.add(ladron);
 			}
 		}
 	}
-	public void BajarConfiguracionAXML() throws ParserConfigurationException, TransformerException{
-		Document doc = crearDoc();
-		Element elementoCarmen = doc.createElement("Carmen");
-		elementoCarmen.setAttribute("NumeroPolicias",""+CarmenSanDiego.getCantidadDePolicias());
-		elementoCarmen.setAttribute("NumeroLadrones",""+CarmenSanDiego.getCantidadDeLadrones());
-		doc.appendChild(elementoCarmen);
-		TransformarYEscribirADisco(nombreArchivoCarmen,doc);
-	}
-	public void LevantarConfiguracionDelXML() throws SAXException, IOException, ParserConfigurationException{
-		File archivo = new File(nombreArchivoCarmen);
-		if (archivo.exists()){
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.newDocument();
-			doc = dBuilder.parse(archivo);
-			doc.getDocumentElement().normalize();
-			Element elementoCarmen=(Element)doc.getElementsByTagName("Carmen").item(0);
-			CantidadDePolicias=Integer.parseInt(elementoCarmen.getAttribute("NumeroPolicias"));
-			CantidadDeLadrones=Integer.parseInt(elementoCarmen.getAttribute("NumeroLadrones"));
-		}
-	}
+
 	private Document crearDoc() throws ParserConfigurationException{
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
@@ -120,11 +103,9 @@ public  class CarmenSanDiego {
 
 	public void AgregarPolicia(Policia unPolicia){
 		ListadoPolicias.add(unPolicia);
-		setCantidadDePolicias(getCantidadDePolicias() + 1);
 	}
 	public void AgregarLadron(Ladron unLadron){
 		ListadoLadrones.add(unLadron);
-		setCantidadDeLadrones(getCantidadDeLadrones() + 1);
 	}
 	public Boolean LadronEstaEnJuego(Ladron unLadron){
 		return ListadoLadrones.contains(unLadron);
@@ -145,18 +126,7 @@ public  class CarmenSanDiego {
 	public Boolean ArchivoLadronesExiste(){
 		return ArchivoExiste(nombreArchivoLadrones);
 	}
-	public static int getCantidadDePolicias() {
-		return CantidadDePolicias;
-	}
-	 static void setCantidadDePolicias(int cantidadDePolicias) {
-		CantidadDePolicias = cantidadDePolicias;
-	}
-	public static int getCantidadDeLadrones() {
-		return CantidadDeLadrones;
-	}
-	public static void setCantidadDeLadrones(int cantidadDeLadrones) {
-		CantidadDeLadrones = cantidadDeLadrones;
-	}
+
 	
 	}
 
