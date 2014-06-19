@@ -34,28 +34,30 @@ public class PartidaJuegoTest {
 	private ObjetoRobado unObjeto;
 	
 	
-	private Edificio Bolsa = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
-	private Edificio Banco = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
-	private Edificio Aeropuerto = new Edificio("Aeropuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
-	private Edificio[] edificios = {Bolsa,Banco,Aeropuerto};
-	private String nombreArg = "Buenos Aires";
-	private Pais Argentina = new Pais(nombreArg,edificios);
 	
-	private Edificio Hotel = new Edificio("Hotel",", estaba mejorando su inglés americano");
-	private Edificio BancoLDN = new Edificio("Banco","“compró dólares y llevaba un tatuaje”");
-	private Edificio Muelle = new Edificio("Muelle","Fue en un crucero que tenía una bandera con estrellas");
-	private Edificio[] edificiosLDN = {Hotel,BancoLDN,Muelle};
-	private String nombreIng = "London";
-	private Pais Inglaterra = new Pais(nombreIng,edificiosLDN);
-	
-	private Edificio AeropuertoNY = new Edificio("Aeropuerto",", estaba mejorando su inglés americano");
-	private Edificio[] edificiosNY = {AeropuertoNY,Banco,Muelle};
-	private String nombreUsa = "New York";
-	private Pais Usa = new Pais(nombreUsa,edificiosNY);
 	
 
 	@Test
-	public void TestDeJuegoCaso1 () {
+	public void TestDeJuegoCaso1() {
+	
+		Edificio Bolsa = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
+		Edificio Banco = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
+		Edificio Aeropuerto = new Edificio("Aeropuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
+		Edificio[] edificios = {Bolsa,Banco,Aeropuerto};
+		String nombreArg = "Buenos Aires";
+		Pais Argentina = new Pais(nombreArg,edificios);
+		
+		Edificio Hotel = new Edificio("Hotel",", estaba mejorando su inglés americano");
+		Edificio BancoLDN = new Edificio("Banco","“compró dólares y llevaba un tatuaje”");
+		Edificio Muelle = new Edificio("Muelle","Fue en un crucero que tenía una bandera con estrellas");
+		Edificio[] edificiosLDN = {Hotel,BancoLDN,Muelle};
+		String nombreIng = "London";
+		Pais Inglaterra = new Pais(nombreIng,edificiosLDN);
+		
+		Edificio AeropuertoNY = new Edificio("Aeropuerto",", estaba mejorando su inglés americano");
+		Edificio[] edificiosNY = {AeropuertoNY,Banco,Muelle};
+		String nombreUsa = "New York";
+		Pais Usa = new Pais(nombreUsa,edificiosNY);
 		
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[0],Senia[2],Vehiculo[0]);
 		unaBase = new BaseDeDatos();
@@ -166,4 +168,96 @@ public class PartidaJuegoTest {
 		assertEquals(unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2)),"Atrapado");
 		assertTrue(unaPartida.SeTerminoLaPartida());
 		}
+	
+	@Test
+	public void TestDeJuegoCaso2() {
+		
+		Edificio Museo = new Edificio("Museo","Era alto y de contextura delgada");
+		Edificio Aeropuerto = new Edificio("Aeropuerto","se movía en auto con bandera roja y blanca");
+		Edificio[] edificiosMex = {Museo,Aeropuerto};
+		String nombreMEX = "Veracruz";
+		Pais Mexico = new Pais(nombreMEX,edificiosMex);
+		
+		Edificio Banco = new Edificio("Banco","Nunca vi a esa persona");
+		Edificio Muelle = new Edificio("Muelle","Por acá pasa mucha gente");
+		Edificio[] edificiosItalia = {Banco,Muelle};
+		String nombreITA = "Milan";
+		Pais Italia = new Pais(nombreITA,edificiosItalia);
+		
+		Edificio MuseoAUS = new Edificio("Museo","No conosco nadie así");
+		Edificio HotelAUS = new Edificio("Hotel","Por aca nada, paisanito");
+		Edificio[] edificiosAUS = {MuseoAUS,HotelAUS};
+		String nombreAUS = "Sidney";
+		Pais Australia = new Pais(nombreAUS,edificiosAUS);
+		
+		Edificio BolsaARG = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
+		Edificio BancoARG = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
+		Edificio AeropuertoARG = new Edificio("Aeropuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
+		Edificio[] edificiosArgentina = {BolsaARG,BancoARG,AeropuertoARG};
+		String nombreArg = "Buenos Aires";
+		Pais Argentina = new Pais(nombreArg,edificiosArgentina);
+		
+		Edificio HotelLND = new Edificio("Hotel",", estaba mejorando su inglés americano");
+		Edificio BancoLDN = new Edificio("Banco","“compró dólares y llevaba un tatuaje”");
+		Edificio MuelleLND = new Edificio("Muelle","Fue en un crucero que tenía una bandera con estrellas");
+		Edificio[] edificiosLDN = {HotelLND,BancoLDN,MuelleLND};
+		String nombreIng = "London";
+		Pais Inglaterra = new Pais(nombreIng,edificiosLDN);
+		
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[0],Hobbie[1],Cabello[1],Senia[2],Vehiculo[3]);
+		unaBase = new BaseDeDatos();
+		unObjeto = new ObjetoRobado("Joya","Valioso");
+		
+		
+		unLadron = new Ladron("Nihuel",CaracteristicasDelLadron);
+		ArrayList<Pais> PaisesDeLadron = new ArrayList<Pais>();
+		PaisesDeLadron.add(Mexico);
+		PaisesDeLadron.add(Argentina);
+		PaisesDeLadron.add(Inglaterra);
+		
+		Caracteristicas CaracteristicasSimilares = new Caracteristicas(Sexo[0],Hobbie[1],Cabello[1],Senia[2],Vehiculo[2]);
+		Ladron unLadronSimilCaracteristicas = new Ladron("Willy",CaracteristicasSimilares);
+		
+		Caracteristicas CaracteristicasNadaQueVer = new Caracteristicas(Sexo[1],Hobbie[2],Cabello[1],Senia[0],Vehiculo[0]);
+		Ladron unLadronNadaQueVer = new Ladron("Larry",CaracteristicasNadaQueVer);
+		
+		Trayectoria trayecto = new Trayectoria(PaisesDeLadron);
+		unLadron.addTrayectoria(trayecto);
+		
+		unPolicia = new Policia("Pedraza",0);
+		Tiempo UnTiempo = new Tiempo(154);
+		unPolicia.setTiempo(UnTiempo);
+		
+		unaBase.addPais(Argentina);
+		unaBase.addPais(Inglaterra);
+		unaBase.addPais(Mexico);
+		unaBase.addPais(Australia);
+		unaBase.addPais(Italia);
+		
+		unaBase.addSospechoso(unLadron);
+		unaBase.addSospechoso(unLadronSimilCaracteristicas);
+		unaBase.addSospechoso(unLadronNadaQueVer);
+		
+		int DistanciaMEXaITA = 9600;
+		int DistanciaITAaAUS = 16500;
+		int DistanciaAUSaUSA = 16000;
+				
+		HashMap<String,Integer> DistanciaDesdeMexico = new HashMap<String,Integer>();
+		DistanciaDesdeMexico.put(nombreITA,DistanciaMEXaITA);
+		Mexico.setDistancias(DistanciaDesdeMexico);
+
+		HashMap<String,Integer> DistanciaDesdeITA = new HashMap<String,Integer>();
+		DistanciaDesdeITA.put(nombreAUS,DistanciaITAaAUS);
+		Italia.setDistancias(DistanciaDesdeITA);
+		
+		HashMap<String,Integer> DistanciaDesdeAUS = new HashMap<String,Integer>();
+		DistanciaDesdeAUS.put(nombreArg,DistanciaAUSaUSA);
+		Australia.setDistancias(DistanciaDesdeAUS);
+		
+		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
+		
 	}
+
+}
+
+
