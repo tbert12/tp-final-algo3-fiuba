@@ -72,7 +72,6 @@ public class PartidaJuegoTest {
 		unLadron.addTrayectoria(trayecto);
 		
 		unPolicia = new Policia("Tylen Perez",0);
-		unPolicia.setPaisActual(unLadron.PaisActual());
 		Tiempo UnTiempo = new Tiempo(154);
 		unPolicia.setTiempo(UnTiempo);
 		

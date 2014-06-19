@@ -24,6 +24,7 @@ public class Partida {
 	public Partida(Policia UnPolicia,Ladron UnLadron,BaseDeDatos UnaBase,ObjetoRobado UnObjeto){
 	
 		this.UnPolicia = UnPolicia;
+		UnPolicia.setPaisActual(UnLadron.PaisActual());
 		this.PoliciaHorasSinDormir = 0;
 		this.LadronAtrapado = false;
 		this.UnLadron = UnLadron;
