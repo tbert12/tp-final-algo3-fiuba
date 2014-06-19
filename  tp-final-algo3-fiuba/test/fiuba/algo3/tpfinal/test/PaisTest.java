@@ -3,6 +3,7 @@ package fiuba.algo3.tpfinal.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import modelo.Edificio;
@@ -39,6 +40,19 @@ public class PaisTest {
 			assertEquals( NombreActual, edificios[i].getNombre() );
 			i++;
 		}
+	}
+	
+	@Test
+	public void testLasDistanciasSonCorrectas(){
+		HashMap<String,Integer> Distancias = new HashMap<String,Integer>();
+		Distancias.put("ARG", 1);
+		Distancias.put("ING", 2);
+		Distancias.put("USA", 3);
+		UnPais.setDistancias(Distancias);
+		
+		assertEquals(UnPais.DistanciaAPais("ARG"),1);
+		assertEquals(UnPais.DistanciaAPais("ING"),2);
+		assertEquals(UnPais.DistanciaAPais("USA"),3);
 	}
 }
 

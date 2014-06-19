@@ -146,8 +146,9 @@ public class PartidaJuegoTest {
 		String PistaMuelle = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
 		assertEquals(PistaMuelle,Muelle.getPista());
 	
-		unaPartida.FiltrarLadron(null, null, "castaño", "tatuaje", "tenis");
-		
+		//filtra ladron con coincidencias.
+		unaPartida.FiltrarLadron(null,null,Cabello[0],Senia[2],Vehiculo[0]);
+
 		try{	
 			unaPartida.ViajarHacia(Usa.getNombre());
 		}
@@ -156,8 +157,14 @@ public class PartidaJuegoTest {
 		assertEquals(unPolicia.getPais(),Usa);
 		
 		ListaDeEdificios = unaPartida.NombresDeEdificiosAMostrar();
-		//aca deberia finalizar la partida
-		unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
+		//El policia esta en el mismo pais que el ladron, deberia encontrarlo
 		
+		//pasa por el primer edificio
+		unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
+		unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(1));
+		
+		//si la orden de arresto se emitio el ladron debe ser atrapado
+		assertEquals(unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2)),"Atrapado");
+		assertTrue(unaPartida.SeTerminoLaPartida());
 		}
 	}

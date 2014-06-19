@@ -75,7 +75,9 @@ public class Partida {
 					this.LadronAtrapado = true;
 					return "Atrapado";
 				}
-			return "No Atrapado";
+				else{
+					return "No Atrapado";
+				}
 			}
 		}
 		String PistaDeEdificio;
