@@ -3,6 +3,7 @@ package fiuba.algo3.tpfinal.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import modelo.BaseDeDatos;
 import modelo.Caracteristicas;
@@ -37,15 +38,15 @@ public class PartidaJuegoTest {
 	private Edificio Banco = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
 	private Edificio Aeropuerto = new Edificio("Aeropuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
 	private Edificio[] edificios = {Bolsa,Banco,Aeropuerto};
-	private String nombre = "Buenos Aires";
-	private Pais Argentina = new Pais(nombre,edificios);
+	private String nombreArg = "Buenos Aires";
+	private Pais Argentina = new Pais(nombreArg,edificios);
 	
 	private Edificio Hotel = new Edificio("Hotel",", estaba mejorando su inglés americano");
 	private Edificio BancoLDN = new Edificio("Banco","“compró dólares y llevaba un tatuaje”");
 	private Edificio Muelle = new Edificio("Muelle","Fue en un crucero que tenía una bandera con estrellas");
 	private Edificio[] edificiosLDN = {Hotel,BancoLDN,Muelle};
-	private String nombreing = "London";
-	private Pais Inglaterra = new Pais(nombreing,edificiosLDN);
+	private String nombreIng = "London";
+	private Pais Inglaterra = new Pais(nombreIng,edificiosLDN);
 	
 	private Edificio AeropuertoNY = new Edificio("Aeropuerto",", estaba mejorando su inglés americano");
 	private Edificio[] edificiosNY = {AeropuertoNY,Banco,Muelle};
@@ -80,6 +81,24 @@ public class PartidaJuegoTest {
 		unaBase.addPais(Usa);
 		unaBase.addSospechoso(unLadron);
 		
+		int DistanciaARGaING = 11128;
+		int DistanciaARGaUSA = 8526;
+		int DistanciaINGaUSA = 5570;
+				
+		HashMap<String,Integer> DistanciaDesdeArgentina = new HashMap<String,Integer>();
+		DistanciaDesdeArgentina.put(nombreIng,DistanciaARGaING);
+		DistanciaDesdeArgentina.put(nombreUsa,DistanciaARGaUSA);
+		Argentina.setDistancias(DistanciaDesdeArgentina);
+
+		HashMap<String,Integer> DistanciaDesdeUsa = new HashMap<String,Integer>();
+		DistanciaDesdeUsa.put(nombreIng,DistanciaINGaUSA);
+		DistanciaDesdeUsa.put(nombreArg,DistanciaARGaUSA);
+		Usa.setDistancias(DistanciaDesdeUsa);
+		
+		HashMap<String,Integer> DistanciaDesdeIng = new HashMap<String,Integer>();
+		DistanciaDesdeIng.put(nombreArg,DistanciaARGaING);
+		DistanciaDesdeIng.put(nombreUsa,DistanciaINGaUSA);
+		Inglaterra.setDistancias(DistanciaDesdeIng);
 		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
 		
@@ -116,7 +135,7 @@ public class PartidaJuegoTest {
 		assertEquals(ListaDeEdificios.get(0),"Hotel");
 		
 		String PistaHotel = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
-		assertEquals(PistaHotel,"”, estaba mejorando su inglés americano”.");
+		assertEquals(PistaHotel,Hotel.getPista());
 		
 		assertEquals(ListaDeEdificios.get(1),"Banco");
 		String PistaBancoLondres = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(1));
@@ -125,12 +144,12 @@ public class PartidaJuegoTest {
 		
 		assertEquals(ListaDeEdificios.get(2),"Muelle");
 		String PistaMuelle = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
-		assertEquals(PistaMuelle,"“ Fue en un crucero que tenía una bandera con estrellas”");
+		assertEquals(PistaMuelle,Muelle.getPista());
 	
 		unaPartida.FiltrarLadron(null, null, "castaño", "tatuaje", "tenis");
 		
 		try{	
-			unaPartida.ViajarHacia("New york");
+			unaPartida.ViajarHacia(Usa.getNombre());
 		}
 		catch(ErrorElPaisNoEsta e){	
 		}

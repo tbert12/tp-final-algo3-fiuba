@@ -1,7 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
+import java.util.HashMap;
 
 import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 import modelo.excepcion.ErrorEdificioNoEstaEnPais;
@@ -11,7 +11,7 @@ public class Pais {
 	
 	private String Nombre;
 	private Edificio[] Edificios;
-	private Dictionary<String,Integer> DistanciaAPaises;
+	private HashMap<String,Integer> DistanciaAPaises;
 	
 	public Pais(String UnNombre,Edificio[] LosEdificios){
 		this.Nombre = UnNombre;
@@ -25,7 +25,7 @@ public class Pais {
 	public int DistanciaAPais(String unPais){
 		return DistanciaAPaises.get(unPais);
 	}
-	public void setDistancias(Dictionary<String,Integer> unDicc){
+	public void setDistancias(HashMap<String,Integer> unDicc){
 		DistanciaAPaises = unDicc;
 	}
 	public ArrayList<String> getNombresDeEdificios(){
