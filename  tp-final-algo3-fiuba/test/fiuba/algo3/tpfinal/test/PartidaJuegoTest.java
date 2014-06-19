@@ -16,69 +16,61 @@ import modelo.Policia;
 import org.junit.Test;
 
 public class PartidaJuegoTest {
-	private String edificioAux;
 	private Partida unaPartida;
 	private Policia unPolicia;
 	private Ladron unLadron;
-	private String nombreArchivo = "pruebaLadron.xml";
+	BaseDeDatos unaBase;
+	
+	
 	private String[] Sexo = {"Masculino","Femenino"};
 	private String[] Hobbie = {"Tennis","Musica","Alpinismo","Paracaidismo","Natacion","Croquet"};
 	private String[] Cabello = {"Castanio","Rubio","Rojo","Negro"};
 	private String[] Senia = {"Cojera","Anillo","Tatuaje","Cicatriz","Joyas"};
 	private String[] Vehiculo = {"Descapotable","Limusina","Deportivo","Moto"};
 	private ObjetoRobado unObjeto;
-	private Edificio Bolsa = new Edificio("bolsa","bolsa pista");
-	private Edificio Banco = new Edificio("Banco","puerto pista");
-	private Edificio Aeropuerto = new Edificio("AeroPuerto", "fiuba pista");
+	
+	
+	private Edificio Bolsa = new Edificio("bolsa","“Le dicen que tenía el cabello castaño”");
+	private Edificio Banco = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
+	private Edificio Aeropuerto = new Edificio("AeroPuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
 	private Edificio[] edificios = {Bolsa,Banco,Aeropuerto};
-	private String nombre = "Argentina";
-	private Pais UnPais = new Pais(nombre,edificios);
-	Pais Argentina =new Pais("BuenosAires",edificios);
-	Pais London =new Pais("London",edificios);
-	Pais Argelia =new Pais("Argelia",edificios);
-	Pais Alemania =new Pais("Alemania",edificios);
-	Pais Rusia =new Pais("Rusia",edificios);
-	Pais Peru =new Pais("Peru",edificios);
+	private String nombre = "Buenos Aires";
+	private Pais Argentina = new Pais(nombre,edificios);
 	
-	/* Caso 1: Lo atrapa
-	-Empieza en Bs As.
-	-Visita Bolsa
-	Pista: “Le dicen que tenía el cabello castaño”.
-	-Visita Banco
-	Pista: “Cambio dinero a libras esterlinas”.
-	-Visita aeropuerto,
-	Pista: “El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”.
-	-Viajo a London.
-	-Recibe herida de arma de fuego.
-	-Visita hotel
-	Pista: ”, estaba mejorando su inglés americano”.
-	-Visita banco
-	            	Pista: “compró dólares y llevaba un tatuaje”.
-	-Visita muelle
-	            	Pista: “ Fue en un crucero que tenía una bandera con estrellas”.
-	-Emitir orden de arresto: Cabello castaño, senia tatuaje, hobby tenis.
-	            	Orden de arresto emitida para “Tylen Perez”.
-	-Viajo a New York.
-	-Visita aeropuerto
-	            	Encontró al ladrón, policía lo atrapó
+	private Edificio Hotel = new Edificio("Hotel",", estaba mejorando su inglés americano");
+	private Edificio BancoLDN = new Edificio("Banco","“compró dólares y llevaba un tatuaje”");
+	private Edificio Muelle = new Edificio("Muelle","Fue en un crucero que tenía una bandera con estrellas");
+	private Edificio[] edificiosLDN = {Hotel,BancoLDN,Muelle};
+	private String nombreing = "London";
+	private Pais Inglaterra = new Pais(nombreing,edificiosLDN);
+	
+	private Edificio AeropuertoNY = new Edificio("Aeropuerto",", estaba mejorando su inglés americano");
+	private Edificio[] edificiosNY = {AeropuertoNY,Banco,Muelle};
+	private String nombreUsa = "New York";
+	private Pais Usa = new Pais(nombreUsa,edificiosNY);
+	
 
-	
-	*/
 	@Test
-	public void TestDeJuego() {
+	public void TestDeJuegoCaso1 () {
 		
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
-		BaseDeDatos unaBase = new BaseDeDatos();
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[0],Senia[2],Vehiculo[0]);
+		unaBase = new BaseDeDatos();
 		ArrayList<String> ListaDeEdificios;
-		unObjeto = new ObjetoRobado("La Gioconda","Poco Valiso");
+		unObjeto = new ObjetoRobado("Bandera Antigua","Poco Valioso");
 		unLadron = new Ladron("Roberto",CaracteristicasDelLadron);
-		unPolicia = new Policia("Juan",0);
+		unPolicia = new Policia("Tylen Perez",0);
 		unaBase.addPais(Argentina);
-		unaBase.addPais(London);
+		unaBase.addPais(Inglaterra);
+		unaBase.addPais(Usa);
 		unaBase.addSospechoso(unLadron);
 		
 		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
+		
+		assertEquals(unaPartida.NombreObjetoRobado(),"Bandera Antigua");
+		assertEquals(unaPartida.ValorObjetoRobado(),"Poco Valioso");
+		
+		
 		unaPartida.ViajarHacia("Buenos Aires"); 
 		
 		assertEquals(unPolicia.getPais(),Argentina);
@@ -87,53 +79,46 @@ public class PartidaJuegoTest {
 		
 		assertEquals(ListaDeEdificios.get(0),"Bolsa");
 		
-		String Pista = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
-		assertEquals(Pista,"“Le dicen que tenía el cabello castaño”");
+		String PistaBolsa = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
+		assertEquals(PistaBolsa,"“Le dicen que tenía el cabello castaño”");
 		
-		String Pista2 = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(1));
-		assertEquals(Pista2,"“Cambio dinero a libras esterlinas”");
+		assertEquals(ListaDeEdificios.get(1),"Banco");
+		String PistaBanco = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(1));
+		assertEquals(PistaBanco,"“Cambio dinero a libras esterlinas”");
 		
-		String Pista3 = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
-		assertEquals(Pista3,"“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
+		assertEquals(ListaDeEdificios.get(2),"Aeropuerto");
+		String PistaAeropuerto = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
+		assertEquals(PistaAeropuerto,"“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
 	
         unaPartida.ViajarHacia("London"); 
 		
-		assertEquals(unPolicia.getPais(),London);
+		assertEquals(unPolicia.getPais(),Inglaterra);
 	
 		ListaDeEdificios = unaPartida.NombresDeEdificiosAMostrar();
 		
 		assertEquals(ListaDeEdificios.get(0),"Hotel");
 		
-		String Pista = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
-		assertEquals(Pista,"”, estaba mejorando su inglés americano”.");
+		String PistaHotel = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
+		assertEquals(PistaHotel,"”, estaba mejorando su inglés americano”.");
 		
-		String Pista2 = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(1));
-		assertEquals(Pista2,"“compró dólares y llevaba un tatuaje”");
+		assertEquals(ListaDeEdificios.get(1),"Banco");
+		String PistaBancoLondres = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(1));
+		assertEquals(PistaBancoLondres,"“compró dólares y llevaba un tatuaje”");
 		
-		String Pista3 = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
-		assertEquals(Pista3,"“ Fue en un crucero que tenía una bandera con estrellas”");
+		
+		assertEquals(ListaDeEdificios.get(2),"Muelle");
+		String PistaMuelle = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
+		assertEquals(PistaMuelle,"“ Fue en un crucero que tenía una bandera con estrellas”");
 	
-		unaPartida.FiltrarLadron(unSexo, unHobby, "castaño", "tatuaje", "tenis");
-		/*
-		-Visita hotel
-		Pista: ”, estaba mejorando su inglés americano”.
-		-Visita banco
-		            	Pista: “compró dólares y llevaba un tatuaje”.
-		-Visita muelle
-		            	Pista: “ Fue en un crucero que tenía una bandera con estrellas”.
-		-Emitir orden de arresto: Cabello castaño, senia tatuaje, hobby tenis.
-		            	Orden de arresto emitida para “Tylen Perez”.
-	
-	*/
+		unaPartida.FiltrarLadron(null, null, "castaño", "tatuaje", "tenis");
+		
+		unaPartida.ViajarHacia("New york");
+		
+		assertEquals(unPolicia.getPais(),Usa);
+		
+		ListaDeEdificios = unaPartida.NombresDeEdificiosAMostrar();
+		//aca deberia finalizar la partida
+		unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
+		
+		}
 	}
-		
-	
-	
-	
-
-		
-		
-		
-	}
-
-}
