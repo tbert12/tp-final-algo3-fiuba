@@ -58,11 +58,26 @@ public  class CarmenSanDiego {
 			}
 		}
 	}
-	public void BajarConfiguracionAXML() throws ParserConfigurationException{
+	public void BajarConfiguracionAXML() throws ParserConfigurationException, TransformerException{
 		Document doc = crearDoc();
 		Element elementoCarmen = doc.createElement("Carmen");
 		elementoCarmen.setAttribute("NumeroPolicias",""+CarmenSanDiego.getCantidadDePolicias());
 		elementoCarmen.setAttribute("NumeroLadrones",""+CarmenSanDiego.getCantidadDeLadrones());
+		doc.appendChild(elementoCarmen);
+		TransformarYEscribirADisco(nombreArchivoCarmen,doc);
+	}
+	public void LevantarConfiguracionDelXML() throws SAXException, IOException, ParserConfigurationException{
+		File archivo = new File(nombreArchivoCarmen);
+		if (archivo.exists()){
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.newDocument();
+			doc = dBuilder.parse(archivo);
+			doc.getDocumentElement().normalize();
+			Element elementoCarmen=(Element)doc.getElementsByTagName("Carmen").item(0);
+			CantidadDePolicias=Integer.parseInt(elementoCarmen.getAttribute("NumeroPolicias"));
+			CantidadDeLadrones=Integer.parseInt(elementoCarmen.getAttribute("NumeroLadrones"));
+		}
 	}
 	private Document crearDoc() throws ParserConfigurationException{
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
