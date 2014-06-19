@@ -12,6 +12,7 @@ import modelo.ObjetoRobado;
 import modelo.Pais;
 import modelo.Partida;
 import modelo.Policia;
+import modelo.excepcion.ErrorElPaisNoEsta;
 
 import org.junit.Test;
 
@@ -70,8 +71,11 @@ public class PartidaJuegoTest {
 		assertEquals(unaPartida.NombreObjetoRobado(),"Bandera Antigua");
 		assertEquals(unaPartida.ValorObjetoRobado(),"Poco Valioso");
 		
-		
-		unaPartida.ViajarHacia("Buenos Aires"); 
+		try{
+			unaPartida.ViajarHacia("Buenos Aires"); 
+		}
+		catch(ErrorElPaisNoEsta e){	
+		}
 		
 		assertEquals(unPolicia.getPais(),Argentina);
 		
@@ -90,8 +94,12 @@ public class PartidaJuegoTest {
 		String PistaAeropuerto = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
 		assertEquals(PistaAeropuerto,"“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
 	
-        unaPartida.ViajarHacia("London"); 
-		
+        try{
+			unaPartida.ViajarHacia("London"); 
+		}
+		catch(ErrorElPaisNoEsta e){	
+		}
+        
 		assertEquals(unPolicia.getPais(),Inglaterra);
 	
 		ListaDeEdificios = unaPartida.NombresDeEdificiosAMostrar();
@@ -112,8 +120,11 @@ public class PartidaJuegoTest {
 	
 		unaPartida.FiltrarLadron(null, null, "castaño", "tatuaje", "tenis");
 		
-		unaPartida.ViajarHacia("New york");
-		
+		try{	
+			unaPartida.ViajarHacia("New york");
+		}
+		catch(ErrorElPaisNoEsta e){	
+		}
 		assertEquals(unPolicia.getPais(),Usa);
 		
 		ListaDeEdificios = unaPartida.NombresDeEdificiosAMostrar();
