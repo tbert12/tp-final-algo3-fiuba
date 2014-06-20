@@ -38,7 +38,7 @@ public class PartidaJuegoTest {
 	
 
 	@Test
-	public void TestDeJuegoCaso1() {
+	public void TestDeJuegoCaso1() throws ErrorElPaisNoEsta {
 	
 		Edificio Bolsa = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
 		Edificio Banco = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
@@ -123,11 +123,8 @@ public class PartidaJuegoTest {
 		String PistaAeropuerto = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
 		assertEquals(PistaAeropuerto,"“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
 	
-        try{
-			unaPartida.ViajarHacia("London"); 
-		}
-		catch(ErrorElPaisNoEsta e){	
-		}
+        
+		unaPartida.ViajarHacia("London"); 
         
 		assertEquals(unPolicia.getPais(),Inglaterra);
 	
@@ -149,12 +146,8 @@ public class PartidaJuegoTest {
 	
 		//filtra ladron con coincidencias.
 		unaPartida.FiltrarLadron(null,null,Cabello[0],Senia[2],Vehiculo[0]);
-
-		try{	
-			unaPartida.ViajarHacia(Usa.getNombre());
-		}
-		catch(ErrorElPaisNoEsta e){	
-		}
+	
+		unaPartida.ViajarHacia(Usa.getNombre());
 		assertEquals(unPolicia.getPais(),Usa);
 		
 		ListaDeEdificios = unaPartida.NombresDeEdificiosAMostrar();
@@ -170,7 +163,7 @@ public class PartidaJuegoTest {
 		}
 	
 	@Test
-	public void TestDeJuegoCaso2() {
+	public void TestDeJuegoCaso2() throws ErrorElPaisNoEsta {
 		
 		Edificio Museo = new Edificio("Museo","Era alto y de contextura delgada");
 		Edificio Aeropuerto = new Edificio("Aeropuerto","se movía en auto con bandera roja y blanca");
@@ -189,6 +182,8 @@ public class PartidaJuegoTest {
 		Edificio[] edificiosAUS = {MuseoAUS,HotelAUS};
 		String nombreAUS = "Sidney";
 		Pais Australia = new Pais(nombreAUS,edificiosAUS);
+		
+		Pais USA = new Pais("USA",edificiosAUS);
 		
 		Edificio BolsaARG = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
 		Edificio BancoARG = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
@@ -225,7 +220,7 @@ public class PartidaJuegoTest {
 		unLadron.addTrayectoria(trayecto);
 		
 		unPolicia = new Policia("Pedraza",0);
-		Tiempo UnTiempo = new Tiempo(154);
+		Tiempo UnTiempo = new Tiempo(147);
 		unPolicia.setTiempo(UnTiempo);
 		
 		unaBase.addPais(Argentina);
@@ -233,6 +228,7 @@ public class PartidaJuegoTest {
 		unaBase.addPais(Mexico);
 		unaBase.addPais(Australia);
 		unaBase.addPais(Italia);
+		unaBase.addPais(USA);
 		
 		unaBase.addSospechoso(unLadron);
 		unaBase.addSospechoso(unLadronSimilCaracteristicas);
@@ -248,13 +244,41 @@ public class PartidaJuegoTest {
 
 		HashMap<String,Integer> DistanciaDesdeITA = new HashMap<String,Integer>();
 		DistanciaDesdeITA.put(nombreAUS,DistanciaITAaAUS);
+		DistanciaDesdeITA.put(Mexico.getNombre(),DistanciaMEXaITA);
 		Italia.setDistancias(DistanciaDesdeITA);
 		
 		HashMap<String,Integer> DistanciaDesdeAUS = new HashMap<String,Integer>();
-		DistanciaDesdeAUS.put(nombreArg,DistanciaAUSaUSA);
+		DistanciaDesdeAUS.put(USA.getNombre(),DistanciaAUSaUSA);
+		DistanciaDesdeAUS.put(Italia.getNombre(),DistanciaITAaAUS);
 		Australia.setDistancias(DistanciaDesdeAUS);
 		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
+		
+		assertEquals(unPolicia.getPais(),Mexico);
+		
+		//El Jugador malgasta el tiempo viajando
+		unaPartida.MostrarPistaDeEdificio(Museo.getNombre());
+		unaPartida.MostrarPistaDeEdificio(Aeropuerto.getNombre());
+		
+		unaPartida.ViajarHacia(Italia.getNombre());
+		unaPartida.MostrarPistaDeEdificio(Banco.getNombre());
+		unaPartida.MostrarPistaDeEdificio(Muelle.getNombre());
+		
+		unaPartida.ViajarHacia(Australia.getNombre());
+		unaPartida.MostrarPistaDeEdificio(MuseoAUS.getNombre());
+		unaPartida.MostrarPistaDeEdificio(HotelAUS.getNombre());
+		
+		unaPartida.ViajarHacia(Italia.getNombre());
+		
+		unaPartida.ViajarHacia(Mexico.getNombre());
+		
+		unaPartida.ViajarHacia(Italia.getNombre());
+		
+		unaPartida.ViajarHacia(Australia.getNombre());
+		
+		unaPartida.ViajarHacia(USA.getNombre());
+		
+		assertTrue(unPolicia.TiempoAgotado());
 		
 	}
 
