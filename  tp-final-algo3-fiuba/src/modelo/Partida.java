@@ -138,5 +138,14 @@ public class Partida {
 		ReducirHorasalPolicia(HorasDeViaje);
 		
 	}
+
+	public String NombrePaisActual() {
+		Pais UnPais = UnPolicia.getPais();
+		return UnPais.getNombre();
+	}
+
+	public int TiempoRestante() {
+		return UnPolicia.getTiempo();
+	}
 	
 }

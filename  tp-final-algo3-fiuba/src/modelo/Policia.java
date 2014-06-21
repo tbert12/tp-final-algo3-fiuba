@@ -122,6 +122,10 @@ public class Policia {
 			return false;
 		return true;
 	}
+
+	public int getTiempo() {
+		return Tiempo.Horas();
+	}
 		
 		
 				
