@@ -59,7 +59,7 @@ public class Caracteristicas {
 		return true;
 	}
 
-	public Node serializar(Document doc) {
+	public Node Serializar(Document doc) {
 		Element elementoCaracteristica = doc.createElement("Caracteristicas");
 		elementoCaracteristica.setAttribute("Sexo",this.Sexo);
 		elementoCaracteristica.setAttribute("Senia", this.Senia);
@@ -68,7 +68,7 @@ public class Caracteristicas {
 		elementoCaracteristica.setAttribute("Vehiculo",this.Vehiculo);
 		return elementoCaracteristica;
 	}
-	public static Caracteristicas hidratar(Node elementoCaracteristica){
+	public static Caracteristicas Hidratar(Node elementoCaracteristica){
 		Caracteristicas caracteristicas = new Caracteristicas(((Element)elementoCaracteristica).getAttribute("Sexo"),((Element)elementoCaracteristica).getAttribute("Hobby"),((Element)elementoCaracteristica).getAttribute("Cabello"),((Element)elementoCaracteristica).getAttribute("Senia"),((Element)elementoCaracteristica).getAttribute("Vehiculo"));
 		return caracteristicas;
 	}

@@ -2,6 +2,7 @@ package fiuba.algo3.tpfinal.test;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -48,7 +49,7 @@ public class CarmenSanDiegoTest {
 	}
 	
 	@Test
-	public void CarmenCreaXMLConPolicias() throws ParserConfigurationException, TransformerException{
+	public void CarmenCreaXMLConPolicias() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Policia unPolicia = new Policia("Facu",5);
 		Carmen.AgregarPolicia(unPolicia);
@@ -58,7 +59,7 @@ public class CarmenSanDiegoTest {
 		Assert.assertTrue(Carmen.ArchivoPoliciasExiste());
 	}
 	@Test
-	public void CarmenCreaXMLConLadrones() throws ParserConfigurationException, TransformerException{
+	public void CarmenCreaXMLConLadrones() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Caracteristicas caracteristicas1=new Caracteristicas(null,null,null,null,null);
 		Caracteristicas caracteristicas2=new Caracteristicas(null,null,null,null,null);
@@ -71,7 +72,7 @@ public class CarmenSanDiegoTest {
 	
 	}
 	@Test
-	public void CarmenLevantaXMLConLadrones() throws ParserConfigurationException, TransformerException, SAXException, IOException{
+	public void CarmenLevantaXMLConLadrones() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Caracteristicas caracteristicas1=new Caracteristicas(null,null,null,null,null);
 		Caracteristicas caracteristicas2=new Caracteristicas(null,null,null,null,null);
@@ -85,7 +86,7 @@ public class CarmenSanDiegoTest {
 		Assert.assertTrue(Carmen.LadronEstaEnJuego(LadronDos));
 	}
 	@Test
-	public void CarmenLevantaXMLConPolicias() throws ParserConfigurationException, TransformerException, SAXException, IOException{
+	public void CarmenLevantaXMLConPolicias() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Policia unPolicia = new Policia("Facu",5);
 		Carmen.AgregarPolicia(unPolicia);

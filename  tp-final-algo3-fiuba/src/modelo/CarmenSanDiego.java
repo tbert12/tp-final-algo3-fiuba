@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,45 +21,56 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
+
+
+
 public  class CarmenSanDiego {
 	private static String nombreArchivoPolicias = "RegistroPolicias.xml";
 	private static String nombreArchivoLadrones = "RegistroLadrones.xml";
 	private static List<Policia> ListadoPolicias = new ArrayList<Policia>();
 	private static List<Ladron> ListadoLadrones = new ArrayList<Ladron>();
 	
-	public void LevantarPoliciasDelXML() throws ParserConfigurationException, SAXException, IOException{
-		File archivo = new File(nombreArchivoPolicias);
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private <T> List<T> LevantarAlgoDelXML(String nombreArchivo,Class clase,List<T> listado) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+		File archivo = new File(nombreArchivo);
 		if (archivo.exists()){
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.newDocument();
 			doc = dBuilder.parse(archivo);
 			doc.getDocumentElement().normalize();
-			Element rootElement = doc.getDocumentElement();
-			NodeList nodos = rootElement.getChildNodes();
-			for (int i = 0; i< nodos.getLength();i++){
-				Policia policia = Policia.Hidratar(doc,i);
-				ListadoPolicias.add(policia);
+			Method metodoHidratar = clase.getDeclaredMethod("Hidratar",org.w3c.dom.Node.class);
+			NodeList nodos = doc.getElementsByTagName(clase.getName());
+			for (int i = 0;i < nodos.getLength();i++){
+				Class<T> x =(Class<T>) metodoHidratar.invoke(nodos.item(i));
+				listado.add((T) x);
 			}
 		}
+		return listado;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private <T> void BajarObjetoAXML(String nombreArchivo,List<T> listado,Class clase) throws ParserConfigurationException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException{
+		Document doc = crearDoc();
+		Method metodoSerializarMethod = clase.getDeclaredMethod("Serializar",Document.class);
+		for(T objeto: listado){
+			Element objetoSerializado = (Element) metodoSerializarMethod.invoke(objeto, doc);
+			if (doc.hasChildNodes()==false){
+				doc.appendChild(objetoSerializado);
+			}
+			else{
+				doc.getFirstChild().appendChild(objetoSerializado);
+			}
+		TransformarYEscribirADisco(nombreArchivo, doc);
+		}
+	}
+	public void LevantarPoliciasDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+	ListadoPolicias = LevantarAlgoDelXML(nombreArchivoPolicias, Policia.class,ListadoPolicias);
 	
 	}
 	
-	public void LevantarLadronesDelXML() throws ParserConfigurationException, SAXException, IOException{
-		File archivo = new File(nombreArchivoLadrones);
-		if (archivo.exists()){
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.newDocument();
-			doc = dBuilder.parse(archivo);
-			doc.getDocumentElement().normalize();
-			Element rootElement = doc.getDocumentElement();
-			NodeList nodos = rootElement.getChildNodes();
-			for (int i = 0;i < nodos.getLength();i++){
-				Ladron ladron = Ladron.ladronHidratar(doc,i);
-				ListadoLadrones.add(ladron);
-			}
-		}
+	public void LevantarLadronesDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+		LevantarAlgoDelXML(nombreArchivoLadrones, Ladron.class, ListadoLadrones);
 	}
 
 	private Document crearDoc() throws ParserConfigurationException{
@@ -74,31 +87,11 @@ public  class CarmenSanDiego {
 		StreamResult result = new StreamResult(archivoDestino);
 		transformer.transform(source, result);
 	}
-	public void BajarPoliciasAXML() throws ParserConfigurationException, TransformerException{
-		Document doc = crearDoc();
-		for (Policia policia:ListadoPolicias){
-			Element policiaSerializado = policia.Serializar(doc);
-			if (doc.hasChildNodes()==false){//Creo la root
-				doc.appendChild(policiaSerializado);
-			}
-			else{//Le mando frutilla a la raiz
-			doc.getFirstChild().appendChild(policiaSerializado);
-			}
-			}
-		TransformarYEscribirADisco(nombreArchivoPolicias,doc);
+	public void BajarPoliciasAXML() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		BajarObjetoAXML(nombreArchivoPolicias, ListadoPolicias, Policia.class);
 		}
-	public void BajarLadronesAXML() throws ParserConfigurationException, TransformerException{
-		Document doc = crearDoc();
-		for (Ladron ladron:ListadoLadrones){
-			Element ladronSerializado = ladron.serializarLadron(doc);
-			if (doc.hasChildNodes()==false){
-				doc.appendChild(ladronSerializado);
-			}
-			else{
-				doc.getFirstChild().appendChild(ladronSerializado);
-			}
-		TransformarYEscribirADisco(nombreArchivoLadrones,doc);
-		}
+	public void BajarLadronesAXML() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		BajarObjetoAXML(nombreArchivoLadrones, ListadoLadrones,Ladron.class);
 	}
 
 	public void AgregarPolicia(Policia unPolicia){

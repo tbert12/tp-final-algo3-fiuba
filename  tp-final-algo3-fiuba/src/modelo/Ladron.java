@@ -2,6 +2,7 @@ package modelo;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
 
@@ -80,18 +81,18 @@ public class Ladron {
 	public boolean TieneOrdenDeArresto(){
 		return OrdenDeArresto;
 	}
-	public Element serializarLadron(Document doc){
+	public Element Serializar(Document doc){
 		Element elementoLadron = doc.createElement("Ladron");
 		Element elementoCaracteristicas = doc.createElement("Caracteristica");
 		elementoLadron.appendChild(elementoCaracteristicas);
-		elementoCaracteristicas.appendChild(this.CaracteristicasDelLadron.serializar(doc));
+		elementoCaracteristicas.appendChild(this.CaracteristicasDelLadron.Serializar(doc));
 		elementoLadron.setAttribute("Nombre",this.Nombre);
 		return elementoLadron;
 	}
-	public static Ladron ladronHidratar(Document doc,int pos){
-		Element elementoLadron = (Element)doc.getElementsByTagName("Ladron").item(pos);
-		Element elementoCaracteristicas = (Element)doc.getElementsByTagName("Caracteristica").item(pos);
-		Caracteristicas caracteristicas = Caracteristicas.hidratar(elementoCaracteristicas.getChildNodes().item(0));
+	public static Ladron Hidratar(Node nodo){
+		Element elementoLadron = (Element)nodo;
+		Element elementoCaracteristicas = (Element)nodo.getFirstChild();
+		Caracteristicas caracteristicas = Caracteristicas.Hidratar(elementoCaracteristicas.getChildNodes().item(0));
 		Ladron nuevoLadron = new Ladron(elementoLadron.getAttribute("Nombre"),caracteristicas);
 		
 		

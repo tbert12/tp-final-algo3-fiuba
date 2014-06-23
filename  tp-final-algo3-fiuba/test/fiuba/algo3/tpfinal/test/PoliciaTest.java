@@ -12,6 +12,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,6 +28,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 public class PoliciaTest {
 	private String nombreArchivo;
@@ -140,14 +144,19 @@ public class PoliciaTest {
 		doc = dBuilder.parse(archivo);
 		doc.getDocumentElement().normalize();
 		
-		Policia policiaCargado = Policia.Hidratar(doc,1);
-		Assert.assertNotNull(policiaCargado);
-		Assert.assertEquals(policiaCargado.getNombre(),otroPolicia.getNombre());
-		Assert.assertTrue(policiaCargado.getRango() instanceof RangoSargento);
-		Policia otroPoliciaCargado = Policia.Hidratar(doc,0);
-		Assert.assertNotNull(otroPoliciaCargado);
-		Assert.assertEquals(otroPoliciaCargado.getNombre(),unPolicia.getNombre());
-		Assert.assertTrue(otroPoliciaCargado.getRango() instanceof RangoInvestigador);
+		NodeList nodosPolicia = doc.getElementsByTagName("Policia");
+		List <Policia> listado= new ArrayList<Policia>();
+		for  (int i=0;i<nodosPolicia.getLength();i++){
+			Node nodoHijo = nodosPolicia.item(i);
+			Policia policiaCargado = Policia.Hidratar(nodoHijo);
+			listado.add(policiaCargado);
+		}
+		Assert.assertNotNull(listado.get(1));
+		Assert.assertEquals(listado.get(1).getNombre(),otroPolicia.getNombre());
+		Assert.assertTrue(listado.get(1).getRango() instanceof RangoSargento);
+		Assert.assertNotNull(listado.get(0));
+		Assert.assertEquals(listado.get(0).getNombre(),unPolicia.getNombre());
+		Assert.assertTrue(listado.get(0).getRango() instanceof RangoInvestigador);
 	}
 
 	

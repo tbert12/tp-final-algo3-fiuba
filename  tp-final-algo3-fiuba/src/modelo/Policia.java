@@ -2,8 +2,9 @@ package modelo;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
-public class Policia {
+public class Policia  {
 	
 	
 	private String Nombre = "";
@@ -88,10 +89,10 @@ public class Policia {
 		return elementoPolicia;
 	}
 		
-	public static Policia Hidratar(Document doc, int Pos){
+	public static Policia Hidratar(Node nodo){
 		//Como se va a guardar en orden acorde a la posicion dada
 		//Le paso por parametro la posicion, para poder hidratar el correcto.
-		Element elementoPolicia = (Element)doc.getElementsByTagName("Policia").item(Pos);
+		Element elementoPolicia = (Element)nodo;
 		Policia nuevoPolicia = new Policia(elementoPolicia.getAttribute("Nombre"),Integer.parseInt(elementoPolicia.getAttribute("Arrestos")));
 		return nuevoPolicia;
 		

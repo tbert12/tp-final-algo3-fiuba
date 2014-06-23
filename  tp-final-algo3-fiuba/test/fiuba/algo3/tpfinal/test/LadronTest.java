@@ -2,6 +2,8 @@ package fiuba.algo3.tpfinal.test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,6 +22,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
@@ -115,8 +119,8 @@ public class LadronTest {
 		Caracteristicas caracteristicasLadronDos = new Caracteristicas (Sexo[0],Hobbie[2],Cabello[1],Senia[3],Vehiculo[2]);
 		Ladron unLadron = new Ladron("Tomy",caracteristicasLadronUno);
 		Ladron otroLadron = new Ladron("Facu",caracteristicasLadronDos);
-		Element LadronSerializado = unLadron.serializarLadron(doc);
-		Element otroLadronSerializado = otroLadron.serializarLadron(doc);
+		Element LadronSerializado = unLadron.Serializar(doc);
+		Element otroLadronSerializado = otroLadron.Serializar(doc);
 		Assert.assertNotNull(LadronSerializado);
 		doc.appendChild(LadronSerializado);
 		doc.getFirstChild().appendChild(otroLadronSerializado);
@@ -135,15 +139,21 @@ public class LadronTest {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		doc = dBuilder.parse(archivo);
 		doc.getDocumentElement().normalize();
+		NodeList nodosLadron = doc.getElementsByTagName("Ladron");
+		List <Ladron> listado= new ArrayList<Ladron>();
+		for  (int i=0;i<nodosLadron.getLength();i++){
+			Node nodoHijo = nodosLadron.item(i);
+			Ladron ladronCargado = Ladron.Hidratar(nodoHijo);
+			listado.add(ladronCargado);
+		}
 		
-		Ladron LadronCargado = Ladron.ladronHidratar(doc,0);
-		Assert.assertNotNull(LadronCargado);
-		Assert.assertEquals(LadronCargado.getNombre(),unLadron.getNombre());
-		Assert.assertTrue(LadronCargado.CompararCaracteristicas(caracteristicasLadronUno) );
-		Ladron LadronCargado2 = Ladron.ladronHidratar(doc,1);
-		Assert.assertNotNull(LadronCargado2);
-		Assert.assertEquals(LadronCargado2.getNombre(),otroLadron.getNombre());
-		Assert.assertTrue(LadronCargado2.CompararCaracteristicas(caracteristicasLadronDos) );
+		Assert.assertNotNull(listado.get(0));
+		Assert.assertEquals(listado.get(0).getNombre(),unLadron.getNombre());
+		Assert.assertTrue(listado.get(0).CompararCaracteristicas(caracteristicasLadronUno) );
+	
+		Assert.assertNotNull(listado.get(1));
+		Assert.assertEquals(listado.get(1).getNombre(),otroLadron.getNombre());
+		Assert.assertTrue(listado.get(1).CompararCaracteristicas(caracteristicasLadronDos) );
 	}
 
 }
