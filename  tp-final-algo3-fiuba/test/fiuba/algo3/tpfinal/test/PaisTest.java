@@ -54,5 +54,16 @@ public class PaisTest {
 		assertEquals(UnPais.DistanciaAPais("ING"),2);
 		assertEquals(UnPais.DistanciaAPais("USA"),3);
 	}
+
+	@Test
+	public void testInformacionDelPaisEsCorrecta(){
+		String Info = "Este pais blablabla, blablabla y aun mas blablabla";
+		UnPais.setInformacion(Info);
+		
+		assertEquals(UnPais.getInformacion(),Info);
+		assertNotEquals(UnPais.getInformacion(),Info + "Algo Mas");
+	}
 }
+
+
 

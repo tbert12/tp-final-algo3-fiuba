@@ -10,6 +10,7 @@ import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 public class Pais {
 	
 	private String Nombre;
+	private String Informacion;
 	private Edificio[] Edificios;
 	private HashMap<String,Integer> DistanciaAPaises;
 	
@@ -20,6 +21,15 @@ public class Pais {
 	
 	public String getNombre(){
 		return Nombre;
+	}
+	
+	//Capas Es mejor recibirlo por parametro cuando lo inicializamos.
+	public void setInformacion(String UnaInfo){
+		Informacion = UnaInfo;
+	}
+	
+	public String getInformacion(){
+		return Informacion;
 	}
 	
 	public int DistanciaAPais(String unPais){

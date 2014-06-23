@@ -3,6 +3,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import modelo.excepcion.ErrorElPaisNoEsta;
+
 public class PartidaObservable extends Observable {
 	
 	
@@ -12,6 +14,7 @@ public class PartidaObservable extends Observable {
 	private int TiempoRestante;
 	private ArrayList<String> LadronesFiltrados;
 	private String PaisActual;
+	private String PistaEdificioActual;
 	
 	public PartidaObservable(Partida UnaPartida){
 		this.UnaPartida = UnaPartida;
@@ -39,6 +42,31 @@ public class PartidaObservable extends Observable {
 	
 	public ArrayList<String> LadronesFiltrados(){
 		return LadronesFiltrados;
+	}
+	
+	public String PistaEdificioActual(){
+		return PistaEdificioActual;
+	}
+	
+	public void VisitarEdificio(String NombreEdificio){
+		if( EdificiosAVisitar.contains(NombreEdificio)){
+			PistaEdificioActual = UnaPartida.MostrarPistaDeEdificio(NombreEdificio);
+			
+			setChanged();
+			notifyObservers();
+		}
+	}
+	
+	public void ViajarHacia(String UnPais){
+		try{
+			UnaPartida.ViajarHacia(UnPais);
+		}
+		catch (ErrorElPaisNoEsta e){
+			//Por Ahora Nada, Sabemos que no puede Pasar
+		}
+		PaisActual = UnaPartida.NombrePaisActual();
+		setChanged();
+		notifyObservers();
 	}
 	
 }
