@@ -8,5 +8,7 @@ public class RangoSargento implements Rango {
 	public int CostoDeViaje(int CantidadKilometros) {
 		return CantidadKilometros/VelocidadDeViaje;
 	}
+	public void ChequeoDeRango(Rango rango,int CantidadDeArrestos){
+	}
 
 }

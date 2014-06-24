@@ -9,4 +9,10 @@ public class RangoNovato implements Rango {
 		return CantidadKilometros/VelocidadDeViaje;
 	}
 	
+	public void ChequeoDeRango(Rango rango,int cantDeArrestos){
+		if (cantDeArrestos >= 5 && cantDeArrestos<10){
+			Rango nuevoRango=new RangoDetective();
+			rango = nuevoRango;
+		}
+}
 }

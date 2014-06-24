@@ -8,5 +8,12 @@ public class RangoInvestigador implements Rango {
 	public int CostoDeViaje(int CantidadKilometros) {
 		return CantidadKilometros/VelocidadDeViaje;
 	}
+	
+	public void ChequeoDeRango(Rango rango,int cantDeArrestos){
+		if (cantDeArrestos >= 20){
+			Rango nuevoRango=new RangoSargento();
+			rango = nuevoRango;
+		}
 
+}
 }

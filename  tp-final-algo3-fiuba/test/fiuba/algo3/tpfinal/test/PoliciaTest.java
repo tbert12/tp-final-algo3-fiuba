@@ -75,6 +75,12 @@ public class PoliciaTest {
 	}
 	
 	@Test
+	public void PoliciaEsSargento(){
+		Policia unPolicia = new Policia("Bufarreti", 20);
+		unPolicia.AddArresto();
+		Assert.assertTrue(unPolicia.getRango() instanceof RangoSargento);
+	}
+	@Test
 	public void PoliciaReducirHoras(){
 		Policia UnPolicia = new Policia("Pedraza",0);
 		Tiempo UnTiempo = new Tiempo(200);
