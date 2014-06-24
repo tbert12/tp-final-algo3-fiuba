@@ -6,75 +6,75 @@ import org.w3c.dom.Node;
 
 public class Caracteristicas {
 	
-	private Sexo Sexo;
-	private Hobby Hobby;
-	private Cabello Cabello;
-	private Senia Senia;
-	private Vehiculo Vehiculo;
+	private Sexo UnSexo;
+	private Hobby UnHobby;
+	private Cabello UnCabello;
+	private Senia unaSenia;
+	private Vehiculo UnVehiculo;
 	
 
 	public Caracteristicas(Sexo UnSexo,Hobby UnHobby,Cabello UnCabello,Senia UnaSenia,Vehiculo UnVehiculo){
-		this.Sexo = UnSexo;
-		this.Hobby = UnHobby;
-		this.Cabello = UnCabello;
-		this.Senia = UnaSenia;
-		this.Vehiculo = UnVehiculo;
+		this.UnSexo = UnSexo;
+		this.UnHobby = UnHobby;
+		this.UnCabello = UnCabello;
+		this.unaSenia = UnaSenia;
+		this.UnVehiculo = UnVehiculo;
 	}
 
 	public Sexo getSexo() {
-		return this.Sexo;
+		return this.UnSexo;
 	}
 	
 	public Hobby getHobby() {
-		return this.Hobby;
+		return this.UnHobby;
 	}
 	
 	public Cabello getCabello() {
-		return this.Cabello;
+		return this.UnCabello;
 	}
 	
 	public Senia getSenia() {
-		return this.Senia;
+		return this.unaSenia;
 	}
 	
 	public Vehiculo getVehiculo() {
-		return this.Vehiculo;
+		return this.UnVehiculo;
 	}
 	
 	public boolean CompararCon(Caracteristicas otrasCaracteristicas){
 		if (otrasCaracteristicas.getSexo() != null){
 			
-			if (!otrasCaracteristicas.getSexo().equals(this.Sexo))return false;
+			if (!otrasCaracteristicas.getSexo().equals(this.UnSexo))return false;
 			
 		}
 		if (otrasCaracteristicas.getHobby() != null){
-			if (!otrasCaracteristicas.getHobby().equals(this.Hobby)) return false;
+			if (!otrasCaracteristicas.getHobby().equals(this.UnHobby)) return false;
 		
 				
 		}
 		if (otrasCaracteristicas.getCabello() != null){
-			if (!otrasCaracteristicas.getCabello().equals(this.Cabello)) return false;
+			if (!otrasCaracteristicas.getCabello().equals(this.UnCabello)) return false;
 		}
 		if (otrasCaracteristicas.getSenia() != null){
-			if (!otrasCaracteristicas.getSenia().equals(this.Senia)) return false;
+			if (!otrasCaracteristicas.getSenia().equals(this.unaSenia)) return false;
 		}
 		if (otrasCaracteristicas.getVehiculo() != null){
-			if (!otrasCaracteristicas.getVehiculo().equals(this.Vehiculo)) return false;
+			if (!otrasCaracteristicas.getVehiculo().equals(this.UnVehiculo)) return false;
 		}
 		return true;
 	}
 
 	public Node Serializar(Document doc) {
 		Element elementoCaracteristica = doc.createElement("Caracteristicas");
-		elementoCaracteristica.setAttribute("Sexo",this.Sexo);
-		elementoCaracteristica.setAttribute("Senia", this.Senia);
-		elementoCaracteristica.setAttribute("Hobby", this.Hobby);
-		elementoCaracteristica.setAttribute("Cabello",this.Cabello);
-		elementoCaracteristica.setAttribute("Vehiculo",this.Vehiculo);
+		elementoCaracteristica.setAttribute("Sexo",this.UnSexo.getString());
+		elementoCaracteristica.setAttribute("Senia", this.unaSenia.getString());
+		elementoCaracteristica.setAttribute("Hobby", this.UnHobby.getString());
+		elementoCaracteristica.setAttribute("Cabello",this.UnCabello.getString());
+		elementoCaracteristica.setAttribute("Vehiculo",this.UnVehiculo.getString());
 		return elementoCaracteristica;
 	}
 	public static Caracteristicas Hidratar(Node elementoCaracteristica){
-		Caracteristicas caracteristicas = new Caracteristicas(((Element)elementoCaracteristica).getAttribute("Sexo"),((Element)elementoCaracteristica).getAttribute("Hobby"),((Element)elementoCaracteristica).getAttribute("Cabello"),((Element)elementoCaracteristica).getAttribute("Senia"),((Element)elementoCaracteristica).getAttribute("Vehiculo"));
+		Caracteristicas caracteristicas = new Caracteristicas(Sexo.fromString(((Element)elementoCaracteristica).getAttribute("Sexo")),Hobby.fromString(((Element)elementoCaracteristica).getAttribute("Hobby")),Cabello.fromString(((Element)elementoCaracteristica).getAttribute("Cabello")),Senia.fromString(((Element)elementoCaracteristica).getAttribute("Senia")),Vehiculo.fromString(((Element)elementoCaracteristica).getAttribute("Vehiculo")) );
 		return caracteristicas;
 	}
 	
