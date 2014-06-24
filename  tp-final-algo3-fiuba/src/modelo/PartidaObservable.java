@@ -63,6 +63,8 @@ public class PartidaObservable extends Observable {
 		}
 		catch (ErrorElPaisNoEsta e){
 			//Por Ahora Nada, Sabemos que no puede Pasar
+			//Esto no deberia pasar nunca en realidad, porque se manejan internamente las opciones.
+			//Si pasase esto, le estamos pifiando en algo de logica en realidad
 		}
 		PaisActual = UnaPartida.NombrePaisActual();
 		setChanged();
