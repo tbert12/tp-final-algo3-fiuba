@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import modelo.caracteristicas.Caracteristicas;
-import modelo.excepcion.ErrorElPaisNoEsta;
 
 public class BaseDeDatos {
 
@@ -60,17 +59,4 @@ public class BaseDeDatos {
 		return PosiblesPaises;
 	}
 	
-	public Pais obtenerPaisPorNombre(String NombrePais) throws ErrorElPaisNoEsta{
-		
-		Iterator<Pais> iterador = Paises.iterator();
-		while(iterador.hasNext()){
-			Pais UnPais = iterador.next();
-			if( NombrePais.equals(UnPais.getNombre()) ){
-				return UnPais;
-			}
-		}
-		
-		throw new ErrorElPaisNoEsta();
-		
-	}
 }

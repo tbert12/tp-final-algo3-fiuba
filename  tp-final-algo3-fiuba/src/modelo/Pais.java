@@ -38,30 +38,15 @@ public class Pais {
 	public void setDistancias(HashMap<String,Integer> unDicc){
 		DistanciaAPaises = unDicc;
 	}
-	public ArrayList<String> getNombresDeEdificios(){
-		ArrayList<String> NombresEdificios = new ArrayList<String>();
+	public ArrayList<Edificio> getEdificios(){
+		ArrayList<Edificio> ListaEdificios = new ArrayList<Edificio>();
 		
 		for (int i=0; i<Edificios.length; i++){
-			NombresEdificios.add( Edificios[i].getNombre() );
+			ListaEdificios.add( Edificios[i]);
 		}
-		return NombresEdificios;
-	}
-	private Edificio getEdificio(String NombreDeEdficio)throws ErrorEdificioNoEstaEnPais{
-		for (int i=0; i<Edificios.length; i++){
-			if( Edificios[i].getNombre() == NombreDeEdficio ){
-				return Edificios[i];
-			}
-		}
-		throw new ErrorEdificioNoEstaEnPais();
+		return ListaEdificios;
 	}
 	
-	public String getPistaDeEdificio(String NombreEdificio) throws ErrorEdificioNoEstaEnPais{
-		return getEdificio(NombreEdificio).getPista();
-	}
-	public int getEdificoVecesVisitado(String NombreEdificio) throws ErrorEdificioNoEstaEnPais{
-		return getEdificio(NombreEdificio).vecesVisitado();
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

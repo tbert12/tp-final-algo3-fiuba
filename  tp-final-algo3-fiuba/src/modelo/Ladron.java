@@ -11,12 +11,12 @@ public class Ladron {
 	private Caracteristicas CaracteristicasDelLadron;
 	private String Nombre;
 	private Trayectoria Trayectoria;
-	private boolean OrdenDeArresto;
+	private boolean Arrestado;
 	
 	public Ladron(String Nombre,Caracteristicas caracteristicas){
 		this.Nombre = Nombre;
 		this.CaracteristicasDelLadron = caracteristicas;
-		this.OrdenDeArresto = false;
+		this.Arrestado = false;
 	}
 	
 	public void addTrayectoria(Trayectoria trayecto){
@@ -76,12 +76,12 @@ public class Ladron {
 			return paisAnterior();
 		}
 	}
-	public void emitirOrdenDeArresto(){
-		OrdenDeArresto = true;
+	public void arrestar(){
+		Arrestado = true;
 	}
 	
-	public boolean tieneOrdenDeArresto(){
-		return OrdenDeArresto;
+	public boolean estaArrestado(){
+		return Arrestado;
 	}
 	public Element serializar(Document doc){
 		Element elementoLadron = doc.createElement("Ladron");

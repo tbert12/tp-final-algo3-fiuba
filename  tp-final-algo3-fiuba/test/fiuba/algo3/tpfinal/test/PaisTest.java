@@ -31,13 +31,13 @@ public class PaisTest {
 	@Test
 	public void testLosNombresDeLosEdificiosSonCorrectos(){
 		
-		ArrayList<String> NombresDeEdificios = UnPais.getNombresDeEdificios();
+		ArrayList<Edificio> ListaEdificios = UnPais.getEdificios();
 		
-		Iterator<String> Iterador = NombresDeEdificios.iterator();
+		Iterator<Edificio> Iterador = ListaEdificios.iterator();
 		int i = 0;
 		while( Iterador.hasNext() ){
-			String NombreActual = Iterador.next();
-			assertEquals( NombreActual, edificios[i].getNombre() );
+			Edificio NombreActual = Iterador.next();
+			assertEquals( NombreActual, edificios[i]);
 			i++;
 		}
 	}

@@ -50,7 +50,7 @@ public class PartidaJuegoTest {
 		
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
 		unaBase = new BaseDeDatos();
-		ArrayList<String> ListaDeEdificios;
+		ArrayList<Edificio> ListaDeEdificios;
 		unObjeto = new ObjetoRobado("Bandera Antigua","Poco Valioso");
 		
 		unLadron = new Ladron("Roberto",CaracteristicasDelLadron);
@@ -92,63 +92,63 @@ public class PartidaJuegoTest {
 		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
 		
-		assertEquals(unaPartida.NombreObjetoRobado(),"Bandera Antigua");
-		assertEquals(unaPartida.ValorObjetoRobado(),"Poco Valioso");
+		assertEquals(unaPartida.nombreObjetoRobado(),"Bandera Antigua");
+		assertEquals(unaPartida.valorObjetoRobado(),"Poco Valioso");
 		
 		assertEquals(unPolicia.getPais(),Argentina);
 		
-		ListaDeEdificios = unaPartida.NombresDeEdificiosAMostrar();
+		ListaDeEdificios = unaPartida.edificiosAMostrar();
 		
-		assertEquals(ListaDeEdificios.get(0),"Bolsa");
+		assertEquals(ListaDeEdificios.get(0),Bolsa);
 		
-		String PistaBolsa = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
-		assertEquals(PistaBolsa,"“Le dicen que tenía el cabello castaño”");
+		String PistaBolsa = unaPartida.visitarEdificio(ListaDeEdificios.get(0));
+		assertEquals(PistaBolsa,Bolsa.visitar(unPolicia));
 		
-		assertEquals(ListaDeEdificios.get(1),"Banco");
-		String PistaBanco = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(1));
-		assertEquals(PistaBanco,"“Cambio dinero a libras esterlinas”");
+		assertEquals(ListaDeEdificios.get(1),Banco);
+		String PistaBanco = unaPartida.visitarEdificio(ListaDeEdificios.get(1));
+		assertEquals(PistaBanco,Banco.visitar(unPolicia));
 		
-		assertEquals(ListaDeEdificios.get(2),"Aeropuerto");
-		String PistaAeropuerto = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
-		assertEquals(PistaAeropuerto,"“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
+		assertEquals(ListaDeEdificios.get(2),Aeropuerto);
+		String PistaAeropuerto = unaPartida.visitarEdificio(ListaDeEdificios.get(2));
+		assertEquals(PistaAeropuerto,Aeropuerto);
 	
         
-		unaPartida.ViajarHacia("London"); 
+		unaPartida.viajarHacia(Inglaterra); 
         
 		assertEquals(unPolicia.getPais(),Inglaterra);
 	
-		ListaDeEdificios = unaPartida.NombresDeEdificiosAMostrar();
+		ListaDeEdificios = unaPartida.edificiosAMostrar();
 		
-		assertEquals(ListaDeEdificios.get(0),"Hotel");
+		assertEquals(ListaDeEdificios.get(0),Hotel);
 		
-		String PistaHotel = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
-		assertEquals(PistaHotel,Hotel.getPista());
+		String PistaHotel = unaPartida.visitarEdificio(ListaDeEdificios.get(0));
+		assertEquals(PistaHotel,Hotel.visitar(unPolicia));
 		
-		assertEquals(ListaDeEdificios.get(1),"Banco");
-		String PistaBancoLondres = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(1));
-		assertEquals(PistaBancoLondres,"“compró dólares y llevaba un tatuaje”");
+		assertEquals(ListaDeEdificios.get(1),Banco);
+		String PistaBancoLondres = unaPartida.visitarEdificio(ListaDeEdificios.get(1));
+		assertEquals(PistaBancoLondres,Banco.visitar(unPolicia));
 		
 		
-		assertEquals(ListaDeEdificios.get(2),"Muelle");
-		String PistaMuelle = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
-		assertEquals(PistaMuelle,Muelle.getPista());
+		assertEquals(ListaDeEdificios.get(2),Muelle);
+		String PistaMuelle = unaPartida.visitarEdificio(ListaDeEdificios.get(2));
+		assertEquals(PistaMuelle,Muelle.visitar(unPolicia));
 
 		//filtra ladron con coincidencias.
 		unaPartida.FiltrarLadron(null,null,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
 	
-		unaPartida.ViajarHacia(Usa.getNombre());
+		unaPartida.viajarHacia(Usa);
 		assertEquals(unPolicia.getPais(),Usa);
 		
-		ListaDeEdificios = unaPartida.NombresDeEdificiosAMostrar();
+		ListaDeEdificios = unaPartida.edificiosAMostrar();
 		//El policia esta en el mismo pais que el ladron, deberia encontrarlo
 		
 		//pasa por el primer edificio
-		unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(0));
-		unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(1));
+		unaPartida.visitarEdificio(ListaDeEdificios.get(0));
+		unaPartida.visitarEdificio(ListaDeEdificios.get(1));
 		
 		//si la orden de arresto se emitio el ladron debe ser atrapado
-		assertEquals(unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2)),"Atrapado");
-		assertTrue(unaPartida.SeTerminoLaPartida());
+		assertEquals(unaPartida.visitarEdificio(ListaDeEdificios.get(2)),"Ladron Atrapado");
+		assertTrue(unaPartida.seTerminoLaPartida());
 		}
 	
 	@Test
@@ -246,26 +246,26 @@ public class PartidaJuegoTest {
 		assertEquals(unPolicia.getPais(),Mexico);
 		
 		//El Jugador malgasta el tiempo viajando
-		unaPartida.MostrarPistaDeEdificio(Museo.getNombre());
-		unaPartida.MostrarPistaDeEdificio(Aeropuerto.getNombre());
+		unaPartida.visitarEdificio(Museo);
+		unaPartida.visitarEdificio(Aeropuerto);
 		
-		unaPartida.ViajarHacia(Italia.getNombre());
-		unaPartida.MostrarPistaDeEdificio(Banco.getNombre());
-		unaPartida.MostrarPistaDeEdificio(Muelle.getNombre());
+		unaPartida.viajarHacia(Italia);
+		unaPartida.visitarEdificio(Banco);
+		unaPartida.visitarEdificio(Muelle);
 		
-		unaPartida.ViajarHacia(Australia.getNombre());
-		unaPartida.MostrarPistaDeEdificio(MuseoAUS.getNombre());
-		unaPartida.MostrarPistaDeEdificio(HotelAUS.getNombre());
+		unaPartida.viajarHacia(Australia);
+		unaPartida.visitarEdificio(MuseoAUS);
+		unaPartida.visitarEdificio(HotelAUS);
 		
-		unaPartida.ViajarHacia(Italia.getNombre());
+		unaPartida.viajarHacia(Italia);
 		
-		unaPartida.ViajarHacia(Mexico.getNombre());
+		unaPartida.viajarHacia(Mexico);
 		
-		unaPartida.ViajarHacia(Italia.getNombre());
+		unaPartida.viajarHacia(Italia);
 		
-		unaPartida.ViajarHacia(Australia.getNombre());
+		unaPartida.viajarHacia(Australia);
 		
-		unaPartida.ViajarHacia(USA.getNombre());
+		unaPartida.viajarHacia(USA);
 		
 		assertTrue(unPolicia.tiempoAgotado());
 		

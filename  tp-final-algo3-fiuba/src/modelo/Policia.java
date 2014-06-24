@@ -18,10 +18,21 @@ public class Policia  {
 	private int CantidadDeArrestos = 0;
 	private Tiempo Tiempo;
 	private Pais PaisActual;
+	private int HorasSinDormir = 0;
+	private Ladron Sospechoso;
+
+	//Constantes
+	private final int HorasADormir = 8;
+	private final int LimiteHorasDespierto = 15;
+	private final int HorasPorFiltracion = 3;
+	private final int HorasHeridaCuchillo = 2;
+	private final int HorasHeridaArma = 3;
+
 
 	public Policia(String Nombre, int CantidadDeArrestos){
 		this.Nombre = Nombre;
 		this.CantidadDeArrestos = CantidadDeArrestos;
+		this.Sospechoso = null;
 		chequeoDeRango();
 		
 	}
@@ -35,6 +46,9 @@ public class Policia  {
 	
 	public void setTiempo(Tiempo tiempo){
 		this.Tiempo = tiempo;
+	}
+	public void setSospechoso(Ladron UnLadron){
+		Sospechoso = UnLadron;
 	}
 	
 	public void setPaisActual(Pais pais){
@@ -51,18 +65,13 @@ public class Policia  {
 		
 	}
 	
-	/*
-	public void HeridaArmaDeFuego(){
-		this.Tiempo.ReducirHoras(HorasHeridaArmaDeFuego);
+	public boolean arrestarSospechoso(){
+		if( Sospechoso == null ) return false;
+		
+		Sospechoso.arrestar();
+		return true;
 	}
 	
-	public void HeridaCuclillo(){
-		this.Tiempo.ReducirHoras(HorasHeridaCuchillo);
-	}
-	public void Dormir(){
-		this.Tiempo.ReducirHoras(HorasDormir);
-	}
-	*/
 	private void chequeoDeRango(){
 		if ( CantidadDeArrestos >= 20 ){
 			this.Rango = new RangoSargento();
@@ -81,8 +90,38 @@ public class Policia  {
 		return this.Rango.CostoDeViaje(kilometrosAViajar);
 	}
 
-	public void reducirHoras(int horas){
+	private void reducirHoras(int horas){
 		Tiempo.reducirHoras(horas);
+		HorasSinDormir += horas;
+		if (HorasSinDormir > LimiteHorasDespierto){
+			dormir();
+		}
+	}
+	
+	private void dormir(){
+		this.Tiempo.reducirHoras(HorasADormir);
+	}
+	
+	public void reducirHorasPorFiltracion() {
+		reducirHoras(HorasPorFiltracion);	
+	}
+	
+	public void reducirHorasPorViaje(int CantidadHoras){
+		reducirHoras(CantidadHoras);
+	}
+	
+	public void reducirHorasalVisitar(int VecesVisitado){
+		if (VecesVisitado == 0) reducirHoras(1);
+		else if (VecesVisitado == 1) reducirHoras(2);
+		else reducirHoras(3);
+	}
+	
+	public void reducirHorasPorHeridaCuchillo(){
+		reducirHoras(HorasHeridaCuchillo);
+	}
+	
+	public void reducirHorasPorHeridaArmaDeFuego(){
+		reducirHoras(HorasHeridaArma);
 	}
 	
 	public boolean tiempoAgotado(){
@@ -133,9 +172,5 @@ public class Policia  {
 	public int getTiempo() {
 		return Tiempo.getHoras();
 	}
-		
-		
-				
-		
-		
-	}
+	
+}

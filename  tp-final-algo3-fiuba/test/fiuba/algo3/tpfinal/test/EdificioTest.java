@@ -1,6 +1,7 @@
 package fiuba.algo3.tpfinal.test;
 
 import modelo.Edificio;
+import modelo.Policia;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,8 +14,9 @@ public class EdificioTest {
 	
 	@Test
 	public void testPistaEdificioEsCorrecta() {
+		Policia UnPolicia = new Policia("Juan", 0);
 		
-		Assert.assertEquals(UnEdificio.getPista(),pista);
+		Assert.assertEquals(UnEdificio.visitar(UnPolicia),pista);
 		
 	}
 	@Test

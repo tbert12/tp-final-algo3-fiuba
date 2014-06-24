@@ -88,51 +88,28 @@ public class PartidaTest {
 	@Test
 	public void PartidaNoEstaTerminada(){
 		CrearDatos();
-		assertFalse(UnaPartida.SeTerminoLaPartida());
-	}
-	
-	@Test
-	public void ReducirHorasAlPolicaNoDuerme(){
-		//Si reduzco menos de 15 horas el policia no tiene que dormir
-		CrearDatos();
-		int HorasAReducir = 12;
-		int HorasIniciales = UnTiempo.getHoras();
-		UnaPartida.ReducirHorasalPolicia(HorasAReducir);
-		
-		assertEquals(HorasIniciales - HorasAReducir,UnTiempo.getHoras() );
-	}
-	
-	@Test
-	public void ReducirHorasAlPolicaSIDuerme(){
-		//Si reduzco mas de 15 horas el policia tiene que dormir
-		CrearDatos();
-		int HorasADormir = 8;
-		int HorasAReducir = 18;
-		int HorasIniciales = UnTiempo.getHoras();
-		UnaPartida.ReducirHorasalPolicia(HorasAReducir);
-		
-		assertEquals(HorasIniciales - (HorasAReducir + HorasADormir) ,UnTiempo.getHoras() );
+		assertFalse(UnaPartida.seTerminoLaPartida());
 	}
 	
 	@Test
 	public void NombreYValorObjetoRobado(){
 		CrearDatos();
-		assertEquals(UnObjeto.getNombre(),UnaPartida.NombreObjetoRobado());
-		assertEquals(UnObjeto.getValor(),UnaPartida.ValorObjetoRobado());
+		assertEquals(UnObjeto.getNombre(),UnaPartida.nombreObjetoRobado());
+		assertEquals(UnObjeto.getValor(),UnaPartida.valorObjetoRobado());
 	}
 	
 	@Test
-	public void NombresPosiblesEdificiosAMostrar(){
+	public void PosiblesEdificiosAMostrar(){
 		CrearDatos();
-		ArrayList<String> PosiblesEdificios = UnaPartida.NombresDeEdificiosAMostrar();
+		ArrayList<Edificio> PosiblesEdificios = UnaPartida.edificiosAMostrar();
 		
 		Pais Argentina = Paises[0];
 		
-		String NombreEdificio1 = (Argentina.getNombresDeEdificios()).get(0);
-		String NombreEdificio2 = (Argentina.getNombresDeEdificios()).get(1);
+		Edificio Edificio1 = (Argentina.getEdificios()).get(0);
+		Edificio Edificio2 = (Argentina.getEdificios()).get(1);
 		
-		assertTrue(PosiblesEdificios.contains(NombreEdificio1));
-		assertTrue(PosiblesEdificios.contains(NombreEdificio2));
+		assertTrue(PosiblesEdificios.contains(Edificio1));
+		assertTrue(PosiblesEdificios.contains(Edificio2));
 	}
 	
 	@Test
@@ -140,11 +117,11 @@ public class PartidaTest {
 		CrearDatos();
 		Pais Argentina = Paises[0];
 		
-		String NombreEdificio = (Argentina.getNombresDeEdificios()).get(0);
+		Edificio UnEdificio = (Argentina.getEdificios()).get(0);
 		
-		String UnaPista = UnaPartida.MostrarPistaDeEdificio(NombreEdificio);
+		String UnaPista = UnaPartida.visitarEdificio(UnEdificio);
 		
-		assertEquals(UnaPista, Argentina.getPistaDeEdificio(NombreEdificio));
+		assertEquals(UnaPista, UnEdificio.visitar(UnPolicia));
 		
 	}
 }

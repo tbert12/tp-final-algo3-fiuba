@@ -1,5 +1,6 @@
 package fiuba.algo3.tpfinal.test;
 
+import static org.junit.Assert.assertEquals;
 import modelo.Policia;
 import modelo.Tiempo;
 import modelo.rangos.RangoDetective;
@@ -80,8 +81,36 @@ public class PoliciaTest {
 		unPolicia.addArresto();
 		Assert.assertTrue(unPolicia.getRango() instanceof RangoSargento);
 	}
+	
 	@Test
-	public void PoliciaReducirHoras(){
+	public void ReducirHorasAlPolicaNoDuerme(){
+		//Si reduzco menos de 15 horas el policia no tiene que dormir
+		Policia UnPolicia = new Policia("Pedraza",0);
+		Tiempo UnTiempo = new Tiempo(200);
+		UnPolicia.setTiempo(UnTiempo);
+		int HorasAReducir = 12;
+		int HorasIniciales = UnTiempo.getHoras();
+		UnPolicia.reducirHorasPorViaje(HorasAReducir);
+		
+		assertEquals(HorasIniciales - HorasAReducir,UnTiempo.getHoras() );
+	}
+	
+	@Test
+	public void ReducirHorasAlPolicaDuerme(){
+		//Si reduzco mas de 15 horas el policia tiene que dormir
+		int HorasPorDormir = 8;
+		Policia UnPolicia = new Policia("Pedraza",0);
+		Tiempo UnTiempo = new Tiempo(200);
+		UnPolicia.setTiempo(UnTiempo);
+		int HorasAReducir = 18;
+		int HorasIniciales = UnTiempo.getHoras();
+		UnPolicia.reducirHorasPorViaje(HorasAReducir);
+		
+		assertEquals(HorasIniciales - HorasAReducir - HorasPorDormir,UnTiempo.getHoras() );
+	}
+	
+	@Test
+	public void PoliciaReducirHorasPorViaje(){
 		Policia UnPolicia = new Policia("Pedraza",0);
 		Tiempo UnTiempo = new Tiempo(200);
 		UnPolicia.setTiempo(UnTiempo);
@@ -89,10 +118,46 @@ public class PoliciaTest {
 		int TiempoAntesDeDormir = UnTiempo.getHoras();
 		int HorasAReducir = 8;
 		
-		UnPolicia.reducirHoras(HorasAReducir);;
+		UnPolicia.reducirHorasPorViaje(HorasAReducir);;
 		
 		Assert.assertEquals(TiempoAntesDeDormir - HorasAReducir , UnTiempo.getHoras());
 	
+	}
+	
+	@Test
+	public void ReducirHorasAlPolicaPorFiltracion(){
+		Policia UnPolicia = new Policia("Pedraza",0);
+		Tiempo UnTiempo = new Tiempo(200);
+		UnPolicia.setTiempo(UnTiempo);
+		int HorasAReducir = 3;
+		int HorasIniciales = UnTiempo.getHoras();
+		UnPolicia.reducirHorasPorFiltracion();
+		
+		assertEquals(HorasIniciales - HorasAReducir,UnTiempo.getHoras() );
+	}
+	
+	@Test
+	public void ReducirHorasAlPolicaPorHeridaCuchillo(){
+		Policia UnPolicia = new Policia("Pedraza",0);
+		Tiempo UnTiempo = new Tiempo(200);
+		UnPolicia.setTiempo(UnTiempo);
+		int HorasAReducir = 2;
+		int HorasIniciales = UnTiempo.getHoras();
+		UnPolicia.reducirHorasPorHeridaCuchillo();
+		
+		assertEquals(HorasIniciales - HorasAReducir,UnTiempo.getHoras() );
+	}
+
+	@Test
+	public void ReducirHorasAlPolicaPorHeridaArma(){
+		Policia UnPolicia = new Policia("Pedraza",0);
+		Tiempo UnTiempo = new Tiempo(200);
+		UnPolicia.setTiempo(UnTiempo);
+		int HorasAReducir = 3;
+		int HorasIniciales = UnTiempo.getHoras();
+		UnPolicia.reducirHorasPorHeridaArmaDeFuego();
+		
+		assertEquals(HorasIniciales - HorasAReducir,UnTiempo.getHoras() );
 	}
 	
 	

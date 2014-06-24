@@ -91,28 +91,6 @@ public class LadronTest {
 	}
  	
 	@Test
-	public void TestOrdenDeArresto(){
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
-		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
-		
-		Assert.assertFalse(ladron.tieneOrdenDeArresto());
-		
-		ladron.emitirOrdenDeArresto();
-		
-		Assert.assertTrue(ladron.tieneOrdenDeArresto());
-	}
-	
-	
-	/*
-	
-	private String[] Sexo = {"Masculino","Femenino"};
-	private String[] Hobbie = {"Tennis","Musica","Alpinismo","Paracaidismo","Natacion","Croquet"};
-	private String[] Cabello = {"Castanio","Rubio","Rojo","Negro"};
-	private String[] Senia = {"Cojera","Anillo","Tatuaje","Cicatriz","Joyas"};
-	private String[] Vehiculo = {"Descapotable","Limusina","Deportivo","Moto"};
-	*/	
-	
-	@Test
 	public void PersistenciaFuncionaCon2Ladrones() throws ParserConfigurationException, TransformerException, SAXException, IOException {
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
