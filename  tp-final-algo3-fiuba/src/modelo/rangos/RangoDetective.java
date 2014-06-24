@@ -5,11 +5,11 @@ public class RangoDetective implements Rango {
 	private int VelocidadDeViaje = 1100;
 
 	@Override
-	public int CostoDeViaje(int CantidadKilometros) {
+	public int costoDeViaje(int CantidadKilometros) {
 		return CantidadKilometros/VelocidadDeViaje;
 	}
 	
-	public void ChequeoDeRango(Rango rango,int cantDeArrestos){
+	public void chequeoDeRango(Rango rango,int cantDeArrestos){
 		if (cantDeArrestos >= 10 && cantDeArrestos<20){
 			Rango nuevoRango=new RangoInvestigador();
 			rango = nuevoRango;

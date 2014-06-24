@@ -1,10 +1,8 @@
 package modelo;
 
 import modelo.rangos.Rango;
-import modelo.rangos.RangoDetective;
-import modelo.rangos.RangoInvestigador;
 import modelo.rangos.RangoNovato;
-import modelo.rangos.RangoSargento;
+
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
@@ -13,9 +11,9 @@ import org.w3c.dom.Node;
 public class Policia  {
 	
 	
-	private String Nombre = "";
+	private String Nombre;
 	private Rango Rango = new RangoNovato();
-	private int CantidadDeArrestos = 0;
+	private int CantidadDeArrestos;
 	private Tiempo Tiempo;
 	private Pais PaisActual;
 	private int HorasSinDormir = 0;
@@ -73,21 +71,10 @@ public class Policia  {
 	}
 	
 	private void chequeoDeRango(){
-		if ( CantidadDeArrestos >= 20 ){
-			this.Rango = new RangoSargento();
-			return;
-		}
-		if ( CantidadDeArrestos >= 10){
-			this.Rango = new RangoInvestigador();
-			return;
-		}
-		if ( CantidadDeArrestos >= 5){
-			this.Rango = new RangoDetective();
-			return;
-		}
+		Rango.chequeoDeRango(Rango,CantidadDeArrestos);
 	}
 	public int costoDeViaje(int kilometrosAViajar) {
-		return this.Rango.CostoDeViaje(kilometrosAViajar);
+		return this.Rango.costoDeViaje(kilometrosAViajar);
 	}
 
 	private void reducirHoras(int horas){

@@ -2,7 +2,7 @@ package modelo.rangos;
 
 public interface Rango {
 	
-	public abstract int CostoDeViaje(int CantidadKilometros);
-	public abstract void ChequeoDeRango(Rango rango,int CantidadDeArrestos);
+	public abstract int costoDeViaje(int CantidadKilometros);
+	public abstract void chequeoDeRango(Rango rango,int CantidadDeArrestos);
 
 }

@@ -23,28 +23,28 @@ public class RangoTest {
 	public void CostoDeViajeRangoNovatoEsCorrecto() {
 		UnRango = new RangoNovato();
 		int HorasDeViaje = CantidadDeKilometros/VelocidadNovato;
-		assertEquals(UnRango.CostoDeViaje(CantidadDeKilometros),HorasDeViaje);
+		assertEquals(UnRango.costoDeViaje(CantidadDeKilometros),HorasDeViaje);
 		
 	}
 	@Test
 	public void CostoDeViajeRangoDetectiveEsCorrecto() {
 		UnRango = new RangoDetective();
 		int HorasDeViaje = CantidadDeKilometros/VelocidadDetective;
-		assertEquals(UnRango.CostoDeViaje(CantidadDeKilometros),HorasDeViaje);
+		assertEquals(UnRango.costoDeViaje(CantidadDeKilometros),HorasDeViaje);
 		
 	}
 	@Test
 	public void CostoDeViajeRangoInvestigadorEsCorrecto() {
 		UnRango = new RangoInvestigador();
 		int HorasDeViaje = CantidadDeKilometros/VelocidadInvestigador;
-		assertEquals(UnRango.CostoDeViaje(CantidadDeKilometros),HorasDeViaje);
+		assertEquals(UnRango.costoDeViaje(CantidadDeKilometros),HorasDeViaje);
 		
 	}
 	@Test
 	public void CostoDeViajeRangoSargentoEsCorrecto() {
 		UnRango = new RangoSargento();
 		int HorasDeViaje = CantidadDeKilometros/VelocidadSargento;
-		assertEquals(UnRango.CostoDeViaje(CantidadDeKilometros),HorasDeViaje);
+		assertEquals(UnRango.costoDeViaje(CantidadDeKilometros),HorasDeViaje);
 		
 	}
 
