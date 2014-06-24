@@ -43,8 +43,9 @@ public class PartidaJuegoTest {
 		String nombreIng = "London";
 		Pais Inglaterra = new Pais(nombreIng,edificiosLDN);
 		
-		Edificio AeropuertoNY = new Edificio("Aeropuerto",", estaba mejorando su inglés americano");
-		Edificio[] edificiosNY = {AeropuertoNY,Banco,Muelle};
+		Edificio AeropuertoNY = new Edificio("Aeropuerto","Algo huele mal");
+		AeropuertoNY.setLadron();
+		Edificio[] edificiosNY = {AeropuertoNY};
 		String nombreUsa = "New York";
 		Pais Usa = new Pais(nombreUsa,edificiosNY);
 		
@@ -110,7 +111,7 @@ public class PartidaJuegoTest {
 		
 		assertEquals(ListaDeEdificios.get(2),Aeropuerto);
 		String PistaAeropuerto = unaPartida.visitarEdificio(ListaDeEdificios.get(2));
-		assertEquals(PistaAeropuerto,Aeropuerto);
+		assertEquals(PistaAeropuerto,Aeropuerto.visitar(unPolicia));
 	
         
 		unaPartida.viajarHacia(Inglaterra); 
@@ -124,9 +125,9 @@ public class PartidaJuegoTest {
 		String PistaHotel = unaPartida.visitarEdificio(ListaDeEdificios.get(0));
 		assertEquals(PistaHotel,Hotel.visitar(unPolicia));
 		
-		assertEquals(ListaDeEdificios.get(1),Banco);
+		assertEquals(ListaDeEdificios.get(1),BancoLDN);
 		String PistaBancoLondres = unaPartida.visitarEdificio(ListaDeEdificios.get(1));
-		assertEquals(PistaBancoLondres,Banco.visitar(unPolicia));
+		assertEquals(PistaBancoLondres,BancoLDN.visitar(unPolicia));
 		
 		
 		assertEquals(ListaDeEdificios.get(2),Muelle);
@@ -142,12 +143,8 @@ public class PartidaJuegoTest {
 		ListaDeEdificios = unaPartida.edificiosAMostrar();
 		//El policia esta en el mismo pais que el ladron, deberia encontrarlo
 		
-		//pasa por el primer edificio
-		unaPartida.visitarEdificio(ListaDeEdificios.get(0));
-		unaPartida.visitarEdificio(ListaDeEdificios.get(1));
-		
 		//si la orden de arresto se emitio el ladron debe ser atrapado
-		assertEquals(unaPartida.visitarEdificio(ListaDeEdificios.get(2)),"Ladron Atrapado");
+		assertEquals(unaPartida.visitarEdificio(ListaDeEdificios.get(0)),"Ladron Atrapado");
 		assertTrue(unaPartida.seTerminoLaPartida());
 		}
 	
