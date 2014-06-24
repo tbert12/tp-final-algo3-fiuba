@@ -50,9 +50,9 @@ public class PaisTest {
 		Distancias.put("USA", 3);
 		UnPais.setDistancias(Distancias);
 		
-		assertEquals(UnPais.DistanciaAPais("ARG"),1);
-		assertEquals(UnPais.DistanciaAPais("ING"),2);
-		assertEquals(UnPais.DistanciaAPais("USA"),3);
+		assertEquals(UnPais.distanciaAPais("ARG"),1);
+		assertEquals(UnPais.distanciaAPais("ING"),2);
+		assertEquals(UnPais.distanciaAPais("USA"),3);
 	}
 
 	@Test

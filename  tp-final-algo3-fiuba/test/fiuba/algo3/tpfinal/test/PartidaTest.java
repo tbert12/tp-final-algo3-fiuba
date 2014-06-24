@@ -96,10 +96,10 @@ public class PartidaTest {
 		//Si reduzco menos de 15 horas el policia no tiene que dormir
 		CrearDatos();
 		int HorasAReducir = 12;
-		int HorasIniciales = UnTiempo.Horas();
+		int HorasIniciales = UnTiempo.getHoras();
 		UnaPartida.ReducirHorasalPolicia(HorasAReducir);
 		
-		assertEquals(HorasIniciales - HorasAReducir,UnTiempo.Horas() );
+		assertEquals(HorasIniciales - HorasAReducir,UnTiempo.getHoras() );
 	}
 	
 	@Test
@@ -108,10 +108,10 @@ public class PartidaTest {
 		CrearDatos();
 		int HorasADormir = 8;
 		int HorasAReducir = 18;
-		int HorasIniciales = UnTiempo.Horas();
+		int HorasIniciales = UnTiempo.getHoras();
 		UnaPartida.ReducirHorasalPolicia(HorasAReducir);
 		
-		assertEquals(HorasIniciales - (HorasAReducir + HorasADormir) ,UnTiempo.Horas() );
+		assertEquals(HorasIniciales - (HorasAReducir + HorasADormir) ,UnTiempo.getHoras() );
 	}
 	
 	@Test

@@ -1,11 +1,11 @@
 package fiuba.algo3.tpfinal.test;
 
 import modelo.Policia;
-import modelo.RangoDetective;
-import modelo.RangoInvestigador;
-import modelo.RangoNovato;
-import modelo.RangoSargento;
 import modelo.Tiempo;
+import modelo.rangos.RangoDetective;
+import modelo.rangos.RangoInvestigador;
+import modelo.rangos.RangoNovato;
+import modelo.rangos.RangoSargento;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -49,7 +49,7 @@ public class PoliciaTest {
 	
 	public void SumarArrestos(int Cantidad,Policia Jugador){
 		for (int i = 0; i<Cantidad; i++){
-			Jugador.AddArresto();
+			Jugador.addArresto();
 		}
 	}
 
@@ -77,7 +77,7 @@ public class PoliciaTest {
 	@Test
 	public void PoliciaEsSargento(){
 		Policia unPolicia = new Policia("Bufarreti", 20);
-		unPolicia.AddArresto();
+		unPolicia.addArresto();
 		Assert.assertTrue(unPolicia.getRango() instanceof RangoSargento);
 	}
 	@Test
@@ -86,12 +86,12 @@ public class PoliciaTest {
 		Tiempo UnTiempo = new Tiempo(200);
 		UnPolicia.setTiempo(UnTiempo);
 		
-		int TiempoAntesDeDormir = UnTiempo.Horas();
+		int TiempoAntesDeDormir = UnTiempo.getHoras();
 		int HorasAReducir = 8;
 		
-		UnPolicia.ReducirHoras(HorasAReducir);;
+		UnPolicia.reducirHoras(HorasAReducir);;
 		
-		Assert.assertEquals(TiempoAntesDeDormir - HorasAReducir , UnTiempo.Horas());
+		Assert.assertEquals(TiempoAntesDeDormir - HorasAReducir , UnTiempo.getHoras());
 	
 	}
 	
@@ -110,13 +110,13 @@ public class PoliciaTest {
 		int KilometrosAViajar = 5000;
 		
 		int HorasDeViajeEsperadasNovato = 5000/900;
-		int HorasDeViajeNovato = Jugador.CostoDeViaje(KilometrosAViajar);
+		int HorasDeViajeNovato = Jugador.costoDeViaje(KilometrosAViajar);
 		Assert.assertEquals(HorasDeViajeNovato, HorasDeViajeEsperadasNovato);
 		
 		//RangoDetective viaja a 1100
 		this.SumarArrestos(5,Jugador);
 		int HorasDeViajeEsperadasDetective = 5000/1100;
-		int HorasDeViajeDetective = Jugador.CostoDeViaje(KilometrosAViajar);
+		int HorasDeViajeDetective = Jugador.costoDeViaje(KilometrosAViajar);
 		Assert.assertTrue(HorasDeViajeDetective < HorasDeViajeNovato);
 		Assert.assertEquals(HorasDeViajeDetective, HorasDeViajeEsperadasDetective);
 	}
@@ -129,8 +129,8 @@ public class PoliciaTest {
 		
 		Policia unPolicia = new Policia("Juan",15);
 		Policia otroPolicia = new Policia("Pepe",35);
-		Element otroPoliciaSerializado = otroPolicia.Serializar(doc);
-		Element policiaSerializado = unPolicia.Serializar(doc);
+		Element otroPoliciaSerializado = otroPolicia.serializar(doc);
+		Element policiaSerializado = unPolicia.serializar(doc);
 		Assert.assertNotNull(policiaSerializado);
 		doc.appendChild(policiaSerializado);
 		doc.getFirstChild().appendChild(otroPoliciaSerializado);
@@ -154,7 +154,7 @@ public class PoliciaTest {
 		List <Policia> listado= new ArrayList<Policia>();
 		for  (int i=0;i<nodosPolicia.getLength();i++){
 			Node nodoHijo = nodosPolicia.item(i);
-			Policia policiaCargado = Policia.Hidratar(nodoHijo);
+			Policia policiaCargado = Policia.hidratar(nodoHijo);
 			listado.add(policiaCargado);
 		}
 		Assert.assertNotNull(listado.get(1));

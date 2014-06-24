@@ -20,12 +20,12 @@ public class BaseDeDatos {
 		this.Paises.add(pais);
 	}
 	
-	public ArrayList<Ladron> FiltarPorCaracteristicas(Caracteristicas caracteristicas){
+	public ArrayList<Ladron> filtarPorCaracteristicas(Caracteristicas caracteristicas){
 		ArrayList<Ladron> LadronesCoincidentes = new ArrayList<Ladron>();
 		Iterator<Ladron> Iterador = Ladrones.iterator();
 		while (Iterador.hasNext()){
 			Ladron LadronActual = Iterador.next();
-			if (LadronActual.CompararCaracteristicas(caracteristicas)){
+			if (LadronActual.compararCaracteristicas(caracteristicas)){
 				LadronesCoincidentes.add(LadronActual);
 			}
 		}
@@ -34,25 +34,25 @@ public class BaseDeDatos {
 		
 	}
 	
-	public ArrayList<Pais> PosiblesPaisesAViajar(Ladron Ladron, Pais PaisActual){
+	public ArrayList<Pais> posiblesPaisesAViajar(Ladron Ladron, Pais PaisActual){
 		ArrayList<Pais> PosiblesPaises = new ArrayList<Pais>();
 		Pais PaisDestino;
 		
-		if ( PaisActual == Ladron.PaisActual() ){
+		if ( PaisActual.equals( Ladron.paisActual() ) ){
 			//Se le delega al ladron, si no tiene mas para avanzar, devuelve el anterior
 			//Como que vuelva a buscar mas pistas.
-			PaisDestino = Ladron.Avanzar();
+			PaisDestino = Ladron.avanzar();
 		}
 		else {
 			//Hay que hacer volver al pais anterior donde se equivoco
-			PaisDestino = Ladron.PaisAnterior();
+			PaisDestino = Ladron.paisAnterior();
 			 
 		}
 		PosiblesPaises.add(PaisDestino);
 		
 		while ( PosiblesPaises.size() < this.CANTIDADPOSIBLESDESTINOS ){
 			Pais PaisRandom = Paises.get((int)(Math.random()*Paises.size()));
-			while (Ladron.PasaPor(PaisRandom) || PaisActual.equals(PaisRandom) || PosiblesPaises.contains(PaisRandom)){
+			while (Ladron.pasaPor(PaisRandom) || PaisActual.equals(PaisRandom) || PosiblesPaises.contains(PaisRandom)){
 				PaisRandom = Paises.get((int)(Math.random()*Paises.size()));;
 			}
 			PosiblesPaises.add(PaisRandom);
@@ -60,7 +60,7 @@ public class BaseDeDatos {
 		return PosiblesPaises;
 	}
 	
-	public Pais ObtenerPaisPorNombre(String NombrePais) throws ErrorElPaisNoEsta{
+	public Pais obtenerPaisPorNombre(String NombrePais) throws ErrorElPaisNoEsta{
 		
 		Iterator<Pais> iterador = Paises.iterator();
 		while(iterador.hasNext()){

@@ -32,32 +32,32 @@ public class CarmenSanDiegoTest {
 	public void CarmenCargaPolicias(){
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Policia unPolicia = new Policia("Facu",5);
-		Carmen.AgregarPolicia(unPolicia);
+		Carmen.agregarPolicia(unPolicia);
 		Policia otroPolicia = new Policia("Tomy",10);
-		Carmen.AgregarPolicia(otroPolicia);
-		Assert.assertTrue(Carmen.PoliciaEstaEnJuego(unPolicia));
-		Assert.assertTrue(Carmen.PoliciaEstaEnJuego(otroPolicia));
+		Carmen.agregarPolicia(otroPolicia);
+		Assert.assertTrue(Carmen.policiaEstaEnJuego(unPolicia));
+		Assert.assertTrue(Carmen.policiaEstaEnJuego(otroPolicia));
 	}
 	@Test
 	public void CarmenCargaLadrones(){
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Ladron LadronUno = new Ladron("Tito",null);
 		Ladron LadronDos = new Ladron("Jose",null);
-		Carmen.AgregarLadron(LadronUno);
-		Carmen.AgregarLadron(LadronDos);
-		Assert.assertTrue(Carmen.LadronEstaEnJuego(LadronUno));
-		Assert.assertTrue(Carmen.LadronEstaEnJuego(LadronDos));
+		Carmen.agregarLadron(LadronUno);
+		Carmen.agregarLadron(LadronDos);
+		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronUno));
+		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronDos));
 	}
 	
 	@Test
 	public void CarmenCreaXMLConPolicias() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Policia unPolicia = new Policia("Facu",5);
-		Carmen.AgregarPolicia(unPolicia);
+		Carmen.agregarPolicia(unPolicia);
 		Policia otroPolicia = new Policia("Tomy",10);
-		Carmen.AgregarPolicia(otroPolicia);
-		Carmen.BajarPoliciasAXML();
-		Assert.assertTrue(Carmen.ArchivoPoliciasExiste());
+		Carmen.agregarPolicia(otroPolicia);
+		Carmen.bajarPoliciasAXML();
+		Assert.assertTrue(Carmen.archivoPoliciasExiste());
 	}
 	@Test
 	public void CarmenCreaXMLConLadrones() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
@@ -66,10 +66,10 @@ public class CarmenSanDiegoTest {
 		Caracteristicas caracteristicas2=new Caracteristicas(null,null,null,null,null);
 		Ladron LadronUno = new Ladron("Tito",caracteristicas1);
 		Ladron LadronDos = new Ladron("Jose",caracteristicas2);
-		Carmen.AgregarLadron(LadronUno);
-		Carmen.AgregarLadron(LadronDos);
-		Carmen.BajarLadronesAXML();
-		Assert.assertTrue(Carmen.ArchivoLadronesExiste());
+		Carmen.agregarLadron(LadronUno);
+		Carmen.agregarLadron(LadronDos);
+		Carmen.bajarLadronesAXML();
+		Assert.assertTrue(Carmen.archivoLadronesExiste());
 	
 	}
 	@Test
@@ -79,24 +79,24 @@ public class CarmenSanDiegoTest {
 		Caracteristicas caracteristicas2=new Caracteristicas(null,null,null,null,null);
 		Ladron LadronUno = new Ladron("Tito",caracteristicas1);
 		Ladron LadronDos = new Ladron("Jose",caracteristicas2);
-		Carmen.AgregarLadron(LadronUno);
-		Carmen.AgregarLadron(LadronDos);
-		Carmen.BajarLadronesAXML();
-		Carmen.LevantarLadronesDelXML();
-		Assert.assertTrue(Carmen.LadronEstaEnJuego(LadronUno));
-		Assert.assertTrue(Carmen.LadronEstaEnJuego(LadronDos));
+		Carmen.agregarLadron(LadronUno);
+		Carmen.agregarLadron(LadronDos);
+		Carmen.bajarLadronesAXML();
+		Carmen.levantarLadronesDelXML();
+		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronUno));
+		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronDos));
 	}
 	@Test
 	public void CarmenLevantaXMLConPolicias() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Policia unPolicia = new Policia("Facu",5);
-		Carmen.AgregarPolicia(unPolicia);
+		Carmen.agregarPolicia(unPolicia);
 		Policia otroPolicia = new Policia("Tomy",10);
-		Carmen.AgregarPolicia(otroPolicia);
-		Carmen.BajarPoliciasAXML();
-		Carmen.LevantarPoliciasDelXML();
-		Assert.assertTrue(Carmen.PoliciaEstaEnJuego(unPolicia));
-		Assert.assertTrue(Carmen.PoliciaEstaEnJuego(otroPolicia));
+		Carmen.agregarPolicia(otroPolicia);
+		Carmen.bajarPoliciasAXML();
+		Carmen.levantarPoliciasDelXML();
+		Assert.assertTrue(Carmen.policiaEstaEnJuego(unPolicia));
+		Assert.assertTrue(Carmen.policiaEstaEnJuego(otroPolicia));
 	}
 
 }

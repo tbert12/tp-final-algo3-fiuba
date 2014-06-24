@@ -32,7 +32,7 @@ public class Pais {
 		return Informacion;
 	}
 	
-	public int DistanciaAPais(String unPais){
+	public int distanciaAPais(String unPais){
 		return DistanciaAPaises.get(unPais);
 	}
 	public void setDistancias(HashMap<String,Integer> unDicc){
@@ -59,7 +59,7 @@ public class Pais {
 		return getEdificio(NombreEdificio).getPista();
 	}
 	public int getEdificoVecesVisitado(String NombreEdificio) throws ErrorEdificioNoEstaEnPais{
-		return getEdificio(NombreEdificio).VecesVisitado();
+		return getEdificio(NombreEdificio).vecesVisitado();
 	}
 
 	@Override

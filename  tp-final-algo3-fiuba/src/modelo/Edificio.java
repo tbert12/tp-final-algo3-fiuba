@@ -19,7 +19,7 @@ public class Edificio {
 	public String getNombre(){
 		return Nombre;
 	}
-	public int VecesVisitado(){
+	public int vecesVisitado(){
 		return this.VecesVisitados;
 	}
 }

@@ -13,22 +13,22 @@ public class TiempoTest {
 	@Test
 	public void ReducirHoras() {
 		int HorasAReducir = 8;
-		UnTiempo.ReducirHoras(HorasAReducir);
-		assertEquals(UnTiempo.Horas(),CantidadHoras - HorasAReducir);
+		UnTiempo.reducirHoras(HorasAReducir);
+		assertEquals(UnTiempo.getHoras(),CantidadHoras - HorasAReducir);
 	}
 	@Test
 	public void TiempoNoEstaAgotado() {
 		int HorasAReducir = 24;
-		UnTiempo.ReducirHoras(HorasAReducir);
-		assertFalse(UnTiempo.TiempoAgotado());
+		UnTiempo.reducirHoras(HorasAReducir);
+		assertFalse(UnTiempo.tiempoAgotado());
 	}
 	@Test
 	public void TiempoEstaAgotado() {
 		int HorasAReducir = 154;
-		UnTiempo.ReducirHoras(HorasAReducir);
-		assertTrue(UnTiempo.TiempoAgotado());
+		UnTiempo.reducirHoras(HorasAReducir);
+		assertTrue(UnTiempo.tiempoAgotado());
 		
-		UnTiempo.ReducirHoras(HorasAReducir);
-		assertTrue(UnTiempo.TiempoAgotado());
+		UnTiempo.reducirHoras(HorasAReducir);
+		assertTrue(UnTiempo.tiempoAgotado());
 	}
 }

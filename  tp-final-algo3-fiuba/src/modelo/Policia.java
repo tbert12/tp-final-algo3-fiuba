@@ -1,5 +1,11 @@
 package modelo;
 
+import modelo.rangos.Rango;
+import modelo.rangos.RangoDetective;
+import modelo.rangos.RangoInvestigador;
+import modelo.rangos.RangoNovato;
+import modelo.rangos.RangoSargento;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -16,7 +22,7 @@ public class Policia  {
 	public Policia(String Nombre, int CantidadDeArrestos){
 		this.Nombre = Nombre;
 		this.CantidadDeArrestos = CantidadDeArrestos;
-		ChequeoDeRango();
+		chequeoDeRango();
 		
 	}
 
@@ -39,9 +45,9 @@ public class Policia  {
 		return this.PaisActual;
 	}
 
-	public void AddArresto() {
+	public void addArresto() {
 		CantidadDeArrestos++;
-		ChequeoDeRango();
+		chequeoDeRango();
 		
 	}
 	
@@ -57,7 +63,7 @@ public class Policia  {
 		this.Tiempo.ReducirHoras(HorasDormir);
 	}
 	*/
-	private void ChequeoDeRango(){
+	private void chequeoDeRango(){
 		if ( CantidadDeArrestos >= 20 ){
 			this.Rango = new RangoSargento();
 			return;
@@ -71,25 +77,25 @@ public class Policia  {
 			return;
 		}
 	}
-	public int CostoDeViaje(int kilometrosAViajar) {
+	public int costoDeViaje(int kilometrosAViajar) {
 		return this.Rango.CostoDeViaje(kilometrosAViajar);
 	}
 
-	public void ReducirHoras(int horas){
-		Tiempo.ReducirHoras(horas);
+	public void reducirHoras(int horas){
+		Tiempo.reducirHoras(horas);
 	}
 	
-	public boolean TiempoAgotado(){
-		return Tiempo.TiempoAgotado();
+	public boolean tiempoAgotado(){
+		return Tiempo.tiempoAgotado();
 	}
-	public Element Serializar(Document doc){
+	public Element serializar(Document doc){
 		Element elementoPolicia =doc.createElement("Policia");
 		elementoPolicia.setAttribute("Nombre",this.Nombre);
 		elementoPolicia.setAttribute("Arrestos",""+this.CantidadDeArrestos);
 		return elementoPolicia;
 	}
 		
-	public static Policia Hidratar(Node nodo){
+	public static Policia hidratar(Node nodo){
 		//Como se va a guardar en orden acorde a la posicion dada
 		//Le paso por parametro la posicion, para poder hidratar el correcto.
 		Element elementoPolicia = (Element)nodo;
@@ -125,7 +131,7 @@ public class Policia  {
 	}
 
 	public int getTiempo() {
-		return Tiempo.Horas();
+		return Tiempo.getHoras();
 	}
 		
 		

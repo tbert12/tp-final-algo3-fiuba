@@ -1,4 +1,4 @@
-package modelo;
+package modelo.rangos;
 
 public class RangoNovato implements Rango {
 		

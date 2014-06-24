@@ -1,8 +1,8 @@
-package modelo;
+package modelo.rangos;
 
-public class RangoInvestigador implements Rango {
+public class RangoDetective implements Rango {
 
-	private int VelocidadDeViaje = 1300;
+	private int VelocidadDeViaje = 1100;
 
 	@Override
 	public int CostoDeViaje(int CantidadKilometros) {
@@ -10,10 +10,9 @@ public class RangoInvestigador implements Rango {
 	}
 	
 	public void ChequeoDeRango(Rango rango,int cantDeArrestos){
-		if (cantDeArrestos >= 20){
-			Rango nuevoRango=new RangoSargento();
+		if (cantDeArrestos >= 10 && cantDeArrestos<20){
+			Rango nuevoRango=new RangoInvestigador();
 			rango = nuevoRango;
 		}
-
-}
+	}
 }

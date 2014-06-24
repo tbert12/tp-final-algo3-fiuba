@@ -7,14 +7,14 @@ public class Tiempo {
 	public Tiempo(int CantidadDeHoras){
 		Horas = CantidadDeHoras;
 	}
-	public void ReducirHoras(int CantidadDeHoras){
+	public void reducirHoras(int CantidadDeHoras){
 		Horas = Horas - CantidadDeHoras;
 	}
-	public int Horas(){
+	public int getHoras(){
 		return this.Horas;
 	}
 	
-	public boolean TiempoAgotado(){
+	public boolean tiempoAgotado(){
 		if (Horas <= 0 ){ 
 			return true;}
 		return false;

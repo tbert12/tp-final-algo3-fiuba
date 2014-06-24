@@ -267,7 +267,7 @@ public class PartidaJuegoTest {
 		
 		unaPartida.ViajarHacia(USA.getNombre());
 		
-		assertTrue(unPolicia.TiempoAgotado());
+		assertTrue(unPolicia.tiempoAgotado());
 		
 	}
 

@@ -47,53 +47,54 @@ public class Ladron {
 		return CaracteristicasDelLadron.getVehiculo();
 	}
 	
-	public Pais PaisFinal(){
+	public Pais paisFinal(){
 		return Trayectoria.paisFinal();
 	}
-	public boolean CompararCaracteristicas(Caracteristicas otrasCaracteriscas){
-		return CaracteristicasDelLadron.CompararCon(otrasCaracteriscas);
+	public boolean compararCaracteristicas(Caracteristicas otrasCaracteriscas){
+		return CaracteristicasDelLadron.compararCon(otrasCaracteriscas);
 	}
 	
-	public Pais PaisActual(){
+	
+	public Pais paisActual(){
 		return this.Trayectoria.paisActual();
 	}
 	
-	public Pais PaisAnterior(){
-		return Trayectoria.PaisAnterior();
+	public Pais paisAnterior(){
+		return Trayectoria.paisAnterior();
 	}
 	
-	public boolean PasaPor(Pais pais){
-		return this.Trayectoria.EstaEnTrayectoria(pais);
+	public boolean pasaPor(Pais pais){
+		return this.Trayectoria.estaEnTrayectoria(pais);
 	}
 
-	public Pais Avanzar() {
+	public Pais avanzar() {
 		try{
 			return this.Trayectoria.avanzar();
 		}
 		catch (ErrorNoHayMasPaisesParaAvanzar e){
 			//Devolver un pais anterior al actual, lo necesito en Base
-			return PaisAnterior();
+			return paisAnterior();
 		}
 	}
-	public void EmitirOrdenDeArresto(){
+	public void emitirOrdenDeArresto(){
 		OrdenDeArresto = true;
 	}
 	
-	public boolean TieneOrdenDeArresto(){
+	public boolean tieneOrdenDeArresto(){
 		return OrdenDeArresto;
 	}
-	public Element Serializar(Document doc){
+	public Element serializar(Document doc){
 		Element elementoLadron = doc.createElement("Ladron");
 		Element elementoCaracteristicas = doc.createElement("Caracteristica");
 		elementoLadron.appendChild(elementoCaracteristicas);
-		elementoCaracteristicas.appendChild(this.CaracteristicasDelLadron.Serializar(doc));
+		elementoCaracteristicas.appendChild(this.CaracteristicasDelLadron.serializar(doc));
 		elementoLadron.setAttribute("Nombre",this.Nombre);
 		return elementoLadron;
 	}
-	public static Ladron Hidratar(Node nodo){
+	public static Ladron hidratar(Node nodo){
 		Element elementoLadron = (Element)nodo;
 		Element elementoCaracteristicas = (Element)nodo.getFirstChild();
-		Caracteristicas caracteristicas = Caracteristicas.Hidratar(elementoCaracteristicas.getChildNodes().item(0));
+		Caracteristicas caracteristicas = Caracteristicas.hidratar(elementoCaracteristicas.getChildNodes().item(0));
 		Ladron nuevoLadron = new Ladron(elementoLadron.getAttribute("Nombre"),caracteristicas);
 		
 		

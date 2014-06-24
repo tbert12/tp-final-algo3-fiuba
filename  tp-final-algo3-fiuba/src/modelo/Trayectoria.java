@@ -28,13 +28,13 @@ public class Trayectoria {
 		}
 	}
 	
-	public Pais PaisAnterior(){
+	public Pais paisAnterior(){
 		int indiceAnterior = Paises.indexOf(PaisActual) - 1; 
 		Pais PaisAnterior = Paises.get(indiceAnterior);
 		return PaisAnterior;
 	}
 	
-	public boolean EstaEnTrayectoria(Pais UnPais){
+	public boolean estaEnTrayectoria(Pais UnPais){
 		
 		return Paises.contains(UnPais);
 	}

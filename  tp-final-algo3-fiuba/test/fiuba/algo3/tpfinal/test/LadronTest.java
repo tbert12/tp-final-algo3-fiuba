@@ -79,7 +79,7 @@ public class LadronTest {
 	public void LadronCompararCaracteristicasEsTrue() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
-		Assert.assertTrue(ladron.CompararCaracteristicas(CaracteristicasDelLadron));
+		Assert.assertTrue(ladron.compararCaracteristicas(CaracteristicasDelLadron));
 	}
 	
 	@Test
@@ -87,7 +87,7 @@ public class LadronTest {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Caracteristicas OtrasCaracteristicasDelLadron = new Caracteristicas(Sexo.MASCULINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
-		Assert.assertFalse(ladron.CompararCaracteristicas(OtrasCaracteristicasDelLadron));
+		Assert.assertFalse(ladron.compararCaracteristicas(OtrasCaracteristicasDelLadron));
 	}
  	
 	@Test
@@ -95,11 +95,11 @@ public class LadronTest {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		
-		Assert.assertFalse(ladron.TieneOrdenDeArresto());
+		Assert.assertFalse(ladron.tieneOrdenDeArresto());
 		
-		ladron.EmitirOrdenDeArresto();
+		ladron.emitirOrdenDeArresto();
 		
-		Assert.assertTrue(ladron.TieneOrdenDeArresto());
+		Assert.assertTrue(ladron.tieneOrdenDeArresto());
 	}
 	
 	
@@ -122,8 +122,8 @@ public class LadronTest {
 		Caracteristicas caracteristicasLadronDos = new Caracteristicas (Sexo.MASCULINO,Hobby.ALPINISMO,Cabello.RUBIO,Senia.CICATRIZ,Vehiculo.DEPORTIVO);
 		Ladron unLadron = new Ladron("Tomy",caracteristicasLadronUno);
 		Ladron otroLadron = new Ladron("Facu",caracteristicasLadronDos);
-		Element LadronSerializado = unLadron.Serializar(doc);
-		Element otroLadronSerializado = otroLadron.Serializar(doc);
+		Element LadronSerializado = unLadron.serializar(doc);
+		Element otroLadronSerializado = otroLadron.serializar(doc);
 		Assert.assertNotNull(LadronSerializado);
 		doc.appendChild(LadronSerializado);
 		doc.getFirstChild().appendChild(otroLadronSerializado);
@@ -146,17 +146,17 @@ public class LadronTest {
 		List <Ladron> listado= new ArrayList<Ladron>();
 		for  (int i=0;i<nodosLadron.getLength();i++){
 			Node nodoHijo = nodosLadron.item(i);
-			Ladron ladronCargado = Ladron.Hidratar(nodoHijo);
+			Ladron ladronCargado = Ladron.hidratar(nodoHijo);
 			listado.add(ladronCargado);
 		}
 		
 		Assert.assertNotNull(listado.get(0));
 		Assert.assertEquals(listado.get(0).getNombre(),unLadron.getNombre());
-		Assert.assertTrue(listado.get(0).CompararCaracteristicas(caracteristicasLadronUno) );
+		Assert.assertTrue(listado.get(0).compararCaracteristicas(caracteristicasLadronUno) );
 	
 		Assert.assertNotNull(listado.get(1));
 		Assert.assertEquals(listado.get(1).getNombre(),otroLadron.getNombre());
-		Assert.assertTrue(listado.get(1).CompararCaracteristicas(caracteristicasLadronDos) );
+		Assert.assertTrue(listado.get(1).compararCaracteristicas(caracteristicasLadronDos) );
 	}
 
 }

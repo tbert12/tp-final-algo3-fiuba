@@ -1,11 +1,11 @@
 package fiuba.algo3.tpfinal.test;
 
 import static org.junit.Assert.*;
-import modelo.Rango;
-import modelo.RangoDetective;
-import modelo.RangoInvestigador;
-import modelo.RangoNovato;
-import modelo.RangoSargento;
+import modelo.rangos.Rango;
+import modelo.rangos.RangoDetective;
+import modelo.rangos.RangoInvestigador;
+import modelo.rangos.RangoNovato;
+import modelo.rangos.RangoSargento;
 
 import org.junit.Test;
 

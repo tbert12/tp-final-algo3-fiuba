@@ -25,7 +25,7 @@ public class Partida {
 	public Partida(Policia UnPolicia,Ladron UnLadron,BaseDeDatos UnaBase,ObjetoRobado UnObjeto){
 	
 		this.UnPolicia = UnPolicia;
-		UnPolicia.setPaisActual(UnLadron.PaisActual());
+		UnPolicia.setPaisActual(UnLadron.paisActual());
 		this.PoliciaHorasSinDormir = 0;
 		this.LadronAtrapado = false;
 		this.UnLadron = UnLadron;
@@ -39,10 +39,10 @@ public class Partida {
 	}
 	
 	public void ReducirHorasalPolicia(int horas){
-		this.UnPolicia.ReducirHoras(horas);
+		this.UnPolicia.reducirHoras(horas);
 		this.PoliciaHorasSinDormir += horas;
 		if (this.PoliciaHorasSinDormir > HorasDespierto){
-			this.UnPolicia.ReducirHoras(HorasADormir);
+			this.UnPolicia.reducirHoras(HorasADormir);
 		}
 		
 	}
@@ -62,7 +62,7 @@ public class Partida {
 	
 	public String MostrarPistaDeEdificio(String NombreEdificio){
 		Pais PaisActual = UnPolicia.getPais();
-		if ( PaisActual == UnLadron.PaisFinal() ){
+		if ( PaisActual == UnLadron.paisFinal() ){
 			if( EdificiosVisitadosEnPaisFinal == 0 ){
 				EdificiosVisitadosEnPaisFinal++;
 				return "Hay Algo Raro";
@@ -73,7 +73,7 @@ public class Partida {
 			}
 			if (EdificiosVisitadosEnPaisFinal == 2){
 				EdificiosVisitadosEnPaisFinal++;
-				if ( UnLadron.TieneOrdenDeArresto() ){
+				if ( UnLadron.tieneOrdenDeArresto() ){
 					this.LadronAtrapado = true;
 					return "Atrapado";
 				}
@@ -101,12 +101,12 @@ public class Partida {
 	
 	public void FiltrarLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
 			Caracteristicas CaracteristicasAFiltrar = new Caracteristicas(unSexo,unHobby,unCabello,unaSenia,unVehiculo);
-			ArrayList<Ladron> PosiblesLadrones = BasedeDatos.FiltarPorCaracteristicas(CaracteristicasAFiltrar);
+			ArrayList<Ladron> PosiblesLadrones = BasedeDatos.filtarPorCaracteristicas(CaracteristicasAFiltrar);
 			ReducirHorasalPolicia(3);
 			if (PosiblesLadrones.size() == 1){
 				//Hay solo un ladron, hay que emitir la orden de arresto
 				Ladron UnicoLadron = PosiblesLadrones.get(0);
-				UnicoLadron.EmitirOrdenDeArresto();
+				UnicoLadron.emitirOrdenDeArresto();
 			}
 			
 			//no se que se haria con los ladrones flitrados, supongo enviar los nombres para mostrar en pantalla.
@@ -114,7 +114,7 @@ public class Partida {
 	
 	public ArrayList<String> NombresPaisesAViajar(){
 		
-		ArrayList<Pais> PosiblesPaises = BasedeDatos.PosiblesPaisesAViajar(UnLadron, UnPolicia.getPais());
+		ArrayList<Pais> PosiblesPaises = BasedeDatos.posiblesPaisesAViajar(UnLadron, UnPolicia.getPais());
 		ArrayList<String> NombresPaisesAViajar = new ArrayList<String>();
 		
 		Iterator<Pais> iterador = PosiblesPaises.iterator();
@@ -130,7 +130,7 @@ public class Partida {
 		int HorasDeViaje;
 		Pais PaisDestino;
 		try{
-			PaisDestino = BasedeDatos.ObtenerPaisPorNombre(NombrePais);
+			PaisDestino = BasedeDatos.obtenerPaisPorNombre(NombrePais);
 		}
 		catch(ErrorElPaisNoEsta e){
 			return;

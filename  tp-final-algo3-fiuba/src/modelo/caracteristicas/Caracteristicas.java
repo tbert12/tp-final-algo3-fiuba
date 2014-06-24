@@ -41,7 +41,7 @@ public class Caracteristicas {
 		return this.UnVehiculo;
 	}
 	
-	public boolean CompararCon(Caracteristicas otrasCaracteristicas){
+	public boolean compararCon(Caracteristicas otrasCaracteristicas){
 		if (otrasCaracteristicas.getSexo() != null){
 			
 			if (!otrasCaracteristicas.getSexo().equals(this.UnSexo))return false;
@@ -64,16 +64,24 @@ public class Caracteristicas {
 		return true;
 	}
 
-	public Node Serializar(Document doc) {
+	public Node serializar(Document doc) {
+		
+		String sexo = null,hobby = null,senia = null,cabello = null,vehiculo = null;
+		if (this.UnSexo != null) sexo = this.UnSexo.getString();
+		if (this.UnHobby != null) hobby = this.UnHobby.getString();
+		if (this.UnCabello != null) cabello = this.UnCabello.getString();
+		if (this.unaSenia != null) senia = this.unaSenia.getString();
+		if (this.UnVehiculo != null) vehiculo = this.UnVehiculo.getString();
+		
 		Element elementoCaracteristica = doc.createElement("Caracteristicas");
-		elementoCaracteristica.setAttribute("Sexo",this.UnSexo.getString());
-		elementoCaracteristica.setAttribute("Senia", this.unaSenia.getString());
-		elementoCaracteristica.setAttribute("Hobby", this.UnHobby.getString());
-		elementoCaracteristica.setAttribute("Cabello",this.UnCabello.getString());
-		elementoCaracteristica.setAttribute("Vehiculo",this.UnVehiculo.getString());
+		elementoCaracteristica.setAttribute("Sexo",sexo);
+		elementoCaracteristica.setAttribute("Senia", senia);
+		elementoCaracteristica.setAttribute("Hobby", hobby);
+		elementoCaracteristica.setAttribute("Cabello",cabello);
+		elementoCaracteristica.setAttribute("Vehiculo",vehiculo);
 		return elementoCaracteristica;
 	}
-	public static Caracteristicas Hidratar(Node elementoCaracteristica){
+	public static Caracteristicas hidratar(Node elementoCaracteristica){
 		Caracteristicas caracteristicas = new Caracteristicas(Sexo.fromString(((Element)elementoCaracteristica).getAttribute("Sexo")),Hobby.fromString(((Element)elementoCaracteristica).getAttribute("Hobby")),Cabello.fromString(((Element)elementoCaracteristica).getAttribute("Cabello")),Senia.fromString(((Element)elementoCaracteristica).getAttribute("Senia")),Vehiculo.fromString(((Element)elementoCaracteristica).getAttribute("Vehiculo")) );
 		return caracteristicas;
 	}

@@ -60,7 +60,7 @@ public class BaseDeDatosTests {
 
 		Caracteristicas CaracteristicasPedidias = new Caracteristicas(Sexo.MASCULINO,null,null,null,null);
 		
-		ArrayList<Ladron> Sospechosos = Base.FiltarPorCaracteristicas(CaracteristicasPedidias);
+		ArrayList<Ladron> Sospechosos = Base.filtarPorCaracteristicas(CaracteristicasPedidias);
 		
 		ArrayList<Ladron> SospechososEsperados = new ArrayList<Ladron>();
 		//Agrego los ladrones que son Masculinos
@@ -74,7 +74,7 @@ public class BaseDeDatosTests {
 	public void PruebaSoloFiltraLosLadronesQueTienenComoVehiculoMoto(){
 		BaseDeDatos Base = CrearBase();
 		Caracteristicas CaracteristicasPedidias = new Caracteristicas(null,null,null,null,Vehiculo.MOTO);
-		ArrayList<Ladron> Sospechosos = Base.FiltarPorCaracteristicas(CaracteristicasPedidias);
+		ArrayList<Ladron> Sospechosos = Base.filtarPorCaracteristicas(CaracteristicasPedidias);
 		
 		ArrayList<Ladron> SospechososEsperados = new ArrayList<Ladron>();
 		//Agrego los ladrones que su vehiculo es una Moto
@@ -90,7 +90,7 @@ public class BaseDeDatosTests {
 
 		Caracteristicas CaracteristicasPedidias = new Caracteristicas(null,null,Cabello.NEGRO,null,Vehiculo.MOTO);
 		
-		ArrayList<Ladron> Sospechosos = Base.FiltarPorCaracteristicas(CaracteristicasPedidias);
+		ArrayList<Ladron> Sospechosos = Base.filtarPorCaracteristicas(CaracteristicasPedidias);
 		
 		ArrayList<Ladron> SospechososEsperados = new ArrayList<Ladron>();
 		//Agrego el Ladron es coincidente
@@ -105,7 +105,7 @@ public class BaseDeDatosTests {
 
 		Caracteristicas CaracteristicasPedidias = new Caracteristicas(null,null,Cabello.NEGRO,Senia.COJERA,Vehiculo.MOTO);
 		
-		ArrayList<Ladron> Sospechosos = Base.FiltarPorCaracteristicas(CaracteristicasPedidias);
+		ArrayList<Ladron> Sospechosos = Base.filtarPorCaracteristicas(CaracteristicasPedidias);
 		
 		ArrayList<Ladron> SospechososEsperados = new ArrayList<Ladron>();
 		//No Agrego ningun ladron
@@ -123,7 +123,7 @@ public class BaseDeDatosTests {
 		Trayectoria trayecto = new Trayectoria(PaisesDelTrayecto);
 		LadronUno.addTrayectoria(trayecto);
 		BaseDeDatos Base = CrearBase();
-		ArrayList<Pais> PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, Argentina);
+		ArrayList<Pais> PaisesDestino = Base.posiblesPaisesAViajar(LadronUno, Argentina);
 		
 		//Se espera un pais de la trayectoria y otros dos que no esten.
 		Assert.assertTrue( PaisesDestino.contains(Cuba) );
@@ -150,10 +150,10 @@ public class BaseDeDatosTests {
 		Pais Brasil = crearPais("Brasil");
 		Base.addPais(Brasil);
 		
-		ArrayList<Pais> PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, Argentina);
+		ArrayList<Pais> PaisesDestino = Base.posiblesPaisesAViajar(LadronUno, Argentina);
 		
 		//Ahora El Ladron Esta en Cuba, pero se viajo a Brasil (Por Error)
-		PaisesDestino = Base.PosiblesPaisesAViajar(LadronUno, Brasil);
+		PaisesDestino = Base.posiblesPaisesAViajar(LadronUno, Brasil);
 		
 		Assert.assertTrue(PaisesDestino.size() == 3);
 		
