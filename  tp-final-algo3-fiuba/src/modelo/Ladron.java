@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import modelo.caracteristicas.*;
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
 
 public class Ladron {
@@ -26,23 +27,23 @@ public class Ladron {
 		return this.Nombre;
 	}
 	
-	public String Sexo(){
+	public Sexo getSexo(){
 		return CaracteristicasDelLadron.getSexo();
 	}
 	
-	public String Hobby(){
+	public Hobby getHobby(){
 		return CaracteristicasDelLadron.getHobby();
 	}
 	
-	public String Cabello(){
+	public Cabello getCabello(){
 		return CaracteristicasDelLadron.getCabello();
 	}
 	
-	public String Senia(){
+	public Senia getSenia(){
 		return CaracteristicasDelLadron.getSenia();
 	}
 	
-	public String Vehiculo(){
+	public Vehiculo getVehiculo(){
 		return CaracteristicasDelLadron.getVehiculo();
 	}
 	

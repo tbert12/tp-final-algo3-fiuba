@@ -14,8 +14,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import modelo.Caracteristicas;
 import modelo.Ladron;
+import modelo.caracteristicas.*;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -28,13 +28,9 @@ import org.xml.sax.SAXException;
 
 
 public class LadronTest {
-	private String nombreArchivo = "pruebaLadron.xml";
-	private String[] Sexo = {"Masculino","Femenino"};
-	private String[] Hobbie = {"Tennis","Musica","Alpinismo","Paracaidismo","Natacion","Croquet"};
-	private String[] Cabello = {"Castanio","Rubio","Rojo","Negro"};
-	private String[] Senia = {"Cojera","Anillo","Tatuaje","Cicatriz","Joyas"};
-	private String[] Vehiculo = {"Descapotable","Limusina","Deportivo","Moto"};
 	
+	private String nombreArchivo = "pruebaLadron.xml";
+
 	@After
 	public void after() {
 		File archivo = new File(this.nombreArchivo);
@@ -45,58 +41,58 @@ public class LadronTest {
 	
 	@Test
 	public void LadronNombreEsCorrecto() {
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		Assert.assertEquals(ladron.getNombre(),"Menem");	
 	}
 	
 	@Test
 	public void LadronNombreNoEsCorrecto() {
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		Assert.assertNotEquals(ladron.getNombre(),"Carlitos Menem");	
 	}
 	
 	@Test
 	public void LadronCaracteristicasSonCorrectas() {
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
-		Assert.assertEquals(ladron.Sexo(),Sexo[1]);
-		Assert.assertEquals(ladron.Hobby(), Hobbie[0]);
-		Assert.assertEquals(ladron.Cabello(),Cabello[3]);
-		Assert.assertEquals(ladron.Senia(),Senia[1]);
-		Assert.assertEquals(ladron.Vehiculo(),Vehiculo[0]);
+		Assert.assertEquals(ladron.getSexo(),Sexo.FEMENINO);
+		Assert.assertEquals(ladron.getHobby(), Hobby.TENNIS);
+		Assert.assertEquals(ladron.getCabello(),Cabello.NEGRO);
+		Assert.assertEquals(ladron.getSenia(),Senia.ANILLO);
+		Assert.assertEquals(ladron.getVehiculo(),Vehiculo.DESCAPOTABLE);
 	}
 
 	@Test
 	public void LadronCaracteristicasNoSonCorrectas() {
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
-		Assert.assertNotEquals(ladron.Sexo(),Sexo[0]);
-		Assert.assertNotEquals(ladron.Hobby(), Hobbie[1]);
-		Assert.assertNotEquals(ladron.Cabello(),Cabello[0]);
-		Assert.assertNotEquals(ladron.Senia(),Senia[2]);
-		Assert.assertNotEquals(ladron.Vehiculo(),Vehiculo[1]);
+		Assert.assertNotEquals(ladron.getSexo(),Sexo.MASCULINO);
+		Assert.assertNotEquals(ladron.getHobby(), Hobby.ALPINISMO);
+		Assert.assertNotEquals(ladron.getCabello(),Cabello.ROJO);
+		Assert.assertNotEquals(ladron.getSenia(),Senia.JOYAS);
+		Assert.assertNotEquals(ladron.getVehiculo(),Vehiculo.LIMUSINA);
 	}
 	
 	@Test
 	public void LadronCompararCaracteristicasEsTrue() {
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		Assert.assertTrue(ladron.CompararCaracteristicas(CaracteristicasDelLadron));
 	}
 	
 	@Test
 	public void LadronCompararCaracteristicasEsFalse() {
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
-		Caracteristicas OtrasCaracteristicasDelLadron = new Caracteristicas(Sexo[0],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
+		Caracteristicas OtrasCaracteristicasDelLadron = new Caracteristicas(Sexo.MASCULINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		Assert.assertFalse(ladron.CompararCaracteristicas(OtrasCaracteristicasDelLadron));
 	}
  	
 	@Test
 	public void TestOrdenDeArresto(){
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
 		
 		Assert.assertFalse(ladron.TieneOrdenDeArresto());
@@ -107,7 +103,14 @@ public class LadronTest {
 	}
 	
 	
+	/*
 	
+	private String[] Sexo = {"Masculino","Femenino"};
+	private String[] Hobbie = {"Tennis","Musica","Alpinismo","Paracaidismo","Natacion","Croquet"};
+	private String[] Cabello = {"Castanio","Rubio","Rojo","Negro"};
+	private String[] Senia = {"Cojera","Anillo","Tatuaje","Cicatriz","Joyas"};
+	private String[] Vehiculo = {"Descapotable","Limusina","Deportivo","Moto"};
+	*/	
 	
 	@Test
 	public void PersistenciaFuncionaCon2Ladrones() throws ParserConfigurationException, TransformerException, SAXException, IOException {
@@ -115,8 +118,8 @@ public class LadronTest {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		Document doc = db.newDocument();
-		Caracteristicas caracteristicasLadronUno = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[3],Senia[1],Vehiculo[0]);
-		Caracteristicas caracteristicasLadronDos = new Caracteristicas (Sexo[0],Hobbie[2],Cabello[1],Senia[3],Vehiculo[2]);
+		Caracteristicas caracteristicasLadronUno = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
+		Caracteristicas caracteristicasLadronDos = new Caracteristicas (Sexo.MASCULINO,Hobby.ALPINISMO,Cabello.RUBIO,Senia.CICATRIZ,Vehiculo.DEPORTIVO);
 		Ladron unLadron = new Ladron("Tomy",caracteristicasLadronUno);
 		Ladron otroLadron = new Ladron("Facu",caracteristicasLadronDos);
 		Element LadronSerializado = unLadron.Serializar(doc);

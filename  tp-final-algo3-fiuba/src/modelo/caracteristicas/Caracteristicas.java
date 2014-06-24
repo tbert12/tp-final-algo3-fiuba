@@ -1,4 +1,4 @@
-package modelo;
+package modelo.caracteristicas;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -6,33 +6,38 @@ import org.w3c.dom.Node;
 
 public class Caracteristicas {
 	
-	private String Sexo,Hobby,Cabello,Senia,Vehiculo;
+	private Sexo Sexo;
+	private Hobby Hobby;
+	private Cabello Cabello;
+	private Senia Senia;
+	private Vehiculo Vehiculo;
+	
 
-	public Caracteristicas(String Sexo,String Hobby,String Cabello,String Senia,String Vehiculo){
-		this.Sexo = Sexo;
-		this.Hobby = Hobby;
-		this.Cabello = Cabello;
-		this.Senia = Senia;
-		this.Vehiculo = Vehiculo;
+	public Caracteristicas(Sexo UnSexo,Hobby UnHobby,Cabello UnCabello,Senia UnaSenia,Vehiculo UnVehiculo){
+		this.Sexo = UnSexo;
+		this.Hobby = UnHobby;
+		this.Cabello = UnCabello;
+		this.Senia = UnaSenia;
+		this.Vehiculo = UnVehiculo;
 	}
 
-	public String getSexo() {
+	public Sexo getSexo() {
 		return this.Sexo;
 	}
 	
-	public String getHobby() {
+	public Hobby getHobby() {
 		return this.Hobby;
 	}
 	
-	public String getCabello() {
+	public Cabello getCabello() {
 		return this.Cabello;
 	}
 	
-	public String getSenia() {
+	public Senia getSenia() {
 		return this.Senia;
 	}
 	
-	public String getVehiculo() {
+	public Vehiculo getVehiculo() {
 		return this.Vehiculo;
 	}
 	

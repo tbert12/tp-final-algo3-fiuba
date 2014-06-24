@@ -13,6 +13,7 @@ import org.junit.Assert;
 import org.xml.sax.SAXException;
 
 import modelo.*;
+import modelo.caracteristicas.Caracteristicas;
 
 
 public class CarmenSanDiegoTest {

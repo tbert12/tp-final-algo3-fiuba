@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import modelo.caracteristicas.*;
 import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 import modelo.excepcion.ErrorElPaisNoEsta;
 
@@ -98,7 +99,7 @@ public class Partida {
 		return PistaDeEdificio;
 	}
 	
-	public void FiltrarLadron(String unSexo,String unHobby,String unCabello,String unaSenia,String unVehiculo){
+	public void FiltrarLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
 			Caracteristicas CaracteristicasAFiltrar = new Caracteristicas(unSexo,unHobby,unCabello,unaSenia,unVehiculo);
 			ArrayList<Ladron> PosiblesLadrones = BasedeDatos.FiltarPorCaracteristicas(CaracteristicasAFiltrar);
 			ReducirHorasalPolicia(3);

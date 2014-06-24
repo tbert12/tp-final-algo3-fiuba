@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import modelo.BaseDeDatos;
-import modelo.Caracteristicas;
 import modelo.Edificio;
 import modelo.Ladron;
 import modelo.ObjetoRobado;
@@ -15,6 +14,7 @@ import modelo.Partida;
 import modelo.Policia;
 import modelo.Tiempo;
 import modelo.Trayectoria;
+import modelo.caracteristicas.*;
 import modelo.excepcion.ErrorElPaisNoEsta;
 
 import org.junit.Test;
@@ -24,19 +24,8 @@ public class PartidaJuegoTest {
 	private Policia unPolicia;
 	private Ladron unLadron;
 	BaseDeDatos unaBase;
-	
-	
-	private String[] Sexo = {"Masculino","Femenino"};
-	private String[] Hobbie = {"Tennis","Musica","Alpinismo","Paracaidismo","Natacion","Croquet"};
-	private String[] Cabello = {"Castanio","Rubio","Rojo","Negro"};
-	private String[] Senia = {"Cojera","Anillo","Tatuaje","Cicatriz","Joyas"};
-	private String[] Vehiculo = {"Descapotable","Limusina","Deportivo","Moto"};
 	private ObjetoRobado unObjeto;
 	
-	
-	
-	
-
 	@Test
 	public void TestDeJuegoCaso1() throws ErrorElPaisNoEsta {
 	
@@ -59,7 +48,7 @@ public class PartidaJuegoTest {
 		String nombreUsa = "New York";
 		Pais Usa = new Pais(nombreUsa,edificiosNY);
 		
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[1],Hobbie[0],Cabello[0],Senia[2],Vehiculo[0]);
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
 		unaBase = new BaseDeDatos();
 		ArrayList<String> ListaDeEdificios;
 		unObjeto = new ObjetoRobado("Bandera Antigua","Poco Valioso");
@@ -143,9 +132,9 @@ public class PartidaJuegoTest {
 		assertEquals(ListaDeEdificios.get(2),"Muelle");
 		String PistaMuelle = unaPartida.MostrarPistaDeEdificio(ListaDeEdificios.get(2));
 		assertEquals(PistaMuelle,Muelle.getPista());
-	
+
 		//filtra ladron con coincidencias.
-		unaPartida.FiltrarLadron(null,null,Cabello[0],Senia[2],Vehiculo[0]);
+		unaPartida.FiltrarLadron(null,null,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
 	
 		unaPartida.ViajarHacia(Usa.getNombre());
 		assertEquals(unPolicia.getPais(),Usa);
@@ -198,8 +187,8 @@ public class PartidaJuegoTest {
 		Edificio[] edificiosLDN = {HotelLND,BancoLDN,MuelleLND};
 		String nombreIng = "London";
 		Pais Inglaterra = new Pais(nombreIng,edificiosLDN);
-		
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo[0],Hobbie[1],Cabello[1],Senia[2],Vehiculo[3]);
+
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.MASCULINO,Hobby.MUSICA,Cabello.RUBIO,Senia.TATUAJE,Vehiculo.MOTO);
 		unaBase = new BaseDeDatos();
 		unObjeto = new ObjetoRobado("Joya","Valioso");
 		
@@ -209,11 +198,11 @@ public class PartidaJuegoTest {
 		PaisesDeLadron.add(Mexico);
 		PaisesDeLadron.add(Argentina);
 		PaisesDeLadron.add(Inglaterra);
-		
-		Caracteristicas CaracteristicasSimilares = new Caracteristicas(Sexo[0],Hobbie[1],Cabello[1],Senia[2],Vehiculo[2]);
+
+		Caracteristicas CaracteristicasSimilares = new Caracteristicas(Sexo.MASCULINO,Hobby.MUSICA,Cabello.RUBIO,Senia.TATUAJE,Vehiculo.DEPORTIVO);
 		Ladron unLadronSimilCaracteristicas = new Ladron("Willy",CaracteristicasSimilares);
-		
-		Caracteristicas CaracteristicasNadaQueVer = new Caracteristicas(Sexo[1],Hobbie[2],Cabello[1],Senia[0],Vehiculo[0]);
+
+		Caracteristicas CaracteristicasNadaQueVer = new Caracteristicas(Sexo.FEMENINO,Hobby.ALPINISMO,Cabello.RUBIO,Senia.COJERA,Vehiculo.DESCAPOTABLE);
 		Ladron unLadronNadaQueVer = new Ladron("Larry",CaracteristicasNadaQueVer);
 		
 		Trayectoria trayecto = new Trayectoria(PaisesDeLadron);

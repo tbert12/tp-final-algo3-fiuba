@@ -3,27 +3,21 @@ package fiuba.algo3.tpfinal.test;
 import java.util.ArrayList;
 
 import modelo.BaseDeDatos;
-import modelo.Caracteristicas;
 import modelo.Ladron;
 import modelo.Pais;
 import modelo.Edificio;
 import modelo.Trayectoria;
+import modelo.caracteristicas.*;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 public class BaseDeDatosTests {
-	
-	private String[] Sexo = {"Masculino","Femenino"};
-	private String[] Hobby = {"Tennis","Musica","Alpinismo","Paracaidismo","Natacion","Croquet"};
-	private String[] Cabello = {"Castanio","Rubio","Rojo","Negro"};
-	private String[] Senia = {"Cojera","Anillo","Tatuaje","Cicatriz","Joyas"};
-	private String[] Vehiculo = {"Descapotable","Limusina","Deportivo","Moto"};
-	
-	Ladron LadronUno = CrearLadron("Sofia",Sexo[1],Hobby[1],Cabello[0],Senia[2],Vehiculo[0]);
-	Ladron LadronDos = CrearLadron("Marcos",Sexo[0],Hobby[0],Cabello[1],Senia[0],Vehiculo[3]);
-	Ladron LadronTres = CrearLadron("Lucia",Sexo[1],Hobby[4],Cabello[3],Senia[1],Vehiculo[3]);
-	Ladron LadronCuatro = CrearLadron("Tomas",Sexo[0],Hobby[1],Cabello[2],Senia[1],Vehiculo[2]);
+
+	Ladron LadronUno = CrearLadron("Sofia",Sexo.FEMENINO,Hobby.MUSICA,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
+	Ladron LadronDos = CrearLadron("Marcos",Sexo.MASCULINO,Hobby.TENNIS,Cabello.RUBIO,Senia.COJERA,Vehiculo.MOTO);
+	Ladron LadronTres = CrearLadron("Lucia",Sexo.FEMENINO,Hobby.NATACION,Cabello.NEGRO,Senia.ANILLO,Vehiculo.MOTO);
+	Ladron LadronCuatro = CrearLadron("Tomas",Sexo.MASCULINO,Hobby.MUSICA,Cabello.ROJO,Senia.ANILLO,Vehiculo.DEPORTIVO);
 	
 	Pais Argentina = crearPais("Argentina");
 	Pais Cuba = crearPais("Cuba");
@@ -33,7 +27,7 @@ public class BaseDeDatosTests {
 	Pais Peru = crearPais("Peru");
 	
 	
-	public Ladron CrearLadron(String Nombre,String Sexo,String Hobby,String Cabello,String Senia,String Vehiculo){
+	public Ladron CrearLadron(String Nombre,Sexo Sexo,Hobby Hobby,Cabello Cabello,Senia Senia,Vehiculo Vehiculo){
 		Caracteristicas caracteristicas = new Caracteristicas(Sexo,Hobby,Cabello,Senia,Vehiculo);
 		Ladron LadronNuevo = new Ladron(Nombre,caracteristicas);
 		return LadronNuevo;
@@ -63,8 +57,8 @@ public class BaseDeDatosTests {
 	@Test
 	public void PruebaLadronSoloFiltraLosMasculinos(){
 		BaseDeDatos Base = CrearBase();
-		
-		Caracteristicas CaracteristicasPedidias = new Caracteristicas(Sexo[0],null,null,null,null);
+
+		Caracteristicas CaracteristicasPedidias = new Caracteristicas(Sexo.MASCULINO,null,null,null,null);
 		
 		ArrayList<Ladron> Sospechosos = Base.FiltarPorCaracteristicas(CaracteristicasPedidias);
 		
@@ -79,8 +73,7 @@ public class BaseDeDatosTests {
 	@Test
 	public void PruebaSoloFiltraLosLadronesQueTienenComoVehiculoMoto(){
 		BaseDeDatos Base = CrearBase();
-		Caracteristicas CaracteristicasPedidias = new Caracteristicas(null,null,null,null,Vehiculo[3]);
-		
+		Caracteristicas CaracteristicasPedidias = new Caracteristicas(null,null,null,null,Vehiculo.MOTO);
 		ArrayList<Ladron> Sospechosos = Base.FiltarPorCaracteristicas(CaracteristicasPedidias);
 		
 		ArrayList<Ladron> SospechososEsperados = new ArrayList<Ladron>();
@@ -94,7 +87,8 @@ public class BaseDeDatosTests {
 	@Test
 	public void PruebaSeEncuentraSoloUnLadronPorFiltrarMasDeUnaCaracteristica(){
 		BaseDeDatos Base = CrearBase();
-		Caracteristicas CaracteristicasPedidias = new Caracteristicas(null,null,Cabello[3],null,Vehiculo[3]);
+
+		Caracteristicas CaracteristicasPedidias = new Caracteristicas(null,null,Cabello.NEGRO,null,Vehiculo.MOTO);
 		
 		ArrayList<Ladron> Sospechosos = Base.FiltarPorCaracteristicas(CaracteristicasPedidias);
 		
@@ -108,7 +102,8 @@ public class BaseDeDatosTests {
 	@Test
 	public void PruebaLasCaracteristicasNoCoincidenConNingunLadron(){
 		BaseDeDatos Base = CrearBase();
-		Caracteristicas CaracteristicasPedidias = new Caracteristicas(null,null,Cabello[3],Senia[0],Vehiculo[3]);
+
+		Caracteristicas CaracteristicasPedidias = new Caracteristicas(null,null,Cabello.NEGRO,Senia.COJERA,Vehiculo.MOTO);
 		
 		ArrayList<Ladron> Sospechosos = Base.FiltarPorCaracteristicas(CaracteristicasPedidias);
 		
@@ -117,24 +112,6 @@ public class BaseDeDatosTests {
 		Assert.assertEquals(Sospechosos, SospechososEsperados);
 	}
 	
-	/*
-	@Test
-	public void PruebaAgregoPais(){
-		BaseDeDatos Base = CrearBase();
-		
-		ArrayList<Pais> PaisesdeBase = Base.ObtenerPaises();
-		
-		ArrayList<Pais> PaisesEsperados = new ArrayList<Pais>();
-		PaisesEsperados.add(Argentina);
-		PaisesEsperados.add(Cuba);
-		PaisesEsperados.add(Argelia);
-		PaisesEsperados.add(Alemania);
-		PaisesEsperados.add(Rusia);
-		PaisesEsperados.add(Peru);
-		
-		Assert.assertEquals(PaisesdeBase,PaisesEsperados);		
-	}
-	*/
 	@Test
 	public void PruebaPidoDestinos(){
 		ArrayList<Pais> PaisesDelTrayecto = new ArrayList<Pais>();

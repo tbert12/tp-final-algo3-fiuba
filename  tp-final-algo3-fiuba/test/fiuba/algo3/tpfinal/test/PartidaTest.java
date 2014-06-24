@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import modelo.BaseDeDatos;
-import modelo.Caracteristicas;
 import modelo.Edificio;
 import modelo.Ladron;
 import modelo.ObjetoRobado;
@@ -14,6 +13,12 @@ import modelo.Partida;
 import modelo.Policia;
 import modelo.Tiempo;
 import modelo.Trayectoria;
+import modelo.caracteristicas.Cabello;
+import modelo.caracteristicas.Caracteristicas;
+import modelo.caracteristicas.Hobby;
+import modelo.caracteristicas.Senia;
+import modelo.caracteristicas.Sexo;
+import modelo.caracteristicas.Vehiculo;
 import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 
 import org.junit.Test;
@@ -34,9 +39,9 @@ public class PartidaTest {
 		UnaBaseDeDatos = new BaseDeDatos();
 		UnObjeto = new ObjetoRobado("Pintura","muy valioso");
 		
-		Caracteristicas caracteristicas = new Caracteristicas("masculino","tennis","rojo","tatuaje","limusina");
+		Caracteristicas caracteristicas = new Caracteristicas(Sexo.MASCULINO,Hobby.TENNIS,Cabello.ROJO,Senia.TATUAJE,Vehiculo.LIMUSINA);
 		UnLadron = new Ladron("Pancu",caracteristicas);
-		Caracteristicas caracteristicas2 = new Caracteristicas("masculino","tennis","rubio","tatuaje","limusina");
+		Caracteristicas caracteristicas2 = new Caracteristicas(Sexo.MASCULINO,Hobby.TENNIS,Cabello.RUBIO,Senia.TATUAJE,Vehiculo.LIMUSINA);
 		Ladron OtroLadron = new Ladron("Fernando",caracteristicas2);
 		
 		Pais Argentina = crearPais("Argentina");

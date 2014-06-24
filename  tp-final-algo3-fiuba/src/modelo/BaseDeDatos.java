@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import modelo.caracteristicas.Caracteristicas;
 import modelo.excepcion.ErrorElPaisNoEsta;
 
 public class BaseDeDatos {
