@@ -51,7 +51,7 @@ public class BaseDeDatos {
 		
 		while ( PosiblesPaises.size() < this.CANTIDADPOSIBLESDESTINOS ){
 			Pais PaisRandom = Paises.get((int)(Math.random()*Paises.size()));
-			while (Ladron.PasaPor(PaisRandom) || PaisActual == PaisRandom || PosiblesPaises.contains(PaisRandom)){
+			while (Ladron.PasaPor(PaisRandom) || PaisActual.equals(PaisRandom) || PosiblesPaises.contains(PaisRandom)){
 				PaisRandom = Paises.get((int)(Math.random()*Paises.size()));;
 			}
 			PosiblesPaises.add(PaisRandom);
