@@ -1,8 +1,8 @@
 package control;
 
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-import com.sun.glass.events.KeyEvent;
 
 public class ControladorTeclado extends KeyAdapter {
 
