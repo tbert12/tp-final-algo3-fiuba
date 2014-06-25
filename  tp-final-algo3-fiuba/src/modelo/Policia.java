@@ -71,7 +71,7 @@ public class Policia  {
 	}
 	
 	private void chequeoDeRango(){
-		Rango.chequeoDeRango(Rango,CantidadDeArrestos);
+		this.Rango = Rango.chequeoDeRango(CantidadDeArrestos);
 	}
 	public int costoDeViaje(int kilometrosAViajar) {
 		return this.Rango.costoDeViaje(kilometrosAViajar);

@@ -9,10 +9,11 @@ public class RangoDetective implements Rango {
 		return CantidadKilometros/VelocidadDeViaje;
 	}
 	
-	public void chequeoDeRango(Rango rango,int cantDeArrestos){
-		if (cantDeArrestos >= 10 && cantDeArrestos<20){
-			Rango nuevoRango=new RangoInvestigador();
-			rango = nuevoRango;
-		}
+	public Rango chequeoDeRango(int cantDeArrestos){
+		if (cantDeArrestos < 10) return this;
+			
+		Rango nuevoRango = new RangoInvestigador();
+		nuevoRango = nuevoRango.chequeoDeRango(cantDeArrestos);
+		return nuevoRango;
 	}
 }
