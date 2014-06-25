@@ -9,11 +9,11 @@ public class RangoInvestigador implements Rango {
 		return CantidadKilometros/VelocidadDeViaje;
 	}
 	
-	public void chequeoDeRango(Rango rango,int cantDeArrestos){
-		if (cantDeArrestos >= 20){
-			Rango nuevoRango=new RangoSargento();
-			rango = nuevoRango;
-		}
-
-}
+	public Rango chequeoDeRango(int cantDeArrestos){
+	if (cantDeArrestos < 20) return this;
+		
+	Rango nuevoRango = new RangoSargento();
+	nuevoRango = nuevoRango.chequeoDeRango(cantDeArrestos);
+	return nuevoRango;
+	}
 }
