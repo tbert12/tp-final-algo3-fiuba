@@ -28,6 +28,9 @@ public class Partida {
 		return this.LadronAtrapado;
 	}
 	
+	public Pais paisActual(){
+		return this.UnPolicia.getPais();
+	}
 	
 	public String valorObjetoRobado(){
 		return ObjetoRobado.getValor();
@@ -53,7 +56,7 @@ public class Partida {
 		return PistaDeEdificio;
 	}
 	
-	public void FiltrarLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
+	public ArrayList<Ladron> filtrarLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
 			Caracteristicas CaracteristicasAFiltrar = new Caracteristicas(unSexo,unHobby,unCabello,unaSenia,unVehiculo);
 			ArrayList<Ladron> PosiblesLadrones = BasedeDatos.filtarPorCaracteristicas(CaracteristicasAFiltrar);
 			UnPolicia.reducirHorasPorFiltracion();
@@ -63,7 +66,7 @@ public class Partida {
 				UnPolicia.setSospechoso(UnicoLadron);
 			}
 			
-			//no se que se haria con los ladrones flitrados, supongo enviar los nombres para mostrar en pantalla.
+			return PosiblesLadrones;
 	}
 	
 	public ArrayList<Pais> paisesAViajar(){

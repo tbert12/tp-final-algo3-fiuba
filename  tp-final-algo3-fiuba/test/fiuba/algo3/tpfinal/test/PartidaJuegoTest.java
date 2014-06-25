@@ -135,7 +135,7 @@ public class PartidaJuegoTest {
 		assertEquals(PistaMuelle,Muelle.visitar(unPolicia));
 
 		//filtra ladron con coincidencias.
-		unaPartida.FiltrarLadron(null,null,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
+		unaPartida.filtrarLadron(null,null,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
 	
 		unaPartida.viajarHacia(Usa);
 		assertEquals(unPolicia.getPais(),Usa);
