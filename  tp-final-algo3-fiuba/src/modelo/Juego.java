@@ -11,9 +11,9 @@ import vistas.VentanaPrincipal;
 
 public class Juego {
 	
-	PartidaObservable partida;
 	CarmenSanDiego carmen;
 	VentanaPrincipal ventanaPrincipal;
+	PartidaObservable partidaObservable;
 	
 	public Juego(){
 		
@@ -29,13 +29,17 @@ public class Juego {
 			
 			ventanaPrincipal.mostrarError("No se puede iniciar el juego");
 		}
-		
-		
-		
+	
 	}
 	
 	public void iniciar(){
 		ventanaPrincipal.mostrarVentana();
 	}
 	
+	public void iniciarPartida(String string){
+		
+		carmen.iniciarPartida(string);
+		Partida partida = carmen.getPartida();
+		partidaObservable = new PartidaObservable(partida);
+	}
 }

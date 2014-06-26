@@ -16,11 +16,11 @@ import javax.swing.JTextField;
 
 import java.awt.Color;
 
-import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 import control.ControladorBotonEmpezar;
+import java.awt.Toolkit;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -30,6 +30,7 @@ public class VentanaPrincipal extends JFrame {
 
 
 	public VentanaPrincipal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaTimeThumb.png")));
 		setVisible(false);
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +38,7 @@ public class VentanaPrincipal extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setForeground(Color.BLACK);
-		contentPane.setBorder(new TitledBorder(null, "Carmen Sandiego", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		
 		textoNombreUsuario = new JTextField();
@@ -46,7 +47,7 @@ public class VentanaPrincipal extends JFrame {
 		textoNombreUsuario.setColumns(10);
 		
 		JButton btnJugar = new JButton("Jugar");
-		btnJugar.addActionListener(new ControladorBotonEmpezar(this, textoNombreUsuario.getText()) );
+		btnJugar.addActionListener(new ControladorBotonEmpezar(this) );
 		btnJugar.setBackground(Color.DARK_GRAY);
 		btnJugar.setForeground(Color.RED);
 		btnJugar.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -62,20 +63,20 @@ public class VentanaPrincipal extends JFrame {
 		lblIconocs.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/carmen_san_diego_1.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(label, GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(193)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 						.addComponent(btnJugar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(textoNombreUsuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
 					.addContainerGap(175, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap(219, Short.MAX_VALUE)
 					.addComponent(lblIconocs, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
 					.addGap(201))
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(label, GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -95,6 +96,10 @@ public class VentanaPrincipal extends JFrame {
 
 	public void mostrarVentana(){
 		setVisible(true);
+	}
+	
+	public String getTexto(){
+		return textoNombreUsuario.getText();
 	}
 
 	public void mostrarError(String string) {

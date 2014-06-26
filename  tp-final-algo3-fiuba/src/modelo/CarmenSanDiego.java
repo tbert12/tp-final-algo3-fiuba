@@ -144,6 +144,11 @@ public  class CarmenSanDiego {
 	public Partida getPartida(){
 		return this.unaPartida;
 	}
+
+	public void iniciarPartida(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 
