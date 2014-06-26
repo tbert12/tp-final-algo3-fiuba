@@ -1,8 +1,6 @@
 package vistas;
 
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,72 +15,80 @@ import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
 import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaPrincipal frame = new VentanaPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JTextField textoNombreUsuario;
+	
+	private String nombreJugador;
 
 	public VentanaPrincipal() {
+		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setForeground(Color.BLACK);
-		contentPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		contentPane.setBorder(new TitledBorder(null, "Carmen Sandiego", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setContentPane(contentPane);
 		
+		textoNombreUsuario = new JTextField();
+		textoNombreUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		textoNombreUsuario.setFont(new Font("Virtual DJ", Font.PLAIN, 18));
+		textoNombreUsuario.setColumns(10);
+		
 		JButton btnJugar = new JButton("Jugar");
+		btnJugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				nombreJugador = textoNombreUsuario.getText();
+				//buscar si el nombre esta guardado o si no se crea un nuevo policia.
+			}
+		});
 		btnJugar.setBackground(Color.DARK_GRAY);
 		btnJugar.setForeground(Color.RED);
 		btnJugar.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnJugar.setFont(new Font("Virtual DJ", Font.BOLD, 23));
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("Virtual DJ", Font.PLAIN, 18));
-		textField.setColumns(10);
+		JLabel label = new JLabel("Carmen Sandiego");
+		label.setHorizontalTextPosition(SwingConstants.LEADING);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(Color.RED);
+		label.setFont(new Font("Virtual DJ", Font.BOLD, 35));
 		
-		JTextPane txtpnCarmenSandiego = new JTextPane();
-		txtpnCarmenSandiego.setFont(new Font("Virtual DJ", Font.PLAIN, 35));
-		txtpnCarmenSandiego.setForeground(Color.RED);
-		txtpnCarmenSandiego.setBackground(Color.BLACK);
-		txtpnCarmenSandiego.setText("Carmen Sandiego");
+		JLabel lblIconocs = new JLabel("IconoCS");
+		lblIconocs.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/carmen_san_diego_1.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(label, GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(193)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnJugar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(textoNombreUsuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
+					.addContainerGap(175, Short.MAX_VALUE))
 				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addGap(218)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnJugar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-						.addComponent(textField, Alignment.LEADING))
-					.addGap(196))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addContainerGap(88, Short.MAX_VALUE)
-					.addComponent(txtpnCarmenSandiego, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(71))
+					.addContainerGap(219, Short.MAX_VALUE)
+					.addComponent(lblIconocs, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
+					.addGap(201))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(26)
-					.addComponent(txtpnCarmenSandiego, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap()
+					.addComponent(label, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblIconocs)
+					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+					.addComponent(textoNombreUsuario, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnJugar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
