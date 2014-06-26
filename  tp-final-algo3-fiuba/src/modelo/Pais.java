@@ -13,10 +13,12 @@ public class Pais {
 	private String Informacion;
 	private Edificio[] Edificios;
 	private HashMap<String,Integer> DistanciaAPaises;
+	private Coordenadas coordenadas;
 	
-	public Pais(String UnNombre,Edificio[] LosEdificios){
+	public Pais(String UnNombre,Edificio[] LosEdificios,Coordenadas coordenadas){
 		this.Nombre = UnNombre;
 		this.Edificios = LosEdificios;
+		this.coordenadas = coordenadas;
 	}
 	
 	public String getNombre(){
@@ -32,12 +34,26 @@ public class Pais {
 		return Informacion;
 	}
 	
+	public Coordenadas getCoordenadas(){
+		return this.coordenadas;
+	}
+	
+	public int distanciaAPais(Pais otroPais){
+		return (int)this.coordenadas.DistanciaA(otroPais.getCoordenadas());
+	}
+	
+	
+	/* Metodos que utilizan Diccionario
 	public int distanciaAPais(String unPais){
 		return DistanciaAPaises.get(unPais);
 	}
+	
+	
 	public void setDistancias(HashMap<String,Integer> unDicc){
 		DistanciaAPaises = unDicc;
 	}
+	*/
+	
 	public ArrayList<Edificio> getEdificios(){
 		ArrayList<Edificio> ListaEdificios = new ArrayList<Edificio>();
 		
