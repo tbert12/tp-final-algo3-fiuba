@@ -17,7 +17,7 @@ public class Juego {
 	
 	public Juego(){
 		
-		ventanaPrincipal = new VentanaPrincipal();
+		ventanaPrincipal = new VentanaPrincipal(this);
 		
 		try {
 			carmen = new CarmenSanDiego();
@@ -27,7 +27,7 @@ public class Juego {
 				| InstantiationException | ParserConfigurationException
 				| SAXException | IOException e) {
 			
-			ventanaPrincipal.mostrarError("No se puede iniciar el juego");
+			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego");
 		}
 	
 	}

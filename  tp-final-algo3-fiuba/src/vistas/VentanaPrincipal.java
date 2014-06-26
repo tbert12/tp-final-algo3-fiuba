@@ -19,7 +19,9 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
+import modelo.Juego;
 import control.ControladorBotonEmpezar;
+
 import java.awt.Toolkit;
 
 public class VentanaPrincipal extends JFrame {
@@ -27,9 +29,13 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textoNombreUsuario;
+	private Juego unJuego;
 
 
-	public VentanaPrincipal() {
+	public VentanaPrincipal(Juego unJuego) {
+		
+		this.unJuego = unJuego;
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaTimeThumb.png")));
 		setVisible(false);
 		setTitle("Carmen Sandiego");
@@ -47,7 +53,7 @@ public class VentanaPrincipal extends JFrame {
 		textoNombreUsuario.setColumns(10);
 		
 		JButton btnJugar = new JButton("Jugar");
-		btnJugar.addActionListener(new ControladorBotonEmpezar(this) );
+		btnJugar.addActionListener(new ControladorBotonEmpezar(this,this.unJuego) );
 		btnJugar.setBackground(Color.DARK_GRAY);
 		btnJugar.setForeground(Color.RED);
 		btnJugar.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -102,8 +108,11 @@ public class VentanaPrincipal extends JFrame {
 		return textoNombreUsuario.getText();
 	}
 
-	public void mostrarError(String string) {
+	public void mostrarErrorFinal(String string) {
 		JOptionPane.showMessageDialog(this,string,"ERROR:",JOptionPane.ERROR_MESSAGE);
 		System.exit(0);
+	}
+	public void mostrarError(String string) {
+		JOptionPane.showMessageDialog(this,string,"ERROR:",JOptionPane.ERROR_MESSAGE);
 	}
 }

@@ -2,21 +2,33 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import com.sun.xml.internal.ws.util.StringUtils;
+
+import modelo.Juego;
 import vistas.VentanaPrincipal;
 
 public class ControladorBotonEmpezar implements ActionListener {
 		private VentanaPrincipal vista;
-		//private String nombreJugador;
+		private Juego juego;
 		
-		public ControladorBotonEmpezar(VentanaPrincipal vista) {
+		public ControladorBotonEmpezar(VentanaPrincipal vista,Juego juego) {
 			this.vista = vista;
+			this.juego = juego;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
 			String NombreUsuario = vista.getTexto();
-			//Enviar Partida a Partida Observable
 			
+			
+			if (NombreUsuario == null || NombreUsuario.equals("") ){
+				vista.mostrarError("Ingrese un nombre valido.");
+			}
+			else{
+				NombreUsuario = StringUtils.capitalize(NombreUsuario);
+				juego.iniciarPartida(NombreUsuario);
+			}
 		}
 }
