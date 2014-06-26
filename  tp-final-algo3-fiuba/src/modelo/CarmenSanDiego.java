@@ -27,8 +27,14 @@ import org.xml.sax.SAXException;
 public  class CarmenSanDiego {
 	private static String nombreArchivoPolicias = "RegistroPolicias.xml";
 	private static String nombreArchivoLadrones = "RegistroLadrones.xml";
-	private static List<Policia> ListadoPolicias = new ArrayList<Policia>();
-	private static List<Ladron> ListadoLadrones = new ArrayList<Ladron>();
+	private static List<Policia> liststadoPolicias = new ArrayList<Policia>();
+	private static List<Ladron> listadoLadrones = new ArrayList<Ladron>();
+	private Partida unaPartida;
+	
+	public  CarmenSanDiego() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
+		levantarPoliciasDelXML();
+		levantarLadronesDelXML();
+		}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private <T> List<T> levantarAlgoDelXML(String nombreArchivo,Class clase,List<T> listado) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
@@ -65,12 +71,12 @@ public  class CarmenSanDiego {
 		}
 	}
 	public void levantarPoliciasDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-	ListadoPolicias = levantarAlgoDelXML(nombreArchivoPolicias, Policia.class,ListadoPolicias);
+	liststadoPolicias = levantarAlgoDelXML(nombreArchivoPolicias, Policia.class,liststadoPolicias);
 	
 	}
 	
 	public void levantarLadronesDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-		levantarAlgoDelXML(nombreArchivoLadrones, Ladron.class, ListadoLadrones);
+		levantarAlgoDelXML(nombreArchivoLadrones, Ladron.class, listadoLadrones);
 	}
 
 	private Document crearDoc() throws ParserConfigurationException{
@@ -88,23 +94,38 @@ public  class CarmenSanDiego {
 		transformer.transform(source, result);
 	}
 	public void bajarPoliciasAXML() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		bajarObjetoAXML(nombreArchivoPolicias, ListadoPolicias, Policia.class);
+		bajarObjetoAXML(nombreArchivoPolicias, liststadoPolicias, Policia.class);
 		}
 	public void bajarLadronesAXML() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		bajarObjetoAXML(nombreArchivoLadrones, ListadoLadrones,Ladron.class);
+		bajarObjetoAXML(nombreArchivoLadrones, listadoLadrones,Ladron.class);
 	}
 
 	public void agregarPolicia(Policia unPolicia){
-		ListadoPolicias.add(unPolicia);
+		liststadoPolicias.add(unPolicia);
 	}
 	public void agregarLadron(Ladron unLadron){
-		ListadoLadrones.add(unLadron);
+		listadoLadrones.add(unLadron);
 	}
 	public Boolean ladronEstaEnJuego(Ladron unLadron){
-		return ListadoLadrones.contains(unLadron);
+		return listadoLadrones.contains(unLadron);
 	}
 	public Boolean policiaEstaEnJuego(Policia unPolicia){
-		return ListadoPolicias.contains(unPolicia);
+		return liststadoPolicias.contains(unPolicia);
+	}
+	
+	private Policia VerSiJugadorYaJugo(String unNombre){
+		Policia unPolicia = new Policia(unNombre, 0);//Lo creo de antemano para poder hacer el .equals()
+		for (Policia policia: liststadoPolicias){
+			if (unPolicia.equals(policia)){
+				unPolicia = policia;
+				return unPolicia;//Devuelvo el policia que ya estaba en el listado
+			}
+		}
+		liststadoPolicias.add(unPolicia);//En todo caso, agrego el policia nuevo
+		return unPolicia;
+	}
+	public Policia IniciarJugador(String unNombre){
+		return VerSiJugadorYaJugo(unNombre);
 	}
 	private Boolean archivoExiste(String nombreArchivo){
 		File archivo = new File(nombreArchivo);

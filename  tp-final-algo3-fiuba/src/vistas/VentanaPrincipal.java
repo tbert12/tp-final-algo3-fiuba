@@ -60,6 +60,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		JLabel lblIconocs = new JLabel("IconoCS");
 		lblIconocs.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/carmen_san_diego_1.png")));
+		txtpnCarmenSandiego.setEditable(false);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

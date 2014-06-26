@@ -8,7 +8,7 @@ public class RangoInvestigador implements Rango {
 	public int costoDeViaje(int CantidadKilometros) {
 		return CantidadKilometros/VelocidadDeViaje;
 	}
-	
+	@Override
 	public Rango chequeoDeRango(int cantDeArrestos){
 	if (cantDeArrestos < 20) return this;
 		

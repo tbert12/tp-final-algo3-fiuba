@@ -29,7 +29,7 @@ public class CarmenSanDiegoTest {
 		}
 	}
 	@Test
-	public void CarmenCargaPolicias(){
+	public void CarmenCargaPolicias() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Policia unPolicia = new Policia("Facu",5);
 		Carmen.agregarPolicia(unPolicia);
@@ -39,7 +39,7 @@ public class CarmenSanDiegoTest {
 		Assert.assertTrue(Carmen.policiaEstaEnJuego(otroPolicia));
 	}
 	@Test
-	public void CarmenCargaLadrones(){
+	public void CarmenCargaLadrones() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Ladron LadronUno = new Ladron("Tito",null);
 		Ladron LadronDos = new Ladron("Jose",null);
@@ -50,7 +50,7 @@ public class CarmenSanDiegoTest {
 	}
 	
 	@Test
-	public void CarmenCreaXMLConPolicias() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+	public void CarmenCreaXMLConPolicias() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException, InstantiationException, SAXException, IOException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Policia unPolicia = new Policia("Facu",5);
 		Carmen.agregarPolicia(unPolicia);
@@ -60,7 +60,7 @@ public class CarmenSanDiegoTest {
 		Assert.assertTrue(Carmen.archivoPoliciasExiste());
 	}
 	@Test
-	public void CarmenCreaXMLConLadrones() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+	public void CarmenCreaXMLConLadrones() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException, InstantiationException, SAXException, IOException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Caracteristicas caracteristicas1=new Caracteristicas(null,null,null,null,null);
 		Caracteristicas caracteristicas2=new Caracteristicas(null,null,null,null,null);
@@ -97,6 +97,15 @@ public class CarmenSanDiegoTest {
 		Carmen.levantarPoliciasDelXML();
 		Assert.assertTrue(Carmen.policiaEstaEnJuego(unPolicia));
 		Assert.assertTrue(Carmen.policiaEstaEnJuego(otroPolicia));
+	
 	}
-
+	
+@Test
+public void CarmenIniciaJugadorQueNoExiste() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
+	CarmenSanDiego Carmen = new CarmenSanDiego();
+	Policia policiaBase = new Policia("El Tito",0);
+	Assert.assertFalse(Carmen.policiaEstaEnJuego(policiaBase));
+	Policia policiaAIniciar = Carmen.IniciarJugador("El Tito");
+	Assert.assertTrue(policiaAIniciar.equals(policiaBase));
+}
 }

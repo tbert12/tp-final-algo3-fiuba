@@ -31,6 +31,7 @@ public class Policia  {
 		this.Nombre = Nombre;
 		this.CantidadDeArrestos = CantidadDeArrestos;
 		this.Sospechoso = null;
+		this.Rango = new RangoNovato();
 		chequeoDeRango();
 		
 	}
@@ -71,7 +72,7 @@ public class Policia  {
 	}
 	
 	private void chequeoDeRango(){
-		this.Rango = Rango.chequeoDeRango(CantidadDeArrestos);
+		this.Rango = this.Rango.chequeoDeRango(CantidadDeArrestos);
 	}
 	public int costoDeViaje(int kilometrosAViajar) {
 		return this.Rango.costoDeViaje(kilometrosAViajar);
