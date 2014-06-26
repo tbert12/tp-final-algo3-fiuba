@@ -3,32 +3,34 @@ package vistas;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+
 import java.awt.Color;
+
 import javax.swing.border.TitledBorder;
 
-import javax.swing.JTextPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+
+import control.ControladorBotonEmpezar;
 
 public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textoNombreUsuario;
-	
-	private String nombreJugador;
+
 
 	public VentanaPrincipal() {
+		setVisible(false);
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
@@ -44,12 +46,7 @@ public class VentanaPrincipal extends JFrame {
 		textoNombreUsuario.setColumns(10);
 		
 		JButton btnJugar = new JButton("Jugar");
-		btnJugar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				nombreJugador = textoNombreUsuario.getText();
-				//buscar si el nombre esta guardado o si no se crea un nuevo policia.
-			}
-		});
+		btnJugar.addActionListener(new ControladorBotonEmpezar(this, textoNombreUsuario.getText()) );
 		btnJugar.setBackground(Color.DARK_GRAY);
 		btnJugar.setForeground(Color.RED);
 		btnJugar.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -94,5 +91,9 @@ public class VentanaPrincipal extends JFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+
+	public void mostrarVentana(){
+		setVisible(true);
 	}
 }
