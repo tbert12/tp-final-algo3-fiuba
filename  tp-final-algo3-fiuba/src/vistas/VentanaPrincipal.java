@@ -2,6 +2,7 @@ package vistas;
 
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -16,7 +17,6 @@ import javax.swing.JTextField;
 import java.awt.Color;
 
 import javax.swing.border.TitledBorder;
-
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
@@ -95,5 +95,10 @@ public class VentanaPrincipal extends JFrame {
 
 	public void mostrarVentana(){
 		setVisible(true);
+	}
+
+	public void mostrarError(String string) {
+		JOptionPane.showMessageDialog(this,string,"ERROR:",JOptionPane.ERROR_MESSAGE);
+		System.exit(0);
 	}
 }
