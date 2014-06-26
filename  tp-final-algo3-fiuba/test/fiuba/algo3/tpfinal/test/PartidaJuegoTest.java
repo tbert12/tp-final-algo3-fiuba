@@ -3,9 +3,9 @@ package fiuba.algo3.tpfinal.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import modelo.BaseDeDatos;
+import modelo.Coordenadas;
 import modelo.Edificio;
 import modelo.Ladron;
 import modelo.ObjetoRobado;
@@ -34,20 +34,23 @@ public class PartidaJuegoTest {
 		Edificio Aeropuerto = new Edificio("Aeropuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
 		Edificio[] edificios = {Bolsa,Banco,Aeropuerto};
 		String nombreArg = "Buenos Aires";
-		Pais Argentina = new Pais(nombreArg,edificios);
+		Coordenadas coordenadasBuenosAires = new Coordenadas(-34.608418,-58.373161);
+		Pais Argentina = new Pais(nombreArg,edificios,coordenadasBuenosAires);
 		
 		Edificio Hotel = new Edificio("Hotel",", estaba mejorando su inglés americano");
 		Edificio BancoLDN = new Edificio("Banco","“compró dólares y llevaba un tatuaje”");
 		Edificio Muelle = new Edificio("Muelle","Fue en un crucero que tenía una bandera con estrellas");
 		Edificio[] edificiosLDN = {Hotel,BancoLDN,Muelle};
 		String nombreIng = "London";
-		Pais Inglaterra = new Pais(nombreIng,edificiosLDN);
+		Coordenadas coordenadasLondres = new Coordenadas(51.500153,-0.126236);
+		Pais Inglaterra = new Pais(nombreIng,edificiosLDN,coordenadasLondres);
 		
 		Edificio AeropuertoNY = new Edificio("Aeropuerto","Algo huele mal");
 		AeropuertoNY.setLadron();
 		Edificio[] edificiosNY = {AeropuertoNY};
 		String nombreUsa = "New York";
-		Pais Usa = new Pais(nombreUsa,edificiosNY);
+		Coordenadas coordenadasNY = new Coordenadas(40.714268,-74.005974);
+		Pais Usa = new Pais(nombreUsa,edificiosNY,coordenadasNY);
 		
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
 		unaBase = new BaseDeDatos();
@@ -72,6 +75,7 @@ public class PartidaJuegoTest {
 		unaBase.addPais(Usa);
 		unaBase.addSospechoso(unLadron);
 		
+		/*   Ex Distancias hechas con Hash
 		int DistanciaARGaING = 11128;
 		int DistanciaARGaUSA = 8526;
 		int DistanciaINGaUSA = 5570;
@@ -89,7 +93,7 @@ public class PartidaJuegoTest {
 		HashMap<String,Integer> DistanciaDesdeIng = new HashMap<String,Integer>();
 		DistanciaDesdeIng.put(nombreArg,DistanciaARGaING);
 		DistanciaDesdeIng.put(nombreUsa,DistanciaINGaUSA);
-		Inglaterra.setDistancias(DistanciaDesdeIng);
+		Inglaterra.setDistancias(DistanciaDesdeIng);*/
 		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
 		
@@ -155,35 +159,41 @@ public class PartidaJuegoTest {
 		Edificio Aeropuerto = new Edificio("Aeropuerto","se movía en auto con bandera roja y blanca");
 		Edificio[] edificiosMex = {Museo,Aeropuerto};
 		String nombreMEX = "Veracruz";
-		Pais Mexico = new Pais(nombreMEX,edificiosMex);
+		Coordenadas coordenadasMex = new Coordenadas(19.427050,-99.127571);
+		Pais Mexico = new Pais(nombreMEX,edificiosMex,coordenadasMex);
 		
 		Edificio Banco = new Edificio("Banco","Nunca vi a esa persona");
 		Edificio Muelle = new Edificio("Muelle","Por acá pasa mucha gente");
 		Edificio[] edificiosItalia = {Banco,Muelle};
 		String nombreITA = "Milan";
-		Pais Italia = new Pais(nombreITA,edificiosItalia);
+		Coordenadas coordenadasItalia = new Coordenadas(41.871941,12.567380);
+		Pais Italia = new Pais(nombreITA,edificiosItalia,coordenadasItalia);
 		
 		Edificio MuseoAUS = new Edificio("Museo","No conosco nadie así");
 		Edificio HotelAUS = new Edificio("Hotel","Por aca nada, paisanito");
 		Edificio[] edificiosAUS = {MuseoAUS,HotelAUS};
 		String nombreAUS = "Sidney";
-		Pais Australia = new Pais(nombreAUS,edificiosAUS);
+		Coordenadas coordenadasSidney = new Coordenadas(-33.867138,151.207108);
+		Pais Australia = new Pais(nombreAUS,edificiosAUS,coordenadasSidney);
 		
-		Pais USA = new Pais("USA",edificiosAUS);
+		Coordenadas coordenadasNY = new Coordenadas(40.714268,-74.005974);
+		Pais USA = new Pais("USA",edificiosAUS,coordenadasNY);
 		
 		Edificio BolsaARG = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
 		Edificio BancoARG = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
 		Edificio AeropuertoARG = new Edificio("Aeropuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
 		Edificio[] edificiosArgentina = {BolsaARG,BancoARG,AeropuertoARG};
 		String nombreArg = "Buenos Aires";
-		Pais Argentina = new Pais(nombreArg,edificiosArgentina);
+		Coordenadas coordenadasBuenosAires = new Coordenadas(-34.608418,-58.373161);
+		Pais Argentina = new Pais(nombreArg,edificiosArgentina,coordenadasBuenosAires);
 		
 		Edificio HotelLND = new Edificio("Hotel",", estaba mejorando su inglés americano");
 		Edificio BancoLDN = new Edificio("Banco","“compró dólares y llevaba un tatuaje”");
 		Edificio MuelleLND = new Edificio("Muelle","Fue en un crucero que tenía una bandera con estrellas");
 		Edificio[] edificiosLDN = {HotelLND,BancoLDN,MuelleLND};
 		String nombreIng = "London";
-		Pais Inglaterra = new Pais(nombreIng,edificiosLDN);
+		Coordenadas coordenadasLondres = new Coordenadas(51.500153,-0.126236);
+		Pais Inglaterra = new Pais(nombreIng,edificiosLDN,coordenadasLondres);
 
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.MASCULINO,Hobby.MUSICA,Cabello.RUBIO,Senia.TATUAJE,Vehiculo.MOTO);
 		unaBase = new BaseDeDatos();
@@ -220,6 +230,7 @@ public class PartidaJuegoTest {
 		unaBase.addSospechoso(unLadronSimilCaracteristicas);
 		unaBase.addSospechoso(unLadronNadaQueVer);
 		
+		/* Ex Distancias en Hash
 		int DistanciaMEXaITA = 9600;
 		int DistanciaITAaAUS = 16500;
 		int DistanciaAUSaUSA = 16000;
@@ -236,7 +247,7 @@ public class PartidaJuegoTest {
 		HashMap<String,Integer> DistanciaDesdeAUS = new HashMap<String,Integer>();
 		DistanciaDesdeAUS.put(USA.getNombre(),DistanciaAUSaUSA);
 		DistanciaDesdeAUS.put(Italia.getNombre(),DistanciaITAaAUS);
-		Australia.setDistancias(DistanciaDesdeAUS);
+		Australia.setDistancias(DistanciaDesdeAUS);*/
 		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
 		

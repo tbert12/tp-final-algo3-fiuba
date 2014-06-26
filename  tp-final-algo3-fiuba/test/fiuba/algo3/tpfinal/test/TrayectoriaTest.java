@@ -16,8 +16,8 @@ import static org.mockito.Mockito.*;
 	
 	@SuppressWarnings("unused")
 	public class TrayectoriaTest {
-		private Pais Argentina = new Pais("ARGENTINA",null);
-		private Pais Brasil = new Pais("Brasil",null);
+		private Pais Argentina = new Pais("Argentina",null,null);
+		private Pais Brasil = new Pais("Brasil",null,null);
 		
 		@Test(expected = ErrorNoHayMasPaisesParaAvanzar.class)
 		public void TrayectoriaPruebaAvanzarExcepcion() throws ErrorNoHayMasPaisesParaAvanzar{

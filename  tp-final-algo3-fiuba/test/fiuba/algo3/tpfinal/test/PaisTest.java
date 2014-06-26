@@ -3,9 +3,9 @@ package fiuba.algo3.tpfinal.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
+import modelo.Coordenadas;
 import modelo.Edificio;
 import modelo.Pais;
 
@@ -20,7 +20,8 @@ public class PaisTest {
 	private Edificio[] edificios = {biblioteca,puerto,fiuba};
 	private String nombre = "Argentina";
 	
-	private Pais UnPais = new Pais(nombre,edificios);
+	private Coordenadas coordenadasDelPais = new Coordenadas(2,2);
+	private Pais UnPais = new Pais(nombre,edificios,coordenadasDelPais);
 	
 	@Test
 	public void testElNombreDelPaisEsCorrecto() {
@@ -44,15 +45,10 @@ public class PaisTest {
 	
 	@Test
 	public void testLasDistanciasSonCorrectas(){
-		HashMap<String,Integer> Distancias = new HashMap<String,Integer>();
-		Distancias.put("ARG", 1);
-		Distancias.put("ING", 2);
-		Distancias.put("USA", 3);
-		UnPais.setDistancias(Distancias);
-		
-		assertEquals(UnPais.distanciaAPais("ARG"),1);
-		assertEquals(UnPais.distanciaAPais("ING"),2);
-		assertEquals(UnPais.distanciaAPais("USA"),3);
+		Coordenadas otrascoordenadasDelPais = new Coordenadas(0,0);
+		Pais otroPais = new Pais(nombre,edificios,otrascoordenadasDelPais);
+		int distanciaEsperada = (int) (Math.sqrt(8)*111);
+		assertEquals(UnPais.distanciaAPais(otroPais),distanciaEsperada,0);
 	}
 
 	@Test

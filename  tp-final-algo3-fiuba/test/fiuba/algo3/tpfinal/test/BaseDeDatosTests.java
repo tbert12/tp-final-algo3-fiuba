@@ -35,7 +35,7 @@ public class BaseDeDatosTests {
 	
 	public Pais crearPais(String Nombre){
 		Edificio[] Edificios = {new Edificio("Lugarde"+Nombre,"Pistade"+Nombre)};
-		Pais unPais = new Pais(Nombre,Edificios);
+		Pais unPais = new Pais(Nombre,Edificios,null);
 		return unPais;
 	}
 	
@@ -129,7 +129,7 @@ public class BaseDeDatosTests {
 		Assert.assertTrue( PaisesDestino.contains(Cuba) );
 		Assert.assertTrue( PaisesDestino.contains(Peru) );
 		Assert.assertTrue( PaisesDestino.contains(Rusia) );
-		//TODO No Pasa Esta
+		
 		Assert.assertFalse( PaisesDestino.contains(Argentina) );
 		Assert.assertFalse( PaisesDestino.contains(Argelia) );
 		Assert.assertFalse( PaisesDestino.contains(Alemania) );

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import modelo.BaseDeDatos;
+import modelo.Coordenadas;
 import modelo.Edificio;
 import modelo.Ladron;
 import modelo.ObjetoRobado;
@@ -81,7 +82,8 @@ public class PartidaTest {
 	
 	private Pais crearPais(String Nombre){
 		Edificio[] Edificios = {new Edificio("Lugarde"+Nombre,"Pistade"+Nombre),new Edificio("2Lugarde"+Nombre,"2Pistade"+Nombre)};
-		Pais unPais = new Pais(Nombre,Edificios);
+		Coordenadas coordenadaPais = new Coordenadas(0,0);
+		Pais unPais = new Pais(Nombre,Edificios,coordenadaPais);
 		return unPais;
 	}
 	
