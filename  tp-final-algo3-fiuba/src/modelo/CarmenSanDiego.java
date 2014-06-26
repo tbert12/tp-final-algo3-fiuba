@@ -141,6 +141,9 @@ public  class CarmenSanDiego {
 		return archivoExiste(nombreArchivoLadrones);
 	}
 
-	
+	public Partida getPartida(){
+		return this.unaPartida;
 	}
+	
+}
 
