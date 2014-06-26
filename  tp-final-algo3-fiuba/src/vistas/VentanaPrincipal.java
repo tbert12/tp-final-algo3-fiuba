@@ -22,8 +22,6 @@ import javax.swing.ImageIcon;
 import modelo.Juego;
 import control.ControladorBotonEmpezar;
 
-import java.awt.Toolkit;
-
 public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -36,7 +34,6 @@ public class VentanaPrincipal extends JFrame {
 		
 		this.unJuego = unJuego;
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaTimeThumb.png")));
 		setVisible(false);
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

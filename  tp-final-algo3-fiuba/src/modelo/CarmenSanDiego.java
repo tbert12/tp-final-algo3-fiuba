@@ -124,7 +124,7 @@ public  class CarmenSanDiego {
 		liststadoPolicias.add(unPolicia);//En todo caso, agrego el policia nuevo
 		return unPolicia;
 	}
-	public Policia IniciarJugador(String unNombre){
+	public Policia iniciarJugador(String unNombre){
 		return VerSiJugadorYaJugo(unNombre);
 	}
 	private Boolean archivoExiste(String nombreArchivo){
@@ -146,8 +146,22 @@ public  class CarmenSanDiego {
 	}
 
 	public void iniciarPartida(String string) {
-		// TODO Auto-generated method stub
 		
+		Policia unPoli = iniciarJugador(string);
+		BaseDeDatos UnaBase = crearBaseDeDatos();
+		Ladron unLadron = levantarLadronAdecuado();
+		ObjetoRobado unObjeto = getObjetoRobado();
+		
+		unaPartida = new Partida(unPoli,unLadron,UnaBase,unObjeto);
+		
+	}
+
+	private BaseDeDatos crearBaseDeDatos() {
+		BaseDeDatos unaBase = new BaseDeDatos();
+		unaBase.addListaSospechosos((ArrayList<Ladron>)listadoLadrones);
+		//levantar los paises
+		//unaBase.addListaPaises(listadoPaises);
+		return unaBase;
 	}
 	
 }

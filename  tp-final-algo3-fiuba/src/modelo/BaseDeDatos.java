@@ -14,6 +14,13 @@ public class BaseDeDatos {
 	public void addSospechoso(Ladron ladron){
 		this.Ladrones.add(ladron);
 	}
+	public void addListaPaises(ArrayList<Pais> paises){
+		Paises = paises;
+	}
+	
+	public void addListaSospechosos(ArrayList<Ladron> ladrones){
+		Ladrones = ladrones;
+	}
 	
 	public void addPais(Pais pais){
 		this.Paises.add(pais);

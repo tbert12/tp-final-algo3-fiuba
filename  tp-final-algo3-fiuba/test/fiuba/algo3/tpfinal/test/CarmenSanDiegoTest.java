@@ -105,7 +105,7 @@ public void CarmenIniciaJugadorQueNoExiste() throws ClassNotFoundException, NoSu
 	CarmenSanDiego Carmen = new CarmenSanDiego();
 	Policia policiaBase = new Policia("El Tito",0);
 	Assert.assertFalse(Carmen.policiaEstaEnJuego(policiaBase));
-	Policia policiaAIniciar = Carmen.IniciarJugador("El Tito");
+	Policia policiaAIniciar = Carmen.iniciarJugador("El Tito");
 	Assert.assertTrue(policiaAIniciar.equals(policiaBase));
 }
 }
