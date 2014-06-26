@@ -8,12 +8,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import vistas.VentanaPrincipal;
+import vistas.VistaPartida;
 
 public class Juego {
 	
 	CarmenSanDiego carmen;
 	VentanaPrincipal ventanaPrincipal;
 	PartidaObservable partidaObservable;
+	VistaPartida vistaPartida;
 	
 	public Juego(){
 		
@@ -38,8 +40,10 @@ public class Juego {
 	
 	public void iniciarPartida(String string){
 		
-		carmen.iniciarPartida(string);
+		//carmen.iniciarPartida(string);
 		Partida partida = carmen.getPartida();
 		partidaObservable = new PartidaObservable(partida);
+		vistaPartida = new VistaPartida(partidaObservable);
 	}
+	
 }

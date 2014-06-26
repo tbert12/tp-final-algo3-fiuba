@@ -144,7 +144,7 @@ public  class CarmenSanDiego {
 	public Partida getPartida(){
 		return this.unaPartida;
 	}
-
+    /*
 	public void iniciarPartida(String string) {
 		
 		Policia unPoli = iniciarJugador(string);
@@ -159,10 +159,10 @@ public  class CarmenSanDiego {
 	private BaseDeDatos crearBaseDeDatos() {
 		BaseDeDatos unaBase = new BaseDeDatos();
 		unaBase.addListaSospechosos((ArrayList<Ladron>)listadoLadrones);
-		//levantar los paises
-		//unaBase.addListaPaises(listadoPaises);
+		levantar los paises
+		unaBase.addListaPaises(listadoPaises);
 		return unaBase;
-	}
+	}*/
 	
 }
 
