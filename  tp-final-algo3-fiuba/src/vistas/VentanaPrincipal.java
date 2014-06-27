@@ -33,7 +33,31 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal(Juego unJuego) {
 		
 		this.unJuego = unJuego;
+		crearVentana();
 		
+	}
+
+	public void mostrarVentana(){
+		setVisible(true);
+	}
+	
+	public void ocultarVentana(){
+		setVisible(false);
+	}
+	
+	public String getTexto(){
+		return textoNombreUsuario.getText();
+	}
+
+	public void mostrarErrorFinal(String string) {
+		JOptionPane.showMessageDialog(this,string,"ERROR:",JOptionPane.ERROR_MESSAGE);
+		System.exit(0);
+	}
+	public void mostrarError(String string) {
+		JOptionPane.showMessageDialog(this,string,"ERROR:",JOptionPane.ERROR_MESSAGE);
+	}
+	
+	private void crearVentana(){
 		setVisible(false);
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,7 +87,7 @@ public class VentanaPrincipal extends JFrame {
 		label.setFont(new Font("Stencil", Font.PLAIN, 50));
 		
 		JLabel lblIconocs = new JLabel("IconoCS");
-		lblIconocs.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/carmen_san_diego_1.png")));
+		lblIconocs.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/LogoInicio.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -96,21 +120,5 @@ public class VentanaPrincipal extends JFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
-	}
-
-	public void mostrarVentana(){
-		setVisible(true);
-	}
-	
-	public String getTexto(){
-		return textoNombreUsuario.getText();
-	}
-
-	public void mostrarErrorFinal(String string) {
-		JOptionPane.showMessageDialog(this,string,"ERROR:",JOptionPane.ERROR_MESSAGE);
-		System.exit(0);
-	}
-	public void mostrarError(String string) {
-		JOptionPane.showMessageDialog(this,string,"ERROR:",JOptionPane.ERROR_MESSAGE);
 	}
 }

@@ -46,13 +46,16 @@ public class Juego {
 		//carmen.iniciarPartida(string);
 		//Partida partida = carmen.getPartida();
 		
-		/* BORRAR DE ACA -> */
+		//" BORRAR DE ACA -> "/
 		_SimuladorCrearPartida Simulador = new _SimuladorCrearPartida();
 		Partida partida = Simulador.crearPartida();
-		/* <- HASTA	ACA */	
-				
+		//" <- HASTA	ACA"/	
+		
 		partidaObservable = new PartidaObservable(partida);
 		vistaPartida = new VistaPartida(partidaObservable);
+				
+		ventanaPrincipal.ocultarVentana();
+		vistaPartida.mostrarVentana();
 	}
 	
 }
