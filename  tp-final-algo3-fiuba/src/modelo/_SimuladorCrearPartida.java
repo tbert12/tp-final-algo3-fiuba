@@ -178,8 +178,6 @@ public class _SimuladorCrearPartida {
 		
 		//Creo Policia
 		Policia unPolicia = new Policia("Javier",0);
-		Tiempo unTiempo = new Tiempo(147);
-		unPolicia.setTiempo(unTiempo);
 		//Creo Objeto
 		ObjetoRobado unObjetoRobado = new ObjetoRobado("Reservas del Banco","Valioso");
 		

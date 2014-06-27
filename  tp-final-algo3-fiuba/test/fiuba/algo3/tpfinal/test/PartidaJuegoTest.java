@@ -12,7 +12,6 @@ import modelo.ObjetoRobado;
 import modelo.Pais;
 import modelo.Partida;
 import modelo.Policia;
-import modelo.Tiempo;
 import modelo.Trayectoria;
 import modelo.caracteristicas.*;
 import modelo.excepcion.ErrorElPaisNoEsta;
@@ -67,8 +66,6 @@ public class PartidaJuegoTest {
 		unLadron.addTrayectoria(trayecto);
 		
 		unPolicia = new Policia("Tylen Perez",0);
-		Tiempo UnTiempo = new Tiempo(154);
-		unPolicia.setTiempo(UnTiempo);
 		
 		unaBase.addPais(Argentina);
 		unaBase.addPais(Inglaterra);
@@ -216,8 +213,6 @@ public class PartidaJuegoTest {
 		unLadron.addTrayectoria(trayecto);
 		
 		unPolicia = new Policia("Pedraza",0);
-		Tiempo UnTiempo = new Tiempo(147);
-		unPolicia.setTiempo(UnTiempo);
 		
 		unaBase.addPais(Argentina);
 		unaBase.addPais(Inglaterra);

@@ -20,6 +20,7 @@ public class Policia  {
 	private Ladron Sospechoso;
 
 	//Constantes
+	private final int TiempoLimiteEnHoras = 154;
 	private final int HorasADormir = 8;
 	private final int LimiteHorasDespierto = 15;
 	private final int HorasPorFiltracion = 3;
@@ -32,7 +33,9 @@ public class Policia  {
 		this.CantidadDeArrestos = CantidadDeArrestos;
 		this.Sospechoso = null;
 		this.Rango = new RangoNovato();
+		setTiempo();
 		chequeoDeRango();
+		
 		
 	}
 
@@ -43,8 +46,8 @@ public class Policia  {
 		return this.Rango;
 	}
 	
-	public void setTiempo(Tiempo tiempo){
-		this.Tiempo = tiempo;
+	private void setTiempo(){
+		this.Tiempo = new Tiempo(this.TiempoLimiteEnHoras);
 	}
 	public void setSospechoso(Ladron UnLadron){
 		Sospechoso = UnLadron;

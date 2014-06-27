@@ -12,7 +12,6 @@ import modelo.ObjetoRobado;
 import modelo.Pais;
 import modelo.Partida;
 import modelo.Policia;
-import modelo.Tiempo;
 import modelo.Trayectoria;
 import modelo.caracteristicas.Cabello;
 import modelo.caracteristicas.Caracteristicas;
@@ -26,7 +25,6 @@ import org.junit.Test;
 
 public class PartidaTest {
 	private Policia UnPolicia;
-	private Tiempo UnTiempo;
 	private BaseDeDatos UnaBaseDeDatos;
 	private Ladron UnLadron;
 	private ObjetoRobado UnObjeto;
@@ -35,8 +33,6 @@ public class PartidaTest {
 	
 	private void CrearDatos(){
 		UnPolicia = new Policia("Gorgori",0);
-		UnTiempo = new Tiempo(200);
-		UnPolicia.setTiempo(UnTiempo);
 		UnaBaseDeDatos = new BaseDeDatos();
 		UnObjeto = new ObjetoRobado("Pintura","muy valioso");
 		
