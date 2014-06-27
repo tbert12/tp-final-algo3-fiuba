@@ -3,11 +3,11 @@ package vistas;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JPanel;
+import javax.swing.JFrame;
 
 import modelo.PartidaObservable;
 
-public class VistaPartida extends JPanel implements Observer {
+public class VistaPartida extends JFrame implements Observer {
 
 	private static final long serialVersionUID = 1L;
 	protected PartidaObservable partida;

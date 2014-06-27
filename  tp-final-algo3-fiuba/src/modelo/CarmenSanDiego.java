@@ -20,10 +20,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-
-
-
-
 public  class CarmenSanDiego {
 	private static String nombreArchivoPolicias = "RegistroPolicias.xml";
 	private static String nombreArchivoLadrones = "RegistroLadrones.xml";
@@ -153,7 +149,7 @@ public  class CarmenSanDiego {
 		ObjetoRobado unObjeto = getObjetoRobado();
 		
 		unaPartida = new Partida(unPoli,unLadron,UnaBase,unObjeto);
-		
+	
 	}
 
 	private BaseDeDatos crearBaseDeDatos() {
