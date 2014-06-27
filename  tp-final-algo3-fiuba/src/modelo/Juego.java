@@ -10,6 +10,9 @@ import org.xml.sax.SAXException;
 import vistas.VentanaPrincipal;
 import vistas.VistaPartida;
 
+
+
+
 public class Juego {
 	
 	CarmenSanDiego carmen;
@@ -41,7 +44,13 @@ public class Juego {
 	public void iniciarPartida(String string){
 		
 		//carmen.iniciarPartida(string);
-		Partida partida = carmen.getPartida();
+		//Partida partida = carmen.getPartida();
+		
+		/* BORRAR DE ACA -> */
+		_SimuladorCrearPartida Simulador = new _SimuladorCrearPartida();
+		Partida partida = Simulador.crearPartida();
+		/* <- HASTA	ACA */	
+				
 		partidaObservable = new PartidaObservable(partida);
 		vistaPartida = new VistaPartida(partidaObservable);
 	}
