@@ -16,6 +16,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 
+
+
 import modelo.PartidaObservable;
 
 public class VistaPartida extends JFrame implements Observer {
@@ -23,7 +25,7 @@ public class VistaPartida extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
 	protected PartidaObservable partida;
 	private JPanel PanelGeneral;
-	private String RutaImagenPais;
+	private String RutaImagenPais = "/vistas/imagenes/paises/";
 	private String HorasTiempo;
 	private String NombrePaisActual;
 
@@ -62,7 +64,7 @@ public class VistaPartida extends JFrame implements Observer {
 		PanelGeneral.setLayout(null);
 		
 		JLabel ImagenPais = new JLabel("");
-		ImagenPais.setIcon(new ImageIcon("/vistas/imagenes/paises/"+ this.NombrePaisActual +".jpg"));
+		ImagenPais.setIcon(new ImageIcon(VentanaPrincipal.class.getResource(this.RutaImagenPais + this.NombrePaisActual +".jpg")));
 		ImagenPais.setBounds(10, 92, 274, 376);
 		PanelGeneral.add(ImagenPais);
 		
@@ -128,8 +130,9 @@ public class VistaPartida extends JFrame implements Observer {
 		
 		JLabel FondoConImagen = new JLabel("");
 		FondoConImagen.setForeground(new Color(255, 255, 255));
-		FondoConImagen.setIcon(new ImageIcon("/vistas/imagenes/Fondo.png"));
+		FondoConImagen.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/Fondo.png")));
 		FondoConImagen.setBounds(0, 0, 640, 480);
 		PanelGeneral.add(FondoConImagen);
 	}
+	
 }
