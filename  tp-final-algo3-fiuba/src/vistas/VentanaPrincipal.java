@@ -70,7 +70,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		textoNombreUsuario = new JTextField();
 		textoNombreUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-		textoNombreUsuario.setFont(new Font("Virtual DJ", Font.PLAIN, 18));
+		textoNombreUsuario.setFont(new Font("Stencil", Font.PLAIN, 18));
 		textoNombreUsuario.setColumns(10);
 		
 		JButton btnJugar = new JButton("Jugar");
