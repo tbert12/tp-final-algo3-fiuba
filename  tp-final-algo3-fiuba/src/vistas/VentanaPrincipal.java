@@ -4,12 +4,9 @@ package vistas;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -25,7 +22,7 @@ import control.ControladorBotonEmpezar;
 public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel MenuInicial;
 	private JTextField textoNombreUsuario;
 	private Juego unJuego;
 
@@ -59,66 +56,45 @@ public class VentanaPrincipal extends JFrame {
 	
 	private void crearVentana(){
 		setVisible(false);
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Tomi\\Dropbox\\Java\\Fiuba-Algo3-Tp2\\src\\vistas\\imagenes\\icono.png"));
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.BLACK);
-		contentPane.setForeground(Color.BLACK);
-		contentPane.setBorder(null);
-		setContentPane(contentPane);
+		MenuInicial = new JPanel();
+		MenuInicial.setBackground(Color.BLACK);
+		MenuInicial.setForeground(Color.BLACK);
+		MenuInicial.setBorder(null);
+		setContentPane(MenuInicial);
 		
 		textoNombreUsuario = new JTextField();
+		textoNombreUsuario.setBounds(193, 353, 244, 33);
 		textoNombreUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		textoNombreUsuario.setFont(new Font("Stencil", Font.PLAIN, 18));
 		textoNombreUsuario.setColumns(10);
 		
-		JButton btnJugar = new JButton("Jugar");
-		btnJugar.addActionListener(new ControladorBotonEmpezar(this,this.unJuego) );
-		btnJugar.setBackground(Color.DARK_GRAY);
-		btnJugar.setForeground(Color.RED);
-		btnJugar.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnJugar.setFont(new Font("Stencil", Font.PLAIN, 23));
+		JButton BotonJugar = new JButton("Jugar");
+		BotonJugar.setBounds(193, 404, 244, 37);
+		BotonJugar.addActionListener(new ControladorBotonEmpezar(this,this.unJuego) );
+		BotonJugar.setBackground(Color.DARK_GRAY);
+		BotonJugar.setForeground(Color.RED);
+		BotonJugar.setVerticalAlignment(SwingConstants.BOTTOM);
+		BotonJugar.setFont(new Font("Stencil", Font.PLAIN, 23));
 		
-		JLabel label = new JLabel("Carmen Sandiego");
-		label.setHorizontalTextPosition(SwingConstants.LEADING);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.RED);
-		label.setFont(new Font("Stencil", Font.PLAIN, 50));
+		JLabel Titulo = new JLabel("Carmen Sandiego");
+		Titulo.setBounds(10, 11, 614, 107);
+		Titulo.setHorizontalTextPosition(SwingConstants.LEADING);
+		Titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo.setForeground(Color.RED);
+		Titulo.setFont(new Font("Stencil", Font.PLAIN, 50));
 		
-		JLabel lblIconocs = new JLabel("IconoCS");
-		lblIconocs.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/LogoInicio.png")));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(193)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(btnJugar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(textoNombreUsuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
-					.addContainerGap(187, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addContainerGap(219, Short.MAX_VALUE)
-					.addComponent(lblIconocs, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
-					.addGap(213))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(label, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(label, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblIconocs)
-					.addGap(29)
-					.addComponent(textoNombreUsuario, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnJugar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		contentPane.setLayout(gl_contentPane);
+		JLabel IconoImagen = new JLabel("IconoCS");
+		IconoImagen.setBounds(229, 124, 192, 200);
+		IconoImagen.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/LogoInicio.png")));
+		MenuInicial.setLayout(null);
+		MenuInicial.add(BotonJugar);
+		MenuInicial.add(textoNombreUsuario);
+		MenuInicial.add(IconoImagen);
+		MenuInicial.add(Titulo);
 	}
 }
