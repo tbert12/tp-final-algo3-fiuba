@@ -17,13 +17,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 
-
-
-
 import vistas.relojdigital.RelojDigital;
 import modelo.PartidaObservable;
-
-import java.awt.Component;
 
 public class VistaPartida extends JFrame implements Observer {
 
