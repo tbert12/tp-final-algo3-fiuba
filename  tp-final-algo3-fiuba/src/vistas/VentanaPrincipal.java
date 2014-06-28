@@ -5,19 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-
 import java.awt.Color;
-
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-
 import modelo.Juego;
 import control.ControladorBotonEmpezar;
 
@@ -60,8 +54,6 @@ public class VentanaPrincipal extends JFrame {
 		setVisible(false);
 		setTitle("Carmen SanDiego");
 		setResizable(false);
-		Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation((pantallaTamano.width/2)-(this.getWidth()/2), (pantallaTamano.height/2)-(this.getHeight()/2)); 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/vistas/imagenes/icono.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
