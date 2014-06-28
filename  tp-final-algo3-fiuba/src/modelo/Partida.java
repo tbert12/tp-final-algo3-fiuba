@@ -116,8 +116,9 @@ public class Partida {
 		listadoCosas.add(elementoPartida.getAttribute("NombrePolicia"));
 		listadoCosas.add(elementoPartida.getAttribute("NombreLadron"));
 		listadoCosas.add(ObjetoACargar);
-		return listadoCosas;
-		
+		return listadoCosas; //Devuelve en pos 0, el nombre del cana
+							//Pos 1 el nombre del chorro
+							//Pos 2 el objeto robado
 	}
 	
 }

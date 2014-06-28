@@ -4,6 +4,10 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import modelo.BaseDeDatos;
 import modelo.Coordenadas;
 import modelo.Edificio;
@@ -21,7 +25,11 @@ import modelo.caracteristicas.Sexo;
 import modelo.caracteristicas.Vehiculo;
 import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 
+import org.junit.Assert;
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public class PartidaTest {
 	private Policia UnPolicia;
@@ -121,5 +129,19 @@ public class PartidaTest {
 		
 		assertEquals(UnaPista, UnEdificio.visitar(UnPolicia));
 		
+	}
+	@Test
+	public void testHidratarPartidaDevuelveCosasBien() throws ParserConfigurationException{
+		CrearDatos();
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document doc = db.newDocument();
+		Element partidaSerializada = UnaPartida.serializar(doc);
+		doc.appendChild(partidaSerializada);
+		Node nodoPartida = doc.getFirstChild();
+		ArrayList<Object> datosPartida = Partida.hidratar(nodoPartida);
+		Assert.assertTrue(((String)datosPartida.get(0)).equals(UnPolicia.getNombre()));
+		Assert.assertTrue(((String)datosPartida.get(1)).equals(UnLadron.getNombre()));
+		Assert.assertTrue(((ObjetoRobado)datosPartida.get(2)).equals(UnObjeto));
 	}
 }
