@@ -55,15 +55,8 @@ public class PartidaObservable extends Observable {
 		return PistaActual;
 	}
 	
-	public ArrayList<String> getPaisesAViajar(){
-		ArrayList<String> NombresPaises = new ArrayList<String>();
-		Iterator<Pais> iterador = PosiblesPaisesAViajar.iterator();
-		
-		while(iterador.hasNext()){
-			Pais UnPais = iterador.next();
-			NombresPaises.add(UnPais.getNombre());
-		}
-		return NombresPaises;
+	public ArrayList<Pais> getPaisesAViajar(){
+		return PosiblesPaisesAViajar;
 	}
 	
 	public String getPaisActual(){

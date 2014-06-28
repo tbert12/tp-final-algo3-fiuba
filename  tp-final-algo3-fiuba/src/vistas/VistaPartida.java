@@ -16,15 +16,21 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-
+import vistas.paneles.PanelViajar;
 import vistas.relojdigital.RelojDigital;
 import modelo.PartidaObservable;
+
+import control.ControladorBotonViajar;
 
 public class VistaPartida extends JFrame implements Observer {
 
 	private static final long serialVersionUID = 1L;
-	protected PartidaObservable partida;
+	
+	private PartidaObservable partida;
+	
 	private JPanel PanelGeneral;
+	private PanelViajar panelMenuParaViajar;
+	
 	private String RutaImagenPais = "/vistas/imagenes/paises/";
 	private String HorasTiempo;
 	private String NombrePaisActual;
@@ -34,10 +40,10 @@ public class VistaPartida extends JFrame implements Observer {
 	public VistaPartida(PartidaObservable partida) {
 			this.partida = partida;
 			this.partida.addObserver(this);
-			
+			PanelGeneral = new JPanel();
 			HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante());
 			NombrePaisActual = partida.getPaisActual();
-			
+			panelMenuParaViajar = new PanelViajar(PanelGeneral,partida);
 			crearVentana();
 	}
 
@@ -60,11 +66,9 @@ public class VistaPartida extends JFrame implements Observer {
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 642, 513);
-		PanelGeneral = new JPanel();
 		PanelGeneral.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(PanelGeneral);
 		PanelGeneral.setLayout(null);
-		
 		JLabel ImagenPais = new JLabel("");
 		ImagenPais.setIcon(new ImageIcon(VentanaPrincipal.class.getResource(this.RutaImagenPais + this.NombrePaisActual +".jpg")));
 		ImagenPais.setBounds(10, 92, 274, 376);
@@ -110,6 +114,7 @@ public class VistaPartida extends JFrame implements Observer {
 		BotonViajar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarNormal.png")));
 		BotonViajar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarApretado.png")));
 		BotonViajar.setBounds(555, 403, 80, 77);
+		BotonViajar.addActionListener(new ControladorBotonViajar(this,this.partida));
 		PanelGeneral.add(BotonViajar);
 		
 		JButton BotonFiltrar = new JButton("Filtrar");
@@ -127,5 +132,10 @@ public class VistaPartida extends JFrame implements Observer {
 		FondoConImagen.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/Fondo.png")));
 		FondoConImagen.setBounds(0, 0, 640, 480);
 		PanelGeneral.add(FondoConImagen);
+	}
+
+
+	public void MostrarPaisesParaViajar() {
+		panelMenuParaViajar.mostrarPanel();	
 	}
 }
