@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,8 +19,10 @@ import javax.swing.border.EmptyBorder;
 
 
 
+
+import vistas.relojdigital.RelojDigital;
 import modelo.PartidaObservable;
-import javax.swing.JTextPane;
+
 import java.awt.Component;
 
 public class VistaPartida extends JFrame implements Observer {
@@ -30,14 +33,15 @@ public class VistaPartida extends JFrame implements Observer {
 	private String RutaImagenPais = "/vistas/imagenes/paises/";
 	private String HorasTiempo;
 	private String NombrePaisActual;
+	private RelojDigital Reloj = new RelojDigital();
 
 	
 	public VistaPartida(PartidaObservable partida) {
 			this.partida = partida;
 			this.partida.addObserver(this);
 			
-			HorasTiempo = "Lunes, 12:00hs";
-			NombrePaisActual = "Buenos Aires";
+			HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante());
+			NombrePaisActual = partida.getPaisActual();
 			
 			crearVentana();
 	}
@@ -45,7 +49,7 @@ public class VistaPartida extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		HorasTiempo = Integer.toString(partida.getTiempoRestante()); //pasar el entero a forma correcta
+		HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante()); //pasar el entero a forma correcta
 		NombrePaisActual = partida.getPaisActual();
 	
 	}
@@ -56,7 +60,7 @@ public class VistaPartida extends JFrame implements Observer {
 	
 	private void crearVentana(){
 		setVisible(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Tomi\\Dropbox\\Java\\Fiuba-Algo3-Tp2\\src\\vistas\\imagenes\\icono.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaPartida.class.getResource("/vistas/imagenes/icono.png")));
 		setResizable(false);
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,11 +90,8 @@ public class VistaPartida extends JFrame implements Observer {
 		PanelGeneral.add(Tiempo);
 		
 		JLabel LabelInformacion = new JLabel("<html> INFORMACION PARA MOSTRAR:\r\n - Pistas.\r\n -Posibles Ladrones.\r\n -Orden de Arresto Emitida.\r\n -Info del Pais.\r\n -Si gano o Perdio.\r\nEntrar 384 chars</html>");
-		LabelInformacion.setHorizontalAlignment(SwingConstants.LEFT);
-		LabelInformacion.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		LabelInformacion.setVerticalTextPosition(SwingConstants.TOP);
 		LabelInformacion.setVerticalAlignment(SwingConstants.TOP);
-		LabelInformacion.setToolTipText("");
 		LabelInformacion.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
 		LabelInformacion.setForeground(new Color(255, 255, 255));
 		LabelInformacion.setBounds(310, 24, 307, 213);
@@ -100,10 +101,8 @@ public class VistaPartida extends JFrame implements Observer {
 		BotonInvestigar.setFocusPainted(false);
 		BotonInvestigar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonInvestigar.setBorderPainted(false);
-		BotonInvestigar.setRolloverSelectedIcon(null);
 		BotonInvestigar.setMargin(new Insets(3, 28, 0, 10));
 		BotonInvestigar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigar.png")));
-		BotonInvestigar.setSelectedIcon(null);
 		BotonInvestigar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigarApretado.png")));
 		BotonInvestigar.setBounds(428, 403, 80, 77);
 		PanelGeneral.add(BotonInvestigar);
@@ -112,10 +111,8 @@ public class VistaPartida extends JFrame implements Observer {
 		BotonViajar.setFocusPainted(false);
 		BotonViajar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonViajar.setBorderPainted(false);
-		BotonViajar.setRolloverSelectedIcon(null);
 		BotonViajar.setMargin(new Insets(3, 28, 0, 10));
 		BotonViajar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarNormal.png")));
-		BotonViajar.setSelectedIcon(null);
 		BotonViajar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarApretado.png")));
 		BotonViajar.setBounds(555, 403, 80, 77);
 		PanelGeneral.add(BotonViajar);
@@ -124,11 +121,9 @@ public class VistaPartida extends JFrame implements Observer {
 		BotonFiltrar.setFocusPainted(false);
 		BotonFiltrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonFiltrar.setBorderPainted(false);
-		BotonFiltrar.setRolloverSelectedIcon(null);
 		BotonFiltrar.setMargin(new Insets(3, 28, 0, 10));
-		BotonFiltrar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/icono.png")));
-		BotonFiltrar.setSelectedIcon(null);
-		BotonFiltrar.setRolloverIcon(null);
+		BotonFiltrar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarNormal.png")));
+		BotonFiltrar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarApretado.png")));
 		BotonFiltrar.setBounds(298, 403, 80, 77);
 		PanelGeneral.add(BotonFiltrar);
 		
