@@ -23,8 +23,10 @@ import org.xml.sax.SAXException;
 public  class CarmenSanDiego {
 	private static String nombreArchivoPolicias = "RegistroPolicias.xml";
 	private static String nombreArchivoLadrones = "RegistroLadrones.xml";
-	private static List<Policia> liststadoPolicias = new ArrayList<Policia>();
+	private static String nombreArchivoPaises = "RegistroPaises.xml";
+	private static List<Policia> listadoPolicias = new ArrayList<Policia>();
 	private static List<Ladron> listadoLadrones = new ArrayList<Ladron>();
+	private static List<Pais> listadoPaises = new ArrayList<Pais>();
 	private Partida unaPartida;
 	
 	public  CarmenSanDiego() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
@@ -67,8 +69,11 @@ public  class CarmenSanDiego {
 		}
 	}
 	public void levantarPoliciasDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-	liststadoPolicias = levantarAlgoDelXML(nombreArchivoPolicias, Policia.class,liststadoPolicias);
+		levantarAlgoDelXML(nombreArchivoPolicias, Policia.class,listadoPolicias);
 	
+	}
+	public void levantarPaisesDelXML() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
+		levantarAlgoDelXML(nombreArchivoPaises, Pais.class, listadoPaises);
 	}
 	
 	public void levantarLadronesDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
@@ -90,14 +95,14 @@ public  class CarmenSanDiego {
 		transformer.transform(source, result);
 	}
 	public void bajarPoliciasAXML() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		bajarObjetoAXML(nombreArchivoPolicias, liststadoPolicias, Policia.class);
+		bajarObjetoAXML(nombreArchivoPolicias, listadoPolicias, Policia.class);
 		}
 	public void bajarLadronesAXML() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		bajarObjetoAXML(nombreArchivoLadrones, listadoLadrones,Ladron.class);
 	}
 
 	public void agregarPolicia(Policia unPolicia){
-		liststadoPolicias.add(unPolicia);
+		listadoPolicias.add(unPolicia);
 	}
 	public void agregarLadron(Ladron unLadron){
 		listadoLadrones.add(unLadron);
@@ -106,18 +111,18 @@ public  class CarmenSanDiego {
 		return listadoLadrones.contains(unLadron);
 	}
 	public Boolean policiaEstaEnJuego(Policia unPolicia){
-		return liststadoPolicias.contains(unPolicia);
+		return listadoPolicias.contains(unPolicia);
 	}
 	
 	private Policia VerSiJugadorYaJugo(String unNombre){
 		Policia unPolicia = new Policia(unNombre, 0);//Lo creo de antemano para poder hacer el .equals()
-		for (Policia policia: liststadoPolicias){
+		for (Policia policia: listadoPolicias){
 			if (unPolicia.equals(policia)){
 				unPolicia = policia;
 				return unPolicia;//Devuelvo el policia que ya estaba en el listado
 			}
 		}
-		liststadoPolicias.add(unPolicia);//En todo caso, agrego el policia nuevo
+		listadoPolicias.add(unPolicia);//En todo caso, agrego el policia nuevo
 		return unPolicia;
 	}
 	public Policia iniciarJugador(String unNombre){
