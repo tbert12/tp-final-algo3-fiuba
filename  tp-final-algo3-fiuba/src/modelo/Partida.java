@@ -1,6 +1,11 @@
 package modelo;
 
 import java.util.ArrayList;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 import modelo.caracteristicas.*;
 
 public class Partida {
@@ -91,6 +96,22 @@ public class Partida {
 
 	public int tiempoRestante() {
 		return UnPolicia.getTiempo();
+	}
+	public Element serializar(Document doc){
+		Element elementoPartida = doc.createElement("Partida");
+		elementoPartida.setAttribute("NombrePolicia",UnPolicia.getNombre());
+		elementoPartida.setAttribute("NombreLadron",UnLadron.getNombre());
+		Element elementoObjeto = doc.createElement("Objeto");
+		elementoObjeto = ObjetoRobado.serializar(doc);
+		elementoPartida.appendChild(elementoObjeto);
+		return elementoPartida;
+		
+	}
+	public static Partida hidratar(Node nodo){
+		Element elementoPartida = (Element)nodo;
+		//TODO terminar esto
+		return null;
+		
 	}
 	
 }
