@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 
@@ -57,9 +58,11 @@ public class VentanaPrincipal extends JFrame {
 	
 	private void crearVentana(){
 		setVisible(false);
+		setTitle("Carmen SanDiego");
 		setResizable(false);
+		Dimension pantallaTamano = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation((pantallaTamano.width/2)-(this.getWidth()/2), (pantallaTamano.height/2)-(this.getHeight()/2)); 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/vistas/imagenes/icono.png")));
-		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		MenuInicial = new JPanel();
@@ -67,6 +70,7 @@ public class VentanaPrincipal extends JFrame {
 		MenuInicial.setForeground(Color.BLACK);
 		MenuInicial.setBorder(null);
 		setContentPane(MenuInicial);
+		setLocationRelativeTo(null);
 		
 		//controlador
 		final ControladorBotonEmpezar control = new ControladorBotonEmpezar(this,this.unJuego);
