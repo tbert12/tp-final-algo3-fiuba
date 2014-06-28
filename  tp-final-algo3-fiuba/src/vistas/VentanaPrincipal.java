@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 
@@ -57,7 +58,7 @@ public class VentanaPrincipal extends JFrame {
 	private void crearVentana(){
 		setVisible(false);
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Tomi\\Dropbox\\Java\\Fiuba-Algo3-Tp2\\src\\vistas\\imagenes\\icono.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/vistas/imagenes/icono.png")));
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
@@ -67,15 +68,30 @@ public class VentanaPrincipal extends JFrame {
 		MenuInicial.setBorder(null);
 		setContentPane(MenuInicial);
 		
+		//controlador
+		final ControladorBotonEmpezar control = new ControladorBotonEmpezar(this,this.unJuego);
+		
 		textoNombreUsuario = new JTextField();
 		textoNombreUsuario.setBounds(193, 353, 244, 33);
 		textoNombreUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		textoNombreUsuario.setFont(new Font("Stencil", Font.PLAIN, 18));
 		textoNombreUsuario.setColumns(10);
+		textoNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent e) {
+                if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
+                	control.actionPerformed(null);
+                }
+             }
+          });
 		
 		JButton BotonJugar = new JButton("Jugar");
 		BotonJugar.setBounds(193, 404, 244, 37);
-		BotonJugar.addActionListener(new ControladorBotonEmpezar(this,this.unJuego) );
+		BotonJugar.addActionListener( control );
+		BotonJugar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent e) {
+               control.actionPerformed(null);
+            }
+         });
 		BotonJugar.setBackground(Color.DARK_GRAY);
 		BotonJugar.setForeground(Color.RED);
 		BotonJugar.setVerticalAlignment(SwingConstants.BOTTOM);
