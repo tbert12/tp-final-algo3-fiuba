@@ -1,6 +1,8 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,7 +17,7 @@ public class Partida {
 	private Ladron UnLadron;
 	private BaseDeDatos BasedeDatos;
 	private Viaje CostosDeViajes;
-	private ObjetoRobado ObjetoRobado;
+	private ObjetoRobado objetoQueFueRobado;
 		
 	
 	public Partida(Policia UnPolicia,Ladron UnLadron,BaseDeDatos UnaBase,ObjetoRobado UnObjeto){
@@ -25,7 +27,7 @@ public class Partida {
 		this.LadronAtrapado = false;
 		this.UnLadron = UnLadron;
 		this.BasedeDatos = UnaBase;
-		this.ObjetoRobado = UnObjeto;
+		this.objetoQueFueRobado = UnObjeto;
 		this.CostosDeViajes = new Viaje();	
 	}
 	
@@ -38,11 +40,11 @@ public class Partida {
 	}
 	
 	public String valorObjetoRobado(){
-		return ObjetoRobado.getValor();
+		return objetoQueFueRobado.getValor();
 	}
 	
 	public String nombreObjetoRobado(){
-		return ObjetoRobado.getNombre();
+		return objetoQueFueRobado.getNombre();
 	}
 	
 	public ArrayList<Edificio> edificiosAMostrar(){
@@ -102,15 +104,19 @@ public class Partida {
 		elementoPartida.setAttribute("NombrePolicia",UnPolicia.getNombre());
 		elementoPartida.setAttribute("NombreLadron",UnLadron.getNombre());
 		Element elementoObjeto = doc.createElement("Objeto");
-		elementoObjeto = ObjetoRobado.serializar(doc);
+		elementoObjeto = objetoQueFueRobado.serializar(doc);
 		elementoPartida.appendChild(elementoObjeto);
 		return elementoPartida;
 		
 	}
-	public static Partida hidratar(Node nodo){
+	public static ArrayList<Object> hidratar(Node nodo){
 		Element elementoPartida = (Element)nodo;
-		//TODO terminar esto
-		return null;
+		ObjetoRobado ObjetoACargar =  ObjetoRobado.hidratar(elementoPartida.getFirstChild());
+		ArrayList<Object> listadoCosas = new ArrayList<Object>();
+		listadoCosas.add(elementoPartida.getAttribute("NombrePolicia"));
+		listadoCosas.add(elementoPartida.getAttribute("NombreLadron"));
+		listadoCosas.add(ObjetoACargar);
+		return listadoCosas;
 		
 	}
 	
