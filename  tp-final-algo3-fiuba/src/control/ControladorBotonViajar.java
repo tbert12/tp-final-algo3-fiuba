@@ -6,8 +6,8 @@ import modelo.PartidaObservable;
 import vistas.VistaPartida;
 
 public class ControladorBotonViajar implements ActionListener{
-	VistaPartida vista;
-	PartidaObservable partida;
+	private VistaPartida vista;
+	private PartidaObservable partida;
 
 	public ControladorBotonViajar(VistaPartida vista,PartidaObservable partida) {
 		this.vista = vista;

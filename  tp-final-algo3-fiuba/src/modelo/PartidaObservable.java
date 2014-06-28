@@ -67,39 +67,18 @@ public class PartidaObservable extends Observable {
 		return NombresLadrones;
 	}
 	
-	public void visitarEdificio(String nombreEdificio){
-		Iterator<Edificio> iterador = EdificiosAVisitar.iterator();
+	public void visitarEdificio(Edificio edificio){
+		EdificioActual = edificio;
+		PistaActual = UnaPartida.visitarEdificio(EdificioActual);
+		setChanged();
+		notifyObservers();
 		
-		while(iterador.hasNext()){
-			Edificio edificio = iterador.next();
-			
-			if (nombreEdificio.equals(edificio.getNombre()) ){
-				EdificioActual = edificio;
-				PistaActual = UnaPartida.visitarEdificio(EdificioActual);
-				
-				setChanged();
-				notifyObservers();
-				break;
-			}
-		}
 	}
 	
-	public void ViajarHacia(String UnPais){
-		
-		Iterator<Pais> iterador = PosiblesPaisesAViajar.iterator();
-		
-		while(iterador.hasNext()){
-			Pais pais = iterador.next();
-			
-			if (UnPais.equals(pais.getNombre()) ){
-				PaisActual = pais;
-				UnaPartida.viajarHacia(PaisActual);
-				
-				setChanged();
-				notifyObservers();
-				break;
-			}
-		}	
+	public void ViajarHacia(Pais UnPais){
+		UnaPartida.viajarHacia(UnPais);	
+		setChanged();
+		notifyObservers();
 	}
 
 	public void filtratLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
