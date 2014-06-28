@@ -19,6 +19,8 @@ import javax.swing.border.EmptyBorder;
 
 
 import modelo.PartidaObservable;
+import javax.swing.JTextPane;
+import java.awt.Component;
 
 public class VistaPartida extends JFrame implements Observer {
 
@@ -83,37 +85,38 @@ public class VistaPartida extends JFrame implements Observer {
 		Tiempo.setBounds(19, 42, 255, 25);
 		PanelGeneral.add(Tiempo);
 		
-		JLabel LabelInformacion = new JLabel("Aca es el lugar donde va a\r\nentrar la descripcion del \r\npais y las pistas de cada \r\nedificio. \r\nEntran 27/30 char por linea");
+		JLabel LabelInformacion = new JLabel("<html> INFORMACION PARA MOSTRAR:\r\n - Pistas.\r\n -Posibles Ladrones.\r\n -Orden de Arresto Emitida.\r\n -Info del Pais.\r\n -Si gano o Perdio.\r\nEntrar 384 chars</html>");
+		LabelInformacion.setHorizontalAlignment(SwingConstants.LEFT);
+		LabelInformacion.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		LabelInformacion.setVerticalTextPosition(SwingConstants.TOP);
 		LabelInformacion.setVerticalAlignment(SwingConstants.TOP);
 		LabelInformacion.setToolTipText("");
-		LabelInformacion.setHorizontalAlignment(SwingConstants.TRAILING);
 		LabelInformacion.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
 		LabelInformacion.setForeground(new Color(255, 255, 255));
 		LabelInformacion.setBounds(310, 24, 307, 213);
 		PanelGeneral.add(LabelInformacion);
 		
-		JButton BotonInvestigar = new JButton("Viajar");
+		JButton BotonInvestigar = new JButton("Edificios");
 		BotonInvestigar.setFocusPainted(false);
 		BotonInvestigar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonInvestigar.setBorderPainted(false);
-		BotonInvestigar.setRolloverSelectedIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonApretado.png"));
+		BotonInvestigar.setRolloverSelectedIcon(null);
 		BotonInvestigar.setMargin(new Insets(3, 28, 0, 10));
-		BotonInvestigar.setIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonNormal.png"));
-		BotonInvestigar.setSelectedIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonConMouseArriba.png"));
-		BotonInvestigar.setRolloverIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonConMouseArriba.png"));
+		BotonInvestigar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigar.png")));
+		BotonInvestigar.setSelectedIcon(null);
+		BotonInvestigar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigarApretado.png")));
 		BotonInvestigar.setBounds(428, 403, 80, 77);
 		PanelGeneral.add(BotonInvestigar);
 		
-		JButton BotonViajar = new JButton("Edificios");
+		JButton BotonViajar = new JButton("Viajar");
 		BotonViajar.setFocusPainted(false);
 		BotonViajar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonViajar.setBorderPainted(false);
-		BotonViajar.setRolloverSelectedIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonApretado.png"));
+		BotonViajar.setRolloverSelectedIcon(null);
 		BotonViajar.setMargin(new Insets(3, 28, 0, 10));
-		BotonViajar.setIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonNormal.png"));
-		BotonViajar.setSelectedIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonConMouseArriba.png"));
-		BotonViajar.setRolloverIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonConMouseArriba.png"));
+		BotonViajar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarNormal.png")));
+		BotonViajar.setSelectedIcon(null);
+		BotonViajar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarApretado.png")));
 		BotonViajar.setBounds(555, 403, 80, 77);
 		PanelGeneral.add(BotonViajar);
 		
@@ -121,11 +124,11 @@ public class VistaPartida extends JFrame implements Observer {
 		BotonFiltrar.setFocusPainted(false);
 		BotonFiltrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonFiltrar.setBorderPainted(false);
-		BotonFiltrar.setRolloverSelectedIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonApretado.png"));
+		BotonFiltrar.setRolloverSelectedIcon(null);
 		BotonFiltrar.setMargin(new Insets(3, 28, 0, 10));
-		BotonFiltrar.setIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonNormal.png"));
-		BotonFiltrar.setSelectedIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonConMouseArriba.png"));
-		BotonFiltrar.setRolloverIcon(new ImageIcon("C:\\Users\\Tomi\\Dropbox\\TP2 (final) - Algoritmos III\\Imagenes\\Botones\\BotonConMouseArriba.png"));
+		BotonFiltrar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/icono.png")));
+		BotonFiltrar.setSelectedIcon(null);
+		BotonFiltrar.setRolloverIcon(null);
 		BotonFiltrar.setBounds(298, 403, 80, 77);
 		PanelGeneral.add(BotonFiltrar);
 		
@@ -135,5 +138,4 @@ public class VistaPartida extends JFrame implements Observer {
 		FondoConImagen.setBounds(0, 0, 640, 480);
 		PanelGeneral.add(FondoConImagen);
 	}
-	
 }
