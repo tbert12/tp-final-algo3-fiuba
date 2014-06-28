@@ -34,15 +34,8 @@ public class PartidaObservable extends Observable {
 	}
 	
 
-	public ArrayList<String> getEdificiosAVisitar(){
-		ArrayList<String> NombresEdificios = new ArrayList<String>();
-		Iterator<Edificio> iterador = EdificiosAVisitar.iterator();
-		
-		while(iterador.hasNext()){
-			Edificio UnEdificio = iterador.next();
-			NombresEdificios.add(UnEdificio.getNombre());
-		}
-		return NombresEdificios;
+	public ArrayList<Edificio> getEdificiosAVisitar(){
+		return EdificiosAVisitar;
 	}
 	
 	public int getTiempoRestante(){
