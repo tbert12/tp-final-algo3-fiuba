@@ -76,7 +76,8 @@ public class PartidaObservable extends Observable {
 	}
 	
 	public void ViajarHacia(Pais UnPais){
-		UnaPartida.viajarHacia(UnPais);	
+		UnaPartida.viajarHacia(UnPais);
+		PosiblesPaisesAViajar = UnaPartida.paisesAViajar();
 		setChanged();
 		notifyObservers();
 	}

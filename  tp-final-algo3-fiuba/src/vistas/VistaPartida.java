@@ -122,7 +122,7 @@ public class VistaPartida extends JFrame implements Observer {
 		BotonViajar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarNormal.png")));
 		BotonViajar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarApretado.png")));
 		BotonViajar.setBounds(555, 403, 80, 77);
-		BotonViajar.addActionListener(new ControladorBotonViajar(this,this.partida));
+		BotonViajar.addActionListener(new ControladorBotonViajar(this));
 		PanelGeneral.add(BotonViajar);
 		
 		JButton BotonFiltrar = new JButton("Filtrar");

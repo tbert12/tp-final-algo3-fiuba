@@ -3,7 +3,10 @@ package vistas.paneles;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import javax.swing.JPanel;
+
+import control.ControladorVisitarEdificio;
 import vistas.botones.BotonParaEdificio;
 import modelo.PartidaObservable;
 import modelo.Edificio;
@@ -18,18 +21,21 @@ public class PanelEdificios extends PanelTresBotones{
 	}
 
 	protected void crearBotones(){
-		//PonerControladorACadaUno
+		
 		this.BotonUno = new BotonParaEdificio();
+		BotonUno.addActionListener(new ControladorVisitarEdificio(partida, BotonUno));
 		BotonUno.setBounds(10, 11, 287, 30);
 		BotonUno.setFont(new Font(FuenteDeBotones, Font.PLAIN, 18));
 		Panel.add(BotonUno);
 		
 		this.BotonDos = new BotonParaEdificio();
+		BotonDos.addActionListener(new ControladorVisitarEdificio(partida, BotonDos));
 		BotonDos.setBounds(10, 49, 287, 32);
 		BotonDos.setFont(new Font(FuenteDeBotones, Font.PLAIN, 18));
 		Panel.add(BotonDos);
 		
 		this.BotonTres = new BotonParaEdificio();
+		BotonTres.addActionListener(new ControladorVisitarEdificio(partida, BotonTres));
 		BotonTres.setBounds(10, 90, 287, 32);
 		BotonTres.setFont(new Font(FuenteDeBotones, Font.PLAIN, 18));
 		Panel.add(BotonTres);

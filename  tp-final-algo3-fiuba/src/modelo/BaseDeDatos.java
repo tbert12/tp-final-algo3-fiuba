@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 import modelo.caracteristicas.Caracteristicas;
@@ -63,6 +64,7 @@ public class BaseDeDatos {
 			}
 			PosiblesPaises.add(PaisRandom);
 		}
+		Collections.shuffle(PosiblesPaises);
 		return PosiblesPaises;
 	}
 	
