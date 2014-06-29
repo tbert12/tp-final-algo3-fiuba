@@ -2,6 +2,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -146,7 +147,28 @@ public  class CarmenSanDiego {
 		return this.unaPartida;
 	}
    
-	
+	public void generarPartidaXML(String nombreArchivo) throws ParserConfigurationException, TransformerException{
+		
+		Document doc = crearDoc();
+		Element elementoPartidas = doc.createElement("Partidas");
+		doc.appendChild(elementoPartidas);
+		transformarYEscribirADisco(nombreArchivo, doc);
+		
+	}
+
+	public void AgregarPartidasFacilesAlXML(String nombreArchivo,String nombrePolicia, String nombreLadron) throws ParserConfigurationException, SAXException, IOException{
+		File archivoXML = new File(nombreArchivo);
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		Document doc = dBuilder.newDocument();
+		doc = dBuilder.parse(archivoXML);
+		doc.getDocumentElement().normalize();
+		Element elementoPartidas = (Element) doc.getFirstChild();
+		Element elementoUnaPartida = doc.createElement("Partida");
+		elementoUnaPartida.setAttribute("NombrePolicia",nombrePolicia);
+		elementoUnaPartida.setAttribute("NombreLadron",nombreLadron);
+		elementoPartidas.appendChild(elementoUnaPartida);
+	}
 	/*
 	public void iniciarPartida(String string) {
 		

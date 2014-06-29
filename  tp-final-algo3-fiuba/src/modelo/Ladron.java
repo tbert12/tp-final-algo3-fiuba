@@ -1,5 +1,7 @@
 package modelo;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -10,7 +12,7 @@ import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
 public class Ladron {
 	private Caracteristicas CaracteristicasDelLadron;
 	private String Nombre;
-	private Trayectoria Trayectoria;
+	private Trayectoria TrayectoriaDelLadron;
 	private boolean Arrestado;
 	
 	public Ladron(String Nombre,Caracteristicas caracteristicas){
@@ -20,7 +22,7 @@ public class Ladron {
 	}
 	
 	public void addTrayectoria(Trayectoria trayecto){
-		this.Trayectoria = trayecto;
+		this.TrayectoriaDelLadron = trayecto;
 	}
 	
 	public String getNombre(){
@@ -48,7 +50,7 @@ public class Ladron {
 	}
 	
 	public Pais paisFinal(){
-		return Trayectoria.paisFinal();
+		return TrayectoriaDelLadron.paisFinal();
 	}
 	public boolean compararCaracteristicas(Caracteristicas otrasCaracteriscas){
 		return CaracteristicasDelLadron.compararCon(otrasCaracteriscas);
@@ -56,20 +58,20 @@ public class Ladron {
 	
 	
 	public Pais paisActual(){
-		return this.Trayectoria.paisActual();
+		return this.TrayectoriaDelLadron.paisActual();
 	}
 	
 	public Pais paisAnterior(){
-		return Trayectoria.paisAnterior();
+		return TrayectoriaDelLadron.paisAnterior();
 	}
 	
 	public boolean pasaPor(Pais pais){
-		return this.Trayectoria.estaEnTrayectoria(pais);
+		return this.TrayectoriaDelLadron.estaEnTrayectoria(pais);
 	}
 
 	public Pais avanzar() {
 		try{
-			return this.Trayectoria.avanzar();
+			return this.TrayectoriaDelLadron.avanzar();
 		}
 		catch (ErrorNoHayMasPaisesParaAvanzar e){
 			//Devolver un pais anterior al actual, lo necesito en Base
@@ -86,18 +88,21 @@ public class Ladron {
 	public Element serializar(Document doc){
 		Element elementoLadron = doc.createElement("Ladron");
 		Element elementoCaracteristicas = doc.createElement("Caracteristica");
+		//Element elementoTrayectoria = doc.createElement("Trayectoria");
+		//elementoTrayectoria.appendChild(this.TrayectoriaDelLadron.serializar(doc));
 		elementoLadron.appendChild(elementoCaracteristicas);
+		//elementoLadron.appendChild(elementoTrayectoria);
 		elementoCaracteristicas.appendChild(this.CaracteristicasDelLadron.serializar(doc));
 		elementoLadron.setAttribute("Nombre",this.Nombre);
 		return elementoLadron;
 	}
-	public static Ladron hidratar(Node nodo){
+	public static Ladron hidratar(Node nodo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		Element elementoLadron = (Element)nodo;
 		Element elementoCaracteristicas = (Element)nodo.getFirstChild();
 		Caracteristicas caracteristicas = Caracteristicas.hidratar(elementoCaracteristicas.getChildNodes().item(0));
+		//Trayectoria trayectoria = Trayectoria.hidratar(nodo.getChildNodes().item(1));
 		Ladron nuevoLadron = new Ladron(elementoLadron.getAttribute("Nombre"),caracteristicas);
-		
-		
+		//nuevoLadron.addTrayectoria(trayectoria);
 		return nuevoLadron;
 	}
 }

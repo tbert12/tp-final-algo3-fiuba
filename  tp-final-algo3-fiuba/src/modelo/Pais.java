@@ -82,12 +82,18 @@ public class Pais {
 		Element elementoDistancias=doc.createElement("Distancias");
 		elementoPais.appendChild(elementoDistancias);
 		int i = 0;
+		try{
 		for (Map.Entry<String, Integer> distanciaEntry : DistanciaAPaises.entrySet()){
 			Element elementoDistancia = doc.createElement("Par"+i);
 			elementoDistancia.setAttribute("Key", distanciaEntry.getKey());
 			elementoDistancia.setAttribute("Value",String.valueOf(distanciaEntry.getValue()));
 			elementoDistancias.appendChild(elementoDistancia);
 			i++;
+			}
+		}
+		
+		catch (NullPointerException e){
+		return elementoPais;
 		}
 		return elementoPais;
 		

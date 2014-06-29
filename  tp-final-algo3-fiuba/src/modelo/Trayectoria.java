@@ -1,7 +1,13 @@
 package modelo;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
 public class Trayectoria {
@@ -44,5 +50,49 @@ public class Trayectoria {
 	}
 	public Pais paisFinal(){
 		return PaisFinal;
+	}
+	public Element serializar(Document doc){
+		Element elementoTrayectoria = doc.createElement("Trayectoria");
+		for ( int i = 0;i < Paises.size();i++){
+			Element elementoPais = Paises.get(i).serializar(doc);
+			elementoTrayectoria.appendChild(elementoPais);
+		}
+		return elementoTrayectoria;
+	}
+	public static Trayectoria hidratar(Node nodo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		Element elementoTrayectoria= (Element)nodo;
+		NodeList nodosPaises = elementoTrayectoria.getChildNodes();
+		ArrayList<Pais> paises = new ArrayList<Pais>();
+		for (int i = 0;i < nodosPaises.getLength();i++){
+			paises.add(Pais.hidratar(nodosPaises.item(i)));
+		}
+		Trayectoria trayectoriaADevolver = new Trayectoria(paises);
+		return trayectoriaADevolver;
+		
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((Paises == null) ? 0 : Paises.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Trayectoria other = (Trayectoria) obj;
+		if (Paises == null) {
+			if (other.Paises != null)
+				return false;
+		} else if (!Paises.equals(other.Paises))
+			return false;
+		return true;
 	}
 }
