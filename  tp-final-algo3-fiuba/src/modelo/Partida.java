@@ -64,12 +64,19 @@ public class Partida {
 		String PistaDeEdificio = UnEdificio.visitar(UnPolicia);
 		
 		if (UnLadron.estaArrestado()){
-			this.LadronAtrapado = true;
+			atrapoLadron();
 		}
 		
 		return PistaDeEdificio;
 	}
 	
+	private void atrapoLadron() {
+		this.LadronAtrapado = true;
+		UnPolicia.addArresto();
+		//Calculo que carmen tendria que serializar todo.
+		
+	}
+
 	public ArrayList<Ladron> filtrarLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
 			Caracteristicas CaracteristicasAFiltrar = new Caracteristicas(unSexo,unHobby,unCabello,unaSenia,unVehiculo);
 			ArrayList<Ladron> PosiblesLadrones = BasedeDatos.filtarPorCaracteristicas(CaracteristicasAFiltrar);
