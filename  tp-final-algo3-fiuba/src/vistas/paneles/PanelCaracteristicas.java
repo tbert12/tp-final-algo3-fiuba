@@ -27,8 +27,8 @@ public class PanelCaracteristicas {
 		darFormaAVentana();
 	}	
 	
-	private void crearChoice(Choice choice,String[] options){
-		choice = new Choice();
+	private Choice crearChoice(String[] options){
+		Choice choice = new Choice();
 		choice.setBackground(SystemColor.desktop);
 		choice.setForeground(SystemColor.text);
 		choice.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -37,16 +37,17 @@ public class PanelCaracteristicas {
 		}
 		choice.select(0);
 		MenuCaracteristicas.add(choice);
+		return choice;
 	}
 	
 	private void darFormaAVentana(){ 
 		MenuCaracteristicas.setLayout(null);
 		
 		String[] OpcionesSexo = {"N/A","Masculino","Femenino"};
-		crearChoice(choiceSexo,OpcionesSexo);
+		choiceSexo = crearChoice(OpcionesSexo);
 		choiceSexo.setBounds(10, 10, 112, 20);
 		String[] OpcionesHobby = {"N/A"};
-		crearChoice(choiceHobby,OpcionesHobby);
+		choiceHobby = crearChoice(OpcionesHobby);
 		choiceHobby.setBounds(10, 10, 112, 50);
 		
 	}
