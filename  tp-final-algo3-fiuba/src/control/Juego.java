@@ -57,10 +57,16 @@ public class Juego{
 		//" <- HASTA	ACA"/	
 		
 		partidaObservable = new PartidaObservable(partida);
-		vistaPartida = new VistaPartida(partidaObservable);
+		vistaPartida = new VistaPartida(partidaObservable,this);
 				
 		ventanaPrincipal.ocultarVentana();
 		vistaPartida.mostrarVentana();
+	}
+
+	public void cerrarVentanaPartida() {
+		vistaPartida.cerrar();
+		ventanaPrincipal.mostrarVentana();
+		
 	}
 
 }

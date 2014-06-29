@@ -28,6 +28,7 @@ import modelo.PartidaObservable;
 import control.ControladorBotonCaracteristica;
 import control.ControladorBotonViajar;
 import control.ControladorBotonInvestigar;
+import control.Juego;
 
 public class VistaPartida extends JFrame implements Observer{
 
@@ -36,7 +37,7 @@ public class VistaPartida extends JFrame implements Observer{
 	private PartidaObservable partida;
 	
 	private JPanel PanelGeneral;
-	
+	private Juego juego;
 	
 	private PanelViajar panelMenuParaViajar;
 	private PanelEdificios panelMenuEdificios;
@@ -50,19 +51,20 @@ public class VistaPartida extends JFrame implements Observer{
 	private RelojDigital Reloj = new RelojDigital();
 
 	
-	public VistaPartida(PartidaObservable partida) {
-			this.partida = partida;
-			this.partida.addObserver(this);  
-			PanelGeneral = new JPanel();
-			panelMenuParaViajar = new PanelViajar(PanelGeneral,partida);
-			panelMenuEdificios = new PanelEdificios(PanelGeneral,partida);
-			panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida);
-			crearVentana();
-			updateHora();
-			NombrePaisActual = partida.getPaisActual();
-			updateCiudadActual();
-			updateImagenPais();
-			mensajeDeBienvenida();	
+	public VistaPartida(PartidaObservable partida,Juego juego) {
+		this.juego = juego;	
+		this.partida = partida;
+		this.partida.addObserver(this);  
+		PanelGeneral = new JPanel();
+		panelMenuParaViajar = new PanelViajar(PanelGeneral,partida);
+		panelMenuEdificios = new PanelEdificios(PanelGeneral,partida);
+		panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida);
+		crearVentana();
+		updateHora();
+		NombrePaisActual = partida.getPaisActual();
+		updateCiudadActual();
+		updateImagenPais();
+		mensajeDeBienvenida();	
 	}
 
 
@@ -86,14 +88,14 @@ public class VistaPartida extends JFrame implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		if (partida.tiempoAgotado()){
 			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
-			//Cierro la ventana de la partida
-			this.dispose();
+			//le aviso a la ventana principal que termine
+			juego.cerrarVentanaPartida();
 		}
 		
 		if (partida.partidaFinalizada()){
 			mostrarMensaje(partida.getPistaActual(), "Mensaje Interpool");
-			//Cierro la ventana de la partida
-			this.dispose();
+			//le aviso a la ventana principal que termine
+			juego.cerrarVentanaPartida();
 		}
 		
 		updateHora();
