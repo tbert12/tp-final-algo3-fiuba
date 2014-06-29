@@ -18,9 +18,7 @@ public class PartidaObservable extends Observable {
 	
 	private ArrayList<Edificio> EdificiosAVisitar;
 	private ArrayList<Pais> PosiblesPaisesAViajar;
-	private int TiempoRestante;
 	private ArrayList<Ladron> LadronesFiltrados;
-	private Pais PaisActual;
 	private Edificio EdificioActual;
 	private String PistaActual;
 	
@@ -28,9 +26,6 @@ public class PartidaObservable extends Observable {
 		this.UnaPartida = UnaPartida;
 		EdificiosAVisitar = UnaPartida.edificiosAMostrar();
 		PosiblesPaisesAViajar = UnaPartida.paisesAViajar();
-		TiempoRestante = UnaPartida.tiempoRestante();
-		PaisActual = UnaPartida.paisActual();
-		
 	}
 	
 
@@ -38,8 +33,12 @@ public class PartidaObservable extends Observable {
 		return EdificiosAVisitar;
 	}
 	
+	public boolean partidaFinalizada(){
+		return UnaPartida.seTerminoLaPartida();
+	}
+	
 	public int getTiempoRestante(){
-		return this.TiempoRestante;
+		return UnaPartida.tiempoRestante();
 	}
 	public String getEdificioActual(){
 		return EdificioActual.getNombre();
@@ -53,7 +52,7 @@ public class PartidaObservable extends Observable {
 	}
 	
 	public String getPaisActual(){
-		return PaisActual.getNombre();
+		return UnaPartida.paisActual().getNombre();
 	}
 	
 	public ArrayList<String> getLadronesFiltrados(){

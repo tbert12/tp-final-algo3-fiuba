@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -36,6 +38,8 @@ public class VistaPartida extends JFrame implements Observer {
 	private PanelEdificios panelMenuEdificios;
 	private PanelCaracteristicas panelMenuCaracteristicas;
 	
+	private JLabel CiudadActual,Tiempo,ImagenPais,LabelInformacion;
+	
 	private String RutaImagenPais = "/vistas/imagenes/paises/";
 	private String HorasTiempo;
 	private String NombrePaisActual;
@@ -46,22 +50,49 @@ public class VistaPartida extends JFrame implements Observer {
 			this.partida = partida;
 			this.partida.addObserver(this);
 			PanelGeneral = new JPanel();
-			HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante());
-			NombrePaisActual = partida.getPaisActual();
-			
 			panelMenuParaViajar = new PanelViajar(PanelGeneral,partida);
 			panelMenuEdificios = new PanelEdificios(PanelGeneral,partida);
 			panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida);
-			
 			crearVentana();
+			updateHora();
+			NombrePaisActual = partida.getPaisActual();
+			updateCiudadActual();
+			updateImagenPais();
+		
+			
 	}
 
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante()); //pasar el entero a forma correcta
-		NombrePaisActual = partida.getPaisActual();
+		if (partida.partidaFinalizada()){
+			mostrarMensaje(partida.getPistaActual(), "Mensaje InterPol:");
+		}
+		
+		updateHora();
+		updateCiudadActual();
+		updateImagenPais();
+		//updateInformacionPais();
 	
+	}
+	
+	private void updateCiudadActual(){
+		NombrePaisActual = partida.getPaisActual();
+		CiudadActual.setText(NombrePaisActual);
+	}
+	
+	private void updateHora(){
+		HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante()); //pasar el entero a forma correcta
+		Tiempo.setText(HorasTiempo);
+	}
+	private void updateImagenPais(){
+		
+		URL imagen = VentanaPrincipal.class.getResource(this.RutaImagenPais + this.NombrePaisActual +".jpg");
+		
+		if (imagen != null){
+			ImagenPais.setIcon(new ImageIcon(VentanaPrincipal.class.getResource(this.RutaImagenPais + this.NombrePaisActual +".jpg")));
+		}
+		
 	}
 	
 	public void mostrarVentana(){
@@ -80,26 +111,25 @@ public class VistaPartida extends JFrame implements Observer {
 		setLocationRelativeTo(null);
 		PanelGeneral.setLayout(null);
 		
-		JLabel ImagenPais = new JLabel("");
-		ImagenPais.setIcon(new ImageIcon(VentanaPrincipal.class.getResource(this.RutaImagenPais + this.NombrePaisActual +".jpg")));
+		ImagenPais = new JLabel("");
 		ImagenPais.setBounds(10, 92, 274, 376);
 		PanelGeneral.add(ImagenPais);
 		
-		JLabel CiudadActual = new JLabel(this.NombrePaisActual);
+		CiudadActual = new JLabel();
 		CiudadActual.setHorizontalAlignment(SwingConstants.CENTER);
 		CiudadActual.setFont(new Font("Stencil", Font.PLAIN, 20));
 		CiudadActual.setForeground(new Color(255, 255, 255));
 		CiudadActual.setBounds(9, 18, 275, 25);
 		PanelGeneral.add(CiudadActual);
 		
-		JLabel Tiempo = new JLabel(this.HorasTiempo);
+		Tiempo = new JLabel();
 		Tiempo.setHorizontalAlignment(SwingConstants.CENTER);
 		Tiempo.setForeground(new Color(255, 255, 255));
 		Tiempo.setFont(new Font("LCD", Font.PLAIN, 18));
 		Tiempo.setBounds(19, 42, 255, 25);
 		PanelGeneral.add(Tiempo);
 		
-		JLabel LabelInformacion = new JLabel("<html> INFORMACION PARA MOSTRAR:\r\n - Pistas.\r\n -Posibles Ladrones.\r\n -Orden de Arresto Emitida.\r\n -Info del Pais.\r\n -Si gano o Perdio.\r\nEntrar 384 chars</html>");
+		LabelInformacion = new JLabel("<html> INFORMACION PARA MOSTRAR:\r\n - Pistas.\r\n -Posibles Ladrones.\r\n -Orden de Arresto Emitida.\r\n -Info del Pais.\r\n -Si gano o Perdio.\r\nEntrar 384 chars</html>");
 		LabelInformacion.setVerticalTextPosition(SwingConstants.TOP);
 		LabelInformacion.setVerticalAlignment(SwingConstants.TOP);
 		LabelInformacion.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
@@ -115,7 +145,7 @@ public class VistaPartida extends JFrame implements Observer {
 		BotonInvestigar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigar.png")));
 		BotonInvestigar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigarApretado.png")));
 		BotonInvestigar.setBounds(428, 403, 80, 77);
-		BotonInvestigar.addActionListener(new ControladorBotonInvestigar(this,this.partida));
+		BotonInvestigar.addActionListener(new ControladorBotonInvestigar(this));
 		PanelGeneral.add(BotonInvestigar);
 		
 		JButton BotonViajar = new JButton("Viajar");
@@ -162,5 +192,9 @@ public class VistaPartida extends JFrame implements Observer {
 		panelMenuParaViajar.ocultarPanel();
 		panelMenuEdificios.ocultarPanel();
 		panelMenuCaracteristicas.mostrarPanel();
+	}
+	
+	private void mostrarMensaje(String string,String titulo) {
+		JOptionPane.showMessageDialog(this,string,titulo,JOptionPane.INFORMATION_MESSAGE);
 	}
 }
