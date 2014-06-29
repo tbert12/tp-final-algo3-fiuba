@@ -84,7 +84,7 @@ public class VistaPartida extends JFrame implements Observer {
 	}
 	
 	private void updateHora(){
-		HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante()); //pasar el entero a forma correcta
+		HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante());
 		Tiempo.setText(HorasTiempo);
 	}
 	private void updateImagenPais(){
@@ -98,7 +98,9 @@ public class VistaPartida extends JFrame implements Observer {
 	}
 	
 	private void updatePista(){
-		LabelInformacion.setText("<html> Pista: <br>" + partida.getPistaActual() +"</html>");
+		if (partida.getPistaActual() != null){
+			LabelInformacion.setText("<html> Pista: <br>" + partida.getPistaActual() +"</html>");
+		}
 	}
 	
 	public void mostrarVentana(){
