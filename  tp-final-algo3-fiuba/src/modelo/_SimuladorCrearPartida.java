@@ -158,7 +158,7 @@ public class _SimuladorCrearPartida {
 		basedeDatos.addPais(Espania);
 		
 		Coordenadas CoordAustralia = new Coordenadas(-33.867138,151.207108);
-		Edificio PuertoAustralia = new Edificio("Puerto,","Veo algo sospechoso por aqui");
+		Edificio PuertoAustralia = new Edificio("Puerto","Veo algo sospechoso por aqui");
 		Edificio BibliotecaAustralia = new Edificio("Biblioteca","");
 		BibliotecaAustralia.setLadron();
 		Edificio BolsaAustralia = new Edificio("Bolsa","Estos dias han pasado cosas extrañas");
@@ -173,6 +173,7 @@ public class _SimuladorCrearPartida {
 		Edificio AeropuertoFrancia = new Edificio("Aeropuerto","Mucha gente pasa por aqui, es dificil que vea al ladron");
 		Edificio[] EdificiosFrancia = {MuseoFrancia,BancoFrancia,AeropuertoFrancia}; 
 		Pais Francia = new Pais("Roma",EdificiosFrancia,CoordFrancia);
+		Francia.setInformacion("Informacion de Francia");
 		basedeDatos.addPais(Francia);
 		
 		//Asigno La trayectoria del Ladron
