@@ -13,5 +13,9 @@ public class RangoSargento implements Rango {
 	public Rango chequeoDeRango(int CantidadDeArrestos){
 		return this;
 	}
+	@Override
+	public String toString(){
+		return "Sargento";
+	}
 
 }

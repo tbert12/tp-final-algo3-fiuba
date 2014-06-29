@@ -4,6 +4,7 @@ import modelo.rangos.Rango;
 import modelo.rangos.RangoNovato;
 
 
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -162,6 +163,10 @@ public class Policia  {
 
 	public int getTiempo() {
 		return Tiempo.getHoras();
+	}
+
+	public String toStringRango() {
+		return this.Rango.toString();
 	}
 	
 }

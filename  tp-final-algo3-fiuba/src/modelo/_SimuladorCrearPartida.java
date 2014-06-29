@@ -11,7 +11,7 @@ import modelo.caracteristicas.Vehiculo;
 
 public class _SimuladorCrearPartida {
 
-	public Partida crearPartida() {
+	public Partida crearPartida(String nombreDelPolicia) {
 		/* DATOS DE PARTIDA
 		Paises
 		 -Argelia    Argel         (28.033886,1.659626)      Museo,Puerto,Casa de Gobierno
@@ -217,7 +217,7 @@ public class _SimuladorCrearPartida {
 		ladronCarmen.addTrayectoria(trayectoriaDelLadron);
 		
 		//Creo Policia
-		Policia unPolicia = new Policia("PoliciaTest",0);
+		Policia unPolicia = new Policia(nombreDelPolicia,26);
 		//Creo Objeto
 		ObjetoRobado unObjetoRobado = new ObjetoRobado("Reservas del Banco","Valioso");
 		

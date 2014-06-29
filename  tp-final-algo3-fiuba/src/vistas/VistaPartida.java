@@ -37,6 +37,7 @@ public class VistaPartida extends JFrame implements Observer {
 	
 	private JPanel PanelGeneral;
 	
+	
 	private PanelViajar panelMenuParaViajar;
 	private PanelEdificios panelMenuEdificios;
 	private PanelCaracteristicas panelMenuCaracteristicas;
@@ -51,7 +52,7 @@ public class VistaPartida extends JFrame implements Observer {
 	
 	public VistaPartida(PartidaObservable partida) {
 			this.partida = partida;
-			this.partida.addObserver(this);
+			this.partida.addObserver(this);  
 			PanelGeneral = new JPanel();
 			panelMenuParaViajar = new PanelViajar(PanelGeneral,partida);
 			panelMenuEdificios = new PanelEdificios(PanelGeneral,partida);
@@ -61,12 +62,26 @@ public class VistaPartida extends JFrame implements Observer {
 			NombrePaisActual = partida.getPaisActual();
 			updateCiudadActual();
 			updateImagenPais();
-			updateTextos();
-		
-			
+			mensajeDeBienvenida();	
 	}
 
 
+	private void mensajeDeBienvenida(){
+		String nombreDelPolicia = partida.getNombredelPolicia();
+		String rangoDelPolicia = partida.getRangodelPolicia();
+		String ObjetoRobado = partida.getObjetoRobado();
+		String PaisActual = partida.getPaisActual();
+		InformacionPais.setText("<html>Hola, has sido identificado(a) como: " + nombreDelPolicia + 
+				                "<br><br> Tu rango actual es: " + rangoDelPolicia + ".</html>");
+		TextoInterpool.setText("<html>+++++++++++++NOTICIAS+++++++++++++++<br> "+ 
+				                "Tesoro nacional robado en " + PaisActual + 
+				                ".<br><br> El botin ha sido identificado como: " + ObjetoRobado + 
+				                ".<br>Tu mision:Persigue al ladron desde " + PaisActual +
+								" hasta atraparlo. Tienes tiempo hasta el "
+								+ "Domingo a las 17:00hs. <br><br> ¡Suerte!"  );
+		
+	}
+	
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if (partida.tiempoAgotado()){
@@ -267,4 +282,5 @@ public class VistaPartida extends JFrame implements Observer {
 	private void mostrarMensaje(String string,String titulo) {
 		JOptionPane.showMessageDialog(this,string,titulo,JOptionPane.INFORMATION_MESSAGE);
 	}
+	
 }

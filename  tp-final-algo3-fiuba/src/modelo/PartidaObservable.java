@@ -93,6 +93,21 @@ public class PartidaObservable extends Observable {
 	}
 
 
+	public String getNombredelPolicia() {
+		return this.UnaPartida.getNombredelPolicia();
+	}
+
+
+	public String getRangodelPolicia() {
+		return this.UnaPartida.getRangodelPolcia();
+	}
+
+
+	public String getObjetoRobado() {
+		return UnaPartida.nombreObjetoRobado();
+	}
+
+
 	public boolean tiempoAgotado() {
 		return UnaPartida.tempoAgotado();
 	}

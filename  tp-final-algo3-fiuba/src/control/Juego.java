@@ -1,9 +1,14 @@
-package modelo;
+package control;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.xml.parsers.ParserConfigurationException;
+
+import modelo.CarmenSanDiego;
+import modelo.Partida;
+import modelo.PartidaObservable;
+import modelo._SimuladorCrearPartida;
 
 import org.xml.sax.SAXException;
 
@@ -48,7 +53,7 @@ public class Juego {
 		
 		//" BORRAR DE ACA -> "/
 		_SimuladorCrearPartida Simulador = new _SimuladorCrearPartida();
-		Partida partida = Simulador.crearPartida();
+		Partida partida = Simulador.crearPartida(string);
 		//" <- HASTA	ACA"/	
 		
 		partidaObservable = new PartidaObservable(partida);

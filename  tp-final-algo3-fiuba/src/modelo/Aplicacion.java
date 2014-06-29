@@ -1,6 +1,6 @@
 package modelo;
 
-import modelo.Juego;
+import control.Juego;
 
 public class Aplicacion {
 	

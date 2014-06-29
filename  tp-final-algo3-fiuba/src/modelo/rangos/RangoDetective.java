@@ -16,4 +16,8 @@ public class RangoDetective implements Rango {
 		nuevoRango = nuevoRango.chequeoDeRango(cantDeArrestos);
 		return nuevoRango;
 	}
+	@Override
+	public String toString(){
+		return "Detective";
+	}
 }

@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import com.sun.xml.internal.ws.util.StringUtils;
 
-import modelo.Juego;
 import vistas.VentanaPrincipal;
 
 public class ControladorBotonEmpezar implements ActionListener {
