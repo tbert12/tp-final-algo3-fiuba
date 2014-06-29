@@ -83,7 +83,9 @@ public class PartidaTest {
 	}
 	
 	private Pais crearPais(String Nombre){
-		Edificio[] Edificios = {new Edificio("Lugarde"+Nombre,"Pistade"+Nombre),new Edificio("2Lugarde"+Nombre,"2Pistade"+Nombre)};
+		Edificio[] Edificios = {new Edificio("Lugarde"+Nombre),new Edificio("2Lugarde"+Nombre)};
+		Edificios[0].setPista("Pistade"+Nombre);
+		Edificios[1].setPista("2Pistade"+Nombre);
 		Coordenadas coordenadaPais = new Coordenadas(0,0);
 		Pais unPais = new Pais(Nombre,Edificios,coordenadaPais);
 		return unPais;

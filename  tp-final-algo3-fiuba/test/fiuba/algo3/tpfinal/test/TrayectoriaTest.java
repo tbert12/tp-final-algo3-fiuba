@@ -34,9 +34,9 @@ import static org.mockito.Mockito.*;
 	@SuppressWarnings("unused")
 	public class TrayectoriaTest {
 	
-		private Edificio biblioteca = new Edificio("biblioteca","biblioteca pista");
-		private Edificio puerto = new Edificio("puerto","puerto pista");
-		private Edificio fiuba = new Edificio("fiuba", "fiuba pista");
+		private Edificio biblioteca = new Edificio("biblioteca");
+		private Edificio puerto = new Edificio("puerto");
+		private Edificio fiuba = new Edificio("fiuba");
 		private Edificio[] edificios = {biblioteca,puerto,fiuba};
 		private Pais Argentina = new Pais("Argentina",edificios,new Coordenadas(1, 1));
 		private Pais Brasil = new Pais("Brasil",edificios,new Coordenadas(1, 3));

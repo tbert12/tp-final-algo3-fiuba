@@ -30,7 +30,7 @@ public class EdificioTest {
 	
 	private String pista = "Esto es una pista de prueba.";
 	private String nombre = "Biblioteca";
-	private Edificio UnEdificio = new Edificio(nombre,pista);
+	private Edificio UnEdificio = new Edificio(nombre);
 	private Policia unPolicia= new Policia("Pepe",0);
 	@After
 	public void after() {
@@ -42,7 +42,7 @@ public class EdificioTest {
 	@Test
 	public void testPistaEdificioEsCorrecta() {
 		Policia UnPolicia = new Policia("Juan", 0);
-		
+		UnEdificio.setPista(pista);
 		Assert.assertEquals(UnEdificio.visitar(UnPolicia),pista);
 		
 	}
@@ -63,7 +63,8 @@ public class EdificioTest {
 	}
 	@Test
 	public void testHeridaCuchilloRestaMenosQueHeridaArma(){
-		Edificio otroEdificio = new Edificio("Pizzeria","Esta es otra pista de prueba");
+		Edificio otroEdificio = new Edificio("Pizzeria");
+		otroEdificio.setPista("Esta es otra pista de prueba");
 		otroEdificio.setHerida(new HeridaArmaDeFuego("Herido por un disparo con arma de fuegos"));
 		Policia otroPolicia = new Policia("Seba",0);
 		UnEdificio.visitar(unPolicia);
@@ -130,7 +131,8 @@ public class EdificioTest {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		Document doc = db.newDocument();
-		Edificio otroEdificio = new Edificio("Biblioteca","Pista de la bibioteca");
+		Edificio otroEdificio = new Edificio("Biblioteca");
+		otroEdificio.setPista("Esta es otra pista de prueba");
 		otroEdificio.setHerida(new HeridaArmaDeFuego("Herido por un disparo con arma de fuegos"));
 		otroEdificio.setLadron();
 		UnEdificio.setHerida(new HeridaCuchillo("Herida con arma blanca"));

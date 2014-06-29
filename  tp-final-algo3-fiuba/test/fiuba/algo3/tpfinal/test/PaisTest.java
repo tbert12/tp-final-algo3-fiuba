@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -32,9 +31,9 @@ import org.xml.sax.SAXException;
 
 public class PaisTest {
 
-	private Edificio biblioteca = new Edificio("biblioteca","biblioteca pista");
-	private Edificio puerto = new Edificio("puerto","puerto pista");
-	private Edificio fiuba = new Edificio("fiuba", "fiuba pista");
+	private Edificio biblioteca = new Edificio("biblioteca");
+	private Edificio puerto = new Edificio("puerto");
+	private Edificio fiuba = new Edificio("fiuba");
 	
 	private Edificio[] edificios = {biblioteca,puerto,fiuba};
 	private String nombre = "Argentina";

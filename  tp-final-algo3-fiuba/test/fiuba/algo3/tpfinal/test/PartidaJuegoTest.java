@@ -26,23 +26,23 @@ public class PartidaJuegoTest {
 	@Test
 	public void TestDeJuegoCaso1() {
 	
-		Edificio Bolsa = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
-		Edificio Banco = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
-		Edificio Aeropuerto = new Edificio("Aeropuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
+		Edificio Bolsa = new Edificio("Bolsa");
+		Edificio Banco = new Edificio("Banco");
+		Edificio Aeropuerto = new Edificio("Aeropuerto");
 		Edificio[] edificios = {Bolsa,Banco,Aeropuerto};
 		String nombreArg = "Buenos Aires";
 		Coordenadas coordenadasBuenosAires = new Coordenadas(-34.608418,-58.373161);
 		Pais Argentina = new Pais(nombreArg,edificios,coordenadasBuenosAires);
 		
-		Edificio Hotel = new Edificio("Hotel",", estaba mejorando su inglés americano");
-		Edificio BancoLDN = new Edificio("Banco","“compró dólares y llevaba un tatuaje”");
-		Edificio Muelle = new Edificio("Muelle","Fue en un crucero que tenía una bandera con estrellas");
+		Edificio Hotel = new Edificio("Hotel");
+		Edificio BancoLDN = new Edificio("Banco");
+		Edificio Muelle = new Edificio("Muelle");
 		Edificio[] edificiosLDN = {Hotel,BancoLDN,Muelle};
 		String nombreIng = "London";
 		Coordenadas coordenadasLondres = new Coordenadas(51.500153,-0.126236);
 		Pais Inglaterra = new Pais(nombreIng,edificiosLDN,coordenadasLondres);
 		
-		Edificio AeropuertoNY = new Edificio("Aeropuerto","Algo huele mal");
+		Edificio AeropuertoNY = new Edificio("Aeropuerto");
 		AeropuertoNY.setLadron();
 		Edificio[] edificiosNY = {AeropuertoNY};
 		String nombreUsa = "New York";
@@ -130,22 +130,28 @@ public class PartidaJuegoTest {
 	@Test
 	public void TestDeJuegoCaso2() {
 		
-		Edificio Museo = new Edificio("Museo","Era alto y de contextura delgada");
-		Edificio Aeropuerto = new Edificio("Aeropuerto","se movía en auto con bandera roja y blanca");
+		Edificio Museo = new Edificio("Museo");
+		Museo.setPista("Era alto y de contextura delgada");
+		Edificio Aeropuerto = new Edificio("Aeropuerto");
+		Aeropuerto.setPista("se movía en auto con bandera roja y blanca");
 		Edificio[] edificiosMex = {Museo,Aeropuerto};
 		String nombreMEX = "Veracruz";
 		Coordenadas coordenadasMex = new Coordenadas(19.427050,-99.127571);
 		Pais Mexico = new Pais(nombreMEX,edificiosMex,coordenadasMex);
 		
-		Edificio Banco = new Edificio("Banco","Nunca vi a esa persona");
-		Edificio Muelle = new Edificio("Muelle","Por acá pasa mucha gente");
+		Edificio Banco = new Edificio("Banco");
+		Banco.setPista("Nunca vi a esa persona");
+		Edificio Muelle = new Edificio("Muelle");
+		Muelle.setPista("Por acá pasa mucha gente");
 		Edificio[] edificiosItalia = {Banco,Muelle};
 		String nombreITA = "Milan";
 		Coordenadas coordenadasItalia = new Coordenadas(41.871941,12.567380);
 		Pais Italia = new Pais(nombreITA,edificiosItalia,coordenadasItalia);
 		
-		Edificio MuseoAUS = new Edificio("Museo","No conosco nadie así");
-		Edificio HotelAUS = new Edificio("Hotel","Por aca nada, paisanito");
+		Edificio MuseoAUS = new Edificio("Museo");
+		MuseoAUS.setPista("No conosco nadie así");
+		Edificio HotelAUS = new Edificio("Hotel");
+		HotelAUS.setPista("Por aca nada, paisanito");
 		Edificio[] edificiosAUS = {MuseoAUS,HotelAUS};
 		String nombreAUS = "Sidney";
 		Coordenadas coordenadasSidney = new Coordenadas(-33.867138,151.207108);
@@ -154,17 +160,23 @@ public class PartidaJuegoTest {
 		Coordenadas coordenadasNY = new Coordenadas(40.714268,-74.005974);
 		Pais USA = new Pais("USA",edificiosAUS,coordenadasNY);
 		
-		Edificio BolsaARG = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
-		Edificio BancoARG = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
-		Edificio AeropuertoARG = new Edificio("Aeropuerto", "“El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis”");
+		Edificio BolsaARG = new Edificio("Bolsa");
+		BolsaARG.setPista("Le dicen que tenía el cabello castaño");
+		Edificio BancoARG = new Edificio("Banco");
+		BancoARG.setPista("Cambio dinero a libras esterlinas");
+		Edificio AeropuertoARG = new Edificio("Aeropuerto");
+		AeropuertoARG.setPista("El avión tenía colores rojo, blanco y azul, llevaba raqueta de tenis");
 		Edificio[] edificiosArgentina = {BolsaARG,BancoARG,AeropuertoARG};
 		String nombreArg = "Buenos Aires";
 		Coordenadas coordenadasBuenosAires = new Coordenadas(-34.608418,-58.373161);
 		Pais Argentina = new Pais(nombreArg,edificiosArgentina,coordenadasBuenosAires);
 		
-		Edificio HotelLND = new Edificio("Hotel",", estaba mejorando su inglés americano");
-		Edificio BancoLDN = new Edificio("Banco","“compró dólares y llevaba un tatuaje”");
-		Edificio MuelleLND = new Edificio("Muelle","Fue en un crucero que tenía una bandera con estrellas");
+		Edificio HotelLND = new Edificio("Hotel");
+		HotelLND.setPista("estaba mejorando su inglés americano");
+		Edificio BancoLDN = new Edificio("Banco");
+		BancoLDN.setPista("estaba mejorando su inglés americano");
+		Edificio MuelleLND = new Edificio("Muelle");
+		MuelleLND.setPista("Fue en un crucero que tenía una bandera con estrellas");
 		Edificio[] edificiosLDN = {HotelLND,BancoLDN,MuelleLND};
 		String nombreIng = "London";
 		Coordenadas coordenadasLondres = new Coordenadas(51.500153,-0.126236);

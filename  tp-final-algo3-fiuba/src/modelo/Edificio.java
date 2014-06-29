@@ -2,6 +2,7 @@ package modelo;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Random;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,9 +18,11 @@ public class Edificio {
 	private Herida Herida;
 	private boolean ContieneLadron;
 	
-	public Edificio(String UnNombre, String UnaPista){
+	public Edificio(String UnNombre){
 		this.Nombre = UnNombre;
-		this.Pista = UnaPista;
+		Random random = new Random();
+		String[] Pistas = {"Nunca he visto a la persona que dices","No he visto a nadie como dices","Jamas he visto a esa persona","Lo siento, no","La verdad que no he visto a nadie que responda a eso"};
+		this.Pista = Pistas[random.nextInt(Pistas.length-1)];
 		this.VecesVisitado = 0;
 		this.Herida = null;
 		this.ContieneLadron = false;
@@ -31,6 +34,9 @@ public class Edificio {
 	
 	public void setLadron(){
 		ContieneLadron = true;
+	}
+	public void setPista(String unaPista){
+		this.Pista = unaPista;
 	}
 
 	public String visitar(Policia UnPolicia){
@@ -74,7 +80,8 @@ public class Edificio {
 	public static Edificio hidratar(Node nodo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		Element elementoEdificio = (Element) nodo;
 		Element elementoHerida = (Element) elementoEdificio.getFirstChild();
-		Edificio edificioADevolver = new Edificio(elementoEdificio.getAttribute("Nombre"),elementoEdificio.getAttribute("Pista"));
+		Edificio edificioADevolver = new Edificio(elementoEdificio.getAttribute("Nombre"));
+		edificioADevolver.setPista(elementoEdificio.getAttribute("Pista"));
 		edificioADevolver.setearVisitas(Integer.parseInt(elementoEdificio.getAttribute("VecesVisitado")));
 		if (Boolean.valueOf(elementoEdificio.getAttribute("ContieneLadron"))){
 			edificioADevolver.setLadron();

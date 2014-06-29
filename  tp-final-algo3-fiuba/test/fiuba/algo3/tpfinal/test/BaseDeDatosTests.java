@@ -34,7 +34,7 @@ public class BaseDeDatosTests {
 	}
 	
 	public Pais crearPais(String Nombre){
-		Edificio[] Edificios = {new Edificio("Lugarde"+Nombre,"Pistade"+Nombre)};
+		Edificio[] Edificios = {new Edificio("Lugarde"+Nombre)};
 		Pais unPais = new Pais(Nombre,Edificios,null);
 		return unPais;
 	}
