@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import vistas.paneles.PanelViajar;
 import vistas.paneles.PanelEdificios;
+import vistas.paneles.PanelCaracteristicas;
 import vistas.relojdigital.RelojDigital;
 import modelo.PartidaObservable;
 import control.ControladorBotonViajar;
@@ -30,8 +31,10 @@ public class VistaPartida extends JFrame implements Observer {
 	private PartidaObservable partida;
 	
 	private JPanel PanelGeneral;
+	
 	private PanelViajar panelMenuParaViajar;
 	private PanelEdificios panelMenuEdificios;
+	private PanelCaracteristicas panelMenuCaracteristicas;
 	
 	private String RutaImagenPais = "/vistas/imagenes/paises/";
 	private String HorasTiempo;
@@ -48,6 +51,7 @@ public class VistaPartida extends JFrame implements Observer {
 			
 			panelMenuParaViajar = new PanelViajar(PanelGeneral,partida);
 			panelMenuEdificios = new PanelEdificios(PanelGeneral,partida);
+			panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida);
 			
 			crearVentana();
 	}
@@ -100,7 +104,7 @@ public class VistaPartida extends JFrame implements Observer {
 		LabelInformacion.setVerticalAlignment(SwingConstants.TOP);
 		LabelInformacion.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
 		LabelInformacion.setForeground(new Color(255, 255, 255));
-		LabelInformacion.setBounds(310, 24, 307, 213);
+		LabelInformacion.setBounds(310, 24, 307, 214);
 		PanelGeneral.add(LabelInformacion);
 		
 		JButton BotonInvestigar = new JButton("Edificios");
@@ -146,10 +150,17 @@ public class VistaPartida extends JFrame implements Observer {
 	public void MostrarPaisesParaViajar() {
 		panelMenuParaViajar.mostrarPanel();	
 		panelMenuEdificios.ocultarPanel();
+		panelMenuCaracteristicas.ocultarPanel();
 	}
 	
 	public void MostrarEdificiosParaVisitar(){
 		panelMenuParaViajar.ocultarPanel();
 		panelMenuEdificios.mostrarPanel();
+		panelMenuCaracteristicas.ocultarPanel();
+	}
+	public void MostrarCaracteristicasParaFiltrar(){
+		panelMenuParaViajar.ocultarPanel();
+		panelMenuEdificios.ocultarPanel();
+		panelMenuCaracteristicas.mostrarPanel();
 	}
 }

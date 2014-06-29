@@ -25,16 +25,16 @@ public class _SimuladorCrearPartida {
 		 -Australia  Sydney        (-33.867138,151.207108)   Puerto,Biblioteca,Bolsa
 		 -Francia    Roma          (41.895466,12.482324)     Museo,Banco,Aeropuerto
 		Ladrones 
-		 -Nick Brunch (Masculino,Alpinismo,Negro,Anillo,Moto)
-		 -Len Bulk (Masculino,Alpinismo,Rojo,Tatuaje,Descapotable)
-		 -Ihor Ihorovitch (Masculino,Croquet,Rubio,Tatuaje,Limusina)
-		 -Fast Eddie B. (Masculino,Croquet,Negro,Joyas,Convertible)
-		 -Scar Graynolt (Masculino,Croquet,Rojo,Anillo,Limusina)
-		 -Merey Laroc (Femenino,Alpinismo,Marron,Joyas,Limusina)
-		 -Lady Agatha (Femenino,Tennis,Rojo,Anillo,Convertible)
-		 -Katherine Drib (Femenino,Alpinismo,Marron,Tatuaje,Moto)
-		 -Dazzle Annie (Femenino,Tennis,Rubio,Tatuaje,Limusina)
-		 -Carmen Sandiego (Femenino,Tennis,Marron,Joyas,Convertible)
+		 -Nick Brunch     (Masculino,Alpinismo,Negro,Anillo,Moto)
+		 -Len Bulk        (Masculino,Alpinismo,Rojo,Tatuaje,Descapotable)
+		 -Ihor Ihorovitch (Masculino,Croquet  ,Rubio,Tatuaje,Limusina)
+		 -Fast Eddie B.   (Masculino,Croquet  ,Negro,Joyas,Convertible)
+		 -Scar Graynolt   (Masculino,Croquet  ,Rojo,Anillo,Limusina)
+		 -Merey Laroc     (Femenino ,Alpinismo,Marron,Joyas,Limusina)
+		 -Lady Agatha     (Femenino ,Tennis   ,Rojo,Anillo,Convertible)
+		 -Katherine Drib  (Femenino ,Alpinismo,Marron,Tatuaje,Moto)
+		 -Dazzle Annie    (Femenino ,Tennis   ,Rubio,Tatuaje,Limusina)
+		 -Carmen Sandiego (Femenino ,Tennis   ,Marron,Joyas,Convertible)
 		Ladron 
 		 -Carmen Sandiego
 		Trayectoria del Ladron
