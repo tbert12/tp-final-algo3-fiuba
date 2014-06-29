@@ -141,4 +141,8 @@ public class Partida {
 	public String getRangodelPolcia() {
 		return this.UnPolicia.toStringRango();
 	}
+	
+	public boolean tempoAgotado() {
+		return UnPolicia.tiempoAgotado();
+	}
 }
