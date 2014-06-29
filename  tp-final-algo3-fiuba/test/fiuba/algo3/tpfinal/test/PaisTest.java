@@ -88,10 +88,6 @@ public class PaisTest {
 	@Test
 	public void testPersistenciaUnPais() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		UnPais.setInformacion("Informacion del Pais");
-		HashMap<String, Integer> distancias = new HashMap<>();
-		distancias.put("Chile", 2);
-		distancias.put("Paraguay",4);
-		UnPais.setDistancias(distancias);
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		Document doc = db.newDocument();

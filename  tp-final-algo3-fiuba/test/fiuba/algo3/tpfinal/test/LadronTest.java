@@ -51,7 +51,7 @@ public class LadronTest {
 	public void LadronNombreNoEsCorrecto() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
-		Assert.assertNotEquals(ladron.getNombre(),"NombredeLadron");	
+		Assert.assertNotEquals(ladron.getNombre(),"EsteNoEsElNombre");	
 	}
 	
 	@Test

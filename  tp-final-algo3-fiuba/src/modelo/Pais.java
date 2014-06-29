@@ -3,8 +3,8 @@ package modelo;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,13 +16,13 @@ public class Pais {
 	private String Nombre;
 	private String Informacion;
 	private Edificio[] Edificios;
-	private HashMap<String,Integer> DistanciaAPaises;
 	private Coordenadas coordenadas;
 	
 	public Pais(String UnNombre,Edificio[] LosEdificios,Coordenadas coordenadas){
 		this.Nombre = UnNombre;
 		this.Edificios = LosEdificios;
 		this.coordenadas = coordenadas;
+		this.Informacion = "Informacion generica";
 	}
 	
 	public String getNombre(){
@@ -47,15 +47,6 @@ public class Pais {
 	}
 	
 	
-	/* Metodos que utilizan Diccionario
-	public int distanciaAPais(String unPais){
-		return DistanciaAPaises.get(unPais);
-	}
-	
-	*/
-	public void setDistancias(HashMap<String,Integer> unDicc){
-		DistanciaAPaises = unDicc;
-	}
 	
 	
 	public ArrayList<Edificio> getEdificios(){
@@ -79,22 +70,6 @@ public class Pais {
 		Element elementoCoordenadas=doc.createElement("Coordenadas");
 		elementoPais.appendChild(elementoCoordenadas);
 		elementoCoordenadas.appendChild(this.coordenadas.serializar(doc));
-		Element elementoDistancias=doc.createElement("Distancias");
-		elementoPais.appendChild(elementoDistancias);
-		int i = 0;
-		try{
-		for (Map.Entry<String, Integer> distanciaEntry : DistanciaAPaises.entrySet()){
-			Element elementoDistancia = doc.createElement("Par"+i);
-			elementoDistancia.setAttribute("Key", distanciaEntry.getKey());
-			elementoDistancia.setAttribute("Value",String.valueOf(distanciaEntry.getValue()));
-			elementoDistancias.appendChild(elementoDistancia);
-			i++;
-			}
-		}
-		
-		catch (NullPointerException e){
-		return elementoPais;
-		}
 		return elementoPais;
 		
 	}
@@ -109,16 +84,8 @@ public class Pais {
 		}
 		Node elementoCoordenadas = elementoPais.getChildNodes().item(1);
 		Coordenadas coordenadasDelPais = Coordenadas.hidratar(elementoCoordenadas.getFirstChild());
-		Node elementoDistancias = elementoPais.getChildNodes().item(2);
-		NodeList nodosDistancias= elementoDistancias.getChildNodes();
-		HashMap<String,Integer> DistanciaAPaises = new HashMap<>();
-		for (int i = 0;i<nodosDistancias.getLength();i++){
-			Element elementoDistancia = (Element)nodosDistancias.item(i);
-			DistanciaAPaises.put(elementoDistancia.getAttribute("Key"), Integer.parseInt(elementoDistancia.getAttribute("Value")));
-		}
 		Pais paisADevolver = new Pais(elementoPais.getAttribute("Nombre"),edificios,coordenadasDelPais);
 		paisADevolver.setInformacion(elementoPais.getAttribute("Informacion"));
-		paisADevolver.setDistancias(DistanciaAPaises);
 		return paisADevolver;
 		
 	}
@@ -127,10 +94,9 @@ public class Pais {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime
-				* result
-				+ ((DistanciaAPaises == null) ? 0 : DistanciaAPaises.hashCode());
 		result = prime * result + Arrays.hashCode(Edificios);
+		result = prime * result
+				+ ((Informacion == null) ? 0 : Informacion.hashCode());
 		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
 		result = prime * result
 				+ ((coordenadas == null) ? 0 : coordenadas.hashCode());
@@ -146,12 +112,12 @@ public class Pais {
 		if (getClass() != obj.getClass())
 			return false;
 		Pais other = (Pais) obj;
-		if (DistanciaAPaises == null) {
-			if (other.DistanciaAPaises != null)
-				return false;
-		} else if (!DistanciaAPaises.equals(other.DistanciaAPaises))
-			return false;
 		if (!Arrays.equals(Edificios, other.Edificios))
+			return false;
+		if (Informacion == null) {
+			if (other.Informacion != null)
+				return false;
+		} else if (!Informacion.equals(other.Informacion))
 			return false;
 		if (Nombre == null) {
 			if (other.Nombre != null)
