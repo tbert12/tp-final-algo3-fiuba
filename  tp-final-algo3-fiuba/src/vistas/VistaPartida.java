@@ -69,8 +69,14 @@ public class VistaPartida extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		if (partida.tiempoAgotado()){
+			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
+			//Reiniciar Juego
+		}
+		
 		if (partida.partidaFinalizada()){
 			mostrarMensaje(partida.getPistaActual(), "Mensaje Interpool");
+			//Reiniciar Juego
 		}
 		
 		updateHora();

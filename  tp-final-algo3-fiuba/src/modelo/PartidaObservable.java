@@ -91,4 +91,9 @@ public class PartidaObservable extends Observable {
 	public String getPistaActual() {
 		return this.pistaActual;
 	}
+
+
+	public boolean tiempoAgotado() {
+		return UnaPartida.tempoAgotado();
+	}
 }

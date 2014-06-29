@@ -134,5 +134,9 @@ public class Partida {
 							//Pos 1 el nombre del chorro
 							//Pos 2 el objeto robado
 	}
+
+	public boolean tempoAgotado() {
+		return UnPolicia.tiempoAgotado();
+	}
 	
 }
