@@ -43,13 +43,25 @@ public class PanelCaracteristicas {
 	private void darFormaAVentana(){ 
 		MenuCaracteristicas.setLayout(null);
 		
-		String[] OpcionesSexo = {"N/A","Masculino","Femenino"};
+		String[] OpcionesSexo = {"N/A","MASCULINO","FEMENINO"};
 		choiceSexo = crearChoice(OpcionesSexo);
-		choiceSexo.setBounds(10, 10, 112, 20);
-		String[] OpcionesHobby = {"N/A"};
-		choiceHobby = crearChoice(OpcionesHobby);
-		choiceHobby.setBounds(10, 10, 112, 50);
+		choiceSexo.setBounds(10, 40, 140, 20);
 		
+		String[] OpcionesHobby = {"N/A","TENNIS","MUSICA","ALPINISMO","PARACAIDISMO","NATACION","CROQUET"};
+		choiceHobby = crearChoice(OpcionesHobby);
+		choiceHobby.setBounds(10, 20, 140, 20);
+		
+		String[] OpcionesCabello = {"N/A","CASTANIO","RUBIO","ROJO","NEGRO"};
+		choiceCabello = crearChoice(OpcionesCabello);
+		choiceHobby.setBounds(10, 20, 140, 20);
+		
+		String[] OpcionesSenia = {"N/A","COJERA","ANILLO","TATUAJE","CICATRIZ","JOYAS"};
+		choiceSenia = crearChoice(OpcionesSenia);
+		choiceSenia.setBounds(10, 30, 140, 20);
+		
+		String[] OpcionesVehiculos = {"N/A","DESCAPOTABLE","LIMUSINA","DEPORTIVO","MOTO"};
+		choiceVehiculo = crearChoice(OpcionesVehiculos);
+		choiceVehiculo.setBounds(10, 40, 140, 20);
 	}
 	
 	public void mostrarPanel(){
