@@ -99,6 +99,7 @@ public class _SimuladorCrearPartida {
 		Edificio BibliotecaArgentina = new Edificio("Biblioteca","Las pista estan en otro lado");
 		Edificio[] EdificiosArgentina = {AeropuertoArgentina,BancoArgentina,BibliotecaArgentina}; 
 		Pais Argentina = new Pais("Buenos Aires",EdificiosArgentina,CoordArgentina);
+		Argentina.setInformacion("La ciudad de los choris, y el jaguarrrmaa de condoorr... BRUNOO TROPIANO!");
 		basedeDatos.addPais(Argentina);
 		
 		Coordenadas CoordAlemania = new Coordenadas(51.165691,10.451526);
@@ -107,6 +108,7 @@ public class _SimuladorCrearPartida {
 		Edificio BolsaAlemania = new Edificio("Bolsa","Iaaaa noo estaba acaaa");
 		Edificio[] EdificiosAlemania = {MuseoAlemania,AeropuertoAlemania,BolsaAlemania}; 
 		Pais Alemania = new Pais("Alemania",EdificiosAlemania,CoordAlemania);
+		Alemania.setInformacion("Esten es un paisen muy cerveceren, aguanten el TURKO MENDEZ");
 		basedeDatos.addPais(Alemania);
 		
 		Coordenadas CoordUsa = new Coordenadas(40.714268,-74.005974);
@@ -115,6 +117,7 @@ public class _SimuladorCrearPartida {
 		Edificio BancoUsa = new Edificio("Bolsa","pa pa pa pa paaaaChiuuuu Peniaaa");
 		Edificio[] EdificiosUsa = {CasadeGobiernoUsa,BibliotecaUsa,BancoUsa}; 
 		Pais Usa = new Pais("New York",EdificiosUsa,CoordUsa);
+		Usa.setInformacion("UUUSSSAAAA UUUUSSSAAAA");
 		basedeDatos.addPais(Usa);
 		
 		Coordenadas CoordParaguay = new Coordenadas(-23.442503,-58.443832);
@@ -131,6 +134,7 @@ public class _SimuladorCrearPartida {
 		Edificio MuseoCanada = new Edificio("Museo","Me jugo al tennis la de pelo castanio");
 		Edificio[] EdificiosCanada = {PuertoCanada,BibliotecaCanada,MuseoCanada}; 
 		Pais Canada = new Pais("Ottawa",EdificiosCanada,CoordCanada);
+		Canada.setInformacion("La ciudad de los choris, y el jaguarrrmaa de condoorr... BRUNOO TROPIANO!");
 		basedeDatos.addPais(Canada);
 		
 		Coordenadas CoordChina = new Coordenadas(31.230707,121.472916);
@@ -156,6 +160,7 @@ public class _SimuladorCrearPartida {
 		Edificio BolsaAustralia = new Edificio("Bolsa","En este edifico no esta, pero esta en el Pais");
 		Edificio[] EdificiosAustralia = {PuertoAustralia,BibliotecaAustralia,BolsaAustralia}; 
 		Pais Australia = new Pais("Sydney",EdificiosAustralia,CoordAustralia);
+		Australia.setInformacion("MARTAAAA LA DE LAS TELASS...");
 		basedeDatos.addPais(Australia);
 		
 		Coordenadas CoordFrancia = new Coordenadas(41.895466,12.482324);

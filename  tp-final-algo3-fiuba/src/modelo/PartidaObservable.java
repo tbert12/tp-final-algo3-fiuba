@@ -80,4 +80,9 @@ public class PartidaObservable extends Observable {
 		setChanged();
 		notifyObservers();
 	}
+
+
+	public String getInformacionPaisActual() {
+		return UnaPartida.paisActual().getInformacion();
+	}
 }

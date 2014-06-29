@@ -39,7 +39,7 @@ public class VistaPartida extends JFrame implements Observer {
 	private PanelEdificios panelMenuEdificios;
 	private PanelCaracteristicas panelMenuCaracteristicas;
 	
-	private JLabel CiudadActual,Tiempo,ImagenPais,LabelInformacion;
+	private JLabel CiudadActual,Tiempo,ImagenPais,TextoPista,InformacionPais;
 	
 	private String RutaImagenPais = "/vistas/imagenes/paises/";
 	private String HorasTiempo;
@@ -59,6 +59,7 @@ public class VistaPartida extends JFrame implements Observer {
 			NombrePaisActual = partida.getPaisActual();
 			updateCiudadActual();
 			updateImagenPais();
+			updateTextos();
 		
 			
 	}
@@ -73,8 +74,7 @@ public class VistaPartida extends JFrame implements Observer {
 		updateHora();
 		updateCiudadActual();
 		updateImagenPais();
-		updatePista();
-		//updateInformacionPais();
+		updateTextos();
 	
 	}
 	
@@ -97,9 +97,15 @@ public class VistaPartida extends JFrame implements Observer {
 		
 	}
 	
-	private void updatePista(){
-		if (partida.getPistaActual() != null){
-			LabelInformacion.setText("<html> Pista: <br>" + partida.getPistaActual() +"</html>");
+	private void updateTextos(){
+		String nuevapista = partida.getPistaActual() ;
+		if (nuevapista!= null){
+			TextoPista.setText("<html> Pista: <br>" + nuevapista +"</html>");
+		}
+		
+		String InfoPais = partida.getInformacionPaisActual();
+		if (InfoPais != null){
+			InformacionPais.setText("<html> Informacion :<br>" + InfoPais +"</html>");
 		}
 	}
 	
@@ -120,8 +126,18 @@ public class VistaPartida extends JFrame implements Observer {
 		PanelGeneral.setLayout(null);
 		
 		ImagenPais = new JLabel("");
-		ImagenPais.setBounds(10, 92, 274, 376);
+		ImagenPais.setBackground(Color.BLACK);
+		ImagenPais.setBounds(10, 212, 274, 256);
 		PanelGeneral.add(ImagenPais);
+		
+		InformacionPais = new JLabel("");
+		InformacionPais.setForeground(Color.WHITE);
+		InformacionPais.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
+		InformacionPais.setBackground(Color.BLACK);
+		InformacionPais.setVerticalTextPosition(SwingConstants.TOP);
+		InformacionPais.setVerticalAlignment(SwingConstants.TOP);
+		InformacionPais.setBounds(10, 92, 274, 112);
+		PanelGeneral.add(InformacionPais);
 		
 		CiudadActual = new JLabel();
 		CiudadActual.setHorizontalAlignment(SwingConstants.CENTER);
@@ -137,13 +153,13 @@ public class VistaPartida extends JFrame implements Observer {
 		Tiempo.setBounds(19, 42, 255, 25);
 		PanelGeneral.add(Tiempo);
 		
-		LabelInformacion = new JLabel("<html> INFORMACION PARA MOSTRAR:\r\n - Pistas.\r\n -Posibles Ladrones.\r\n -Orden de Arresto Emitida.\r\n -Info del Pais.\r\n -Si gano o Perdio.\r\nEntrar 384 chars</html>");
-		LabelInformacion.setVerticalTextPosition(SwingConstants.TOP);
-		LabelInformacion.setVerticalAlignment(SwingConstants.TOP);
-		LabelInformacion.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
-		LabelInformacion.setForeground(new Color(255, 255, 255));
-		LabelInformacion.setBounds(310, 24, 307, 214);
-		PanelGeneral.add(LabelInformacion);
+		TextoPista = new JLabel("<html> INFORMACION PARA MOSTRAR:\r\n - Pistas.\r\n -Posibles Ladrones.\r\n -Orden de Arresto Emitida.\r\n -Info del Pais.\r\n -Si gano o Perdio.\r\nEntrar 384 chars</html>");
+		TextoPista.setVerticalTextPosition(SwingConstants.TOP);
+		TextoPista.setVerticalAlignment(SwingConstants.TOP);
+		TextoPista.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
+		TextoPista.setForeground(new Color(255, 255, 255));
+		TextoPista.setBounds(310, 24, 307, 214);
+		PanelGeneral.add(TextoPista);
 		
 		JButton BotonInvestigar = new JButton("Edificios");
 		BotonInvestigar.setFocusPainted(false);
