@@ -32,6 +32,7 @@ public  class CarmenSanDiego {
 	public  CarmenSanDiego() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
 		levantarPoliciasDelXML();
 		levantarLadronesDelXML();
+		levantarPaisesDelXML();
 		}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -155,7 +156,7 @@ public  class CarmenSanDiego {
 		
 	}
 
-	public void AgregarPartidasFacilesAlXML(String nombreArchivo,String nombrePolicia, String nombreLadron) throws ParserConfigurationException, SAXException, IOException{
+	public void AgregarPartidasFacilesAlXML(String nombreArchivo,String[] lasPistas, String nombreLadron) throws ParserConfigurationException, SAXException, IOException{
 		File archivoXML = new File(nombreArchivo);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -164,9 +165,12 @@ public  class CarmenSanDiego {
 		doc.getDocumentElement().normalize();
 		Element elementoPartidas = (Element) doc.getFirstChild();
 		Element elementoUnaPartida = doc.createElement("Partida");
-		elementoUnaPartida.setAttribute("NombrePolicia",nombrePolicia);
 		elementoUnaPartida.setAttribute("NombreLadron",nombreLadron);
 		elementoPartidas.appendChild(elementoUnaPartida);
+	}
+	public void iniciarPartida(String nombreUsuario){
+		Policia elPolicia = iniciarJugador(nombreUsuario);
+		elPolicia.getRango();
 	}
 	/*
 	public void iniciarPartida(String string) {
