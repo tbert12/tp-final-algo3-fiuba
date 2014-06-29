@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -39,7 +41,7 @@ public class VistaPartida extends JFrame implements Observer {
 	private PanelEdificios panelMenuEdificios;
 	private PanelCaracteristicas panelMenuCaracteristicas;
 	
-	private JLabel CiudadActual,Tiempo,ImagenPais,TextoPista,InformacionPais;
+	private JLabel TextoInterpool,CiudadActual,Tiempo,ImagenPais,TextoPista,InformacionPais;
 	
 	private String RutaImagenPais = "/vistas/imagenes/paises/";
 	private String HorasTiempo;
@@ -68,7 +70,7 @@ public class VistaPartida extends JFrame implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if (partida.partidaFinalizada()){
-			mostrarMensaje(partida.getInformacionParaMostrar(), "Mensaje Interpool");
+			mostrarMensaje(partida.getPistaActual(), "Mensaje Interpool");
 		}
 		
 		updateHora();
@@ -101,17 +103,43 @@ public class VistaPartida extends JFrame implements Observer {
 	}
 	
 	private void updateTextos(){
-		String informacion = partida.getInformacionParaMostrar() ;
-		if (informacion != null){
-			TextoPista.setText("<html>" + informacion +"</html>");
+		String pistadeEdificio = partida.getPistaActual() ;
+		ArrayList<String> NombreLadronesFiltrados = partida.nombreDeSospechosos();
+		if (pistadeEdificio == null && NombreLadronesFiltrados == null){
+			TextoInterpool.setVisible(false);
+			TextoPista.setVisible(false);
+		}
+		else if (NombreLadronesFiltrados == null){
+			TextoInterpool.setVisible(false);
+			TextoPista.setText("<html> Pista: <br>" + pistadeEdificio + "</html>");
+			TextoPista.setVisible(true);
+		}
+		else if(pistadeEdificio == null){
+			TextoPista.setVisible(false);
+			TextoInterpool.setText("<html>" + generarMensajedeInterpool(NombreLadronesFiltrados) +"</html>");
+			TextoInterpool.setVisible(true);
 		}
 		
 		String InfoPais = partida.getInformacionPaisActual();
 		if (InfoPais != null){
-			InformacionPais.setText("<html> Informacion :<br>" + InfoPais +"</html>");
+			InformacionPais.setText("<html>" + InfoPais + "</html>");
 		}
 	}
 	
+	private String generarMensajedeInterpool(ArrayList<String> Nombres) {
+		String mensaje = "Mensaje de la Interpool: <br>";
+		if (Nombres.size() == 0) mensaje = mensaje +  "No se han encontrado coincidencias con ningun sospechoso";
+		else if (Nombres.size() == 1) mensaje = mensaje +  "Orden de arresto emitida para: <br>";
+		else mensaje = mensaje + "Se encontraron " + Integer.toString(Nombres.size()) + " coincidencias"; 
+		
+		Iterator<String> iteradorNombres = Nombres.iterator();
+		while (iteradorNombres.hasNext()){
+			mensaje = mensaje + " -" + iteradorNombres.next() + "<br>";
+		}
+		return mensaje;
+	}
+
+
 	public void mostrarVentana(){
 		setVisible(true);
 	}
@@ -156,13 +184,21 @@ public class VistaPartida extends JFrame implements Observer {
 		Tiempo.setBounds(19, 42, 255, 25);
 		PanelGeneral.add(Tiempo);
 		
-		TextoPista = new JLabel("<html> INFORMACION PARA MOSTRAR:\r\n - Pistas.\r\n -Posibles Ladrones.\r\n -Orden de Arresto Emitida.\r\n -Info del Pais.\r\n -Si gano o Perdio.\r\nEntrar 384 chars</html>");
+		TextoPista = new JLabel();
 		TextoPista.setVerticalTextPosition(SwingConstants.TOP);
 		TextoPista.setVerticalAlignment(SwingConstants.TOP);
 		TextoPista.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
 		TextoPista.setForeground(new Color(255, 255, 255));
 		TextoPista.setBounds(310, 24, 307, 214);
 		PanelGeneral.add(TextoPista);
+		
+		TextoInterpool = new JLabel();
+		TextoInterpool.setVerticalTextPosition(SwingConstants.TOP);
+		TextoInterpool.setVerticalAlignment(SwingConstants.TOP);
+		TextoInterpool.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
+		TextoInterpool.setForeground(new Color(255, 255, 255));
+		TextoInterpool.setBounds(310, 24, 307, 214);
+		PanelGeneral.add(TextoInterpool);
 		
 		JButton BotonInvestigar = new JButton("Edificios");
 		BotonInvestigar.setFocusPainted(false);

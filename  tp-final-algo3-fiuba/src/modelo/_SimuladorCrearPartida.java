@@ -16,7 +16,7 @@ public class _SimuladorCrearPartida {
 		Paises
 		 -Argelia    Argel         (28.033886,1.659626)      Museo,Puerto,Casa de Gobierno
 		 -Argentina  Buenos Aires  (-34.608418,-58.373161)   Aeropuerto,Banco,Biblioteca
-		 -Alemania   Alemania      (51.165691,10.451526)     Museo,Aeropuerto,Bolsa
+		 -Alemania   Amsterdam      (51.165691,10.451526)     Museo,Aeropuerto,Bolsa
 		 -Usa        New York      (40.714268,-74.005974)    Casa de Gobierno,Biblioteca,Banco
 		 -Paraguay   Concepcion    (-23.442503,-58.443832)   Museo,Aeropuerto,Bolsa
 		 -Canada     Ottawa        (45.423492,-75.697929)    Puerto,Biblioteca,Museo
@@ -86,87 +86,91 @@ public class _SimuladorCrearPartida {
 		
 		//Creo Paises
 		Coordenadas CoordArgelia = new Coordenadas(28.033886,1.659626);
-		Edificio MuseoArgelia = new Edificio("Biblioteca","No vi nada");
-		Edificio PuertoArgelia = new Edificio("Puerto","No vi nada, Mucha gente");
+		Edificio MuseoArgelia = new Edificio("Biblioteca","No eh visto nada");
+		Edificio PuertoArgelia = new Edificio("Puerto","No vi nada, Anda mucha gente por estos lugares");
 		Edificio CasaDeGobiernoArgelia = new Edificio("Casa de Gobierno","Pues aqui no hay nada");
 		Edificio[] EdificiosArgelia = {MuseoArgelia,PuertoArgelia,CasaDeGobiernoArgelia}; 
 		Pais Argelia = new Pais("Argel",EdificiosArgelia,CoordArgelia);
+		Argelia.setInformacion("Informacion sobre Argelia");
 		basedeDatos.addPais(Argelia);
 		
 		Coordenadas CoordArgentina = new Coordenadas(-34.608418,-58.373161);
-		Edificio AeropuertoArgentina = new Edificio("Aeropuerto","mmm...Creo que se fue a Canada");
-		Edificio BancoArgentina = new Edificio("Banco","El nombre de pais a donde se dirigia empieza con Ca y termina con Nada");
-		Edificio BibliotecaArgentina = new Edificio("Biblioteca","Las pista estan en otro lado");
+		Edificio AeropuertoArgentina = new Edificio("Aeropuerto","Andaba en un coche que tenia una bandera con una hoja");
+		Edificio BancoArgentina = new Edificio("Banco","Dijo que viajaba hacia el norte, hacia donde hace frio");
+		Edificio BibliotecaArgentina = new Edificio("Biblioteca","Tenia lindas joyas la dama");
 		Edificio[] EdificiosArgentina = {AeropuertoArgentina,BancoArgentina,BibliotecaArgentina}; 
 		Pais Argentina = new Pais("Buenos Aires",EdificiosArgentina,CoordArgentina);
-		Argentina.setInformacion("La ciudad de los choris, y el jaguarrrmaa de condoorr... BRUNOO TROPIANO!");
+		Argentina.setInformacion("Argentina, un pais con buena gente");
 		basedeDatos.addPais(Argentina);
 		
 		Coordenadas CoordAlemania = new Coordenadas(51.165691,10.451526);
-		Edificio MuseoAlemania = new Edificio("Museo","Ohhh Birrreeen bireen");
-		Edificio AeropuertoAlemania = new Edificio("Aeropuerto","Lobittteeen y Caperusitenn");
-		Edificio BolsaAlemania = new Edificio("Bolsa","Iaaaa noo estaba acaaa");
+		Edificio MuseoAlemania = new Edificio("Museo","No he visto nada por estos lados");
+		Edificio AeropuertoAlemania = new Edificio("Aeropuerto","Veo mucha gente todos los dias es probable que no la haya visto");
+		Edificio BolsaAlemania = new Edificio("Bolsa","Si la he visto no me he dado cuenta");
 		Edificio[] EdificiosAlemania = {MuseoAlemania,AeropuertoAlemania,BolsaAlemania}; 
-		Pais Alemania = new Pais("Alemania",EdificiosAlemania,CoordAlemania);
-		Alemania.setInformacion("Esten es un paisen muy cerveceren, aguanten el TURKO MENDEZ");
+		Pais Alemania = new Pais("Berlin",EdificiosAlemania,CoordAlemania);
+		Alemania.setInformacion("Informacion sobre Alemania");
 		basedeDatos.addPais(Alemania);
 		
 		Coordenadas CoordUsa = new Coordenadas(40.714268,-74.005974);
-		Edificio CasadeGobiernoUsa = new Edificio("Casa de Gobierno","Nooou nothing");
-		Edificio BibliotecaUsa = new Edificio("Biblioteca","Calafa fa fa faa");
-		Edificio BancoUsa = new Edificio("Bolsa","pa pa pa pa paaaaChiuuuu Peniaaa");
+		Edificio CasadeGobiernoUsa = new Edificio("Casa de Gobierno","No he visto nada sospechoso");
+		Edificio BibliotecaUsa = new Edificio("Biblioteca","Aqui no vas a encontrar lo que buscas");
+		Edificio BancoUsa = new Edificio("Bolsa","Disculpe, No tengo informacion para ofrecerle");
 		Edificio[] EdificiosUsa = {CasadeGobiernoUsa,BibliotecaUsa,BancoUsa}; 
 		Pais Usa = new Pais("New York",EdificiosUsa,CoordUsa);
-		Usa.setInformacion("UUUSSSAAAA UUUUSSSAAAA");
+		Usa.setInformacion("Informacion de Estados Unidos");
 		basedeDatos.addPais(Usa);
 		
 		Coordenadas CoordParaguay = new Coordenadas(-23.442503,-58.443832);
-		Edificio MuseoParaguay = new Edificio("Museo","Nada");
-		Edificio AeropuertoParaguay = new Edificio("Aeropuerto","No vi nada");
-		Edificio BolsaParaguay = new Edificio("Bolsa","Muchisima gente para ver algo");
+		Edificio MuseoParaguay = new Edificio("Museo","No he visto nada");
+		Edificio AeropuertoParaguay = new Edificio("Aeropuerto","Si la he visto no me he dado cuenta");
+		Edificio BolsaParaguay = new Edificio("Bolsa","Veo pasar mucha gente para ver algo");
 		Edificio[] EdificiosParaguay = {MuseoParaguay,AeropuertoParaguay,BolsaParaguay}; 
 		Pais Paraguay = new Pais("Concepcion",EdificiosParaguay,CoordParaguay);
+		Paraguay.setInformacion("Informacion de Paraguay");
 		basedeDatos.addPais(Paraguay);
 		
 		Coordenadas CoordCanada = new Coordenadas(45.423492,-75.697929);
-		Edificio PuertoCanada = new Edificio("Puerto","Cleo que se fue a Chinaaa uoocho");
-		Edificio BibliotecaCanada = new Edificio("Biblioteca","Se achino los ojos y se las tomo");
-		Edificio MuseoCanada = new Edificio("Museo","Me jugo al tennis la de pelo castanio");
+		Edificio PuertoCanada = new Edificio("Puerto","Dijo que se dirijiria a un pais comunista");
+		Edificio BibliotecaCanada = new Edificio("Biblioteca","Jugamos un partido de tennis y luego menciono algo de un pais con muchos habitantes");
+		Edificio MuseoCanada = new Edificio("Museo","La bandera del avion que tomo es de color rojo");
 		Edificio[] EdificiosCanada = {PuertoCanada,BibliotecaCanada,MuseoCanada}; 
 		Pais Canada = new Pais("Ottawa",EdificiosCanada,CoordCanada);
-		Canada.setInformacion("La ciudad de los choris, y el jaguarrrmaa de condoorr... BRUNOO TROPIANO!");
+		Canada.setInformacion("Informacion de Canada");
 		basedeDatos.addPais(Canada);
 		
 		Coordenadas CoordChina = new Coordenadas(31.230707,121.472916);
-		Edificio PuertoChina = new Edificio("Puerto","Se fue en canguro");
-		Edificio CasadeGobiernoChina = new Edificio("Casa de Gobierno","Alto Descapotable tenia");
-		Edificio BolsaChina = new Edificio("Bolsa","Lena de Jolas la tlia, se flue a Austlalia");
+		Edificio PuertoChina = new Edificio("Puerto","Me pregunto en que pais podia conocer a los kanguros");
+		Edificio CasadeGobiernoChina = new Edificio("Casa de Gobierno","Se movia en un auto descapotable");
+		Edificio BolsaChina = new Edificio("Bolsa","Creo que tomo un vuelo hacia oceania");
 		Edificio[] EdificiosChina = {PuertoChina,CasadeGobiernoChina,BolsaChina}; 
 		Pais China = new Pais("Shanghai",EdificiosChina,CoordChina);
+		China.setInformacion("Informacion de China");
 		basedeDatos.addPais(China);
 		
 		Coordenadas CoordEspania = new Coordenadas(40.416691,-3.700345);
-		Edificio MuseoEspania = new Edificio("Museo","Puesh nada conio");
-		Edificio BancoEspania = new Edificio("Banco","No eh viyto a nadie");
-		Edificio CasadeGobiernoEspania = new Edificio("Casa de Gobierno","Meyi meyii meyii gooool, no vi nada");
+		Edificio MuseoEspania = new Edificio("Museo","No eh visto nada estos dias");
+		Edificio BancoEspania = new Edificio("Banco","Disculpe, no tengo informacion para ofrecerle");
+		Edificio CasadeGobiernoEspania = new Edificio("Casa de Gobierno","Si el ladron ha estado aqui no lo he visto");
 		Edificio[] EdificiosEspania = {MuseoEspania,BancoEspania,CasadeGobiernoEspania}; 
 		Pais Espania = new Pais("Madrid",EdificiosEspania,CoordEspania);
+		Espania.setInformacion("Informacion de España");
 		basedeDatos.addPais(Espania);
 		
 		Coordenadas CoordAustralia = new Coordenadas(-33.867138,151.207108);
-		Edificio PuertoAustralia = new Edificio("Puerto,","Hay Algo raro");
-		Edificio BibliotecaAustralia = new Edificio("Biblioteca","Ofaaaa");
+		Edificio PuertoAustralia = new Edificio("Puerto,","Veo algo sospechoso por aqui");
+		Edificio BibliotecaAustralia = new Edificio("Biblioteca","");
 		BibliotecaAustralia.setLadron();
-		Edificio BolsaAustralia = new Edificio("Bolsa","En este edifico no esta, pero esta en el Pais");
+		Edificio BolsaAustralia = new Edificio("Bolsa","Estos dias han pasado cosas extrañas");
 		Edificio[] EdificiosAustralia = {PuertoAustralia,BibliotecaAustralia,BolsaAustralia}; 
 		Pais Australia = new Pais("Sydney",EdificiosAustralia,CoordAustralia);
-		Australia.setInformacion("MARTAAAA LA DE LAS TELASS...");
+		Australia.setInformacion("Informacion de Australia");
 		basedeDatos.addPais(Australia);
 		
 		Coordenadas CoordFrancia = new Coordenadas(41.895466,12.482324);
-		Edificio MuseoFrancia = new Edificio("Museo","No hay Nada aqui");
-		Edificio BancoFrancia = new Edificio("Banco","No tenemos nada");
-		Edificio AeropuertoFrancia = new Edificio("Aeropuerto","No eh visto nada, ni me banie");
+		Edificio MuseoFrancia = new Edificio("Museo","Creo que aqui no ha pasado nada");
+		Edificio BancoFrancia = new Edificio("Banco","Si veo algo estare en contacto contigo");
+		Edificio AeropuertoFrancia = new Edificio("Aeropuerto","Mucha gente pasa por aqui, es dificil que vea al ladron");
 		Edificio[] EdificiosFrancia = {MuseoFrancia,BancoFrancia,AeropuertoFrancia}; 
 		Pais Francia = new Pais("Roma",EdificiosFrancia,CoordFrancia);
 		basedeDatos.addPais(Francia);
@@ -182,7 +186,7 @@ public class _SimuladorCrearPartida {
 		ladronCarmen.addTrayectoria(trayectoriaDelLadron);
 		
 		//Creo Policia
-		Policia unPolicia = new Policia("Javier",0);
+		Policia unPolicia = new Policia("PoliciaTest",0);
 		//Creo Objeto
 		ObjetoRobado unObjetoRobado = new ObjetoRobado("Reservas del Banco","Valioso");
 		
