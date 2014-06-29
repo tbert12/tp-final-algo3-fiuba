@@ -3,7 +3,6 @@ package fiuba.algo3.tpfinal.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-
 import modelo.BaseDeDatos;
 import modelo.Coordenadas;
 import modelo.Edificio;
@@ -14,7 +13,6 @@ import modelo.Partida;
 import modelo.Policia;
 import modelo.Trayectoria;
 import modelo.caracteristicas.*;
-import modelo.excepcion.ErrorElPaisNoEsta;
 
 import org.junit.Test;
 
@@ -26,7 +24,7 @@ public class PartidaJuegoTest {
 	private ObjetoRobado unObjeto;
 	
 	@Test
-	public void TestDeJuegoCaso1() throws ErrorElPaisNoEsta {
+	public void TestDeJuegoCaso1() {
 	
 		Edificio Bolsa = new Edificio("Bolsa","“Le dicen que tenía el cabello castaño”");
 		Edificio Banco = new Edificio("Banco","“Cambio dinero a libras esterlinas”");
@@ -150,7 +148,7 @@ public class PartidaJuegoTest {
 		}
 	
 	@Test
-	public void TestDeJuegoCaso2() throws ErrorElPaisNoEsta {
+	public void TestDeJuegoCaso2() {
 		
 		Edificio Museo = new Edificio("Museo","Era alto y de contextura delgada");
 		Edificio Aeropuerto = new Edificio("Aeropuerto","se movía en auto con bandera roja y blanca");

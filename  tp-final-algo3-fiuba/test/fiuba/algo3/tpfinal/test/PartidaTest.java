@@ -23,8 +23,6 @@ import modelo.caracteristicas.Hobby;
 import modelo.caracteristicas.Senia;
 import modelo.caracteristicas.Sexo;
 import modelo.caracteristicas.Vehiculo;
-import modelo.excepcion.ErrorEdificioNoEstaEnPais;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.w3c.dom.Document;
@@ -119,7 +117,7 @@ public class PartidaTest {
 	}
 	
 	@Test
-	public void MostrarPistaDeEdificio() throws ErrorEdificioNoEstaEnPais{
+	public void MostrarPistaDeEdificio(){
 		CrearDatos();
 		Pais Argentina = Paises[0];
 		

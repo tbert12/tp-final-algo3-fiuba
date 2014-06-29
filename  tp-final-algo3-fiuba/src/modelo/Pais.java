@@ -5,16 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import modelo.excepcion.ErrorEdificioNoEstaEnPais;
-import modelo.excepcion.ErrorEdificioNoEstaEnPais;
 
-@SuppressWarnings("unused")
 public class Pais {
 	
 	private String Nombre;
