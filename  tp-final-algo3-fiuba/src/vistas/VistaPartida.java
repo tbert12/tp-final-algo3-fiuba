@@ -29,7 +29,7 @@ import control.ControladorBotonCaracteristica;
 import control.ControladorBotonViajar;
 import control.ControladorBotonInvestigar;
 
-public class VistaPartida extends JFrame implements Observer {
+public class VistaPartida extends JFrame implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -86,12 +86,14 @@ public class VistaPartida extends JFrame implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		if (partida.tiempoAgotado()){
 			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
-			//Reiniciar Juego
+			//Cierro la ventana de la partida
+			this.dispose();
 		}
 		
 		if (partida.partidaFinalizada()){
 			mostrarMensaje(partida.getPistaActual(), "Mensaje Interpool");
-			//Reiniciar Juego
+			//Cierro la ventana de la partida
+			this.dispose();
 		}
 		
 		updateHora();
@@ -281,6 +283,9 @@ public class VistaPartida extends JFrame implements Observer {
 	
 	private void mostrarMensaje(String string,String titulo) {
 		JOptionPane.showMessageDialog(this,string,titulo,JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void cerrar() {
+		this.dispose();	
 	}
 	
 }

@@ -114,4 +114,5 @@ public class VentanaPrincipal extends JFrame {
 		MenuInicial.add(IconoImagen);
 		MenuInicial.add(Titulo);
 	}
+
 }

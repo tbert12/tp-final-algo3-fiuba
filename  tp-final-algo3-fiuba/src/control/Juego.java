@@ -18,7 +18,7 @@ import vistas.VistaPartida;
 
 
 
-public class Juego {
+public class Juego{
 	
 	CarmenSanDiego carmen;
 	VentanaPrincipal ventanaPrincipal;
@@ -62,5 +62,5 @@ public class Juego {
 		ventanaPrincipal.ocultarVentana();
 		vistaPartida.mostrarVentana();
 	}
-	
+
 }
