@@ -26,6 +26,9 @@ public class BaseDeDatosTests {
 	Pais Rusia = crearPais("Rusia");
 	Pais Peru = crearPais("Peru");
 	
+	ArrayList<Ladron> listLadrones = new ArrayList<Ladron>();
+	ArrayList<Pais> listPaises = new ArrayList<Pais>();
+	
 	
 	public Ladron CrearLadron(String Nombre,Sexo Sexo,Hobby Hobby,Cabello Cabello,Senia Senia,Vehiculo Vehiculo){
 		Caracteristicas caracteristicas = new Caracteristicas(Sexo,Hobby,Cabello,Senia,Vehiculo);
@@ -40,17 +43,18 @@ public class BaseDeDatosTests {
 	}
 	
 	public BaseDeDatos CrearBase(){
-		BaseDeDatos unaBase = new BaseDeDatos();
-		unaBase.addSospechoso(LadronUno);
-		unaBase.addSospechoso(LadronDos);
-		unaBase.addSospechoso(LadronTres);
-		unaBase.addSospechoso(LadronCuatro);
-		unaBase.addPais(Argentina);
-		unaBase.addPais(Cuba);
-		unaBase.addPais(Argelia);
-		unaBase.addPais(Alemania);
-		unaBase.addPais(Rusia);
-		unaBase.addPais(Peru);
+		
+		listLadrones.add(LadronUno);
+		listLadrones.add(LadronDos);
+		listLadrones.add(LadronTres);
+		listLadrones.add(LadronCuatro);
+		listPaises.add(Argentina);
+		listPaises.add(Cuba);
+		listPaises.add(Argelia);
+		listPaises.add(Alemania);
+		listPaises.add(Rusia);
+		listPaises.add(Peru);
+		BaseDeDatos unaBase = new BaseDeDatos(listLadrones,listPaises);
 		return unaBase;
 	}
 	
@@ -148,7 +152,7 @@ public class BaseDeDatosTests {
 		LadronUno.addTrayectoria(trayecto);
 		BaseDeDatos Base = CrearBase();
 		Pais Brasil = crearPais("Brasil");
-		Base.addPais(Brasil);
+		listPaises.add(Brasil);
 		
 		ArrayList<Pais> PaisesDestino = Base.posiblesPaisesAViajar(LadronUno, Argentina);
 		Assert.assertTrue (PaisesDestino.contains(Cuba) );

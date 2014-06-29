@@ -47,40 +47,41 @@ public class _SimuladorCrearPartida {
 		 ------>FALTA PROBAR HERIDAS<-------
 		*/
 		
-		//Creo la Base de datos
-		BaseDeDatos basedeDatos = new BaseDeDatos();
+		ArrayList<Ladron> listLadrones = new ArrayList<Ladron>();
+		ArrayList<Pais> listPaises = new ArrayList<Pais>();
+		
 		//Le seteto los datos a la base
 		//Creo Ladrones
 		Caracteristicas caracteristicasNick = new Caracteristicas(Sexo.MASCULINO,Hobby.ALPINISMO,Cabello.NEGRO,Senia.ANILLO,Vehiculo.MOTO);
 		Ladron ladronNick = new Ladron("Nick Brunch",caracteristicasNick);
-		basedeDatos.addSospechoso(ladronNick);
+		listLadrones.add(ladronNick);
 		Caracteristicas caracteristicasLen = new Caracteristicas(Sexo.MASCULINO,Hobby.ALPINISMO,Cabello.ROJO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
 		Ladron ladronLen = new Ladron("Len Bulk",caracteristicasLen);
-		basedeDatos.addSospechoso(ladronLen);
+		listLadrones.add(ladronLen);
 		Caracteristicas caracteristicasThor = new Caracteristicas(Sexo.MASCULINO,Hobby.CROQUET,Cabello.RUBIO,Senia.TATUAJE,Vehiculo.LIMUSINA);
 		Ladron ladronThor = new Ladron("Ihor Ihorovitch",caracteristicasThor);
-		basedeDatos.addSospechoso(ladronThor);
+		listLadrones.add(ladronThor);
 		Caracteristicas caracteristicasFast = new Caracteristicas(Sexo.MASCULINO,Hobby.CROQUET,Cabello.NEGRO,Senia.JOYAS,Vehiculo.DESCAPOTABLE);
 		Ladron ladronFast = new Ladron("Fast Eddie B.",caracteristicasFast);
-		basedeDatos.addSospechoso(ladronFast);
+		listLadrones.add(ladronFast);
 		Caracteristicas caracteristicasScar = new Caracteristicas(Sexo.MASCULINO,Hobby.CROQUET,Cabello.ROJO,Senia.ANILLO,Vehiculo.LIMUSINA);
 		Ladron ladronScar = new Ladron("Scar Graynolt",caracteristicasScar);
-		basedeDatos.addSospechoso(ladronScar);
+		listLadrones.add(ladronScar);
 		Caracteristicas caracteristicasMerey = new Caracteristicas(Sexo.FEMENINO,Hobby.ALPINISMO,Cabello.CASTANIO,Senia.JOYAS,Vehiculo.LIMUSINA);
 		Ladron ladronMerey = new Ladron("Merey Laroc",caracteristicasMerey);
-		basedeDatos.addSospechoso(ladronMerey);
+		listLadrones.add(ladronMerey);
 		Caracteristicas caracteristicasLady = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.ROJO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladronLady = new Ladron("Lady Agatha",caracteristicasLady);
-		basedeDatos.addSospechoso(ladronLady);
+		listLadrones.add(ladronLady);
 		Caracteristicas caracteristicasKatherine = new Caracteristicas(Sexo.FEMENINO,Hobby.ALPINISMO,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.MOTO);
 		Ladron ladronKatherine = new Ladron("Katherine Drib",caracteristicasKatherine);
-		basedeDatos.addSospechoso(ladronKatherine);
+		listLadrones.add(ladronKatherine);
 		Caracteristicas caracteristicasDazzle = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.RUBIO,Senia.TATUAJE,Vehiculo.LIMUSINA);
 		Ladron ladronDazzle = new Ladron("Dazzle Annie",caracteristicasDazzle);
-		basedeDatos.addSospechoso(ladronDazzle);
+		listLadrones.add(ladronDazzle);
 		Caracteristicas caracteristicasCarmen = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.CASTANIO,Senia.JOYAS,Vehiculo.DESCAPOTABLE);
 		Ladron ladronCarmen = new Ladron("Carmen Sandiego",caracteristicasCarmen);
-		basedeDatos.addSospechoso(ladronCarmen);
+		listLadrones.add(ladronCarmen);
 		
 		
 		
@@ -95,7 +96,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosArgelia = {MuseoArgelia,PuertoArgelia,CasaDeGobiernoArgelia}; 
 		Pais Argelia = new Pais("Argel",EdificiosArgelia,CoordArgelia);
 		Argelia.setInformacion("Informacion sobre Argelia");
-		basedeDatos.addPais(Argelia);
+		listPaises.add(Argelia);
 		
 		Coordenadas CoordArgentina = new Coordenadas(-34.608418,-58.373161);
 		Edificio AeropuertoArgentina = new Edificio("Aeropuerto");
@@ -107,7 +108,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosArgentina = {AeropuertoArgentina,BancoArgentina,BibliotecaArgentina}; 
 		Pais Argentina = new Pais("Buenos Aires",EdificiosArgentina,CoordArgentina);
 		Argentina.setInformacion("Argentina, un pais con buena gente");
-		basedeDatos.addPais(Argentina);
+		listPaises.add(Argentina);
 		
 		Coordenadas CoordAlemania = new Coordenadas(51.165691,10.451526);
 		Edificio MuseoAlemania = new Edificio("Museo");
@@ -119,7 +120,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosAlemania = {MuseoAlemania,AeropuertoAlemania,BolsaAlemania}; 
 		Pais Alemania = new Pais("Berlin",EdificiosAlemania,CoordAlemania);
 		Alemania.setInformacion("Informacion sobre Alemania");
-		basedeDatos.addPais(Alemania);
+		listPaises.add(Alemania);
 		
 		Coordenadas CoordUsa = new Coordenadas(40.714268,-74.005974);
 		Edificio CasadeGobiernoUsa = new Edificio("Casa de Gobierno");
@@ -131,7 +132,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosUsa = {CasadeGobiernoUsa,BibliotecaUsa,BancoUsa}; 
 		Pais Usa = new Pais("New York",EdificiosUsa,CoordUsa);
 		Usa.setInformacion("Informacion de Estados Unidos");
-		basedeDatos.addPais(Usa);
+		listPaises.add(Usa);
 		
 		Coordenadas CoordParaguay = new Coordenadas(-23.442503,-58.443832);
 		Edificio MuseoParaguay = new Edificio("Museo");
@@ -143,7 +144,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosParaguay = {MuseoParaguay,AeropuertoParaguay,BolsaParaguay}; 
 		Pais Paraguay = new Pais("Concepcion",EdificiosParaguay,CoordParaguay);
 		Paraguay.setInformacion("Informacion de Paraguay");
-		basedeDatos.addPais(Paraguay);
+		listPaises.add(Paraguay);
 		
 		Coordenadas CoordCanada = new Coordenadas(45.423492,-75.697929);
 		Edificio PuertoCanada = new Edificio("Puerto");
@@ -155,7 +156,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosCanada = {PuertoCanada,BibliotecaCanada,MuseoCanada}; 
 		Pais Canada = new Pais("Ottawa",EdificiosCanada,CoordCanada);
 		Canada.setInformacion("Informacion de Canada");
-		basedeDatos.addPais(Canada);
+		listPaises.add(Canada);
 		
 		Coordenadas CoordChina = new Coordenadas(31.230707,121.472916);
 		Edificio PuertoChina = new Edificio("Puerto");
@@ -167,7 +168,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosChina = {PuertoChina,CasadeGobiernoChina,BolsaChina}; 
 		Pais China = new Pais("Shanghai",EdificiosChina,CoordChina);
 		China.setInformacion("Informacion de China");
-		basedeDatos.addPais(China);
+		listPaises.add(China);
 		
 		Coordenadas CoordEspania = new Coordenadas(40.416691,-3.700345);
 		Edificio MuseoEspania = new Edificio("Museo");
@@ -179,7 +180,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosEspania = {MuseoEspania,BancoEspania,CasadeGobiernoEspania}; 
 		Pais Espania = new Pais("Madrid",EdificiosEspania,CoordEspania);
 		Espania.setInformacion("Informacion de España");
-		basedeDatos.addPais(Espania);
+		listPaises.add(Espania);
 		
 		Coordenadas CoordAustralia = new Coordenadas(-33.867138,151.207108);
 		Edificio PuertoAustralia = new Edificio("Puerto");
@@ -192,7 +193,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosAustralia = {PuertoAustralia,BibliotecaAustralia,BolsaAustralia}; 
 		Pais Australia = new Pais("Sydney",EdificiosAustralia,CoordAustralia);
 		Australia.setInformacion("Informacion de Australia");
-		basedeDatos.addPais(Australia);
+		listPaises.add(Australia);
 		
 		Coordenadas CoordFrancia = new Coordenadas(41.895466,12.482324);
 		Edificio MuseoFrancia = new Edificio("Museo");
@@ -204,7 +205,7 @@ public class _SimuladorCrearPartida {
 		Edificio[] EdificiosFrancia = {MuseoFrancia,BancoFrancia,AeropuertoFrancia}; 
 		Pais Francia = new Pais("Roma",EdificiosFrancia,CoordFrancia);
 		Francia.setInformacion("Informacion de Francia");
-		basedeDatos.addPais(Francia);
+		listPaises.add(Francia);
 		
 		//Asigno La trayectoria del Ladron
 		ArrayList<Pais> PaisesDeLaTrayectoria = new ArrayList<Pais>();
@@ -215,6 +216,9 @@ public class _SimuladorCrearPartida {
 		Trayectoria trayectoriaDelLadron = new Trayectoria(PaisesDeLaTrayectoria);
 		
 		ladronCarmen.addTrayectoria(trayectoriaDelLadron);
+		
+		//Creo la Base de datos
+		BaseDeDatos basedeDatos = new BaseDeDatos(listLadrones,listPaises);
 		
 		//Creo Policia
 		Policia unPolicia = new Policia(nombreDelPolicia,26);

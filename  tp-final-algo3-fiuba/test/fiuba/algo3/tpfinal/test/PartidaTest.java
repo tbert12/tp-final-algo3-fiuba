@@ -39,7 +39,6 @@ public class PartidaTest {
 	
 	private void CrearDatos(){
 		UnPolicia = new Policia("Gorgori",0);
-		UnaBaseDeDatos = new BaseDeDatos();
 		UnObjeto = new ObjetoRobado("Pintura","muy valioso");
 		
 		Caracteristicas caracteristicas = new Caracteristicas(Sexo.MASCULINO,Hobby.TENNIS,Cabello.ROJO,Senia.TATUAJE,Vehiculo.LIMUSINA);
@@ -68,16 +67,20 @@ public class PartidaTest {
 		
 		UnPolicia.setPaisActual(Argentina);
 		
-		UnaBaseDeDatos.addPais(Argentina);
-		UnaBaseDeDatos.addPais(Cuba);
-		UnaBaseDeDatos.addPais(Argelia);
-		UnaBaseDeDatos.addPais(Alemania);
-		UnaBaseDeDatos.addPais(Rusia);
-		UnaBaseDeDatos.addPais(Peru);
+		ArrayList<Ladron> listLadrones = new ArrayList<Ladron>();
+		ArrayList<Pais> listPaises = new ArrayList<Pais>();
 		
-		UnaBaseDeDatos.addSospechoso(UnLadron);
-		UnaBaseDeDatos.addSospechoso(OtroLadron);
+		listPaises.add(Argentina);
+		listPaises.add(Cuba);
+		listPaises.add(Argelia);
+		listPaises.add(Alemania);
+		listPaises.add(Rusia);
+		listPaises.add(Peru);
 		
+		listLadrones.add(UnLadron);
+		listLadrones.add(OtroLadron);
+		
+		UnaBaseDeDatos = new BaseDeDatos(listLadrones,listPaises);
 		
 		UnaPartida = new Partida(UnPolicia,UnLadron,UnaBaseDeDatos,UnObjeto);
 	}

@@ -50,7 +50,7 @@ public class PartidaJuegoTest {
 		Pais Usa = new Pais(nombreUsa,edificiosNY,coordenadasNY);
 		
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
-		unaBase = new BaseDeDatos();
+		
 		ArrayList<Edificio> ListaDeEdificios;
 		unObjeto = new ObjetoRobado("Bandera Antigua","Poco Valioso");
 		
@@ -65,10 +65,16 @@ public class PartidaJuegoTest {
 		
 		unPolicia = new Policia("Tylen Perez",0);
 		
-		unaBase.addPais(Argentina);
-		unaBase.addPais(Inglaterra);
-		unaBase.addPais(Usa);
-		unaBase.addSospechoso(unLadron);
+		ArrayList<Ladron> listLadrones = new ArrayList<Ladron>();
+		ArrayList<Pais> listPaises = new ArrayList<Pais>();
+		
+		listPaises.add(Argentina);
+		listPaises.add(Inglaterra);
+		listPaises.add(Usa);
+		listLadrones.add(unLadron);
+		
+		
+		unaBase = new BaseDeDatos(listLadrones,listPaises);
 		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
 		
@@ -183,7 +189,7 @@ public class PartidaJuegoTest {
 		Pais Inglaterra = new Pais(nombreIng,edificiosLDN,coordenadasLondres);
 
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.MASCULINO,Hobby.MUSICA,Cabello.RUBIO,Senia.TATUAJE,Vehiculo.MOTO);
-		unaBase = new BaseDeDatos();
+		
 		unObjeto = new ObjetoRobado("Joya","Valioso");
 		
 		
@@ -204,16 +210,21 @@ public class PartidaJuegoTest {
 		
 		unPolicia = new Policia("Pedraza",0);
 		
-		unaBase.addPais(Argentina);
-		unaBase.addPais(Inglaterra);
-		unaBase.addPais(Mexico);
-		unaBase.addPais(Australia);
-		unaBase.addPais(Italia);
-		unaBase.addPais(USA);
+		ArrayList<Ladron> listLadrones = new ArrayList<Ladron>();
+		ArrayList<Pais> listPaises = new ArrayList<Pais>();
 		
-		unaBase.addSospechoso(unLadron);
-		unaBase.addSospechoso(unLadronSimilCaracteristicas);
-		unaBase.addSospechoso(unLadronNadaQueVer);
+		listPaises.add(Argentina);
+		listPaises.add(Inglaterra);
+		listPaises.add(Mexico);
+		listPaises.add(Australia);
+		listPaises.add(Italia);
+		listPaises.add(USA);
+		
+		listLadrones.add(unLadron);
+		listLadrones.add(unLadronSimilCaracteristicas);
+		listLadrones.add(unLadronNadaQueVer);
+		
+		unaBase = new BaseDeDatos(listLadrones,listPaises);
 		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
 		

@@ -8,23 +8,14 @@ import modelo.caracteristicas.Caracteristicas;
 
 public class BaseDeDatos {
 
-	private ArrayList<Ladron> Ladrones = new ArrayList<Ladron>();
-	private ArrayList<Pais> Paises = new ArrayList<Pais>();
-	private final int CANTIDADPOSIBLESDESTINOS = 3;
+	private ArrayList<Ladron> Ladrones;
+	private ArrayList<Pais> Paises;
+	private final int CANTIDADPOSIBLESDESTINOS;
 	
-	public void addSospechoso(Ladron ladron){
-		this.Ladrones.add(ladron);
-	}
-	public void addListaPaises(ArrayList<Pais> paises){
-		Paises = paises;
-	}
-	
-	public void addListaSospechosos(ArrayList<Ladron> ladrones){
-		Ladrones = ladrones;
-	}
-	
-	public void addPais(Pais pais){
-		this.Paises.add(pais);
+	public BaseDeDatos(ArrayList<Ladron> ladrones,ArrayList<Pais> paises){
+		this.Ladrones = ladrones;
+		this.Paises = paises;
+		this.CANTIDADPOSIBLESDESTINOS = 3;
 	}
 	
 	public ArrayList<Ladron> filtarPorCaracteristicas(Caracteristicas caracteristicas){
