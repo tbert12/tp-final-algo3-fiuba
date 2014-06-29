@@ -151,6 +151,7 @@ public class BaseDeDatosTests {
 		Base.addPais(Brasil);
 		
 		ArrayList<Pais> PaisesDestino = Base.posiblesPaisesAViajar(LadronUno, Argentina);
+		Assert.assertTrue (PaisesDestino.contains(Cuba) );
 		
 		//Ahora El Ladron Esta en Cuba, pero se viajo a Brasil (Por Error)
 		PaisesDestino = Base.posiblesPaisesAViajar(LadronUno, Brasil);
@@ -166,6 +167,14 @@ public class BaseDeDatosTests {
 		Assert.assertTrue( PaisesDestino.contains(Argentina) );
 		Assert.assertTrue( PaisesDestino.contains(Peru) );
 		Assert.assertTrue( PaisesDestino.contains(Rusia) );
+		
+		//Voy a Argentina, tendria que tener la posibilidad de ir a Cuba y 2 mas
+		PaisesDestino = Base.posiblesPaisesAViajar(LadronUno, Argentina);
+		Assert.assertFalse( PaisesDestino.contains(Argentina) );
+		//Assert.assertTrue( PaisesDestino.contains(Peru) );
+		//Assert.assertTrue( PaisesDestino.contains(Rusia) );
+		Assert.assertTrue(PaisesDestino.contains(Cuba) );
+		
 		
 	}
 }

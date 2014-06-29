@@ -75,6 +75,9 @@ public class VistaPartida extends JFrame implements Observer {
 		updateCiudadActual();
 		updateImagenPais();
 		updateTextos();
+		panelMenuParaViajar.ocultarPanel();
+		panelMenuEdificios.ocultarPanel();
+		panelMenuCaracteristicas.ocultarPanel();
 	
 	}
 	
@@ -99,8 +102,11 @@ public class VistaPartida extends JFrame implements Observer {
 	
 	private void updateTextos(){
 		String nuevapista = partida.getPistaActual() ;
-		if (nuevapista!= null){
+		if (nuevapista != null){
 			TextoPista.setText("<html> Pista: <br>" + nuevapista +"</html>");
+		}
+		else{
+			TextoPista.setText("<html>Informacion general.<br>");
 		}
 		
 		String InfoPais = partida.getInformacionPaisActual();

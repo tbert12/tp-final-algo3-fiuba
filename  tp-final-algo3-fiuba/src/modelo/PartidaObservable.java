@@ -71,6 +71,7 @@ public class PartidaObservable extends Observable {
 	
 	public void ViajarHacia(Pais UnPais){
 		UnaPartida.viajarHacia(UnPais);
+		PistaActual = null;
 		setChanged();
 		notifyObservers();
 	}

@@ -50,6 +50,9 @@ public class BaseDeDatos {
 			//Como que vuelva a buscar mas pistas.
 			PaisDestino = Ladron.avanzar();
 		}
+		else if (PaisActual.equals( Ladron.paisAnterior() ) ){
+			PaisDestino = Ladron.paisActual();
+		}
 		else {
 			//Hay que hacer volver al pais anterior donde se equivoco
 			PaisDestino = Ladron.paisAnterior();
