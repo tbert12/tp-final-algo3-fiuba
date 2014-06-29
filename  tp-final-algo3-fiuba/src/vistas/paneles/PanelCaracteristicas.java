@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import control.ControladorBotonBuscar;
 import vistas.VistaPartida;
 import modelo.PartidaObservable;
 
@@ -98,11 +99,10 @@ public class PanelCaracteristicas {
 		BotonBuscar.setFocusPainted(false);
 		BotonBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonBuscar.setBorderPainted(false);
-		//BotonBuscar.setMargin(new Insets(3, 28, 0, 10));
 		BotonBuscar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonOKNormal.png")));
 		BotonBuscar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonOKApretado.png")));
 		BotonBuscar.setBounds(225, 55, 81, 46);
-		//BotonBuscar.addActionListener(new ControladorBotonViajar(this));
+		BotonBuscar.addActionListener(new ControladorBotonBuscar(partida,this));
 		MenuCaracteristicas.add(BotonBuscar);
 		
 	}
@@ -113,7 +113,40 @@ public class PanelCaracteristicas {
 	public void ocultarPanel(){
 		MenuCaracteristicas.setVisible(false);
 	}
+
+
+	public String obtenerSexoSeleccionado() {
+		String sexoSeleccionado = choiceSexo.getSelectedItem();
+		if (sexoSeleccionado == "N/A") return null;
+		return sexoSeleccionado;
+	}
+
+
+	public String obtenerHobbySeleccionado() {
+		String hobbySeleccionado = choiceHobby.getSelectedItem();
+		if (hobbySeleccionado == "N/A") return null;
+		return hobbySeleccionado;
+	}
+
+
+	public String obtenerCabelloSeleccionado() {
+		String cabelloSeleccionado = choiceCabello.getSelectedItem();
+		if (cabelloSeleccionado == "N/A") return null;
+		return cabelloSeleccionado;
+	}
+
+
+	public String obtenerSeniaSeleccionado() {
+		String seniaSeleccionado = choiceSenia.getSelectedItem();
+		if (seniaSeleccionado == "N/A") return null;
+		return seniaSeleccionado;
+	}
 	
+	public String obtenerVehiculoSeleccionado() {
+		String vehiculoSeleccionado = choiceVehiculo.getSelectedItem();
+		if (vehiculoSeleccionado == "N/A") return null;
+		return vehiculoSeleccionado;
+	}
 	
 
 }

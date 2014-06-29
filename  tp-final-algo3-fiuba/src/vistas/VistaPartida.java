@@ -68,7 +68,7 @@ public class VistaPartida extends JFrame implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if (partida.partidaFinalizada()){
-			mostrarMensaje(partida.getPistaActual(), "Mensaje InterPol:");
+			mostrarMensaje(partida.getInformacionParaMostrar(), "Mensaje Interpool");
 		}
 		
 		updateHora();
@@ -101,12 +101,9 @@ public class VistaPartida extends JFrame implements Observer {
 	}
 	
 	private void updateTextos(){
-		String nuevapista = partida.getPistaActual() ;
-		if (nuevapista != null){
-			TextoPista.setText("<html> Pista: <br>" + nuevapista +"</html>");
-		}
-		else{
-			TextoPista.setText("<html>Informacion general.<br>");
+		String informacion = partida.getInformacionParaMostrar() ;
+		if (informacion != null){
+			TextoPista.setText("<html>" + informacion +"</html>");
 		}
 		
 		String InfoPais = partida.getInformacionPaisActual();

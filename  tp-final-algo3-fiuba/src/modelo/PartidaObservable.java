@@ -15,9 +15,8 @@ public class PartidaObservable extends Observable {
 	
 	
 	private Partida UnaPartida;
-	private ArrayList<Ladron> LadronesFiltrados;
 	private Edificio EdificioActual;
-	private String PistaActual;
+	private String InformacionParaMostrar;
 	
 	public PartidaObservable(Partida UnaPartida){
 		this.UnaPartida = UnaPartida;
@@ -38,8 +37,8 @@ public class PartidaObservable extends Observable {
 	public String getEdificioActual(){
 		return EdificioActual.getNombre();
 	}
-	public String getPistaActual(){
-		return PistaActual;
+	public String getInformacionParaMostrar(){
+		return InformacionParaMostrar;
 	}
 	
 	public ArrayList<Pais> getPaisesAViajar(){
@@ -50,20 +49,10 @@ public class PartidaObservable extends Observable {
 		return UnaPartida.paisActual().getNombre();
 	}
 	
-	public ArrayList<String> getLadronesFiltrados(){
-		ArrayList<String> NombresLadrones = new ArrayList<String>();
-		Iterator<Ladron> iterador = LadronesFiltrados.iterator();
-		
-		while(iterador.hasNext()){
-			Ladron ladron = iterador.next();
-			NombresLadrones.add(ladron.getNombre());
-		}
-		return NombresLadrones;
-	}
 	
 	public void visitarEdificio(Edificio edificio){
 		EdificioActual = edificio;
-		PistaActual = UnaPartida.visitarEdificio(EdificioActual);
+		InformacionParaMostrar = "Pista: <br>" + UnaPartida.visitarEdificio(EdificioActual);
 		setChanged();
 		notifyObservers();
 		
@@ -71,13 +60,26 @@ public class PartidaObservable extends Observable {
 	
 	public void ViajarHacia(Pais UnPais){
 		UnaPartida.viajarHacia(UnPais);
-		PistaActual = null;
+		InformacionParaMostrar = null;
 		setChanged();
 		notifyObservers();
 	}
 
-	public void filtratLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
-		LadronesFiltrados = UnaPartida.filtrarLadron(unSexo, unHobby, unCabello, unaSenia, unVehiculo);
+	private String nombreDeLadrones(ArrayList<Ladron> Ladrones){
+		String Nombres = "Mensaje de la Interpool: <br>";
+		if (Ladrones.size() == 0) Nombres = Nombres +  "No se han encontrado coincidencias con ningun sospechoso";
+		else if (Ladrones.size() == 1) Nombres = Nombres +  "Orden de arresto emitida para: <br>";
+		else Nombres = Nombres + "Se encontraron " + Integer.toString(Ladrones.size()) + " coincidencias"; 
+		Iterator<Ladron> iterador = Ladrones.iterator();
+		while (iterador.hasNext()){
+			Nombres = Nombres + " -" + iterador.next().getNombre() + "<br>";
+		}
+		return Nombres;
+	}
+	
+	public void filtrarLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
+		ArrayList<Ladron> LadronesFiltrado = UnaPartida.filtrarLadron(unSexo, unHobby, unCabello, unaSenia, unVehiculo);
+		InformacionParaMostrar = nombreDeLadrones(LadronesFiltrado);
 		setChanged();
 		notifyObservers();
 	}
