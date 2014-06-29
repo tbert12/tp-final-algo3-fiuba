@@ -1,10 +1,11 @@
 package control;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import vistas.VistaPartida;
 
-public class ControladorBotonCaracteristica {
+public class ControladorBotonCaracteristica implements ActionListener {
 
 	VistaPartida vista;
 

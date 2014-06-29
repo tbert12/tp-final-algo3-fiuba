@@ -23,6 +23,7 @@ import vistas.paneles.PanelEdificios;
 import vistas.paneles.PanelCaracteristicas;
 import vistas.relojdigital.RelojDigital;
 import modelo.PartidaObservable;
+import control.ControladorBotonCaracteristica;
 import control.ControladorBotonViajar;
 import control.ControladorBotonInvestigar;
 
@@ -165,6 +166,7 @@ public class VistaPartida extends JFrame implements Observer {
 		BotonFiltrar.setBorderPainted(false);
 		BotonFiltrar.setMargin(new Insets(3, 28, 0, 10));
 		BotonFiltrar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarNormal.png")));
+		BotonFiltrar.addActionListener(new ControladorBotonCaracteristica(this));
 		BotonFiltrar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarApretado.png")));
 		BotonFiltrar.setBounds(298, 403, 80, 77);
 		PanelGeneral.add(BotonFiltrar);
