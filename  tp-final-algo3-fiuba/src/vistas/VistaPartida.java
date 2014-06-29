@@ -73,6 +73,7 @@ public class VistaPartida extends JFrame implements Observer {
 		updateHora();
 		updateCiudadActual();
 		updateImagenPais();
+		updatePista();
 		//updateInformacionPais();
 	
 	}
@@ -94,6 +95,10 @@ public class VistaPartida extends JFrame implements Observer {
 			ImagenPais.setIcon(new ImageIcon(VentanaPrincipal.class.getResource(this.RutaImagenPais + this.NombrePaisActual +".jpg")));
 		}
 		
+	}
+	
+	private void updatePista(){
+		LabelInformacion.setText("<html> Pista: <br>" + partida.getPistaActual() +"</html>");
 	}
 	
 	public void mostrarVentana(){

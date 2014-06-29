@@ -16,6 +16,7 @@ public class Partida {
 	private BaseDeDatos BasedeDatos;
 	private Viaje CostosDeViajes;
 	private ObjetoRobado objetoQueFueRobado;
+	private boolean PartidaFinalizada;
 		
 	
 	public Partida(Policia UnPolicia,Ladron UnLadron,BaseDeDatos UnaBase,ObjetoRobado UnObjeto){
@@ -23,6 +24,7 @@ public class Partida {
 		this.UnPolicia = UnPolicia;
 		UnPolicia.setPaisActual(UnLadron.paisActual());
 		this.LadronAtrapado = false;
+		this.PartidaFinalizada = false;
 		this.UnLadron = UnLadron;
 		this.BasedeDatos = UnaBase;
 		this.objetoQueFueRobado = UnObjeto;
@@ -30,6 +32,9 @@ public class Partida {
 	}
 	
 	public boolean seTerminoLaPartida(){
+		return this.PartidaFinalizada;
+	}
+	public boolean ladronAtrapado(){
 		return this.LadronAtrapado;
 	}
 	
@@ -51,7 +56,11 @@ public class Partida {
 	}
 	
 	public String visitarEdificio(Edificio UnEdificio){
-				
+		
+		if (UnEdificio.tieneLadron()){
+			this.PartidaFinalizada = true;
+		}
+		
 		String PistaDeEdificio = UnEdificio.visitar(UnPolicia);
 		
 		if (UnLadron.estaArrestado()){

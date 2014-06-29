@@ -15,22 +15,17 @@ public class PartidaObservable extends Observable {
 	
 	
 	private Partida UnaPartida;
-	
-	private ArrayList<Edificio> EdificiosAVisitar;
-	private ArrayList<Pais> PosiblesPaisesAViajar;
 	private ArrayList<Ladron> LadronesFiltrados;
 	private Edificio EdificioActual;
 	private String PistaActual;
 	
 	public PartidaObservable(Partida UnaPartida){
 		this.UnaPartida = UnaPartida;
-		EdificiosAVisitar = UnaPartida.edificiosAMostrar();
-		PosiblesPaisesAViajar = UnaPartida.paisesAViajar();
 	}
 	
 
 	public ArrayList<Edificio> getEdificiosAVisitar(){
-		return EdificiosAVisitar;
+		return UnaPartida.edificiosAMostrar();
 	}
 	
 	public boolean partidaFinalizada(){
@@ -48,7 +43,7 @@ public class PartidaObservable extends Observable {
 	}
 	
 	public ArrayList<Pais> getPaisesAViajar(){
-		return PosiblesPaisesAViajar;
+		return UnaPartida.paisesAViajar();
 	}
 	
 	public String getPaisActual(){
@@ -76,7 +71,6 @@ public class PartidaObservable extends Observable {
 	
 	public void ViajarHacia(Pais UnPais){
 		UnaPartida.viajarHacia(UnPais);
-		PosiblesPaisesAViajar = UnaPartida.paisesAViajar();
 		setChanged();
 		notifyObservers();
 	}

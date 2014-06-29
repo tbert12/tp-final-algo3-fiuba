@@ -137,5 +137,9 @@ public class Edificio {
 			return false;
 		return true;
 	}
+
+	public boolean tieneLadron() {
+		return ContieneLadron;
+	}
 }
 
