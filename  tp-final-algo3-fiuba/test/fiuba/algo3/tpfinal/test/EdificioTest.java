@@ -64,7 +64,7 @@ public class EdificioTest {
 	@Test
 	public void testHeridaCuchilloRestaMenosQueHeridaArma(){
 		Edificio otroEdificio = new Edificio("Pizzeria","Esta es otra pista de prueba");
-		otroEdificio.setHerida(new HeridaArmaDeFuego("Terrible corchazo"));
+		otroEdificio.setHerida(new HeridaArmaDeFuego("Herido por un disparo con arma de fuegos"));
 		Policia otroPolicia = new Policia("Seba",0);
 		UnEdificio.visitar(unPolicia);
 		otroEdificio.visitar(otroPolicia);
@@ -103,7 +103,7 @@ public class EdificioTest {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		Document doc = db.newDocument();
-		UnEdificio.setHerida(new HeridaCuchillo("Fakazo"));
+		UnEdificio.setHerida(new HeridaCuchillo("Herida con arma blanca"));
 		Element edificioSerializado = UnEdificio.serializar(doc);
 		Assert.assertNotNull(edificioSerializado);
 		doc.appendChild(edificioSerializado);
@@ -130,10 +130,10 @@ public class EdificioTest {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		Document doc = db.newDocument();
-		Edificio otroEdificio = new Edificio("LaBombonera","El mas grande");
-		otroEdificio.setHerida(new HeridaArmaDeFuego("lo' tiro"));
+		Edificio otroEdificio = new Edificio("Biblioteca","Pista de la bibioteca");
+		otroEdificio.setHerida(new HeridaArmaDeFuego("Herido por un disparo con arma de fuegos"));
 		otroEdificio.setLadron();
-		UnEdificio.setHerida(new HeridaCuchillo("Fakazo"));
+		UnEdificio.setHerida(new HeridaCuchillo("Herida con arma blanca"));
 		Element edificioSerializado = UnEdificio.serializar(doc);
 		Element otroEdificioSerializado = otroEdificio.serializar(doc);
 		Assert.assertNotNull(edificioSerializado);

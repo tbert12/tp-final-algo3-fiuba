@@ -70,26 +70,6 @@ public class PartidaJuegoTest {
 		unaBase.addPais(Usa);
 		unaBase.addSospechoso(unLadron);
 		
-		/*   Ex Distancias hechas con Hash
-		int DistanciaARGaING = 11128;
-		int DistanciaARGaUSA = 8526;
-		int DistanciaINGaUSA = 5570;
-				
-		HashMap<String,Integer> DistanciaDesdeArgentina = new HashMap<String,Integer>();
-		DistanciaDesdeArgentina.put(nombreIng,DistanciaARGaING);
-		DistanciaDesdeArgentina.put(nombreUsa,DistanciaARGaUSA);
-		Argentina.setDistancias(DistanciaDesdeArgentina);
-
-		HashMap<String,Integer> DistanciaDesdeUsa = new HashMap<String,Integer>();
-		DistanciaDesdeUsa.put(nombreIng,DistanciaINGaUSA);
-		DistanciaDesdeUsa.put(nombreArg,DistanciaARGaUSA);
-		Usa.setDistancias(DistanciaDesdeUsa);
-		
-		HashMap<String,Integer> DistanciaDesdeIng = new HashMap<String,Integer>();
-		DistanciaDesdeIng.put(nombreArg,DistanciaARGaING);
-		DistanciaDesdeIng.put(nombreUsa,DistanciaINGaUSA);
-		Inglaterra.setDistancias(DistanciaDesdeIng);*/
-		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
 		
 		assertEquals(unaPartida.nombreObjetoRobado(),"Bandera Antigua");
@@ -222,25 +202,6 @@ public class PartidaJuegoTest {
 		unaBase.addSospechoso(unLadron);
 		unaBase.addSospechoso(unLadronSimilCaracteristicas);
 		unaBase.addSospechoso(unLadronNadaQueVer);
-		
-		/* Ex Distancias en Hash
-		int DistanciaMEXaITA = 9600;
-		int DistanciaITAaAUS = 16500;
-		int DistanciaAUSaUSA = 16000;
-				
-		HashMap<String,Integer> DistanciaDesdeMexico = new HashMap<String,Integer>();
-		DistanciaDesdeMexico.put(nombreITA,DistanciaMEXaITA);
-		Mexico.setDistancias(DistanciaDesdeMexico);
-
-		HashMap<String,Integer> DistanciaDesdeITA = new HashMap<String,Integer>();
-		DistanciaDesdeITA.put(nombreAUS,DistanciaITAaAUS);
-		DistanciaDesdeITA.put(Mexico.getNombre(),DistanciaMEXaITA);
-		Italia.setDistancias(DistanciaDesdeITA);
-		
-		HashMap<String,Integer> DistanciaDesdeAUS = new HashMap<String,Integer>();
-		DistanciaDesdeAUS.put(USA.getNombre(),DistanciaAUSaUSA);
-		DistanciaDesdeAUS.put(Italia.getNombre(),DistanciaITAaAUS);
-		Australia.setDistancias(DistanciaDesdeAUS);*/
 		
 		unaPartida = new Partida(unPolicia, unLadron, unaBase, unObjeto);
 		

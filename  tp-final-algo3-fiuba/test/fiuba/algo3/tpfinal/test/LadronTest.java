@@ -43,21 +43,21 @@ public class LadronTest {
 	@Test
 	public void LadronNombreEsCorrecto() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
-		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
-		Assert.assertEquals(ladron.getNombre(),"Menem");	
+		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
+		Assert.assertEquals(ladron.getNombre(),"NombredeLadron");	
 	}
 	
 	@Test
 	public void LadronNombreNoEsCorrecto() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
-		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
-		Assert.assertNotEquals(ladron.getNombre(),"Carlitos Menem");	
+		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
+		Assert.assertNotEquals(ladron.getNombre(),"NombredeLadron");	
 	}
 	
 	@Test
 	public void LadronCaracteristicasSonCorrectas() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
-		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
+		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
 		Assert.assertEquals(ladron.getSexo(),Sexo.FEMENINO);
 		Assert.assertEquals(ladron.getHobby(), Hobby.TENNIS);
 		Assert.assertEquals(ladron.getCabello(),Cabello.NEGRO);
@@ -68,7 +68,7 @@ public class LadronTest {
 	@Test
 	public void LadronCaracteristicasNoSonCorrectas() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
-		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
+		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
 		Assert.assertNotEquals(ladron.getSexo(),Sexo.MASCULINO);
 		Assert.assertNotEquals(ladron.getHobby(), Hobby.ALPINISMO);
 		Assert.assertNotEquals(ladron.getCabello(),Cabello.ROJO);
@@ -79,7 +79,7 @@ public class LadronTest {
 	@Test
 	public void LadronCompararCaracteristicasEsTrue() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
-		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
+		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
 		Assert.assertTrue(ladron.compararCaracteristicas(CaracteristicasDelLadron));
 	}
 	
@@ -87,7 +87,7 @@ public class LadronTest {
 	public void LadronCompararCaracteristicasEsFalse() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Caracteristicas OtrasCaracteristicasDelLadron = new Caracteristicas(Sexo.MASCULINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
-		Ladron ladron = new Ladron("Menem",CaracteristicasDelLadron);
+		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
 		Assert.assertFalse(ladron.compararCaracteristicas(OtrasCaracteristicasDelLadron));
 	}
  	

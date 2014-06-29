@@ -79,7 +79,7 @@ public class PaisTest {
 
 	@Test
 	public void testInformacionDelPaisEsCorrecta(){
-		String Info = "Este pais blablabla, blablabla y aun mas blablabla";
+		String Info = "Informacion del pais";
 		UnPais.setInformacion(Info);
 		
 		assertEquals(UnPais.getInformacion(),Info);
@@ -87,7 +87,7 @@ public class PaisTest {
 	}
 	@Test
 	public void testPersistenciaUnPais() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		UnPais.setInformacion("EU TENHO PAPA, EU TENHO MESSI!!!");
+		UnPais.setInformacion("Informacion del Pais");
 		HashMap<String, Integer> distancias = new HashMap<>();
 		distancias.put("Chile", 2);
 		distancias.put("Paraguay",4);
