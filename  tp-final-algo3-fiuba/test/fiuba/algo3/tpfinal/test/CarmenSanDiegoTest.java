@@ -44,6 +44,14 @@ public class CarmenSanDiegoTest {
 		if (archivo3.exists()){
 			archivo3.delete();
 		}
+		File archivo4 = new File("pruebaPoliciasXML.xml");
+		if (archivo4.exists()) {
+			archivo4.delete();
+		}
+		File archivo5 = new File("pruebaLadron.xml");
+		if (archivo5.exists()) {
+			archivo5.delete();
+		}
 	}
 
 	@Test
