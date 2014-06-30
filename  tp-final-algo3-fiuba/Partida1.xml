@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Partidas>
+   <Partida NombreLadron="Jose" NombreObjeto="Pipa" ValorObjeto="Normal">
+      <Pistas>
+         <Pais NombrePais="Argentina" pista0="Pista 1" pista1="Pista2" pista2="Pista3"/>
+         <Pais NombrePais="Brasil" pista0="Pista4" pista1="Pista5" pista2="Pista6"/>
+      </Pistas>
+   </Partida>
+</Partidas>

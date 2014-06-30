@@ -1,6 +1,8 @@
 package modelo;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -9,14 +11,18 @@ import java.lang.reflect.Method;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import modelo.excepcion.*;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -90,6 +96,8 @@ public  class CarmenSanDiego {
 	private void transformarYEscribirADisco(String nombreArchivo, Document doc) throws TransformerException{
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","3");
 		DOMSource source = new DOMSource(doc);
 		File archivoDestino = new File(nombreArchivo);
 		StreamResult result = new StreamResult(archivoDestino);
@@ -115,7 +123,7 @@ public  class CarmenSanDiego {
 		return listadoPolicias.contains(unPolicia);
 	}
 	
-	private Policia VerSiJugadorYaJugo(String unNombre){
+	private Policia verSiJugadorYaJugo(String unNombre){
 		Policia unPolicia = new Policia(unNombre, 0);//Lo creo de antemano para poder hacer el .equals()
 		for (Policia policia: listadoPolicias){
 			if (unPolicia.equals(policia)){
@@ -127,7 +135,7 @@ public  class CarmenSanDiego {
 		return unPolicia;
 	}
 	public Policia iniciarJugador(String unNombre){
-		return VerSiJugadorYaJugo(unNombre);
+		return verSiJugadorYaJugo(unNombre);
 	}
 	private Boolean archivoExiste(String nombreArchivo){
 		File archivo = new File(nombreArchivo);
@@ -155,22 +163,62 @@ public  class CarmenSanDiego {
 		transformarYEscribirADisco(nombreArchivo, doc);
 		
 	}
+	public Ladron buscarLadronPorString(String nombreLadron) throws ErrorNoSeEncontroLadron{
+		for (Ladron ladron: listadoLadrones){
+			if(nombreLadron.equals(ladron.getNombre())){
+				return ladron;
+			}
+		}
+		throw new ErrorNoSeEncontroLadron();
+	}
 
-	public void AgregarPartidasFacilesAlXML(String nombreArchivo,String[] lasPistas, String nombreLadron) throws ParserConfigurationException, SAXException, IOException{
+	public void agregarPartidasAlXML(String nombreArchivo,HashMap<String,String[]> PaisesConPistas, String[] Paises, String nombreLadron,String nombreObjetoRobado,String valorObjeto) throws ParserConfigurationException, SAXException, IOException, TransformerException{
 		File archivoXML = new File(nombreArchivo);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.newDocument();
 		doc = dBuilder.parse(archivoXML);
 		doc.getDocumentElement().normalize();
-		Element elementoPartidas = (Element) doc.getFirstChild();
+		Element elementoPartidas = (Element) doc.getElementsByTagName("Partidas").item(0);
 		Element elementoUnaPartida = doc.createElement("Partida");
+		Element elementoPistas = doc.createElement("Pistas");	
+		for (int i = 0; i<Paises.length;i++){
+			String[] pistasdeEdificios = PaisesConPistas.get(Paises[i]);
+			Element elementoPistasPais = doc.createElement("Pais");
+			elementoPistasPais.setAttribute("NombrePais",Paises[i]);
+			for(int j = 0;j < pistasdeEdificios.length;j++){
+				elementoPistasPais.setAttribute("pista"+j, pistasdeEdificios[j]);
+			}
+			
+			elementoPistas.appendChild(elementoPistasPais);
+			elementoUnaPartida.appendChild(elementoPistas);
+		}
+		
 		elementoUnaPartida.setAttribute("NombreLadron",nombreLadron);
+		elementoUnaPartida.setAttribute("NombreObjeto",nombreObjetoRobado);
+		elementoUnaPartida.setAttribute("ValorObjeto", valorObjeto);
 		elementoPartidas.appendChild(elementoUnaPartida);
+		transformarYEscribirADisco(nombreArchivo, doc);
 	}
-	public void iniciarPartida(String nombreUsuario){
+	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron{
 		Policia elPolicia = iniciarJugador(nombreUsuario);
-		elPolicia.getRango();
+		String rangoPoliciaString = elPolicia.toStringRango();
+		File archivoPartida = new File("Partidas"+rangoPoliciaString+".xml");
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		Document doc = dBuilder.newDocument();
+		doc = dBuilder.parse(archivoPartida);
+		doc.getDocumentElement().normalize();
+		NodeList nodosPartida = doc.getElementsByTagName("Partidas");
+		Random random = new Random();
+		Node nodoALevantar = nodosPartida.item(random.nextInt(nodosPartida.getLength()-1));
+		Element elementoPartida = (Element)nodoALevantar;
+		String nombreLadron = elementoPartida.getAttribute("NombreLadron");
+		Ladron ladronAPasar = buscarLadronPorString(nombreLadron);
+		ObjetoRobado ObjetoASetear = new ObjetoRobado(elementoPartida.getAttribute("NombreObjeto"),elementoPartida.getAttribute("ValorObjeto"));
+		Policia unPolicia = iniciarJugador(nombreUsuario);
+		BaseDeDatos baseAPasar = new BaseDeDatos((ArrayList<Ladron>)listadoLadrones,(ArrayList<Pais>)listadoPaises);
+		unaPartida= new Partida(unPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
 	}
 	/*
 	public void iniciarPartida(String string) {

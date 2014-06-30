@@ -3,6 +3,7 @@ package fiuba.algo3.tpfinal.test;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -100,12 +101,24 @@ public class CarmenSanDiegoTest {
 	
 	}
 	
-@Test
-public void CarmenIniciaJugadorQueNoExiste() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
-	CarmenSanDiego Carmen = new CarmenSanDiego();
-	Policia policiaBase = new Policia("El Tito",0);
-	Assert.assertFalse(Carmen.policiaEstaEnJuego(policiaBase));
-	Policia policiaAIniciar = Carmen.iniciarJugador("El Tito");
-	Assert.assertTrue(policiaAIniciar.equals(policiaBase));
+	@Test
+	public void CarmenIniciaJugadorQueNoExiste() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
+		CarmenSanDiego Carmen = new CarmenSanDiego();
+		Policia policiaBase = new Policia("El Tito",0);
+		Assert.assertFalse(Carmen.policiaEstaEnJuego(policiaBase));
+		Policia policiaAIniciar = Carmen.iniciarJugador("El Tito");
+		Assert.assertTrue(policiaAIniciar.equals(policiaBase));
 }
+	@Test
+	public void CarmenArrancaPartida() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException{
+		CarmenSanDiego Carmen = new CarmenSanDiego();
+		HashMap<String,String[]> paisesPistas = new HashMap<String,String[]>();
+		String[] pistas = {"Pista 1","Pista2","Pista3"};
+		String[] otrasPistas = {"Pista4","Pista5","Pista6"};
+		paisesPistas.put("Argentina",pistas );
+		paisesPistas.put("Brasil",otrasPistas);
+		String[] Paises = {"Argentina","Brasil"};
+		Carmen.generarPartidaXML("Partida1.xml");
+		Carmen.agregarPartidasAlXML("Partida1.xml",paisesPistas, Paises, "Jose","Pipa","Normal");
+	}
 }
