@@ -20,7 +20,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import modelo.excepcion.*;
-import modelo.heridas.*;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
