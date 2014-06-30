@@ -6,11 +6,10 @@ public class RelojDigital {
 	private int TiempoTranscurridoDelDia = 7;
 	
 	public int TiempoInicial = 154;
+	public int TiempoTemporal = TiempoInicial;
 	
-	public String HoraDigital(int tiempo){
-		int tiempoASumar = this.TiempoInicial - tiempo;
+	public void ActualizarHora(int tiempo){
 		this.TiempoInicial = tiempo;
-		return obtenerHoraDigitalDespuesde(tiempoASumar);
 	}
 
 	private String obtenerHoraDigitalDespuesde(int cantHoras){
@@ -25,12 +24,14 @@ public class RelojDigital {
 		String tiempoDigital = Dias[indiceDia] + ", " + Integer.toString(this.TiempoTranscurridoDelDia) + ":00 Hs.";
 		return tiempoDigital;
 	}
-	
-	public int tiempoQueSeRestaraCon(int tiempo) {
-		return this.TiempoInicial - tiempo;
-	}
 
 	public String AvanzarUnaHora() {
+		if (TiempoInicial == TiempoTemporal)return obtenerHoraDigitalDespuesde(0);
+		TiempoTemporal--;
 		return obtenerHoraDigitalDespuesde(1);
+	}
+
+	public String ObtenerHoraDigital() {
+		return obtenerHoraDigitalDespuesde(0);
 	}
 }
