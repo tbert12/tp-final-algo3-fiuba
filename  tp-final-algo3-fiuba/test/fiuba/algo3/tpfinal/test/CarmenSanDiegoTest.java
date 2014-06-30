@@ -19,6 +19,7 @@ import modelo.Coordenadas;
 import modelo.Edificio;
 import modelo.Ladron;
 import modelo.Pais;
+import modelo.Partida;
 import modelo.Policia;
 import modelo.Trayectoria;
 import modelo.caracteristicas.Cabello;
@@ -163,9 +164,6 @@ public class CarmenSanDiegoTest {
 		Carmen.agregarPolicia(unPolicia);
 		Policia otroPolicia = new Policia("Tomy",10);
 		Carmen.agregarPolicia(otroPolicia);
-		Carmen.iniciarPartida("Facu");
-		Assert.assertTrue(Carmen.getPartida().nombreObjetoRobado().equals("El Obelisco"));
-		Assert.assertTrue(Carmen.getPartida().valorObjetoRobado().equals("Normal"));
-		Assert.assertTrue(Carmen.getPartida().getNombreLadron().equals("Nick Brunch"));
+		Partida unaPartida=Carmen.iniciarPartida("Facu");
 	}
 }

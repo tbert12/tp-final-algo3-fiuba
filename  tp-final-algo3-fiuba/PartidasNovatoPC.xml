@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Partidas>
+   <Partida NombreLadron='Nick Brunch' NombreObjeto="El Obelisco" ValorObjeto="Normal">
+      <Pistas>
+         <PistasPais NombrePais="Buenos Aires" pista0="Dijo que viajaria a un pais vecino" pista1="Me pregunto si sabia hablar el idioma Portugues" pista2="HeridaArmaDeFuego"/>
+         <PistasPais NombrePais="Rio de Janeiro" pista0="Dijo que necesitaba hablar ingles" pista1="Queria conocer la estatua de la libertad" pista2="Se movia en una moto"/>
+         <PistasPais NombrePais="New York" pista0="Era de sexo masculino y le gusta el Alpinismo" pista1="Me conto algo sobre los gladiadores" pista2="Dijo que queria conocer el pais que fue fundado por Rómulo y Remo"/>
+         <PistasPais NombrePais="Rome" pista0="Algo huele raro aqui" pista1="Hay algo que es muy sospechoso en estos lugares" pista2="Creo que lo que buscas esta aqui"/>
+      </Pistas>
+   </Partida>
+   <Partida NombreLadron='Merey Laroc' NombreObjeto="La bandera del pais" ValorObjeto="Normal">
+      <Pistas>
+         <PistasPais NombrePais="Mexico City" pista0="Dijo que viajaria a de clima humedo continental" pista1="Me pregunto si sabia hablar el idioma Bokmal" pista2="Se movia en una Limusina"/>
+         <PistasPais NombrePais="Oslo" pista0="Me dijo que viajaria a una de las ciudades más pobladas de Oriente Medio" pista1="Tenia una bandera de color rojo,blanca y negra" pista2="Cambio su moneda a Dinar iraquí"/>
+         <PistasPais NombrePais="Baghdad" pista0="Era de sexo femenino y le gusta el Alpinismo" pista1="Viajaba a un lugar cerca de Heliópolis" pista2="Me conto algo sobre el rio Nilo"/>
+         <PistasPais NombrePais="Cairo" pista0="Algo huele raro aqui" pista1="Hay algo que es muy sospechoso en estos lugares" pista2="Creo que lo que buscas esta aqui"/>
+      </Pistas>
+   </Partida>
+<Partida NombreLadron='Nick Brunch' NombreObjeto="La gran Moroni" ValorObjeto="Normal">
+      <Pistas>
+         <PistasPais NombrePais="Moroni" pista0="Hola" pista1="Chau" pista2="HeridaArmaDeFuego"/>
+         <PistasPais NombrePais="Sydney" pista0="Pista4" pista1="Pista5" pista2="Pista6"/>
+	 PistasPais NombrePais="Montreal" pista0="Pista4" pista1="Pista5" pista2="Pista6"/>
+      </Pistas>
+   </Partida>
+</Partidas>

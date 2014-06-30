@@ -227,12 +227,14 @@ public  class CarmenSanDiego {
 		
 		NodeList nodosPartida = doc.getElementsByTagName("Partida");
 		Random random = new Random();
-		Node nodoALevantar = nodosPartida.item(random.nextInt(nodosPartida.getLength()));
+		int numeroAzar = random.nextInt(nodosPartida.getLength());
+		Node nodoALevantar = nodosPartida.item(numeroAzar);
 		Element elementoPartida = (Element)nodoALevantar;
 		ArrayList<Pais> paisesParaTrayectoria = new ArrayList<Pais>();
-		for (int i = 0; i<doc.getElementsByTagName("PistasPais").getLength();i++){
+		Element elementoPistasPartida = (Element)doc.getElementsByTagName("Pistas").item(numeroAzar);
+		for (int i = 0; i<elementoPistasPartida.getElementsByTagName("PistasPais").getLength();i++){
 			
-			Element elementoPista = (Element)doc.getElementsByTagName("PistasPais").item(i);
+			Element elementoPista = (Element)elementoPistasPartida.getElementsByTagName("PistasPais").item(i);
 			Pais paisParaAgregar = buscarPaisPorString(elementoPista.getAttribute("NombrePais"));
 			paisesParaTrayectoria.add(paisParaAgregar);
 			ArrayList<String> pistasDelPais = new ArrayList<String>();
@@ -257,7 +259,8 @@ public  class CarmenSanDiego {
 		ladronAPasar.addTrayectoria(new Trayectoria(paisesParaTrayectoria));
 		ObjetoRobado ObjetoASetear = new ObjetoRobado(elementoPartida.getAttribute("NombreObjeto"),elementoPartida.getAttribute("ValorObjeto"));
 		Policia unPolicia = iniciarJugador(nombreUsuario);
-		BaseDeDatos baseAPasar = new BaseDeDatos((ArrayList<Ladron>)listadoLadrones,(ArrayList<Pais>)listadoPaises);
+		ArrayList<Ladron> listadoLadronesParaPartida = new ArrayList<Ladron>(listadoLadrones);
+		BaseDeDatos baseAPasar = new BaseDeDatos(Ladron,Pais);
 		Partida unaPartida= new Partida(unPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
 		return unaPartida;
 	}

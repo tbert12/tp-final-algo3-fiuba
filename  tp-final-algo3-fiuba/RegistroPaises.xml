@@ -58,7 +58,7 @@
          <Coordenadas Latitud="-11.701232" Longitud="43.252926"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="Cairo">
+   <Pais Informacion="Es la capital de Egipto. Es la mayor ciudad del mundo Arabe. Su poblacion aproximada es de 16 millones de habitante. Fue fundada en el año 116 A.C.Famosa por sus piramides de Guiza. Alberga a la septima maravilla del mundo, las Piramides de Keops" Nombre="Cairo">
       <Edificios>
          <Edificio Nombre="Puerto" Pista="No creo haber visto una persona asi aqui"/>
          <Edificio Nombre="Bolsa" Pista="Jamas he visto a esa persona"/>
@@ -68,7 +68,7 @@
          <Coordenadas Latitud="30.064741" Longitud="31.24951"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="Paris">
+   <Pais Informacion="Es la capital de Francia. Es uno de los nucleos economicos mas importantes de Europa.Cuenta con muchos monumentos muy famosos, tales como la Torre Eiffel, el Arco del Triunfo, la catedral de Notre Dame, la Avenida de los campos Eliseos." Nombre="Paris">
       <Edificios>
          <Edificio Nombre="Embajada" Pista="No he visto a nadie como dices"/>
          <Edificio Nombre="Museo" Pista="Jamas he visto a esa persona"/>
@@ -78,7 +78,7 @@
          <Coordenadas Latitud="48.856667" Longitud="2.350987"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="Athens">
+   <Pais Informacion="Es la capital de Grecia, actualmente la ciudad mas grande del país. Su historia se extiende a más de 3000 años, siendo una de las ciudades habitadas más antiguas. Rica en restos arqueologicos, siendo el mas famoso el Partenon en la Acropolis. " Nombre="Athens">
       <Edificios>
          <Edificio Nombre="Aeropuerto" Pista="Jamas he visto a esa persona"/>
          <Edificio Nombre="Banco" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
@@ -88,7 +88,7 @@
          <Coordenadas Latitud="37.979179" Longitud="23.716646"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="Budapest">
+   <Pais Informacion="Es la ciudad mas poblada de Hungria.Originalmente fue un asentamiento Celta.Importante centro financiero de Europa Oriental. Fue clasificada como la ciudad mejor habitable de Europa Central y del Este. Es la novena ciudad mas bella del mundo." Nombre="Budapest">
       <Edificios>
          <Edificio Nombre="Casa de Gobierno" Pista="No he visto a nadie como dices"/>
          <Edificio Nombre="Mercado" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
@@ -98,7 +98,7 @@
          <Coordenadas Latitud="47.498405" Longitud="19.040758"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="Reykjavík">
+   <Pais Informacion="Es la capital de Islandia. Abundan los geiseres en la zona. Es una de las ciudades con mayor énfasis ecológico en el mundo.Es famosa por su jardin botanico, Hortus Botanicus Reyjkavicensis." Nombre="Reykjavík">
       <Edificios>
          <Edificio Nombre="Mercado" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
          <Edificio Nombre="Embajada" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
@@ -108,7 +108,7 @@
          <Coordenadas Latitud="64.135338" Longitud="-21.89521"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="New Delhi">
+   <Pais Informacion="Capital de la India.Cuenta con dos monumentos historicos: el Qutab Minar y la tumba de Humayun,declarados patrimonio de la humanidad. Se dice que este ultimo es el precursor del famoso Taj Mahal." Nombre="New Delhi">
       <Edificios>
          <Edificio Nombre="Biblioteca" Pista="No creo haber visto una persona asi aqui"/>
          <Edificio Nombre="Bolsa" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
