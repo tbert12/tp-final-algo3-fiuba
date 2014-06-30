@@ -141,7 +141,7 @@ public class PoliciaTest {
 	public void ReducirHorasAlPolicaPorHeridaArma(){
 		Policia UnPolicia = new Policia("Pedraza",0);
 		int HorasPoliciaIniciales = UnPolicia.getTiempo();
-		int HorasAReducir = 3;
+		int HorasAReducir = 4;
 		UnPolicia.reducirHorasPorHeridaArmaDeFuego();
 		
 		assertEquals(HorasPoliciaIniciales - HorasAReducir,UnPolicia.getTiempo() );
