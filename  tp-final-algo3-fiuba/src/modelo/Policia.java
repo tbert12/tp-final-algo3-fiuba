@@ -87,6 +87,7 @@ public class Policia  {
 		HorasSinDormir += horas;
 		if (HorasSinDormir > LimiteHorasDespierto){
 			dormir();
+			HorasSinDormir = 0;
 		}
 	}
 	
@@ -103,8 +104,8 @@ public class Policia  {
 	}
 	
 	public void reducirHorasalVisitar(int VecesVisitado){
-		if (VecesVisitado == 0) reducirHoras(1);
-		else if (VecesVisitado == 1) reducirHoras(2);
+		if (VecesVisitado == 1) reducirHoras(1);
+		else if (VecesVisitado == 2) reducirHoras(2);
 		else reducirHoras(3);
 	}
 	

@@ -221,7 +221,7 @@ public class _SimuladorCrearPartida {
 		BaseDeDatos basedeDatos = new BaseDeDatos(listLadrones,listPaises);
 		
 		//Creo Policia
-		Policia unPolicia = new Policia(nombreDelPolicia,26);
+		Policia unPolicia = new Policia(nombreDelPolicia,4);
 		//Creo Objeto
 		ObjetoRobado unObjetoRobado = new ObjetoRobado("Reservas del Banco","Valioso");
 		
