@@ -65,8 +65,8 @@ public class CarmenSanDiegoTest {
 		Ladron LadronDos = new Ladron("Jose",null);
 		Carmen.agregarLadron(LadronUno);
 		Carmen.agregarLadron(LadronDos);
-		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronUno));
-		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronDos));
+		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronUno.getNombre()));
+		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronDos.getNombre()));
 	}
 	
 	@Test
@@ -116,8 +116,8 @@ public class CarmenSanDiegoTest {
 		Carmen.agregarLadron(LadronDos);
 		Carmen.bajarLadronesAXML("pruebaLadronesXML.xml");
 		Carmen.levantarLadronesDelXML("pruebaLadronesXML.xml");
-		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronUno));
-		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronDos));
+		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronUno.getNombre()));
+		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronDos.getNombre()));
 	}
 	@Test
 	public void CarmenLevantaXMLConPolicias() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
@@ -161,7 +161,7 @@ public class CarmenSanDiegoTest {
 		Caracteristicas caracteristicas1=new Caracteristicas(null,null,null,null,null);
 		Ladron unLadron = new Ladron("Nick Brunch",caracteristicas1);
 		Carmen.agregarLadron(unLadron);
-		Assert.assertTrue(Carmen.ladronEstaEnJuego(unLadron));
+		Assert.assertTrue(Carmen.ladronEstaEnJuego(unLadron.getNombre()));
 		Policia unPolicia = new Policia("Facu",4);
 		Carmen.agregarPolicia(unPolicia);
 		Policia otroPolicia = new Policia("Tomy",10);
