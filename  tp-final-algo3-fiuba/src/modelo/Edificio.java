@@ -80,7 +80,6 @@ public class Edificio {
 		Element elementoHerida = (Element) elementoEdificio.getFirstChild();
 		Edificio edificioADevolver = new Edificio(elementoEdificio.getAttribute("Nombre"));
 		edificioADevolver.setPista(elementoEdificio.getAttribute("Pista"));
-		edificioADevolver.setearVisitas(Integer.parseInt(elementoEdificio.getAttribute("VecesVisitado")));
 		try{
 		String tipoHerida=elementoHerida.getAttribute("TipoHerida");
 		Class<?> ClaseHerida = Class.forName(tipoHerida);
