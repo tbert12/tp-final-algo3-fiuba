@@ -18,4 +18,14 @@
          <Caracteristicas Cabello="CASTANIO" Hobby="ALPINISMO" Senia="JOYAS" Sexo="MASCULINO" Vehiculo="DESCAPOTABLE"/>
       </Caracteristica>
    </Ladron>
+   <Ladron Nombre="Tito">
+      <Caracteristica>
+         <Caracteristicas Cabello="" Hobby="" Senia="" Sexo="" Vehiculo=""/>
+      </Caracteristica>
+   </Ladron>
+   <Ladron Nombre="Jose">
+      <Caracteristica>
+         <Caracteristicas Cabello="CASTANIO" Hobby="ALPINISMO" Senia="JOYAS" Sexo="MASCULINO" Vehiculo="DESCAPOTABLE"/>
+      </Caracteristica>
+   </Ladron>
 </Ladron>

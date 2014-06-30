@@ -1,7 +1,6 @@
 package modelo;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Random;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -24,9 +23,6 @@ public class Ladron {
 	
 	public void addTrayectoria(Trayectoria trayecto){
 		this.TrayectoriaDelLadron = trayecto;
-		Random unRandom = new Random();
-		int EsconderseEnEdificioRando = unRandom.nextInt(3);
-		TrayectoriaDelLadron.paisFinal().getEdificios().get(EsconderseEnEdificioRando).setLadron();
 	}
 	
 	public String getNombre(){

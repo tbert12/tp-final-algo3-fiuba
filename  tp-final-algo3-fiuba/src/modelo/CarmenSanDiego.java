@@ -110,7 +110,7 @@ public  class CarmenSanDiego {
 	public void bajarLadronesAXML() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		bajarObjetoAXML(nombreArchivoLadrones, listadoLadrones,Ladron.class);
 	}
-
+	
 	public void agregarPolicia(Policia unPolicia){
 		listadoPolicias.add(unPolicia);
 	}
@@ -155,7 +155,20 @@ public  class CarmenSanDiego {
 	public Partida getPartida(){
 		return this.unaPartida;
 	}
-   
+	//Este metodo se va a ir, no se encariñen
+   private void generarXMLpaises() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, TransformerException{
+	   Edificio biblioteca = new Edificio("biblioteca");
+		Edificio puerto = new Edificio("puerto");
+		Edificio fiuba = new Edificio("fiuba");
+		Edificio[] edificios = {biblioteca,puerto,fiuba};
+		Pais Argentina = new Pais("Argentina",edificios,new Coordenadas(1, 1));
+		Pais Brasil = new Pais("Brasil",edificios,new Coordenadas(1, 3));
+		ArrayList<Pais> ListaPaises = new ArrayList<Pais>();
+		ListaPaises.add(Argentina);
+		ListaPaises.add(Brasil);
+		listadoPaises=ListaPaises;
+		bajarObjetoAXML(nombreArchivoPaises, ListaPaises, Pais.class);
+   }
 	public void generarPartidaXML(String nombreArchivo) throws ParserConfigurationException, TransformerException{
 		
 		Document doc = crearDoc();
@@ -209,7 +222,8 @@ public  class CarmenSanDiego {
 		
 		transformarYEscribirADisco(nombreArchivo, doc);
 	}
-	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException{
+		generarXMLpaises();
 		Policia elPolicia = iniciarJugador(nombreUsuario);
 		String rangoPoliciaString = elPolicia.toStringRango();
 		File archivoPartida = new File("Partidas"+rangoPoliciaString+".xml");
@@ -226,8 +240,10 @@ public  class CarmenSanDiego {
 		Element elementoPartida = (Element)nodoALevantar;
 		ArrayList<Pais> paisesParaTrayectoria = new ArrayList<Pais>();
 		for (int i = 0; i<doc.getElementsByTagName("PistasPais").getLength();i++){
+			
 			Element elementoPista = (Element)doc.getElementsByTagName("PistasPais").item(i);
 			Pais paisParaAgregar = buscarPaisPorString(elementoPista.getAttribute("NombrePais"));
+			
 			paisesParaTrayectoria.add(paisParaAgregar);
 			ArrayList<String> pistasDelPais = new ArrayList<String>();
 			for (int j = 0 ; j<3 ; j++){

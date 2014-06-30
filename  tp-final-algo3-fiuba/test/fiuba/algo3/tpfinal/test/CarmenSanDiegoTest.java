@@ -152,7 +152,7 @@ public class CarmenSanDiegoTest {
 		Carmen.agregarLadron(LadronUno);
 		Carmen.agregarLadron(LadronDos);
 		HashMap<String,String[]> paisesPistas = new HashMap<String,String[]>();
-		String[] pistas = {"Pista 1","Pista2","Pista3"};
+		String[] pistas = {"Pista 1","Pista2","HeridaCuchillo"};
 		String[] otrasPistas = {"Pista4","Pista5","Pista6"};
 		paisesPistas.put("Argentina",pistas );
 		paisesPistas.put("Brasil",otrasPistas);

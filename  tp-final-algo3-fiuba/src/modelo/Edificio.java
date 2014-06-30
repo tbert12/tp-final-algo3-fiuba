@@ -68,7 +68,6 @@ public class Edificio {
 		elementoEdificio.setAttribute("Nombre", this.Nombre);
 		elementoEdificio.setAttribute("Pista",this.Pista);
 		elementoEdificio.setAttribute("VecesVisitado",""+VecesVisitado);
-		elementoEdificio.setAttribute("ContieneLadron",String.valueOf(ContieneLadron));
 		if (!(this.Herida == null)){
 		Element elementoHerida = doc.createElement("Herida");
 		elementoHerida.setAttribute("TipoHerida",this.Herida.getClass().getName());
@@ -83,9 +82,6 @@ public class Edificio {
 		Edificio edificioADevolver = new Edificio(elementoEdificio.getAttribute("Nombre"));
 		edificioADevolver.setPista(elementoEdificio.getAttribute("Pista"));
 		edificioADevolver.setearVisitas(Integer.parseInt(elementoEdificio.getAttribute("VecesVisitado")));
-		if (Boolean.valueOf(elementoEdificio.getAttribute("ContieneLadron"))){
-			edificioADevolver.setLadron();
-		}
 		try{
 		String tipoHerida=elementoHerida.getAttribute("TipoHerida");
 		Class<?> ClaseHerida = Class.forName(tipoHerida);
