@@ -8,6 +8,8 @@ import modelo.caracteristicas.Hobby;
 import modelo.caracteristicas.Senia;
 import modelo.caracteristicas.Sexo;
 import modelo.caracteristicas.Vehiculo;
+import modelo.heridas.HeridaArmaDeFuego;
+import modelo.heridas.HeridaCuchillo;
 
 public class _SimuladorCrearPartida {
 
@@ -88,11 +90,11 @@ public class _SimuladorCrearPartida {
 		//Creo Paises
 		Coordenadas CoordArgelia = new Coordenadas(28.033886,1.659626);
 		Edificio MuseoArgelia = new Edificio("Biblioteca");
-		MuseoArgelia.setPista("No eh visto nada");
+		//MuseoArgelia.setPista("No eh visto nada");
 		Edificio PuertoArgelia = new Edificio("Puerto");
-		PuertoArgelia.setPista("No vi nada, Anda mucha gente por estos lugares");
+		//PuertoArgelia.setPista("No vi nada, Anda mucha gente por estos lugares");
 		Edificio CasaDeGobiernoArgelia = new Edificio("Casa de Gobierno");
-		CasaDeGobiernoArgelia.setPista("Pues aqui no hay nada");
+		//CasaDeGobiernoArgelia.setPista("Pues aqui no hay nada");
 		Edificio[] EdificiosArgelia = {MuseoArgelia,PuertoArgelia,CasaDeGobiernoArgelia}; 
 		Pais Argelia = new Pais("Argel",EdificiosArgelia,CoordArgelia);
 		Argelia.setInformacion("Informacion sobre Argelia");
@@ -112,11 +114,11 @@ public class _SimuladorCrearPartida {
 		
 		Coordenadas CoordAlemania = new Coordenadas(51.165691,10.451526);
 		Edificio MuseoAlemania = new Edificio("Museo");
-		MuseoAlemania.setPista("No he visto nada por estos lados");
+		//MuseoAlemania.setPista("No he visto nada por estos lados");
 		Edificio AeropuertoAlemania = new Edificio("Aeropuerto");
-		AeropuertoAlemania.setPista("Veo mucha gente todos los dias es probable que no la haya visto");
+		//AeropuertoAlemania.setPista("Veo mucha gente todos los dias es probable que no la haya visto");
 		Edificio BolsaAlemania = new Edificio("Bolsa");
-		BolsaAlemania.setPista("Si la he visto no me he dado cuenta");
+		//BolsaAlemania.setPista("Si la he visto no me he dado cuenta");
 		Edificio[] EdificiosAlemania = {MuseoAlemania,AeropuertoAlemania,BolsaAlemania}; 
 		Pais Alemania = new Pais("Berlin",EdificiosAlemania,CoordAlemania);
 		Alemania.setInformacion("Informacion sobre Alemania");
@@ -124,11 +126,11 @@ public class _SimuladorCrearPartida {
 		
 		Coordenadas CoordUsa = new Coordenadas(40.714268,-74.005974);
 		Edificio CasadeGobiernoUsa = new Edificio("Casa de Gobierno");
-		CasadeGobiernoUsa.setPista("No he visto nada sospechoso");
+		//CasadeGobiernoUsa.setPista("No he visto nada sospechoso");
 		Edificio BibliotecaUsa = new Edificio("Biblioteca");
-		BibliotecaUsa.setPista("Aqui no vas a encontrar lo que buscas");
+		//BibliotecaUsa.setPista("Aqui no vas a encontrar lo que buscas");
 		Edificio BancoUsa = new Edificio("Bolsa");
-		BancoUsa.setPista("Disculpe, No tengo informacion para ofrecerle");
+		//BancoUsa.setPista("Disculpe, No tengo informacion para ofrecerle");
 		Edificio[] EdificiosUsa = {CasadeGobiernoUsa,BibliotecaUsa,BancoUsa}; 
 		Pais Usa = new Pais("New York",EdificiosUsa,CoordUsa);
 		Usa.setInformacion("Informacion de Estados Unidos");
@@ -136,11 +138,11 @@ public class _SimuladorCrearPartida {
 		
 		Coordenadas CoordParaguay = new Coordenadas(-23.442503,-58.443832);
 		Edificio MuseoParaguay = new Edificio("Museo");
-		MuseoParaguay.setPista("No he visto nada");
+		//MuseoParaguay.setPista("No he visto nada");
 		Edificio AeropuertoParaguay = new Edificio("Aeropuerto");
-		AeropuertoParaguay.setPista("Si la he visto no me he dado cuenta");
+		//AeropuertoParaguay.setPista("Si la he visto no me he dado cuenta");
 		Edificio BolsaParaguay = new Edificio("Bolsa");
-		BolsaParaguay.setPista("Veo pasar mucha gente para ver algo");
+		//BolsaParaguay.setPista("Veo pasar mucha gente para ver algo");
 		Edificio[] EdificiosParaguay = {MuseoParaguay,AeropuertoParaguay,BolsaParaguay}; 
 		Pais Paraguay = new Pais("Concepcion",EdificiosParaguay,CoordParaguay);
 		Paraguay.setInformacion("Informacion de Paraguay");
@@ -172,11 +174,11 @@ public class _SimuladorCrearPartida {
 		
 		Coordenadas CoordEspania = new Coordenadas(40.416691,-3.700345);
 		Edificio MuseoEspania = new Edificio("Museo");
-		MuseoEspania.setPista("No eh visto nada estos dias");
+		//MuseoEspania.setPista("No eh visto nada estos dias");
 		Edificio BancoEspania = new Edificio("Banco");
-		BancoEspania.setPista("Disculpe, no tengo informacion para ofrecerle");
+		//BancoEspania.setPista("Disculpe, no tengo informacion para ofrecerle");
 		Edificio CasadeGobiernoEspania = new Edificio("Casa de Gobierno");
-		CasadeGobiernoEspania.setPista("Si el ladron ha estado aqui no lo he visto");
+		//CasadeGobiernoEspania.setPista("Si el ladron ha estado aqui no lo he visto");
 		Edificio[] EdificiosEspania = {MuseoEspania,BancoEspania,CasadeGobiernoEspania}; 
 		Pais Espania = new Pais("Madrid",EdificiosEspania,CoordEspania);
 		Espania.setInformacion("Informacion de España");
@@ -185,10 +187,14 @@ public class _SimuladorCrearPartida {
 		Coordenadas CoordAustralia = new Coordenadas(-33.867138,151.207108);
 		Edificio PuertoAustralia = new Edificio("Puerto");
 		PuertoAustralia.setPista("Veo algo sospechoso por aqui");
+		HeridaCuchillo UnaHerida = new HeridaCuchillo("HERIDA DE CUCHILLO");
+		PuertoAustralia.setHerida(UnaHerida);
 		Edificio BibliotecaAustralia = new Edificio("Biblioteca");
 		BibliotecaAustralia.setPista("Algo huele mal");
 		BibliotecaAustralia.setLadron();
 		Edificio BolsaAustralia = new Edificio("Bolsa");
+		HeridaArmaDeFuego OtraHerida = new HeridaArmaDeFuego("HERIDA DE PISTOLA");
+		BolsaAustralia.setHerida(OtraHerida);
 		BolsaAustralia.setPista("Estos dias han pasado cosas extrañas");
 		Edificio[] EdificiosAustralia = {PuertoAustralia,BibliotecaAustralia,BolsaAustralia}; 
 		Pais Australia = new Pais("Sydney",EdificiosAustralia,CoordAustralia);
@@ -197,11 +203,11 @@ public class _SimuladorCrearPartida {
 		
 		Coordenadas CoordFrancia = new Coordenadas(41.895466,12.482324);
 		Edificio MuseoFrancia = new Edificio("Museo");
-		MuseoFrancia.setPista("Creo que aqui no ha pasado nada");
+		//MuseoFrancia.setPista("Creo que aqui no ha pasado nada");
 		Edificio BancoFrancia = new Edificio("Banco");
-		BancoFrancia.setPista("Si veo algo estare en contacto contigo");
+		//BancoFrancia.setPista("Si veo algo estare en contacto contigo");
 		Edificio AeropuertoFrancia = new Edificio("Aeropuerto");
-		AeropuertoFrancia.setPista("Mucha gente pasa por aqui, es dificil que vea al ladron");
+		//AeropuertoFrancia.setPista("Mucha gente pasa por aqui, es dificil que vea al ladron");
 		Edificio[] EdificiosFrancia = {MuseoFrancia,BancoFrancia,AeropuertoFrancia}; 
 		Pais Francia = new Pais("Roma",EdificiosFrancia,CoordFrancia);
 		Francia.setInformacion("Informacion de Francia");
