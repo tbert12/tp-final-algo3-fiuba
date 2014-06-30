@@ -57,24 +57,20 @@ public class Partida {
 	
 	public String visitarEdificio(Edificio UnEdificio){
 		
-		if (UnEdificio.tieneLadron()){
-			this.PartidaFinalizada = true;
-		}
 		
 		String PistaDeEdificio = UnEdificio.visitar(UnPolicia);
 		
-		if (UnLadron.estaArrestado()){
-			atrapoLadron();
+		if (UnEdificio.tieneLadron()){
+			this.PartidaFinalizada = true;
+			actualizarPolicia();
 		}
 		
 		return PistaDeEdificio;
 	}
 	
-	private void atrapoLadron() {
-		this.LadronAtrapado = true;
-		UnPolicia.addArresto();
-		//Calculo que carmen tendria que serializar todo.
-		
+	private void actualizarPolicia() {
+		this.LadronAtrapado = UnLadron.estaArrestado();
+		UnPolicia.terminoCaso(LadronAtrapado);
 	}
 
 	public ArrayList<Ladron> filtrarLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){

@@ -132,9 +132,11 @@ public  class CarmenSanDiego {
 		StreamResult result = new StreamResult(archivoDestino);
 		transformer.transform(source, result);
 	}
+	
 	private void bajarPoliciasAXML(String nombreArchivo) throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		bajarObjetoAXML(nombreArchivo, listadoPolicias, Policia.class);
 		}
+	
 	public void almacenarDatos() throws ErrorAlCargarDatos{
 		for(Policia policia:listadoPolicias){
 			System.out.println(policia.getArrestos());
@@ -234,7 +236,6 @@ public  class CarmenSanDiego {
 				| SAXException | IOException | ErrorNoSeEncontroPais
 				| TransformerException | ErrorObjetoNoEncontrado
 				| ErrorNoSeEncontroLadron e) {
-			System.out.println(e.toString());
 			throw new ErrorAlCargarDatos();
 		}
 	}

@@ -62,12 +62,18 @@ public class Policia  {
 		return this.PaisActual;
 	}
 
-	public void addArresto() {
+	private void addArresto() {
 		CantidadDeArrestos++;
-		chequeoDeRango();
-		
+		chequeoDeRango();		
 	}
 	
+	public void terminoCaso(boolean arresto){
+		setTiempo();
+		this.Sospechoso = null;
+		if (arresto){
+			addArresto();
+		}
+	}
 	public boolean arrestarSospechoso(){
 		if( Sospechoso == null ) return false;
 		
