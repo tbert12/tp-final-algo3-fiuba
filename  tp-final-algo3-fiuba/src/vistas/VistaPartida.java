@@ -136,7 +136,16 @@ public class VistaPartida extends JFrame implements Observer{
 		}
 		else if (NombreLadronesFiltrados == null){
 			TextoInterpool.setVisible(false);
-			TextoPista.setText("<html> Pista: <br>" + pistadeEdificio + "</html>");
+			String Mensaje = "Pista: <br>";
+			if (pistadeEdificio.equals("HeridaArmaDeFuego")){
+				Mensaje = "Cuidado: <br>";
+				pistadeEdificio = "Has sido herido por un arma de Fuego";
+			}
+			if (pistadeEdificio.equals("HeridaCuchillo")){
+				Mensaje = "Cuidado: <br>";
+				pistadeEdificio = "Has sido herido por un arma blanca";
+			}
+			TextoPista.setText("<html>" + Mensaje + pistadeEdificio + "</html>");
 			TextoPista.setVisible(true);
 		}
 		else if(pistadeEdificio == null){
