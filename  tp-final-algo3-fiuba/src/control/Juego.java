@@ -72,7 +72,7 @@ public class Juego{
 		
 		partidaObservable = new PartidaObservable(partida);
 		vistaPartida = new VistaPartida(partidaObservable,this);
-				
+		
 		ventanaPrincipal.ocultarVentana();
 		vistaPartida.mostrarVentana();
 	}

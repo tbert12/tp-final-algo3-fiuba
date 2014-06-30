@@ -64,7 +64,7 @@ public class VistaPartida extends JFrame implements Observer{
 		NombrePaisActual = partida.getPaisActual();
 		updateCiudadActual();
 		updateImagenPais();
-		mensajeDeBienvenida();	
+		mensajeDeBienvenida();
 	}
 
 

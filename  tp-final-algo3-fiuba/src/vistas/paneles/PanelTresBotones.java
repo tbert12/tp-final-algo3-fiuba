@@ -15,6 +15,7 @@ public abstract class PanelTresBotones implements Observer{
 	
 	
 	public PanelTresBotones(JPanel panel,PartidaObservable partida){
+		
 		this.PanelGeneral = panel;
 		Panel = new JLayeredPane();
 		this.partida = partida;

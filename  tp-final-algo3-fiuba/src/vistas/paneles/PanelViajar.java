@@ -3,7 +3,9 @@ package vistas.paneles;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import javax.swing.JPanel;
+
 import control.ControladorViajarAPais;
 import vistas.botones.BotonParaPais;
 import modelo.Pais;

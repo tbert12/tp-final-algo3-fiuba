@@ -228,25 +228,19 @@ public  class CarmenSanDiego {
 	}
 	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado{
 		Policia elPolicia = iniciarJugador(nombreUsuario);
-		System.out.println("Hasta aca llega 0");
 		String rangoPoliciaString = elPolicia.toStringRango();
-		System.out.println("Hasta aca llega 1");
 		File archivoPartida = new File("Partidas"+rangoPoliciaString+".xml");
-		System.out.println("Hasta aca llega 2");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.newDocument();
 		doc = dBuilder.parse(archivoPartida);
-		System.out.println("Hasta aca llega 3");
 		doc.getDocumentElement().normalize();
 		
 		NodeList nodosPartida = doc.getElementsByTagName("Partida");
-		System.out.println("Hasta aca llega 4");
 		Random random = new Random();
 		Node nodoALevantar = nodosPartida.item(random.nextInt(nodosPartida.getLength()));
 		Element elementoPartida = (Element)nodoALevantar;
 		ArrayList<Pais> paisesParaTrayectoria = new ArrayList<Pais>();
-		System.out.println("Hasta aca llega 5");
 		for (int i = 0; i<doc.getElementsByTagName("PistasPais").getLength();i++){
 			
 			Element elementoPista = (Element)doc.getElementsByTagName("PistasPais").item(i);
@@ -270,29 +264,21 @@ public  class CarmenSanDiego {
 					
 					}
 				}
-				System.out.println("Hasta aca llega 6");
+				
 				pistasDelPais.add(pista);
 			}
-			System.out.println("Hasta aca llega 7");
 			agregarPistaAEdificios(paisParaAgregar.getEdificios(),pistasDelPais);
 		}
 		
 	
 		
 		String nombreLadron = elementoPartida.getAttribute("NombreLadron");
-		System.out.println("Hasta aca llega 8");
 		Ladron ladronAPasar = buscarLadronPorString(nombreLadron);
-		System.out.println("Hasta aca llega 9");
 		ladronAPasar.addTrayectoria(new Trayectoria(paisesParaTrayectoria));
-		System.out.println("Hasta aca llega 10");
 		ObjetoRobado ObjetoASetear = new ObjetoRobado(elementoPartida.getAttribute("NombreObjeto"),elementoPartida.getAttribute("ValorObjeto"));
-		System.out.println("Hasta aca llega 11");
 		Policia unPolicia = iniciarJugador(nombreUsuario);
-		System.out.println("Hasta aca llega 12");
 		BaseDeDatos baseAPasar = new BaseDeDatos((ArrayList<Ladron>)listadoLadrones,(ArrayList<Pais>)listadoPaises);
-		System.out.println("Hasta aca llega 13");
 		unaPartida= new Partida(unPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
-		System.out.println("Hasta aca llega 14");
 	}
 
 	private void agregarPistaAEdificios(ArrayList<Edificio> edificios,ArrayList<String> pistas){
