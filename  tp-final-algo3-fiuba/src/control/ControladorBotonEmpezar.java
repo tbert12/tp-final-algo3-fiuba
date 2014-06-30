@@ -26,8 +26,17 @@ public class ControladorBotonEmpezar implements ActionListener {
 				vista.mostrarError("Ingrese un nombre valido.");
 			}
 			else{
-				NombreUsuario = StringUtils.capitalize(NombreUsuario);
+				NombreUsuario = amoldarNombre(NombreUsuario);
 				juego.iniciarPartida(NombreUsuario);
 			}
 		}
+		
+		private String amoldarNombre(String nombre) {
+			String nombreCorrecto;
+			nombre = StringUtils.capitalize(nombre);
+			nombreCorrecto = nombre.trim(); 
+			
+			return nombreCorrecto;
+		}
+
 }
