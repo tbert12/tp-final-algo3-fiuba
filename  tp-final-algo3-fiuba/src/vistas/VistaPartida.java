@@ -89,13 +89,13 @@ public class VistaPartida extends JFrame implements Observer{
 		if (partida.tiempoAgotado()){
 			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
 			//le aviso a la ventana principal que termine
-			juego.cerrarVentanaPartida();
+			juego.cerrarPartida();
 		}
 		
 		if (partida.partidaFinalizada()){
 			mostrarMensaje(partida.getPistaActual(), "Mensaje Interpool");
 			//le aviso a la ventana principal que termine
-			juego.cerrarVentanaPartida();
+			juego.cerrarPartida();
 		}
 		
 		updateHora();
@@ -297,6 +297,11 @@ public class VistaPartida extends JFrame implements Observer{
 	}
 	public void cerrar() {
 		this.dispose();	
+	}
+
+
+	public void ocultarVentana() {
+		setVisible(false);
 	}
 	
 }

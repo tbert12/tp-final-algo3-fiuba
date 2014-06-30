@@ -9,6 +9,7 @@ import javax.xml.transform.TransformerException;
 import modelo.CarmenSanDiego;
 import modelo.Partida;
 import modelo.PartidaObservable;
+import modelo.excepcion.ErrorAlCargarDatos;
 import modelo.excepcion.ErrorNoSeEncontroLadron;
 import modelo.excepcion.ErrorNoSeEncontroPais;
 import modelo.excepcion.ErrorObjetoNoEncontrado;
@@ -58,13 +59,7 @@ public class Juego{
 		
 		try {
 			carmen.iniciarPartida(string);
-		} catch (ClassNotFoundException | NoSuchMethodException
-				| SecurityException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException | ParserConfigurationException
-				| SAXException | IOException | ErrorNoSeEncontroPais
-				| TransformerException | ErrorObjetoNoEncontrado
-				| ErrorNoSeEncontroLadron e) {
+		} catch (ErrorAlCargarDatos e) {
 
 			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego. Contactate con el administrador del sistemas." + e.toString());
 		}
@@ -77,9 +72,17 @@ public class Juego{
 		vistaPartida.mostrarVentana();
 	}
 
-	public void cerrarVentanaPartida() {
-		vistaPartida.cerrar();
+	public void cerrarPartida() {
+		vistaPartida.ocultarVentana();
 		ventanaPrincipal.mostrarVentana();
+		try {
+			carmen.almacenarDatos();
+		} catch (ErrorAlCargarDatos e) {
+			ventanaPrincipal.mostrarErrorFinal("No se pueden guardar los avances realizados." );
+		}	
+		
+		vistaPartida.cerrar();
+		
 		
 	}
 

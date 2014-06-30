@@ -85,7 +85,7 @@ public class CarmenSanDiegoTest {
 		Carmen.agregarPolicia(unPolicia);
 		Policia otroPolicia = new Policia("Tomy",10);
 		Carmen.agregarPolicia(otroPolicia);
-		Carmen.bajarPoliciasAXML("pruebaXMLPolicia.xml");
+		Carmen.bajarPoliciasAXML();
 		Assert.assertTrue(Carmen.archivoPoliciasExiste());
 	}
 	@Test
@@ -98,7 +98,7 @@ public class CarmenSanDiegoTest {
 		Ladron LadronDos = new Ladron("Jose",caracteristicas2);
 		Carmen.agregarLadron(LadronUno);
 		Carmen.agregarLadron(LadronDos);
-		Carmen.bajarLadronesAXML("prueba2XMLLadrones.xml");
+		Carmen.bajarLadronesAXML();
 		Assert.assertTrue(Carmen.archivoLadronesExiste());
 	
 	}
@@ -122,7 +122,7 @@ public class CarmenSanDiegoTest {
 		LadronDos.addTrayectoria(new Trayectoria(ListaPaises));
 		Carmen.agregarLadron(LadronUno);
 		Carmen.agregarLadron(LadronDos);
-		Carmen.bajarLadronesAXML("pruebaLadronesXML.xml");
+		Carmen.bajarLadronesAXML();
 		Carmen.levantarLadronesDelXML("pruebaLadronesXML.xml");
 		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronUno.getNombre()));
 		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronDos.getNombre()));
