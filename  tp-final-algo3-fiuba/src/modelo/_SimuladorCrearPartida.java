@@ -1,6 +1,20 @@
 package modelo;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import modelo.caracteristicas.Cabello;
 import modelo.caracteristicas.Caracteristicas;
@@ -12,7 +26,9 @@ import modelo.heridas.HeridaArmaDeFuego;
 import modelo.heridas.HeridaCuchillo;
 
 public class _SimuladorCrearPartida {
-
+	private ArrayList<Pais> Paises;
+	private ArrayList<Ladron> Ladrones;
+	
 	public Partida crearPartida(String nombreDelPolicia) {
 		/* DATOS DE PARTIDA
 		Paises
@@ -233,8 +249,43 @@ public class _SimuladorCrearPartida {
 		
 		
 		Partida unaPartida = new Partida(unPolicia,ladronCarmen,basedeDatos,unObjetoRobado);
-		
+		Paises = listPaises;
+		Ladrones = listLadrones;
+		try {
+			serializar();
+		} catch (ParserConfigurationException e) {
+			System.out.print("Algo Salio mal Uno");
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			System.out.print("Algo Salio mal Dos");
+			e.printStackTrace();
+		}
 		return unaPartida;
+	}
+
+	public void serializar() throws ParserConfigurationException, TransformerException{
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document doc = db.newDocument();
+		Element elementoPais = doc.createElement("PaisesyLadrones");
+		for (Pais pais: Paises){
+			elementoPais.appendChild(pais.serializar(doc));
+		}
+		for (Ladron ladron: Ladrones){
+			elementoPais.appendChild(ladron.serializar(doc));
+		}
+		doc.appendChild(elementoPais);
+		transformarYEscribirADisco("PaisesYLadrones.xml",doc);
+	}
+	private void transformarYEscribirADisco(String nombreArchivo, Document doc) throws TransformerException{
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","3");
+		DOMSource source = new DOMSource(doc);
+		File archivoDestino = new File(nombreArchivo);
+		StreamResult result = new StreamResult(archivoDestino);
+		transformer.transform(source, result);
 	}
 
 }

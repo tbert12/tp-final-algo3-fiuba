@@ -67,7 +67,6 @@ public class Edificio {
 		Element elementoEdificio = doc.createElement("Edificio");
 		elementoEdificio.setAttribute("Nombre", this.Nombre);
 		elementoEdificio.setAttribute("Pista",this.Pista);
-		elementoEdificio.setAttribute("VecesVisitado",""+VecesVisitado);
 		if (!(this.Herida == null)){
 		Element elementoHerida = doc.createElement("Herida");
 		elementoHerida.setAttribute("TipoHerida",this.Herida.getClass().getName());
