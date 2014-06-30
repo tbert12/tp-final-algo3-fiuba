@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 
-public class Pais {
+public class Pais{
 	
 	private String Nombre;
 	private String Informacion;
@@ -28,12 +29,24 @@ public class Pais {
 	public String getNombre(){
 		return Nombre;
 	}
+	public Pais copiar(Pais paisACopiar){
+		Edificio[] edificiosCopiados = new Edificio[3];
+		for (int i = 0;i<Edificios.length;i++){
+			edificiosCopiados[i] = edificiosCopiados[i].copiar(Edificios[i]);
+		}
+		
+		Pais copiaDelPais = new Pais(paisACopiar.getNombre(),edificiosCopiados,paisACopiar.getCoordenadas());
+		copiaDelPais.setInformacion(this.Informacion);
+		return copiaDelPais;
+	}
 	
 	//Capas Es mejor recibirlo por parametro cuando lo inicializamos.
 	public void setInformacion(String UnaInfo){
 		Informacion = UnaInfo;
 	}
 	
+
+
 	public String getInformacion(){
 		return Informacion;
 	}

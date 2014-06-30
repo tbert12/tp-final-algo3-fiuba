@@ -28,6 +28,12 @@ public class Edificio {
 		this.ContieneLadron = false;
 	}
 	
+	public Edificio copiar(Edificio edificioACopiar){
+		Edificio edificioCopia = new Edificio(edificioACopiar.getNombre());
+		String pistaNueva = edificioACopiar.getPista();
+		edificioCopia.setPista(pistaNueva);
+		return edificioCopia;
+	}
 	public void setHerida(Herida UnaHerida){
 		Herida = UnaHerida;
 	}

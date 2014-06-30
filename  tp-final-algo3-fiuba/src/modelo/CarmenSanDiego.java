@@ -44,6 +44,7 @@ public  class CarmenSanDiego {
 				| IllegalArgumentException | InvocationTargetException
 				| InstantiationException | ParserConfigurationException
 				| SAXException | IOException e) {
+			e.toString();
 			throw new ErrorAlCargarDatos();
 		}
 		
@@ -69,7 +70,17 @@ public  class CarmenSanDiego {
 		}
 		return listado;
 	}
-	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private <T> ArrayList<T> duplicarListado(List<T> listado,Class clase) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		Method metodoCopiar = clase.getDeclaredMethod("copiar", clase);
+		ArrayList<T> listadoDuplicado = new ArrayList<T>();
+		for(int i = 0;i<listado.size();i++){
+			Object x = new Object();
+			x = metodoCopiar.invoke(x, (T)listado.get(i));
+			listadoDuplicado.add((T)x);
+		}
+		return listadoDuplicado;
+	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private <T> void bajarObjetoAXML(String nombreArchivo,List<T> listado,Class clase) throws ParserConfigurationException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException{
 		Document doc = crearDoc();
@@ -94,6 +105,14 @@ public  class CarmenSanDiego {
 		levantarAlgoDelXML(nombreArchivo, Pais.class, listadoPaises,"Pais");
 	}
 	
+	public ArrayList<Pais> duplicarPaises() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		ArrayList<Pais> listadoDuplicado = duplicarListado(listadoPaises, Pais.class);
+		return listadoDuplicado;
+	}
+	public ArrayList<Ladron> duplicarLadrones() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		ArrayList<Ladron> listadoDuplicado = duplicarListado(listadoLadrones, Ladron.class);
+		return listadoDuplicado;
+	}
 	public void levantarLadronesDelXML(String nombreArchivo) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
 		levantarAlgoDelXML(nombreArchivoLadrones, Ladron.class, listadoLadrones, "Ladron");
 	}
@@ -259,12 +278,14 @@ public  class CarmenSanDiego {
 		ladronAPasar.addTrayectoria(new Trayectoria(paisesParaTrayectoria));
 		ObjetoRobado ObjetoASetear = new ObjetoRobado(elementoPartida.getAttribute("NombreObjeto"),elementoPartida.getAttribute("ValorObjeto"));
 		Policia unPolicia = iniciarJugador(nombreUsuario);
-		ArrayList<Ladron> listadoLadronesParaPartida = new ArrayList<Ladron>(listadoLadrones);
-		BaseDeDatos baseAPasar = new BaseDeDatos(Ladron,Pais);
+		ArrayList<Pais> listadoPaisesDuplicados = duplicarPaises();
+		ArrayList<Ladron>listadoLadronesDuplicados = duplicarLadrones();
+		BaseDeDatos baseAPasar = new BaseDeDatos(listadoLadronesDuplicados,listadoPaisesDuplicados);
 		Partida unaPartida= new Partida(unPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
 		return unaPartida;
 	}
 
+	
 	private void agregarPistaAEdificios(ArrayList<Edificio> edificios,ArrayList<String> pistas){
 		for (int i = 0; i< edificios.size();i++){
 			String pistaAPoner=pistas.get(i);

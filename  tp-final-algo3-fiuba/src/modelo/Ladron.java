@@ -23,6 +23,10 @@ public class Ladron {
 		this.Arrestado = false;
 	}
 	
+	public Ladron copiar(Ladron ladronACopiar){
+		Ladron ladronCopiado = new Ladron(ladronACopiar.getNombre(),this.CaracteristicasDelLadron);
+		return ladronCopiado;
+	}
 	public void addTrayectoria(Trayectoria trayecto){
 		this.TrayectoriaDelLadron = trayecto;
 		//El ladron se va a esconder en un edificio del trayecto final
