@@ -23,8 +23,8 @@ public class Ladron {
 		this.Arrestado = false;
 	}
 	
-	public Ladron copiar(Ladron ladronACopiar){
-		Ladron ladronCopiado = new Ladron(ladronACopiar.getNombre(),this.CaracteristicasDelLadron);
+	public Ladron copiar(){
+		Ladron ladronCopiado = new Ladron(this.Nombre,this.CaracteristicasDelLadron);
 		return ladronCopiado;
 	}
 	public void addTrayectoria(Trayectoria trayecto){

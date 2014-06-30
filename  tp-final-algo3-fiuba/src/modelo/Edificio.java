@@ -28,9 +28,9 @@ public class Edificio {
 		this.ContieneLadron = false;
 	}
 	
-	public Edificio copiar(Edificio edificioACopiar){
-		Edificio edificioCopia = new Edificio(edificioACopiar.getNombre());
-		String pistaNueva = edificioACopiar.getPista();
+	public Edificio copiar(){
+		Edificio edificioCopia = new Edificio(this.Nombre);
+		String pistaNueva = this.Pista;
 		edificioCopia.setPista(pistaNueva);
 		return edificioCopia;
 	}

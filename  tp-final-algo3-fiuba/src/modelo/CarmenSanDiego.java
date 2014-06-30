@@ -45,6 +45,7 @@ public  class CarmenSanDiego {
 				| InstantiationException | ParserConfigurationException
 				| SAXException | IOException e) {
 			e.toString();
+			e.printStackTrace();
 			throw new ErrorAlCargarDatos();
 		}
 		
@@ -76,7 +77,8 @@ public  class CarmenSanDiego {
 		ArrayList<T> listadoDuplicado = new ArrayList<T>();
 		for(int i = 0;i<listado.size();i++){
 			Object x = new Object();
-			x = metodoCopiar.invoke(x, (T)listado.get(i));
+			System.out.println(listado.get(i).getClass());
+			x = metodoCopiar.invoke(x, listado.get(i));
 			listadoDuplicado.add((T)x);
 		}
 		return listadoDuplicado;

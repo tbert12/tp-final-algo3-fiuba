@@ -32,7 +32,7 @@ public class Pais{
 	public Pais copiar(Pais paisACopiar){
 		Edificio[] edificiosCopiados = new Edificio[3];
 		for (int i = 0;i<Edificios.length;i++){
-			edificiosCopiados[i] = edificiosCopiados[i].copiar(Edificios[i]);
+			edificiosCopiados[i] = Edificios[i].copiar();
 		}
 		
 		Pais copiaDelPais = new Pais(paisACopiar.getNombre(),edificiosCopiados,paisACopiar.getCoordenadas());
