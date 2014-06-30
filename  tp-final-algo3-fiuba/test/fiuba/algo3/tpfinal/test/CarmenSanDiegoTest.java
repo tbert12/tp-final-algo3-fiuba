@@ -3,6 +3,7 @@ package fiuba.algo3.tpfinal.test;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -14,11 +15,17 @@ import org.junit.Assert;
 import org.xml.sax.SAXException;
 
 import modelo.*;
+import modelo.caracteristicas.Cabello;
 import modelo.caracteristicas.Caracteristicas;
+import modelo.caracteristicas.Hobby;
+import modelo.caracteristicas.Senia;
+import modelo.caracteristicas.Sexo;
+import modelo.caracteristicas.Vehiculo;
+import modelo.excepcion.ErrorNoSeEncontroLadron;
 
 
 public class CarmenSanDiegoTest {
-	@After
+	/*@After
 	public void after() {
 		File archivo1 = new File("RegistroPolicias.xml");
 		if (archivo1.exists()) {
@@ -28,7 +35,8 @@ public class CarmenSanDiegoTest {
 		if (archivo2.exists()){
 			archivo2.delete();
 		}
-	}
+	}*/
+
 	@Test
 	public void CarmenCargaPolicias() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
@@ -53,7 +61,7 @@ public class CarmenSanDiegoTest {
 	@Test
 	public void CarmenCreaXMLConPolicias() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException, InstantiationException, SAXException, IOException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
-		Policia unPolicia = new Policia("Facu",5);
+		Policia unPolicia = new Policia("Facu",4);
 		Carmen.agregarPolicia(unPolicia);
 		Policia otroPolicia = new Policia("Tomy",10);
 		Carmen.agregarPolicia(otroPolicia);
@@ -64,7 +72,7 @@ public class CarmenSanDiegoTest {
 	public void CarmenCreaXMLConLadrones() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException, InstantiationException, SAXException, IOException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Caracteristicas caracteristicas1=new Caracteristicas(null,null,null,null,null);
-		Caracteristicas caracteristicas2=new Caracteristicas(null,null,null,null,null);
+		Caracteristicas caracteristicas2=new Caracteristicas(Sexo.MASCULINO,Hobby.ALPINISMO,Cabello.CASTANIO,Senia.JOYAS,Vehiculo.DESCAPOTABLE);
 		Ladron LadronUno = new Ladron("Tito",caracteristicas1);
 		Ladron LadronDos = new Ladron("Jose",caracteristicas2);
 		Carmen.agregarLadron(LadronUno);
@@ -77,9 +85,19 @@ public class CarmenSanDiegoTest {
 	public void CarmenLevantaXMLConLadrones() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Caracteristicas caracteristicas1=new Caracteristicas(null,null,null,null,null);
-		Caracteristicas caracteristicas2=new Caracteristicas(null,null,null,null,null);
+		Caracteristicas caracteristicas2=new Caracteristicas(Sexo.MASCULINO,Hobby.ALPINISMO,Cabello.CASTANIO,Senia.JOYAS,Vehiculo.DESCAPOTABLE);
 		Ladron LadronUno = new Ladron("Tito",caracteristicas1);
 		Ladron LadronDos = new Ladron("Jose",caracteristicas2);
+		Edificio biblioteca = new Edificio("biblioteca");
+		Edificio puerto = new Edificio("puerto");
+		Edificio fiuba = new Edificio("fiuba");
+		Edificio[] edificios = {biblioteca,puerto,fiuba};
+		Pais Argentina = new Pais("Argentina",edificios,new Coordenadas(1, 1));
+		Pais Brasil = new Pais("Brasil",edificios,new Coordenadas(1, 3));
+		ArrayList<Pais> ListaPaises = new ArrayList<Pais>();
+		ListaPaises.add(Argentina);
+		ListaPaises.add(Brasil);
+		LadronDos.addTrayectoria(new Trayectoria(ListaPaises));
 		Carmen.agregarLadron(LadronUno);
 		Carmen.agregarLadron(LadronDos);
 		Carmen.bajarLadronesAXML();
@@ -90,7 +108,7 @@ public class CarmenSanDiegoTest {
 	@Test
 	public void CarmenLevantaXMLConPolicias() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
-		Policia unPolicia = new Policia("Facu",5);
+		Policia unPolicia = new Policia("Facu",4);
 		Carmen.agregarPolicia(unPolicia);
 		Policia otroPolicia = new Policia("Tomy",10);
 		Carmen.agregarPolicia(otroPolicia);
@@ -110,15 +128,38 @@ public class CarmenSanDiegoTest {
 		Assert.assertTrue(policiaAIniciar.equals(policiaBase));
 }
 	@Test
-	public void CarmenArrancaPartida() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException{
+	public void CarmenArrancaPartida() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException, ErrorNoSeEncontroLadron{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
+		Policia unPolicia = new Policia("Facu",4);
+		Carmen.agregarPolicia(unPolicia);
+		Policia otroPolicia = new Policia("Tomy",10);
+		Carmen.agregarPolicia(otroPolicia);
+		Caracteristicas caracteristicas1=new Caracteristicas(null,null,null,null,null);
+		Caracteristicas caracteristicas2=new Caracteristicas(Sexo.MASCULINO,Hobby.ALPINISMO,Cabello.CASTANIO,Senia.JOYAS,Vehiculo.DESCAPOTABLE);
+		Ladron LadronUno = new Ladron("Tito",caracteristicas1);
+		Ladron LadronDos = new Ladron("Jose",caracteristicas2);
+		Edificio biblioteca = new Edificio("biblioteca");
+		Edificio puerto = new Edificio("puerto");
+		Edificio fiuba = new Edificio("fiuba");
+		Edificio[] edificios = {biblioteca,puerto,fiuba};
+		Pais Argentina = new Pais("Argentina",edificios,new Coordenadas(1, 1));
+		Pais Brasil = new Pais("Brasil",edificios,new Coordenadas(1, 3));
+		ArrayList<Pais> ListaPaises = new ArrayList<Pais>();
+		ListaPaises.add(Argentina);
+		ListaPaises.add(Brasil);
+		LadronDos.addTrayectoria(new Trayectoria(ListaPaises));
+		Carmen.agregarLadron(LadronUno);
+		Carmen.agregarLadron(LadronDos);
 		HashMap<String,String[]> paisesPistas = new HashMap<String,String[]>();
 		String[] pistas = {"Pista 1","Pista2","Pista3"};
 		String[] otrasPistas = {"Pista4","Pista5","Pista6"};
 		paisesPistas.put("Argentina",pistas );
 		paisesPistas.put("Brasil",otrasPistas);
 		String[] Paises = {"Argentina","Brasil"};
-		Carmen.generarPartidaXML("Partida1.xml");
-		Carmen.agregarPartidasAlXML("Partida1.xml",paisesPistas, Paises, "Jose","Pipa","Normal");
+		Carmen.levantarTodosLosDatos();
+		Carmen.generarPartidaXML("PartidasNovato.xml");
+		Carmen.agregarPartidasAlXML("PartidasNovato.xml",paisesPistas, Paises, "Jose","Pipa","Normal");
+		Carmen.iniciarPartida("Facu");
+		Assert.assertTrue(Carmen.getPartida().nombreObjetoRobado().equals("Pipa"));
 	}
 }

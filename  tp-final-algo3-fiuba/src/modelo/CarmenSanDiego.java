@@ -76,7 +76,7 @@ public  class CarmenSanDiego {
 		}
 	}
 	public void levantarPoliciasDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-		levantarAlgoDelXML(nombreArchivoPolicias, Policia.class,listadoPolicias);
+		 levantarAlgoDelXML(nombreArchivoPolicias, Policia.class,listadoPolicias);
 	
 	}
 	public void levantarPaisesDelXML() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
@@ -84,7 +84,7 @@ public  class CarmenSanDiego {
 	}
 	
 	public void levantarLadronesDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-		levantarAlgoDelXML(nombreArchivoLadrones, Ladron.class, listadoLadrones);
+		 levantarAlgoDelXML(nombreArchivoLadrones, Ladron.class, listadoLadrones);
 	}
 
 	private Document crearDoc() throws ParserConfigurationException{
@@ -166,22 +166,22 @@ public  class CarmenSanDiego {
 	public Ladron buscarLadronPorString(String nombreLadron) throws ErrorNoSeEncontroLadron{
 		for (Ladron ladron: listadoLadrones){
 			if(nombreLadron.equals(ladron.getNombre())){
-				return ladron;
+				Ladron ladronADevolver = ladron;
+				return ladronADevolver;
 			}
 		}
 		throw new ErrorNoSeEncontroLadron();
 	}
 
 	public void agregarPartidasAlXML(String nombreArchivo,HashMap<String,String[]> PaisesConPistas, String[] Paises, String nombreLadron,String nombreObjetoRobado,String valorObjeto) throws ParserConfigurationException, SAXException, IOException, TransformerException{
-		File archivoXML = new File(nombreArchivo);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.newDocument();
-		doc = dBuilder.parse(archivoXML);
-		doc.getDocumentElement().normalize();
-		Element elementoPartidas = (Element) doc.getElementsByTagName("Partidas").item(0);
+		doc = dBuilder.parse(nombreArchivo);
+		Element elementoPartidas = (Element)doc.getElementsByTagName("Partidas").item(0);
 		Element elementoUnaPartida = doc.createElement("Partida");
 		Element elementoPistas = doc.createElement("Pistas");	
+		elementoPartidas.appendChild(elementoUnaPartida);
 		for (int i = 0; i<Paises.length;i++){
 			String[] pistasdeEdificios = PaisesConPistas.get(Paises[i]);
 			Element elementoPistasPais = doc.createElement("Pais");
@@ -197,7 +197,7 @@ public  class CarmenSanDiego {
 		elementoUnaPartida.setAttribute("NombreLadron",nombreLadron);
 		elementoUnaPartida.setAttribute("NombreObjeto",nombreObjetoRobado);
 		elementoUnaPartida.setAttribute("ValorObjeto", valorObjeto);
-		elementoPartidas.appendChild(elementoUnaPartida);
+		
 		transformarYEscribirADisco(nombreArchivo, doc);
 	}
 	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron{
@@ -209,36 +209,30 @@ public  class CarmenSanDiego {
 		Document doc = dBuilder.newDocument();
 		doc = dBuilder.parse(archivoPartida);
 		doc.getDocumentElement().normalize();
-		NodeList nodosPartida = doc.getElementsByTagName("Partidas");
+		
+		NodeList nodosPartida = doc.getElementsByTagName("Partida");
+		
 		Random random = new Random();
-		Node nodoALevantar = nodosPartida.item(random.nextInt(nodosPartida.getLength()-1));
+		Node nodoALevantar = nodosPartida.item(random.nextInt(nodosPartida.getLength()));
 		Element elementoPartida = (Element)nodoALevantar;
+		
+		
 		String nombreLadron = elementoPartida.getAttribute("NombreLadron");
+		System.out.println(nombreLadron);
 		Ladron ladronAPasar = buscarLadronPorString(nombreLadron);
 		ObjetoRobado ObjetoASetear = new ObjetoRobado(elementoPartida.getAttribute("NombreObjeto"),elementoPartida.getAttribute("ValorObjeto"));
 		Policia unPolicia = iniciarJugador(nombreUsuario);
 		BaseDeDatos baseAPasar = new BaseDeDatos((ArrayList<Ladron>)listadoLadrones,(ArrayList<Pais>)listadoPaises);
 		unaPartida= new Partida(unPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
 	}
-	/*
-	public void iniciarPartida(String string) {
-		
-		Policia unPoli = iniciarJugador(string);
-		BaseDeDatos UnaBase = crearBaseDeDatos();
-		Ladron unLadron = levantarLadronAdecuado();
-		ObjetoRobado unObjeto = getObjetoRobado();
-		
-		unaPartida = new Partida(unPoli,unLadron,UnaBase,unObjeto);
-	
-	}
 
-	private BaseDeDatos crearBaseDeDatos() {
-		BaseDeDatos unaBase = new BaseDeDatos();
-		unaBase.addListaSospechosos((ArrayList<Ladron>)listadoLadrones);
-		levantar los paises
-		unaBase.addListaPaises(listadoPaises);
-		return unaBase;
-	}*/
+
+	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
+		levantarLadronesDelXML();
+		levantarPaisesDelXML();
+		levantarPoliciasDelXML();
+		
+	}
 	
 }
 
