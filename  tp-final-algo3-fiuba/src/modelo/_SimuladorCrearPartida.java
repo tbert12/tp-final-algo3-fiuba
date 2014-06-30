@@ -191,7 +191,7 @@ public class _SimuladorCrearPartida {
 		PuertoAustralia.setHerida(UnaHerida);
 		Edificio BibliotecaAustralia = new Edificio("Biblioteca");
 		BibliotecaAustralia.setPista("Algo huele mal");
-		BibliotecaAustralia.setLadron();
+		//BibliotecaAustralia.setLadron();
 		Edificio BolsaAustralia = new Edificio("Bolsa");
 		HeridaArmaDeFuego OtraHerida = new HeridaArmaDeFuego("HERIDA DE PISTOLA");
 		BolsaAustralia.setHerida(OtraHerida);
