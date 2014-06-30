@@ -9,7 +9,6 @@ import javax.xml.transform.TransformerException;
 import modelo.CarmenSanDiego;
 import modelo.Partida;
 import modelo.PartidaObservable;
-import modelo._SimuladorCrearPartida;
 import modelo.excepcion.ErrorNoSeEncontroLadron;
 import modelo.excepcion.ErrorNoSeEncontroPais;
 import modelo.excepcion.ErrorObjetoNoEncontrado;
