@@ -18,9 +18,11 @@ public class PartidaObservable extends Observable {
 	private Edificio EdificioActual;
 	private String pistaActual;
 	private ArrayList<Ladron> LadronesFiltrados;
+	private ArrayList<Pais> paisesParaViajar;
 	
 	public PartidaObservable(Partida UnaPartida){
 		this.UnaPartida = UnaPartida;
+		paisesParaViajar = UnaPartida.paisesAViajar();
 	}
 	
 
@@ -40,7 +42,7 @@ public class PartidaObservable extends Observable {
 	}
 	
 	public ArrayList<Pais> getPaisesAViajar(){
-		return UnaPartida.paisesAViajar();
+		return paisesParaViajar;
 	}
 	
 	public String getPaisActual(){
@@ -59,6 +61,7 @@ public class PartidaObservable extends Observable {
 	
 	public void ViajarHacia(Pais UnPais){
 		UnaPartida.viajarHacia(UnPais);
+		paisesParaViajar = UnaPartida.paisesAViajar();
 		pistaActual = null;
 		LadronesFiltrados = null;
 		setChanged();
