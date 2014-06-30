@@ -299,6 +299,7 @@ public  class CarmenSanDiego {
 	
 	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
 		levantarLadronesDelXML(nombreArchivoLadrones);
+		levantarPoliciasDelXML(nombreArchivoPolicias);
 		levantarPaisesDelXML(nombreArchivoPaises);
 	
 		
