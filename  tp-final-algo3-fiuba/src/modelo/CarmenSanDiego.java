@@ -120,7 +120,6 @@ public  class CarmenSanDiego {
 	public Boolean ladronEstaEnJuego(String unNombreLadron){
 		for(Ladron ladron: listadoLadrones){
 			if (ladron.getNombre().equals(unNombreLadron)){
-				System.out.println("Voy a devolver true");
 				return true;
 			}
 		}
@@ -247,7 +246,6 @@ public  class CarmenSanDiego {
 			
 			Element elementoPista = (Element)doc.getElementsByTagName("PistasPais").item(i);
 			Pais paisParaAgregar = buscarPaisPorString(elementoPista.getAttribute("NombrePais"));
-			System.out.println(paisParaAgregar.getNombre());
 			paisesParaTrayectoria.add(paisParaAgregar);
 			ArrayList<String> pistasDelPais = new ArrayList<String>();
 			for (int j = 0 ; j<3 ; j++){
@@ -293,9 +291,6 @@ public  class CarmenSanDiego {
 	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
 		levantarLadronesDelXML(nombreArchivoLadrones);
 		levantarPaisesDelXML(nombreArchivoPaises);
-		for(Pais pais:listadoPaises){
-			System.out.println(pais.getEdificios().get(0));
-		}
 		levantarPoliciasDelXML(nombreArchivoPolicias);
 	
 		
