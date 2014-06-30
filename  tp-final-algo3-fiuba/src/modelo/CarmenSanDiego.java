@@ -41,8 +41,9 @@ public  class CarmenSanDiego {
 		}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private <T> List<T> levantarAlgoDelXML(String nombreArchivo,Class clase,List<T> listado) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+	private <T> List<T> levantarAlgoDelXML(String nombreArchivo,Class clase,List<T> listado, String tagALevantar) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
 		File archivo = new File(nombreArchivo);
+		
 		if (archivo.exists()){
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -50,10 +51,11 @@ public  class CarmenSanDiego {
 			doc = dBuilder.parse(archivo);
 			doc.getDocumentElement().normalize();
 			Method metodoHidratar = clase.getDeclaredMethod("hidratar",org.w3c.dom.Node.class);
-			NodeList nodos = doc.getElementsByTagName(clase.getName());
+			NodeList nodos = doc.getElementsByTagName(tagALevantar);
 			for (int i = 0;i < nodos.getLength();i++){
-				Class<T> x =(Class<T>) metodoHidratar.invoke(nodos.item(i));
-				listado.add((T) x);
+				Object x = new Object();
+				 x =  metodoHidratar.invoke(x,nodos.item(i));
+				listado.add((T)x);
 			}
 		}
 		return listado;
@@ -75,17 +77,17 @@ public  class CarmenSanDiego {
 		}
 	}
 	public void levantarPoliciasDelXML(String nombreArchivo) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-		 levantarAlgoDelXML(nombreArchivo, Policia.class,listadoPolicias);
+		levantarAlgoDelXML(nombreArchivo, Policia.class,listadoPolicias,"Policia");
+		 
 	
 	}
 	public void levantarPaisesDelXML(String nombreArchivo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
-		levantarAlgoDelXML(nombreArchivo, Pais.class, listadoPaises);
+		levantarAlgoDelXML(nombreArchivo, Pais.class, listadoPaises,"Pais");
 	}
 	
 	public void levantarLadronesDelXML(String nombreArchivo) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-		 levantarAlgoDelXML(nombreArchivo, Ladron.class, listadoLadrones);
+		levantarAlgoDelXML(nombreArchivoLadrones, Ladron.class, listadoLadrones, "Ladron");
 	}
-
 	private Document crearDoc() throws ParserConfigurationException{
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
@@ -115,8 +117,14 @@ public  class CarmenSanDiego {
 	public void agregarLadron(Ladron unLadron){
 		listadoLadrones.add(unLadron);
 	}
-	public Boolean ladronEstaEnJuego(Ladron unLadron){
-		return listadoLadrones.contains(unLadron);
+	public Boolean ladronEstaEnJuego(String unNombreLadron){
+		for(Ladron ladron: listadoLadrones){
+			if (ladron.getNombre().equals(unNombreLadron)){
+				System.out.println("Voy a devolver true");
+				return true;
+			}
+		}
+		return false;
 	}
 	public Boolean policiaEstaEnJuego(Policia unPolicia){
 		return listadoPolicias.contains(unPolicia);
@@ -220,7 +228,6 @@ public  class CarmenSanDiego {
 		transformarYEscribirADisco(nombreArchivo, doc);
 	}
 	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado{
-		generarXMLpaises();
 		Policia elPolicia = iniciarJugador(nombreUsuario);
 		String rangoPoliciaString = elPolicia.toStringRango();
 		File archivoPartida = new File("Partidas"+rangoPoliciaString+".xml");
@@ -240,7 +247,7 @@ public  class CarmenSanDiego {
 			
 			Element elementoPista = (Element)doc.getElementsByTagName("PistasPais").item(i);
 			Pais paisParaAgregar = buscarPaisPorString(elementoPista.getAttribute("NombrePais"));
-			
+			System.out.println(paisParaAgregar.getNombre());
 			paisesParaTrayectoria.add(paisParaAgregar);
 			ArrayList<String> pistasDelPais = new ArrayList<String>();
 			for (int j = 0 ; j<3 ; j++){
@@ -285,10 +292,10 @@ public  class CarmenSanDiego {
 	
 	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
 		levantarLadronesDelXML(nombreArchivoLadrones);
-		
-		
 		levantarPaisesDelXML(nombreArchivoPaises);
 		levantarPoliciasDelXML(nombreArchivoPolicias);
+	
+		
 		
 	}
 	public void limpiarTodoslosDatos(){
@@ -297,4 +304,3 @@ public  class CarmenSanDiego {
 	}
 	
 }
-

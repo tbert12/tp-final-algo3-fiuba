@@ -81,9 +81,11 @@ public class Pais {
 		for (int i=0;i<NodosEdificios.getLength();i++){
 			Edificio unEdificio = Edificio.hidratar(NodosEdificios.item(i));
 			edificios[i]=unEdificio;
+			System.out.println(unEdificio.getNombre());
 		}
-		Node elementoCoordenadas = elementoPais.getChildNodes().item(1);
-		Coordenadas coordenadasDelPais = Coordenadas.hidratar(elementoCoordenadas.getFirstChild());
+		Element elementoCoordenadas = (Element)elementoPais.getElementsByTagName("Coordenadas").item(0);
+		Node nodoCoordenadas = elementoCoordenadas.getElementsByTagName("Coordenadas").item(0);
+		Coordenadas coordenadasDelPais = Coordenadas.hidratar(nodoCoordenadas);
 		Pais paisADevolver = new Pais(elementoPais.getAttribute("Nombre"),edificios,coordenadasDelPais);
 		paisADevolver.setInformacion(elementoPais.getAttribute("Informacion"));
 		return paisADevolver;

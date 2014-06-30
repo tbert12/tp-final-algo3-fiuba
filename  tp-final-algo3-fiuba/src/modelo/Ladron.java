@@ -98,8 +98,7 @@ public class Ladron {
 	}
 	public static Ladron hidratar(Node nodo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		Element elementoLadron = (Element)nodo;
-		Element elementoCaracteristicas = (Element)nodo.getFirstChild();
-		Caracteristicas caracteristicas = Caracteristicas.hidratar(elementoCaracteristicas.getChildNodes().item(0));
+		Caracteristicas caracteristicas = Caracteristicas.hidratar(elementoLadron.getElementsByTagName("Caracteristicas").item(0));
 		//Trayectoria trayectoria = Trayectoria.hidratar(nodo.getChildNodes().item(1));
 		Ladron nuevoLadron = new Ladron(elementoLadron.getAttribute("Nombre"),caracteristicas);
 		//nuevoLadron.addTrayectoria(trayectoria);
