@@ -24,7 +24,7 @@ public class RelojDigital {
 		String tiempoDigital = Dias[indiceDia] + ", " + Integer.toString(this.TiempoTranscurridoDelDia) + ":00 Hs.";
 		return tiempoDigital;
 	}
-
+	
 	public String AvanzarUnaHora() {
 		if (TiempoInicial == TiempoTemporal)return obtenerHoraDigitalDespuesde(0);
 		TiempoTemporal--;
