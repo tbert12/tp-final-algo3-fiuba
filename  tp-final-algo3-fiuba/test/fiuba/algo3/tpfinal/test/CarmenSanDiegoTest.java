@@ -22,6 +22,7 @@ import modelo.caracteristicas.Senia;
 import modelo.caracteristicas.Sexo;
 import modelo.caracteristicas.Vehiculo;
 import modelo.excepcion.ErrorNoSeEncontroLadron;
+import modelo.excepcion.ErrorNoSeEncontroPais;
 
 
 public class CarmenSanDiegoTest {
@@ -128,7 +129,7 @@ public class CarmenSanDiegoTest {
 		Assert.assertTrue(policiaAIniciar.equals(policiaBase));
 }
 	@Test
-	public void CarmenArrancaPartida() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException, ErrorNoSeEncontroLadron{
+	public void CarmenArrancaPartida() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Policia unPolicia = new Policia("Facu",4);
 		Carmen.agregarPolicia(unPolicia);

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -172,7 +173,15 @@ public  class CarmenSanDiego {
 		}
 		throw new ErrorNoSeEncontroLadron();
 	}
-
+	private Pais buscarPaisPorString(String nombrePais) throws ErrorNoSeEncontroPais{
+		for (Pais pais:listadoPaises){
+			if(nombrePais.equals(pais.getNombre())){
+				Pais paisADevolver = pais;
+				return paisADevolver;
+			}
+		}
+		throw new ErrorNoSeEncontroPais();
+	}
 	public void agregarPartidasAlXML(String nombreArchivo,HashMap<String,String[]> PaisesConPistas, String[] Paises, String nombreLadron,String nombreObjetoRobado,String valorObjeto) throws ParserConfigurationException, SAXException, IOException, TransformerException{
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -184,7 +193,7 @@ public  class CarmenSanDiego {
 		elementoPartidas.appendChild(elementoUnaPartida);
 		for (int i = 0; i<Paises.length;i++){
 			String[] pistasdeEdificios = PaisesConPistas.get(Paises[i]);
-			Element elementoPistasPais = doc.createElement("Pais");
+			Element elementoPistasPais = doc.createElement("PistasPais");
 			elementoPistasPais.setAttribute("NombrePais",Paises[i]);
 			for(int j = 0;j < pistasdeEdificios.length;j++){
 				elementoPistasPais.setAttribute("pista"+j, pistasdeEdificios[j]);
@@ -200,7 +209,7 @@ public  class CarmenSanDiego {
 		
 		transformarYEscribirADisco(nombreArchivo, doc);
 	}
-	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron{
+	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		Policia elPolicia = iniciarJugador(nombreUsuario);
 		String rangoPoliciaString = elPolicia.toStringRango();
 		File archivoPartida = new File("Partidas"+rangoPoliciaString+".xml");
@@ -215,18 +224,43 @@ public  class CarmenSanDiego {
 		Random random = new Random();
 		Node nodoALevantar = nodosPartida.item(random.nextInt(nodosPartida.getLength()));
 		Element elementoPartida = (Element)nodoALevantar;
+		ArrayList<Pais> paisesParaTrayectoria = new ArrayList<Pais>();
+		for (int i = 0; i<doc.getElementsByTagName("PistasPais").getLength();i++){
+			Element elementoPista = (Element)doc.getElementsByTagName("PistasPais").item(i);
+			Pais paisParaAgregar = buscarPaisPorString(elementoPista.getAttribute("NombrePais"));
+			paisesParaTrayectoria.add(paisParaAgregar);
+			ArrayList<String> pistasDelPais = new ArrayList<String>();
+			for (int j = 0 ; j<3 ; j++){
+				String pista =elementoPista.getAttribute("Pista"+j);
+				if (pista.equals("HeridaCuchillo") || pista.equals("HeridaArmaDeFuego")){
+					Class<?> ClaseHerida = Class.forName(pista);
+					Constructor<?> ConstructorHerida = ClaseHerida.getConstructor(String.class);
+					Object unaHeridaObject = ConstructorHerida.newInstance(pista);
+					paisParaAgregar.getEdificios().get(j).setHerida((modelo.heridas.Herida)ClaseHerida.cast(unaHeridaObject));
+				}
+				pistasDelPais.add(pista);
+			}
+			agregarPistaAEdificios(paisParaAgregar.getEdificios(),pistasDelPais);
+		}
 		
+	
 		
 		String nombreLadron = elementoPartida.getAttribute("NombreLadron");
-		System.out.println(nombreLadron);
 		Ladron ladronAPasar = buscarLadronPorString(nombreLadron);
+		ladronAPasar.addTrayectoria(new Trayectoria(paisesParaTrayectoria));
 		ObjetoRobado ObjetoASetear = new ObjetoRobado(elementoPartida.getAttribute("NombreObjeto"),elementoPartida.getAttribute("ValorObjeto"));
 		Policia unPolicia = iniciarJugador(nombreUsuario);
 		BaseDeDatos baseAPasar = new BaseDeDatos((ArrayList<Ladron>)listadoLadrones,(ArrayList<Pais>)listadoPaises);
 		unaPartida= new Partida(unPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
 	}
 
-
+	private void agregarPistaAEdificios(ArrayList<Edificio> edificios,ArrayList<String> pistas){
+		for (int i = 0; i< edificios.size();i++){
+			edificios.get(i).setPista(pistas.get(i));
+		}
+	}
+	
+	
 	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
 		levantarLadronesDelXML();
 		levantarPaisesDelXML();
