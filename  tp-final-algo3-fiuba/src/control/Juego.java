@@ -35,17 +35,15 @@ public class Juego{
 	}
 	
 	public void iniciarPartida(String string){
-		
+		Partida partida; 
 		try {
-			Partida partida = carmen.iniciarPartida(string);
+			partida = carmen.iniciarPartida(string);
+			partidaObservable = new PartidaObservable(partida);
+			vistaPartida = new VistaPartida(partidaObservable,this);
 		} catch (ErrorAlCargarDatos e) {
 
 			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego. Contactate con el administrador del sistemas." + e.toString());
 		}
-		
-		
-		partidaObservable = new PartidaObservable(partida);
-		vistaPartida = new VistaPartida(partidaObservable,this);
 		
 		ventanaPrincipal.ocultarVentana();
 		vistaPartida.mostrarVentana();

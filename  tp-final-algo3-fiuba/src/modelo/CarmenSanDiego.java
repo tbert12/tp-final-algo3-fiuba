@@ -201,9 +201,9 @@ public  class CarmenSanDiego {
 		return buscarAlgoPorString(nombrePais,listadoPaises,Pais.class);
 	}
 	
-	public void iniciarPartida(String nombreUsuario) throws ErrorAlCargarDatos{
+	public Partida iniciarPartida(String nombreUsuario) throws ErrorAlCargarDatos{
 		try {
-			iniciarPartidaConString(nombreUsuario);
+			return iniciarPartidaConString(nombreUsuario);
 		} catch (ClassNotFoundException | NoSuchMethodException
 				| SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException
