@@ -36,18 +36,13 @@ public class Juego{
 	
 	public void iniciarPartida(String string){
 		
-		//" BORRAR DE ACA -> "/
-		//_SimuladorCrearPartida Simulador = new _SimuladorCrearPartida();
-		//Partida partida = Simulador.crearPartida(string);
-		//" <- HASTA	ACA"/	
-		
 		try {
-			carmen.iniciarPartida(string);
+			Partida partida = carmen.iniciarPartida(string);
 		} catch (ErrorAlCargarDatos e) {
 
 			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego. Contactate con el administrador del sistemas." + e.toString());
 		}
-		Partida partida = carmen.getPartida(); 
+		
 		
 		partidaObservable = new PartidaObservable(partida);
 		vistaPartida = new VistaPartida(partidaObservable,this);
