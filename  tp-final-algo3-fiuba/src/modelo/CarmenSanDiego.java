@@ -138,9 +138,7 @@ public  class CarmenSanDiego {
 		}
 	
 	public void almacenarDatos() throws ErrorAlCargarDatos{
-		for(Policia policia:listadoPolicias){
-			System.out.println(policia.getArrestos());
-		}
+
 		try {
 			bajarPoliciasAXML(nombreArchivoPolicias);
 		} catch (NoSuchMethodException | SecurityException

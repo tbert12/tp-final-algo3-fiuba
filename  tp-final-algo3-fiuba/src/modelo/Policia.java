@@ -5,6 +5,7 @@ import modelo.rangos.RangoNovato;
 
 
 
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -67,16 +68,13 @@ public class Policia  {
 		chequeoDeRango();		
 	}
 	
-	public void terminoCaso(boolean arresto){
+	public void reiniciar(){
 		setTiempo();
 		this.Sospechoso = null;
-		if (arresto){
-			addArresto();
-		}
 	}
 	public boolean arrestarSospechoso(){
 		if( Sospechoso == null ) return false;
-		
+		addArresto();
 		Sospechoso.arrestar();
 		return true;
 	}

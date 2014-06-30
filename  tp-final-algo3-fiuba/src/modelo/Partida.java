@@ -11,7 +11,6 @@ import modelo.caracteristicas.*;
 public class Partida {
 
 	private Policia UnPolicia;
-	private boolean LadronAtrapado; 
 	private Ladron UnLadron;
 	private BaseDeDatos BasedeDatos;
 	private Viaje CostosDeViajes;
@@ -23,7 +22,6 @@ public class Partida {
 	
 		this.UnPolicia = UnPolicia;
 		UnPolicia.setPaisActual(UnLadron.paisActual());
-		this.LadronAtrapado = false;
 		this.PartidaFinalizada = false;
 		this.UnLadron = UnLadron;
 		this.BasedeDatos = UnaBase;
@@ -31,11 +29,16 @@ public class Partida {
 		this.CostosDeViajes = new Viaje();	
 	}
 	
+	public void finalizarPartida(){
+		
+		UnPolicia.reiniciar();
+	}
+	
 	public boolean seTerminoLaPartida(){
 		return this.PartidaFinalizada;
 	}
 	public boolean ladronAtrapado(){
-		return this.LadronAtrapado;
+		return this.UnLadron.estaArrestado();
 	}
 	
 	public Pais paisActual(){
@@ -62,17 +65,11 @@ public class Partida {
 		
 		if (UnEdificio.tieneLadron()){
 			this.PartidaFinalizada = true;
-			actualizarPolicia();
 		}
 		
 		return PistaDeEdificio;
 	}
 	
-	private void actualizarPolicia() {
-		this.LadronAtrapado = UnLadron.estaArrestado();
-		UnPolicia.terminoCaso(LadronAtrapado);
-	}
-
 	public ArrayList<Ladron> filtrarLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
 			Caracteristicas CaracteristicasAFiltrar = new Caracteristicas(unSexo,unHobby,unCabello,unaSenia,unVehiculo);
 			ArrayList<Ladron> PosiblesLadrones = BasedeDatos.filtarPorCaracteristicas(CaracteristicasAFiltrar);

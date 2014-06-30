@@ -1,7 +1,9 @@
 package fiuba.algo3.tpfinal.test;
 
 import static org.junit.Assert.assertEquals;
+import modelo.Ladron;
 import modelo.Policia;
+import modelo.caracteristicas.Caracteristicas;
 import modelo.rangos.RangoDetective;
 import modelo.rangos.RangoInvestigador;
 import modelo.rangos.RangoNovato;
@@ -33,6 +35,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 public class PoliciaTest {
 	private String nombreArchivo;
+	private Ladron unLadron = new Ladron("Jonh", new Caracteristicas(null, null, null, null, null)); 
 	@Before
 	public void before() {
 		this.nombreArchivo = java.util.UUID.randomUUID().toString() + ".xml";
@@ -49,7 +52,7 @@ public class PoliciaTest {
 	
 	public void SumarArrestos(int Cantidad,Policia Jugador){
 		for (int i = 0; i<Cantidad; i++){
-			Jugador.terminoCaso(true);
+			Jugador.arrestarSospechoso();
 		}
 	}
 
@@ -63,6 +66,7 @@ public class PoliciaTest {
 	@Test
 	public void PoliciaCambiadeRangoAlSumarArrestos(){
 		Policia Jugador = new Policia("Pepe",0);
+		Jugador.setSospechoso(unLadron);
 		
 		this.SumarArrestos(5,Jugador);
 		Assert.assertTrue(Jugador.getRango() instanceof RangoDetective);
@@ -77,7 +81,8 @@ public class PoliciaTest {
 	@Test
 	public void PoliciaEsSargento(){
 		Policia unPolicia = new Policia("Bufarreti", 20);
-		unPolicia.terminoCaso(true);
+		unPolicia.setSospechoso(unLadron);
+		unPolicia.arrestarSospechoso();
 		Assert.assertTrue(unPolicia.getRango() instanceof RangoSargento);
 	}
 	
@@ -158,6 +163,7 @@ public class PoliciaTest {
 	@Test 
 	public void PoliciaVijaMasRapidoSiCambiaDeRango(){
 		Policia Jugador = new Policia("Pepe",0);
+		Jugador.setSospechoso(unLadron);
 		//Novato Viaja a 900 Km/h
 		int KilometrosAViajar = 5000;
 		

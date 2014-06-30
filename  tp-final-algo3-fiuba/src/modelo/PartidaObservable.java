@@ -14,31 +14,31 @@ import modelo.caracteristicas.Vehiculo;
 public class PartidaObservable extends Observable {
 	
 	
-	private Partida UnaPartida;
-	private Edificio EdificioActual;
+	private Partida unaPartida;
+	private Edificio edificioActual;
 	private String pistaActual;
-	private ArrayList<Ladron> LadronesFiltrados;
+	private ArrayList<Ladron> ladronesFiltrados;
 	private ArrayList<Pais> paisesParaViajar;
 	
 	public PartidaObservable(Partida UnaPartida){
-		this.UnaPartida = UnaPartida;
+		this.unaPartida = UnaPartida;
 		paisesParaViajar = UnaPartida.paisesAViajar();
 	}
 	
 
 	public ArrayList<Edificio> getEdificiosAVisitar(){
-		return UnaPartida.edificiosAMostrar();
+		return unaPartida.edificiosAMostrar();
 	}
 	
 	public boolean partidaFinalizada(){
-		return UnaPartida.seTerminoLaPartida();
+		return unaPartida.seTerminoLaPartida();
 	}
 	
 	public int getTiempoRestante(){
-		return UnaPartida.tiempoRestante();
+		return unaPartida.tiempoRestante();
 	}
 	public String getEdificioActual(){
-		return EdificioActual.getNombre();
+		return edificioActual.getNombre();
 	}
 	
 	public ArrayList<Pais> getPaisesAViajar(){
@@ -46,32 +46,32 @@ public class PartidaObservable extends Observable {
 	}
 	
 	public String getPaisActual(){
-		return UnaPartida.paisActual().getNombre();
+		return unaPartida.paisActual().getNombre();
 	}
 	
 	
 	public void visitarEdificio(Edificio edificio){
-		EdificioActual = edificio;
-		pistaActual = UnaPartida.visitarEdificio(EdificioActual);
-		LadronesFiltrados = null;
+		edificioActual = edificio;
+		pistaActual = unaPartida.visitarEdificio(edificioActual);
+		ladronesFiltrados = null;
 		setChanged();
 		notifyObservers();
 		
 	}
 	
 	public void ViajarHacia(Pais UnPais){
-		UnaPartida.viajarHacia(UnPais);
-		paisesParaViajar = UnaPartida.paisesAViajar();
+		unaPartida.viajarHacia(UnPais);
+		paisesParaViajar = unaPartida.paisesAViajar();
 		pistaActual = null;
-		LadronesFiltrados = null;
+		ladronesFiltrados = null;
 		setChanged();
 		notifyObservers();
 	}
 	
 	public ArrayList<String> nombreDeSospechosos(){
 		ArrayList<String> nombres = new ArrayList<String>();
-		if (LadronesFiltrados == null) return null;
-		Iterator<Ladron> iterador = LadronesFiltrados.iterator();
+		if (ladronesFiltrados == null) return null;
+		Iterator<Ladron> iterador = ladronesFiltrados.iterator();
 		while (iterador.hasNext()){
 			nombres.add( iterador.next().getNombre() );
 		}
@@ -79,7 +79,7 @@ public class PartidaObservable extends Observable {
 	}
 	
 	public void filtrarLadron(Sexo unSexo,Hobby unHobby,Cabello unCabello,Senia unaSenia,Vehiculo unVehiculo){
-		LadronesFiltrados = UnaPartida.filtrarLadron(unSexo, unHobby, unCabello, unaSenia, unVehiculo);
+		ladronesFiltrados = unaPartida.filtrarLadron(unSexo, unHobby, unCabello, unaSenia, unVehiculo);
 		pistaActual = null;
 		setChanged();
 		notifyObservers();
@@ -87,7 +87,7 @@ public class PartidaObservable extends Observable {
 
 
 	public String getInformacionPaisActual() {
-		return UnaPartida.paisActual().getInformacion();
+		return unaPartida.paisActual().getInformacion();
 	}
 
 
@@ -97,21 +97,25 @@ public class PartidaObservable extends Observable {
 
 
 	public String getNombredelPolicia() {
-		return this.UnaPartida.getNombredelPolicia();
+		return this.unaPartida.getNombredelPolicia();
 	}
 
 
 	public String getRangodelPolicia() {
-		return this.UnaPartida.getRangodelPolicia();
+		return this.unaPartida.getRangodelPolicia();
 	}
 
 
 	public String getObjetoRobado() {
-		return UnaPartida.nombreObjetoRobado();
+		return unaPartida.nombreObjetoRobado();
 	}
 
 
 	public boolean tiempoAgotado() {
-		return UnaPartida.tempoAgotado();
+		return unaPartida.tempoAgotado();
+	}
+	
+	public void finalizarPartida(){
+		unaPartida.finalizarPartida();
 	}
 }
