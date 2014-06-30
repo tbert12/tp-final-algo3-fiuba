@@ -160,20 +160,7 @@ public  class CarmenSanDiego {
 	public Partida getPartida(){
 		return this.unaPartida;
 	}
-	//Este metodo se va a ir, no se encariñen
-   private void generarXMLpaises() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, TransformerException{
-	   Edificio biblioteca = new Edificio("biblioteca");
-		Edificio puerto = new Edificio("puerto");
-		Edificio fiuba = new Edificio("fiuba");
-		Edificio[] edificios = {biblioteca,puerto,fiuba};
-		Pais Argentina = new Pais("Argentina",edificios,new Coordenadas(1, 1));
-		Pais Brasil = new Pais("Brasil",edificios,new Coordenadas(1, 3));
-		ArrayList<Pais> ListaPaises = new ArrayList<Pais>();
-		ListaPaises.add(Argentina);
-		ListaPaises.add(Brasil);
-		listadoPaises=ListaPaises;
-		bajarObjetoAXML(nombreArchivoPaises, ListaPaises, Pais.class);
-   }
+
 	public void generarPartidaXML(String nombreArchivo) throws ParserConfigurationException, TransformerException{
 		
 		Document doc = crearDoc();
@@ -199,33 +186,7 @@ public  class CarmenSanDiego {
 	private Pais buscarPaisPorString(String nombrePais) throws ErrorNoSeEncontroPais, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
 		return buscarAlgoPorString(nombrePais,listadoPaises,Pais.class);
 	}
-	public void agregarPartidasAlXML(String nombreArchivo,HashMap<String,String[]> PaisesConPistas, String[] Paises, String nombreLadron,String nombreObjetoRobado,String valorObjeto) throws ParserConfigurationException, SAXException, IOException, TransformerException{
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.newDocument();
-		doc = dBuilder.parse(nombreArchivo);
-		Element elementoPartidas = (Element)doc.getElementsByTagName("Partidas").item(0);
-		Element elementoUnaPartida = doc.createElement("Partida");
-		Element elementoPistas = doc.createElement("Pistas");	
-		elementoPartidas.appendChild(elementoUnaPartida);
-		for (int i = 0; i<Paises.length;i++){
-			String[] pistasdeEdificios = PaisesConPistas.get(Paises[i]);
-			Element elementoPistasPais = doc.createElement("PistasPais");
-			elementoPistasPais.setAttribute("NombrePais",Paises[i]);
-			for(int j = 0;j < pistasdeEdificios.length;j++){
-				elementoPistasPais.setAttribute("pista"+j, pistasdeEdificios[j]);
-			}
-			
-			elementoPistas.appendChild(elementoPistasPais);
-			elementoUnaPartida.appendChild(elementoPistas);
-		}
-		
-		elementoUnaPartida.setAttribute("NombreLadron",nombreLadron);
-		elementoUnaPartida.setAttribute("NombreObjeto",nombreObjetoRobado);
-		elementoUnaPartida.setAttribute("ValorObjeto", valorObjeto);
-		
-		transformarYEscribirADisco(nombreArchivo, doc);
-	}
+
 	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado{
 		Policia elPolicia = iniciarJugador(nombreUsuario);
 		String rangoPoliciaString = elPolicia.toStringRango();
@@ -275,9 +236,6 @@ public  class CarmenSanDiego {
 	private void agregarPistaAEdificios(ArrayList<Edificio> edificios,ArrayList<String> pistas){
 		for (int i = 0; i< edificios.size();i++){
 			String pistaAPoner=pistas.get(i);
-			if (pistaAPoner.equals("HeridaArmaDeFuego")){
-				pistaAPoner="Has sido herido por un disparo!";
-			}
 			edificios.get(i).setPista(pistaAPoner);
 		}
 	}
