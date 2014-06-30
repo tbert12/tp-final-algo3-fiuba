@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Partidas>
+   <Partida NombreLadron='Ihor Ihorovitch' NombreObjeto="El Obelisco" ValorObjeto="Normal">
+      <Pistas>
+         <PistasPais NombrePais="Sydney" pista0="Dijo que iria a aprender Samba" pista1="Pregunto ¿Voce fala portugueis?. No sé a qué se refería" pista2="Dijo algo sobre un mundial de soccer.Tenia un lindo pelo rubio"/>
+         <PistasPais NombrePais="Rio de Janeiro" pista0="Dijo que necesitaba hablar ingles" pista1="Queria conocer la estatua de la libertad" pista2="Se movia en una limusina"/>
+         <PistasPais NombrePais="Montreal" pista0="Su pasion eran las montañas" pista1="Tenia una bandera roja y blanca su avion" pista2="Se refirio al pais como, geograficamente, como con forma de diamante"/>
+         <PistasPais NombrePais="Singapore" pista0="Dijo que le gustaria probar la pizza napolitana" pista1="Me pregunto si sabia hablar el idioma Italiano" pista2="Fue a un pais conocido por su forma de bota"/>
+         <PistasPais NombrePais="Rome" pista0="Algo huele raro aqui" pista1="Hay algo que es muy sospechoso en estos lugares" pista2="Creo que lo que buscas esta aqui"/>
+      </Pistas>
+   </Partida>
+</Partidas>
