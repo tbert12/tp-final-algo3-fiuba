@@ -75,13 +75,15 @@ public class Pais {
 	}
 	public static Pais hidratar(Node nodo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		Element elementoPais = (Element) nodo;
-		Node elementoEdificios = elementoPais.getChildNodes().item(0);
 		Edificio[] edificios = new Edificio[3];
-		NodeList NodosEdificios = elementoEdificios.getChildNodes();
-		for (int i=0;i<NodosEdificios.getLength();i++){
-			Edificio unEdificio = Edificio.hidratar(NodosEdificios.item(i));
-			edificios[i]=unEdificio;
-			System.out.println(unEdificio.getNombre());
+		NodeList nodosEdificios = elementoPais.getElementsByTagName("Edificios");
+		for (int i=0;i<nodosEdificios.getLength();i++){
+			 Element elementoEdificiosPais = (Element) nodosEdificios.item(i);
+			 NodeList nodosEdificio=elementoEdificiosPais.getElementsByTagName("Edificio");
+			for(int j=0;j<3;j++){
+				Edificio unEdificio = Edificio.hidratar(nodosEdificio.item(j));
+				edificios[j]=unEdificio;
+			}
 		}
 		Element elementoCoordenadas = (Element)elementoPais.getElementsByTagName("Coordenadas").item(0);
 		Node nodoCoordenadas = elementoCoordenadas.getElementsByTagName("Coordenadas").item(0);

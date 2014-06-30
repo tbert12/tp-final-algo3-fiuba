@@ -293,6 +293,9 @@ public  class CarmenSanDiego {
 	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
 		levantarLadronesDelXML(nombreArchivoLadrones);
 		levantarPaisesDelXML(nombreArchivoPaises);
+		for(Pais pais:listadoPaises){
+			System.out.println(pais.getEdificios().get(0));
+		}
 		levantarPoliciasDelXML(nombreArchivoPolicias);
 	
 		
