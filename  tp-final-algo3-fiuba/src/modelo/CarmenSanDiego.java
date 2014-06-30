@@ -76,7 +76,6 @@ public  class CarmenSanDiego {
 		ArrayList<T> listadoDuplicado = new ArrayList<T>();
 		for(int i = 0;i<listado.size();i++){
 			Object x = new Object();
-			System.out.println(listado.get(i).getClass());
 			x = metodoCopiar.invoke(listado.get(i),null);
 			listadoDuplicado.add((T)x);
 		}
@@ -145,6 +144,7 @@ public  class CarmenSanDiego {
 				| TransformerException e) {
 			throw new ErrorAlCargarDatos();
 		}
+		listadoPolicias = new ArrayList<Policia>();
 	}
 	
 	public void agregarPolicia(Policia unPolicia){
@@ -176,7 +176,8 @@ public  class CarmenSanDiego {
 		listadoPolicias.add(unPolicia);//En todo caso, agrego el policia nuevo
 		return unPolicia;
 	}
-	public Policia iniciarJugador(String unNombre){
+	public Policia iniciarJugador(String unNombre) throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException{
+		levantarPoliciasDelXML(nombreArchivoPolicias);
 		return verSiJugadorYaJugo(unNombre);
 	}
 	private Boolean archivoExiste(String nombreArchivo){
@@ -299,7 +300,6 @@ public  class CarmenSanDiego {
 	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
 		levantarLadronesDelXML(nombreArchivoLadrones);
 		levantarPaisesDelXML(nombreArchivoPaises);
-		levantarPoliciasDelXML(nombreArchivoPolicias);
 	
 		
 		
