@@ -5,6 +5,8 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import vistas.paneles.PanelViajar;
@@ -116,7 +119,17 @@ public class VistaPartida extends JFrame implements Observer{
 	}
 	
 	private void updateHora() {
-		HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante());
+		Timer timer = new Timer(1500, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				HorasTiempo = Reloj.AvanzarUnaHora();
+				Tiempo.setText(HorasTiempo);
+			}
+		});
+		timer.start(); 
+		Reloj.ActualizarHora(partida.getTiempoRestante());
+		HorasTiempo = Reloj.ObtenerHoraDigital();
 		Tiempo.setText(HorasTiempo);
 	}
 	private void updateImagenPais(){
