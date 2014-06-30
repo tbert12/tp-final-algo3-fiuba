@@ -44,8 +44,7 @@ public  class CarmenSanDiego {
 				| IllegalArgumentException | InvocationTargetException
 				| InstantiationException | ParserConfigurationException
 				| SAXException | IOException e) {
-			e.toString();
-			e.printStackTrace();
+			
 			throw new ErrorAlCargarDatos();
 		}
 		
@@ -73,12 +72,12 @@ public  class CarmenSanDiego {
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private <T> ArrayList<T> duplicarListado(List<T> listado,Class clase) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		Method metodoCopiar = clase.getDeclaredMethod("copiar", clase);
+		Method metodoCopiar = clase.getDeclaredMethod("copiar",null);
 		ArrayList<T> listadoDuplicado = new ArrayList<T>();
 		for(int i = 0;i<listado.size();i++){
 			Object x = new Object();
 			System.out.println(listado.get(i).getClass());
-			x = metodoCopiar.invoke(x, listado.get(i));
+			x = metodoCopiar.invoke(listado.get(i),null);
 			listadoDuplicado.add((T)x);
 		}
 		return listadoDuplicado;

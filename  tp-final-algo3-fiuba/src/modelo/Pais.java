@@ -29,13 +29,13 @@ public class Pais{
 	public String getNombre(){
 		return Nombre;
 	}
-	public Pais copiar(Pais paisACopiar){
+	public Pais copiar(){
 		Edificio[] edificiosCopiados = new Edificio[3];
 		for (int i = 0;i<Edificios.length;i++){
 			edificiosCopiados[i] = Edificios[i].copiar();
 		}
 		
-		Pais copiaDelPais = new Pais(paisACopiar.getNombre(),edificiosCopiados,paisACopiar.getCoordenadas());
+		Pais copiaDelPais = new Pais(this.Nombre,edificiosCopiados,this.coordenadas);
 		copiaDelPais.setInformacion(this.Informacion);
 		return copiaDelPais;
 	}
