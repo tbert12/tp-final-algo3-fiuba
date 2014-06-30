@@ -1,21 +1,10 @@
 package control;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
 import modelo.CarmenSanDiego;
 import modelo.Partida;
 import modelo.PartidaObservable;
 import modelo.excepcion.ErrorAlCargarDatos;
-import modelo.excepcion.ErrorNoSeEncontroLadron;
-import modelo.excepcion.ErrorNoSeEncontroPais;
-import modelo.excepcion.ErrorObjetoNoEncontrado;
-
-import org.xml.sax.SAXException;
-
 import vistas.VentanaPrincipal;
 import vistas.VistaPartida;
 
@@ -35,12 +24,7 @@ public class Juego{
 		
 		try {
 			carmen = new CarmenSanDiego();
-		} catch (ClassNotFoundException | NoSuchMethodException
-				| SecurityException | IllegalAccessException
-				| IllegalArgumentException | InvocationTargetException
-				| InstantiationException | ParserConfigurationException
-				| SAXException | IOException e) {
-			
+		} catch (ErrorAlCargarDatos e) {
 			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego");
 		}
 	

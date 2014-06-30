@@ -35,9 +35,19 @@ public  class CarmenSanDiego {
 	private static List<Pais> listadoPaises = new ArrayList<Pais>();
 	private Partida unaPartida;
 	
-	public  CarmenSanDiego() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
-		levantarTodosLosDatos();
+	public  CarmenSanDiego() throws ErrorAlCargarDatos{
+		
+		try {
+			levantarTodosLosDatos();
+		} catch (ClassNotFoundException | NoSuchMethodException
+				| SecurityException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException
+				| InstantiationException | ParserConfigurationException
+				| SAXException | IOException e) {
+			throw new ErrorAlCargarDatos();
 		}
+		
+	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private <T> List<T> levantarAlgoDelXML(String nombreArchivo,Class clase,List<T> listado, String tagALevantar) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
@@ -106,11 +116,15 @@ public  class CarmenSanDiego {
 	private void bajarPoliciasAXML(String nombreArchivo) throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 		bajarObjetoAXML(nombreArchivo, listadoPolicias, Policia.class);
 		}
-	public void almacenarDatos() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ParserConfigurationException, TransformerException{
-		bajarPoliciasAXML(nombreArchivoPolicias);
-	}
-	public void bajarLadronesAXML(String nombreArchivo) throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		bajarObjetoAXML(nombreArchivo, listadoLadrones,Ladron.class);
+	public void almacenarDatos() throws ErrorAlCargarDatos{
+		try {
+			bajarPoliciasAXML(nombreArchivoPolicias);
+		} catch (NoSuchMethodException | SecurityException
+				| IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException | ParserConfigurationException
+				| TransformerException e) {
+			throw new ErrorAlCargarDatos();
+		}
 	}
 	
 	public void agregarPolicia(Policia unPolicia){
@@ -188,8 +202,22 @@ public  class CarmenSanDiego {
 	private Pais buscarPaisPorString(String nombrePais) throws ErrorNoSeEncontroPais, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
 		return buscarAlgoPorString(nombrePais,listadoPaises,Pais.class);
 	}
+	
+	public void iniciarPartida(String nombreUsuario) throws ErrorAlCargarDatos{
+		try {
+			iniciarPartidaConString(nombreUsuario);
+		} catch (ClassNotFoundException | NoSuchMethodException
+				| SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException | ParserConfigurationException
+				| SAXException | IOException | ErrorNoSeEncontroPais
+				| TransformerException | ErrorObjetoNoEncontrado
+				| ErrorNoSeEncontroLadron e) {
+			throw new ErrorAlCargarDatos();
+		}
+	}
 
-	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado{
+	private void iniciarPartidaConString(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado{
 		Policia elPolicia = iniciarJugador(nombreUsuario);
 		String rangoPoliciaString = elPolicia.toStringRango();
 		File archivoPartida = new File("Partidas"+rangoPoliciaString+".xml");

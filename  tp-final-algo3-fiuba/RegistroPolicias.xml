@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Policia Arrestos="0" Nombre="El Tito">
-   <Policia Arrestos="4" Nombre="Facu"/>
+<Policia Arrestos="4" Nombre="Facu">
    <Policia Arrestos="10" Nombre="Tomy"/>
 </Policia>
