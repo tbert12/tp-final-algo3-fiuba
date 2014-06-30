@@ -15,7 +15,6 @@ public class Juego{
 	
 	CarmenSanDiego carmen;
 	VentanaPrincipal ventanaPrincipal;
-	PartidaObservable partidaObservable;
 	VistaPartida vistaPartida;
 	
 	public Juego(){
@@ -38,7 +37,7 @@ public class Juego{
 		Partida partida; 
 		try {
 			partida = carmen.iniciarPartida(string);
-			partidaObservable = new PartidaObservable(partida);
+			PartidaObservable partidaObservable = new PartidaObservable(partida);
 			vistaPartida = new VistaPartida(partidaObservable,this);
 		} catch (ErrorAlCargarDatos e) {
 
