@@ -127,7 +127,6 @@ public  class CarmenSanDiego {
 		for (Policia policia: listadoPolicias){
 			if (unPolicia.equals(policia)){
 				unPolicia = policia;
-				System.out.println("Deberia entrar Aca");
 				return unPolicia;//Devuelvo el policia que ya estaba en el listado
 			}
 		}
@@ -286,6 +285,8 @@ public  class CarmenSanDiego {
 	
 	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
 		levantarLadronesDelXML(nombreArchivoLadrones);
+		
+		
 		levantarPaisesDelXML(nombreArchivoPaises);
 		levantarPoliciasDelXML(nombreArchivoPolicias);
 		

@@ -99,7 +99,7 @@ public class PartidaObservable extends Observable {
 
 
 	public String getRangodelPolicia() {
-		return this.UnaPartida.getRangodelPolcia();
+		return this.UnaPartida.getRangodelPolicia();
 	}
 
 

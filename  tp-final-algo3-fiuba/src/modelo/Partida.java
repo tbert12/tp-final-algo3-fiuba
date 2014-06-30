@@ -138,8 +138,11 @@ public class Partida {
 		return this.UnPolicia.getNombre();
 	}
 
-	public String getRangodelPolcia() {
+	public String getRangodelPolicia() {
 		return this.UnPolicia.toStringRango();
+	}
+	public String getNombreLadron(){
+		return this.UnLadron.getNombre();
 	}
 	
 	public boolean tempoAgotado() {
