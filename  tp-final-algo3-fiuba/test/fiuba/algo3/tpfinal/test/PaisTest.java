@@ -55,6 +55,11 @@ public class PaisTest {
 	}	
 	
 	@Test
+	public void testCopiarPaisNoTieneMismaReferencia(){
+	Pais paisCopia = UnPais.copiar();
+	Assert.assertFalse(paisCopia == UnPais);
+	}
+	@Test
 	public void testLosNombresDeLosEdificiosSonCorrectos(){
 		
 		ArrayList<Edificio> ListaEdificios = UnPais.getEdificios();

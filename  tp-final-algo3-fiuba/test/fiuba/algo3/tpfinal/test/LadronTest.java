@@ -46,7 +46,13 @@ public class LadronTest {
 		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
 		Assert.assertEquals(ladron.getNombre(),"NombredeLadron");	
 	}
-	
+	@Test
+	public void testCopiarCrea2ReferenciasDistintas() {
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
+		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
+		Ladron copiaLadron = ladron.copiar();
+		Assert.assertFalse(copiaLadron == ladron);
+	}
 	@Test
 	public void LadronNombreNoEsCorrecto() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
