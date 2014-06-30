@@ -4,11 +4,15 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import modelo.CarmenSanDiego;
 import modelo.Partida;
 import modelo.PartidaObservable;
 import modelo._SimuladorCrearPartida;
+import modelo.excepcion.ErrorNoSeEncontroLadron;
+import modelo.excepcion.ErrorNoSeEncontroPais;
+import modelo.excepcion.ErrorObjetoNoEncontrado;
 
 import org.xml.sax.SAXException;
 
@@ -48,13 +52,24 @@ public class Juego{
 	
 	public void iniciarPartida(String string){
 		
-		//carmen.iniciarPartida(string);
-		//Partida partida = carmen.getPartida();
-		
 		//" BORRAR DE ACA -> "/
-		_SimuladorCrearPartida Simulador = new _SimuladorCrearPartida();
-		Partida partida = Simulador.crearPartida(string);
+		//_SimuladorCrearPartida Simulador = new _SimuladorCrearPartida();
+		//Partida partida = Simulador.crearPartida(string);
 		//" <- HASTA	ACA"/	
+		
+		try {
+			carmen.iniciarPartida(string);
+		} catch (ClassNotFoundException | NoSuchMethodException
+				| SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException | ParserConfigurationException
+				| SAXException | IOException | ErrorNoSeEncontroPais
+				| TransformerException | ErrorObjetoNoEncontrado
+				| ErrorNoSeEncontroLadron e) {
+
+			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego. Contactate con el administrador del sistemas." + e.toString());
+		}
+		Partida partida = carmen.getPartida(); 
 		
 		partidaObservable = new PartidaObservable(partida);
 		vistaPartida = new VistaPartida(partidaObservable,this);

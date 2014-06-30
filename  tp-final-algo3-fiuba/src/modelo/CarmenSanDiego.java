@@ -184,7 +184,7 @@ public  class CarmenSanDiego {
 				return objetoADevolver;
 			}
 		}
-		throw new ErrorObjetoNoEncontrado();
+		throw new ErrorObjetoNoEncontrado(nombreAlgo);
 	}
 	private Ladron buscarLadronPorString(String nombreLadron) throws  IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
 		return buscarAlgoPorString(nombreLadron, listadoLadrones,Ladron.class);

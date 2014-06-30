@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Partidas>
-   <Partida NombreLadron="Nick Brunch" NombreObjeto="Pipa" ValorObjeto="Normal">
+   <Partida NombreLadron='Nick Brunch' NombreObjeto="Pipa" ValorObjeto="Normal">
       <Pistas>
          <PistasPais NombrePais="Argentina" pista0="Pista 1" pista1="Pista2" pista2="HeridaCuchillo"/>
          <PistasPais NombrePais="Brasil" pista0="Pista4" pista1="Pista5" pista2="Pista6"/>
