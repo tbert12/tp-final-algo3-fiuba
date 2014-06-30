@@ -169,5 +169,9 @@ public class Policia  {
 	public String toStringRango() {
 		return this.Rango.toString();
 	}
+
+	public int getArrestos() {
+		return CantidadDeArrestos;
+	}
 	
 }

@@ -136,6 +136,9 @@ public  class CarmenSanDiego {
 		bajarObjetoAXML(nombreArchivo, listadoPolicias, Policia.class);
 		}
 	public void almacenarDatos() throws ErrorAlCargarDatos{
+		for(Policia policia:listadoPolicias){
+			System.out.println(policia.getArrestos());
+		}
 		try {
 			bajarPoliciasAXML(nombreArchivoPolicias);
 		} catch (NoSuchMethodException | SecurityException
@@ -144,7 +147,7 @@ public  class CarmenSanDiego {
 				| TransformerException e) {
 			throw new ErrorAlCargarDatos();
 		}
-		listadoPolicias = new ArrayList<Policia>();
+		
 	}
 	
 	public void agregarPolicia(Policia unPolicia){
@@ -177,7 +180,6 @@ public  class CarmenSanDiego {
 		return unPolicia;
 	}
 	public Policia iniciarJugador(String unNombre) throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException{
-		levantarPoliciasDelXML(nombreArchivoPolicias);
 		return verSiJugadorYaJugo(unNombre);
 	}
 	private Boolean archivoExiste(String nombreArchivo){
@@ -280,11 +282,10 @@ public  class CarmenSanDiego {
 		Ladron ladronAPasar = buscarLadronPorString(nombreLadron);
 		ladronAPasar.addTrayectoria(new Trayectoria(paisesParaTrayectoria));
 		ObjetoRobado ObjetoASetear = new ObjetoRobado(elementoPartida.getAttribute("NombreObjeto"),elementoPartida.getAttribute("ValorObjeto"));
-		Policia unPolicia = iniciarJugador(nombreUsuario);
 		ArrayList<Pais> listadoPaisesDuplicados = duplicarPaises();
 		ArrayList<Ladron>listadoLadronesDuplicados = duplicarLadrones();
 		BaseDeDatos baseAPasar = new BaseDeDatos(listadoLadronesDuplicados,listadoPaisesDuplicados);
-		Partida unaPartida= new Partida(unPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
+		Partida unaPartida= new Partida(elPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
 		return unaPartida;
 	}
 
