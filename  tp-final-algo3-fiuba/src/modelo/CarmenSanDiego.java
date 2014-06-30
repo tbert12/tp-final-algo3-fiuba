@@ -177,23 +177,21 @@ public  class CarmenSanDiego {
 		transformarYEscribirADisco(nombreArchivo, doc);
 		
 	}
-	public Ladron buscarLadronPorString(String nombreLadron) throws ErrorNoSeEncontroLadron{
-		for (Ladron ladron: listadoLadrones){
-			if(nombreLadron.equals(ladron.getNombre())){
-				Ladron ladronADevolver = ladron;
-				return ladronADevolver;
+	private <T> T buscarAlgoPorString(String nombreAlgo,List<T> listado,Class clase) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
+		Method metodoGetNombre = clase.getDeclaredMethod("getNombre", null);
+		for (T objeto:listado){
+			if (nombreAlgo.equals(metodoGetNombre.invoke(objeto))){
+				T objetoADevolver = objeto;
+				return objetoADevolver;
 			}
 		}
-		throw new ErrorNoSeEncontroLadron();
+		throw new ErrorObjetoNoEncontrado();
 	}
-	private Pais buscarPaisPorString(String nombrePais) throws ErrorNoSeEncontroPais{
-		for (Pais pais:listadoPaises){
-			if(nombrePais.equals(pais.getNombre())){
-				Pais paisADevolver = pais;
-				return paisADevolver;
-			}
-		}
-		throw new ErrorNoSeEncontroPais();
+	public Ladron buscarLadronPorString(String nombreLadron) throws  IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
+		return buscarAlgoPorString(nombreLadron, listadoLadrones,Ladron.class);
+	}
+	private Pais buscarPaisPorString(String nombrePais) throws ErrorNoSeEncontroPais, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
+		return buscarAlgoPorString(nombrePais,listadoPaises,Pais.class);
 	}
 	public void agregarPartidasAlXML(String nombreArchivo,HashMap<String,String[]> PaisesConPistas, String[] Paises, String nombreLadron,String nombreObjetoRobado,String valorObjeto) throws ParserConfigurationException, SAXException, IOException, TransformerException{
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -222,7 +220,7 @@ public  class CarmenSanDiego {
 		
 		transformarYEscribirADisco(nombreArchivo, doc);
 	}
-	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException{
+	public void iniciarPartida(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado{
 		generarXMLpaises();
 		Policia elPolicia = iniciarJugador(nombreUsuario);
 		String rangoPoliciaString = elPolicia.toStringRango();
