@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Ladron Nombre='Tito'>
-   <Caracteristica>
-      <Caracteristicas Cabello="" Hobby="" Senia="" Sexo="" Vehiculo=""/>
-   </Caracteristica>
-   <Ladron Nombre="Nick Brunch">
+<Ladron Nombre="Nick Brunch">
       <Caracteristica>
          <Caracteristicas Cabello="NEGRO" Hobby="ALPINISMO" Senia="ANILLO" Sexo="MASCULINO" Vehiculo="MOTO"/>
+      </Caracteristica>
+   <Ladron Nombre="Len Bulk">
+      <Caracteristica>
+         <Caracteristicas Cabello="ROJO" Hobby="ALPINISMO" Senia="TATUAJE" Sexo="MASCULINO" Vehiculo="DESCAPOTABLE"/>
+      </Caracteristica>
+   </Ladron>
+   <Ladron Nombre="Ihor Ihorovitch">
+      <Caracteristica>
+         <Caracteristicas Cabello="RUBIO" Hobby="CROQUET" Senia="TATUAJE" Sexo="MASCULINO" Vehiculo="LIMUSINA"/>
+      </Caracteristica>
+   </Ladron>
+   <Ladron Nombre="Fast Eddie B.">
+      <Caracteristica>
+         <Caracteristicas Cabello="NEGRO" Hobby="CROQUET" Senia="JOYAS" Sexo="MASCULINO" Vehiculo="DESCAPOTABLE"/>
+      </Caracteristica>
+   </Ladron>
+   <Ladron Nombre="Scar Graynolt">
+      <Caracteristica>
+         <Caracteristicas Cabello="ROJO" Hobby="CROQUET" Senia="ANILLO" Sexo="MASCULINO" Vehiculo="LIMUSINA"/>
+      </Caracteristica>
+   </Ladron>
+   <Ladron Nombre="Merey Laroc">
+      <Caracteristica>
+         <Caracteristicas Cabello="CASTANIO" Hobby="ALPINISMO" Senia="JOYAS" Sexo="FEMENINO" Vehiculo="LIMUSINA"/>
+      </Caracteristica>
+   </Ladron>
+   <Ladron Nombre="Lady Agatha">
+      <Caracteristica>
+         <Caracteristicas Cabello="ROJO" Hobby="TENNIS" Senia="ANILLO" Sexo="FEMENINO" Vehiculo="DESCAPOTABLE"/>
+      </Caracteristica>
+   </Ladron>
+   <Ladron Nombre="Katherine Drib">
+      <Caracteristica>
+         <Caracteristicas Cabello="CASTANIO" Hobby="ALPINISMO" Senia="TATUAJE" Sexo="FEMENINO" Vehiculo="MOTO"/>
+      </Caracteristica>
+   </Ladron>
+   <Ladron Nombre="Dazzle Annie">
+      <Caracteristica>
+         <Caracteristicas Cabello="RUBIO" Hobby="TENNIS" Senia="TATUAJE" Sexo="FEMENINO" Vehiculo="LIMUSINA"/>
+      </Caracteristica>
+   </Ladron>
+   <Ladron Nombre="Carmen Sandiego">
+      <Caracteristica>
+         <Caracteristicas Cabello="CASTANIO" Hobby="TENNIS" Senia="JOYAS" Sexo="FEMENINO" Vehiculo="DESCAPOTABLE"/>
       </Caracteristica>
    </Ladron>
 </Ladron>

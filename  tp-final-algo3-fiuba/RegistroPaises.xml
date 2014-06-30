@@ -1,21 +1,301 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Pais Informacion="Informacion generica" Nombre="Argentina">
-   <Edificios>
-      <Edificio Nombre="biblioteca" Pista="Nunca he visto a la persona que dices"/>
-      <Edificio Nombre="puerto" Pista="No he visto a nadie como dices"/>
-      <Edificio Nombre="fiuba" Pista="No he visto a nadie como dices"/>
-   </Edificios>
-   <Coordenadas>
-      <Coordenadas Latitud="1.0" Longitud="1.0"/>
-   </Coordenadas>
-   <Pais Informacion="Informacion generica" Nombre="Brasil">
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Pais Informacion="Esto es Buenos Aires" Nombre="Buenos Aires">
       <Edificios>
-         <Edificio Nombre="biblioteca" Pista="Nunca he visto a la persona que dices"/>
-         <Edificio Nombre="puerto" Pista="No he visto a nadie como dices"/>
-         <Edificio Nombre="fiuba" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Aeropuerto" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Biblioteca" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+         <Edificio Nombre="Bolsa" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
       </Edificios>
       <Coordenadas>
-         <Coordenadas Latitud="1.0" Longitud="3.0"/>
+         <Coordenadas Latitud="-34.608418" Longitud="-58.373161"/>
+      </Coordenadas>
+   <Pais Informacion="Info" Nombre="Sydney">
+      <Edificios>
+         <Edificio Nombre="Biblioteca" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+         <Edificio Nombre="Embajada" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Museo" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="-33.867138" Longitud="151.207108"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Rio de Janeiro">
+      <Edificios>
+         <Edificio Nombre="Banco" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Bolsa" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Puerto" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="-22.903540" Longitud="-43.209587"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Montreal">
+      <Edificios>
+         <Edificio Nombre="Embajada" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Biblioteca" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Mercado" Pista="No he visto a nadie como dices"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="45.508865" Longitud="-73.554245"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Peking">
+      <Edificios>
+         <Edificio Nombre="Bolsa" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Banco" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Mercado" Pista="No he visto a nadie como dices"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="39.904667" Longitud="116.408195"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Moroni">
+      <Edificios>
+         <Edificio Nombre="Mercado" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+         <Edificio Nombre="Bolsa" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Puerto" Pista="No he visto a nadie como dices"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="-11.701232" Longitud="43.252926"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Cairo">
+      <Edificios>
+         <Edificio Nombre="Puerto" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Bolsa" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Aeropuerto" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="30.064741" Longitud="31.24951"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Paris">
+      <Edificios>
+         <Edificio Nombre="Embajada" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Museo" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Puerto" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="48.856667" Longitud="2.350987"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Athens">
+      <Edificios>
+         <Edificio Nombre="Aeropuerto" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Banco" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+         <Edificio Nombre="Puerto" Pista="No he visto a nadie como dices"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="37.979179" Longitud="23.716646"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Budapest">
+      <Edificios>
+         <Edificio Nombre="Casa de Gobierno" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Mercado" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+         <Edificio Nombre="Bolsa" Pista="Jamas he visto a esa persona"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="47.498405" Longitud="19.040758"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Reykjavík">
+      <Edificios>
+         <Edificio Nombre="Mercado" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+         <Edificio Nombre="Embajada" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Puerto" Pista="No creo haber visto una persona asi aqui"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="64.135338" Longitud="-21.89521"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="New Delhi">
+      <Edificios>
+         <Edificio Nombre="Biblioteca" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Bolsa" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Embajada" Pista="No he visto a nadie como dices"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="28.635307" Longitud="77.22496"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Baghdad">
+      <Edificios>
+         <Edificio Nombre="Biblioteca" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+         <Edificio Nombre="Bolsa" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Mercado" Pista="No creo haber visto una persona asi aqui"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="33.315701" Longitud="44.3922"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Rome">
+      <Edificios>
+         <Edificio Nombre="Banco" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Casa de Gobierno" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+         <Edificio Nombre="Bolsa" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="41.895466" Longitud="12.482324"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Tokyo">
+      <Edificios>
+         <Edificio Nombre="Casa de Gobierno" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Puerto" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+         <Edificio Nombre="Biblioteca" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="35.689487" Longitud="139.691711"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Bamako">
+      <Edificios>
+         <Edificio Nombre="Biblioteca" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Puerto" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Bolsa" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="12.65295" Longitud="-7.986482"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Mexico City">
+      <Edificios>
+         <Edificio Nombre="Museo" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Embajada" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+         <Edificio Nombre="Mercado" Pista="No he visto a nadie como dices"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="19.42705" Longitud="-99.127571"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Kathmandu">
+      <Edificios>
+         <Edificio Nombre="Aeropuerto" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+         <Edificio Nombre="Museo" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Embajada" Pista="No creo haber visto una persona asi aqui"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="27.702871" Longitud="85.318245"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Oslo">
+      <Edificios>
+         <Edificio Nombre="Museo" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+         <Edificio Nombre="Puerto" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+         <Edificio Nombre="Casa de Gobierno" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="59.913818" Longitud="10.738741"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Port Moresby">
+      <Edificios>
+         <Edificio Nombre="Biblioteca" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Banco" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+         <Edificio Nombre="Museo" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="-9.481553" Longitud="147.190247"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Lima">
+      <Edificios>
+         <Edificio Nombre="Aeropuerto" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Casa de Gobierno" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Museo" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="45.086353" Longitud="7.603375"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Kigali">
+      <Edificios>
+         <Edificio Nombre="Biblioteca" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Puerto" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Banco" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="-1.950106" Longitud="30.058769"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="San Marino">
+      <Edificios>
+         <Edificio Nombre="Banco" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Museo" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+         <Edificio Nombre="Aeropuerto" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="43.94236" Longitud="12.457777"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Singapore">
+      <Edificios>
+         <Edificio Nombre="Bolsa" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Embajada" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Aeropuerto" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="1.352083" Longitud="103.819839"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Moscow">
+      <Edificios>
+         <Edificio Nombre="Aeropuerto" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Biblioteca" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Embajada" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="55.755787" Longitud="37.617634"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Colombo">
+      <Edificios>
+         <Edificio Nombre="Museo" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
+         <Edificio Nombre="Biblioteca" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Banco" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="6.927468" Longitud="79.848358"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Bangkok">
+      <Edificios>
+         <Edificio Nombre="Puerto" Pista="Jamas he visto a esa persona"/>
+         <Edificio Nombre="Mercado" Pista="No he visto a nadie como dices"/>
+         <Edificio Nombre="Biblioteca" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="13.723419" Longitud="100.476234"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="Istanbul">
+      <Edificios>
+         <Edificio Nombre="Casa de Gobierno" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Puerto" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Bolsa" Pista="Jamas he visto a esa persona"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="41.012379" Longitud="28.975925"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="London">
+      <Edificios>
+         <Edificio Nombre="Mercado" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
+         <Edificio Nombre="Aeropuerto" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Bolsa" Pista="Jamas he visto a esa persona"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="51.500153" Longitud="-0.126236"/>
+      </Coordenadas>
+   </Pais>
+   <Pais Informacion="Info" Nombre="New York">
+      <Edificios>
+         <Edificio Nombre="Banco" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
+         <Edificio Nombre="Biblioteca" Pista="No creo haber visto una persona asi aqui"/>
+         <Edificio Nombre="Puerto" Pista="No he visto a nadie como dices"/>
+      </Edificios>
+      <Coordenadas>
+         <Coordenadas Latitud="40.714268" Longitud="-74.005974"/>
       </Coordenadas>
    </Pais>
 </Pais>

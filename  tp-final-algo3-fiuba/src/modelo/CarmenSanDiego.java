@@ -20,6 +20,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import modelo.excepcion.*;
+import modelo.heridas.*;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -248,21 +249,12 @@ public  class CarmenSanDiego {
 			paisesParaTrayectoria.add(paisParaAgregar);
 			ArrayList<String> pistasDelPais = new ArrayList<String>();
 			for (int j = 0 ; j<3 ; j++){
-				String pista =elementoPista.getAttribute("Pista"+j);
+				String pista =elementoPista.getAttribute("pista"+j);
 				if (pista.equals("HeridaCuchillo") || pista.equals("HeridaArmaDeFuego")){
-					Class<?> ClaseHerida = Class.forName(pista);
+					Class<?> ClaseHerida = Class.forName("modelo.heridas."+pista);
 					Constructor<?> ConstructorHerida = ClaseHerida.getConstructor(String.class);
 					Object unaHeridaObject = ConstructorHerida.newInstance(pista);
 					paisParaAgregar.getEdificios().get(j).setHerida((modelo.heridas.Herida)ClaseHerida.cast(unaHeridaObject));
-					switch (pista){
-					case "HeridaCuchillo":{
-						paisParaAgregar.getEdificios().get(j).setPista("Has sido herido por una cuchillada!");
-					}
-					case "HeridaArmaDeFuego":{
-						paisParaAgregar.getEdificios().get(j).setPista("Has sido herido por un disparo!");
-					}
-					
-					}
 				}
 				
 				pistasDelPais.add(pista);
@@ -283,7 +275,11 @@ public  class CarmenSanDiego {
 
 	private void agregarPistaAEdificios(ArrayList<Edificio> edificios,ArrayList<String> pistas){
 		for (int i = 0; i< edificios.size();i++){
-			edificios.get(i).setPista(pistas.get(i));
+			String pistaAPoner=pistas.get(i);
+			if (pistaAPoner.equals("HeridaArmaDeFuego")){
+				pistaAPoner="Has sido herido por un disparo!";
+			}
+			edificios.get(i).setPista(pistaAPoner);
 		}
 	}
 	

@@ -48,7 +48,7 @@ public class EdificioTest {
 	}
 	@Test
 	public void testNombreEdificioEsCorrect0() {
-		
+		System.out.println(UnEdificio.getPista());
 		Assert.assertEquals(UnEdificio.getNombre(),nombre);
 		
 	}

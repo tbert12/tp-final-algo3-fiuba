@@ -79,7 +79,7 @@ public class Edificio {
 		Element elementoEdificio = (Element) nodo;
 		Element elementoHerida = (Element) elementoEdificio.getFirstChild();
 		Edificio edificioADevolver = new Edificio(elementoEdificio.getAttribute("Nombre"));
-		edificioADevolver.setPista(elementoEdificio.getAttribute("Pista"));
+		//edificioADevolver.setPista(elementoEdificio.getAttribute("Pista"));
 		try{
 		String tipoHerida=elementoHerida.getAttribute("TipoHerida");
 		Class<?> ClaseHerida = Class.forName(tipoHerida);
@@ -100,11 +100,7 @@ public class Edificio {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (ContieneLadron ? 1231 : 1237);
-		result = prime * result + ((Herida == null) ? 0 : Herida.hashCode());
 		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
-		result = prime * result + ((Pista == null) ? 0 : Pista.hashCode());
-		result = prime * result + VecesVisitado;
 		return result;
 	}
 
@@ -117,30 +113,20 @@ public class Edificio {
 		if (getClass() != obj.getClass())
 			return false;
 		Edificio other = (Edificio) obj;
-		if (ContieneLadron != other.ContieneLadron)
-			return false;
-		if (Herida == null) {
-			if (other.Herida != null)
-				return false;
-		} else if (!Herida.equals(other.Herida))
-			return false;
 		if (Nombre == null) {
 			if (other.Nombre != null)
 				return false;
 		} else if (!Nombre.equals(other.Nombre))
-			return false;
-		if (Pista == null) {
-			if (other.Pista != null)
-				return false;
-		} else if (!Pista.equals(other.Pista))
-			return false;
-		if (VecesVisitado != other.VecesVisitado)
 			return false;
 		return true;
 	}
 
 	public boolean tieneLadron() {
 		return ContieneLadron;
+	}
+
+	public String getPista() {
+		return this.Pista;
 	}
 }
 
