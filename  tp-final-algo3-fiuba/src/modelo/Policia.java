@@ -26,7 +26,7 @@ public class Policia  {
 	private final int LimiteHorasDespierto = 15;
 	private final int HorasPorFiltracion = 3;
 	private final int HorasHeridaCuchillo = 2;
-	private final int HorasHeridaArma = 3;
+	private final int HorasHeridaArma = 4;
 
 
 	public Policia(String Nombre, int CantidadDeArrestos){
