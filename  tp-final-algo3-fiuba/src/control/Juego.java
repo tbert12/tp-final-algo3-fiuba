@@ -42,7 +42,7 @@ public class Juego{
 			vistaPartida = new VistaPartida(partidaObservable,this);
 		} catch (ErrorAlCargarDatos e) {
 
-			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego. Contactate con el administrador del sistemas." + e.toString());
+			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego. Contactate con el administrador del sistemas.");
 		}
 		
 		ventanaPrincipal.ocultarVentana();

@@ -230,6 +230,7 @@ public  class CarmenSanDiego {
 				| SAXException | IOException | ErrorNoSeEncontroPais
 				| TransformerException | ErrorObjetoNoEncontrado
 				| ErrorNoSeEncontroLadron e) {
+			System.out.println(e.toString());
 			throw new ErrorAlCargarDatos();
 		}
 	}

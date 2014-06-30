@@ -164,6 +164,7 @@ public class CarmenSanDiegoTest {
 		Carmen.agregarPolicia(unPolicia);
 		Policia otroPolicia = new Policia("Tomy",10);
 		Carmen.agregarPolicia(otroPolicia);
+		@SuppressWarnings("unused")
 		Partida unaPartida=Carmen.iniciarPartida("Facu");
 	}
 }
