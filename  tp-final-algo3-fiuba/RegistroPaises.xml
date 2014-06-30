@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Pais Informacion="Esto es Buenos Aires" Nombre="Buenos Aires">
+<Pais Informacion="La ciudad de Buenos Aires,tambien llamada Capital Federal, es una de las veinticuatro entidades federales y capital de la Republica Argentina.Esta situada en la region centro-este del pais, en la orilla occidental del Rio de la Plata.Su perfil urbano es marcadamente eclectico. Se mezclan, a causa de la inmigracion, los estilos de arte." Nombre="Buenos Aires">
       <Edificios>
          <Edificio Nombre="Aeropuerto" Pista="No creo haber visto una persona asi aqui"/>
          <Edificio Nombre="Biblioteca" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
@@ -8,7 +8,7 @@
       <Coordenadas>
          <Coordenadas Latitud="-34.608418" Longitud="-58.373161"/>
       </Coordenadas>
-   <Pais Informacion="Info" Nombre="Sydney">
+   <Pais Informacion="Sydeney es la ciudad mas grande y poblada de Australia.Situada al sudeste de Australia, a orillas de la Bahia Jackson,que comprende el puerto de Sidney. En la ciudad se destaca la Opera de Sidney, el puente del puerto de Sidney, y sus playas.De acuerdo a recientes estudios, es la ciudad mas cara de Australia para vivir." Nombre="Sydney">
       <Edificios>
          <Edificio Nombre="Biblioteca" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
          <Edificio Nombre="Embajada" Pista="No he visto a nadie como dices"/>
@@ -18,7 +18,7 @@
          <Coordenadas Latitud="-33.867138" Longitud="151.207108"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="Rio de Janeiro">
+   <Pais Informacion="Rio de Janeiro, o popularmente llamada Rio,es la capital del estado de Rio de janeiro, ubicada en el sureste de Brasil.Es uno de los principales centros economicos, culturales y financieros del pais. Conocido por el Pan de Azucar, el Cristo Redentor. Sede de la Copa Mundial FIFA 2014, aunque ya albergo la de 1950, tambien." Nombre="Rio de Janeiro">
       <Edificios>
          <Edificio Nombre="Banco" Pista="Jamas he visto a esa persona"/>
          <Edificio Nombre="Bolsa" Pista="No he visto a nadie como dices"/>
@@ -28,7 +28,7 @@
          <Coordenadas Latitud="-22.903540" Longitud="-43.209587"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="Montreal">
+   <Pais Informacion="Es la mayor ciudad de la provincia de Quebec, en Canada. Es la segunda mas poblada del pais Es uno de los principales centros industriales, comerciales y culturales, de America del Norte. Cuenta con una de las poblaciones mejores educadas del mundo. Poseen la mayor concentracion de estudiantes universitarios." Nombre="Montreal">
       <Edificios>
          <Edificio Nombre="Embajada" Pista="Jamas he visto a esa persona"/>
          <Edificio Nombre="Biblioteca" Pista="No creo haber visto una persona asi aqui"/>
@@ -38,7 +38,7 @@
          <Coordenadas Latitud="45.508865" Longitud="-73.554245"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="Peking">
+   <Pais Informacion="Es la capital de la Republica Popular de China. Uno de los monumentos iconicos es la Gran Muralla." Nombre="Peking">
       <Edificios>
          <Edificio Nombre="Bolsa" Pista="No creo haber visto una persona asi aqui"/>
          <Edificio Nombre="Banco" Pista="Lo lamento, jamas eh visto a la persona que estas buscando"/>
@@ -48,7 +48,7 @@
          <Coordenadas Latitud="39.904667" Longitud="116.408195"/>
       </Coordenadas>
    </Pais>
-   <Pais Informacion="Info" Nombre="Moroni">
+   <Pais Informacion="Es la ciudad mas grande de Comoras.Esta en la costa este de la isla Gran Comora.Su nombre proviene de oungroni, que significa bienestar y felicidad.Su arquitectura tiene influencia arabe y francesa. Se dedican a la agricultura, pesca,caza y silvicultura." Nombre="Moroni">
       <Edificios>
          <Edificio Nombre="Mercado" Pista="Lo lamento, nunca he visto a la persona que buscas"/>
          <Edificio Nombre="Bolsa" Pista="Jamas he visto a esa persona"/>

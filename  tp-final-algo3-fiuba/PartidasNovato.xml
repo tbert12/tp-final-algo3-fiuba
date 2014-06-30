@@ -16,4 +16,11 @@
          <PistasPais NombrePais="Cairo" pista0="Algo huele raro aqui" pista1="Hay algo que es muy sospechoso en estos lugares" pista2="Creo que lo que buscas esta aqui"/>
       </Pistas>
    </Partida>
+<Partida NombreLadron='Nick Brunch' NombreObjeto="La gran Moroni" ValorObjeto="Normal">
+      <Pistas>
+         <PistasPais NombrePais="Moroni" pista0="Hola" pista1="Chau" pista2="HeridaArmaDeFuego"/>
+         <PistasPais NombrePais="Sydney" pista0="Pista4" pista1="Pista5" pista2="Pista6"/>
+	 PistasPais NombrePais="Montreal" pista0="Pista4" pista1="Pista5" pista2="Pista6"/>
+      </Pistas>
+   </Partida>
 </Partidas>

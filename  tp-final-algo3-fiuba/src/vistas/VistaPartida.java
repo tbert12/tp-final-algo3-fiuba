@@ -197,7 +197,7 @@ public class VistaPartida extends JFrame implements Observer{
 		
 		InformacionPais = new JLabel("");
 		InformacionPais.setForeground(Color.WHITE);
-		InformacionPais.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
+		InformacionPais.setFont(new Font("Verdana", Font.PLAIN, 10));
 		InformacionPais.setBackground(Color.BLACK);
 		InformacionPais.setVerticalTextPosition(SwingConstants.TOP);
 		InformacionPais.setVerticalAlignment(SwingConstants.TOP);

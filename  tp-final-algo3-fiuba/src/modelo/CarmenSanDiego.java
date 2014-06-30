@@ -33,7 +33,7 @@ public  class CarmenSanDiego {
 	private static List<Policia> listadoPolicias = new ArrayList<Policia>();
 	private static List<Ladron> listadoLadrones = new ArrayList<Ladron>();
 	private static List<Pais> listadoPaises = new ArrayList<Pais>();
-	private Partida unaPartida;
+
 	
 	public  CarmenSanDiego() throws ErrorAlCargarDatos{
 		
@@ -173,9 +173,7 @@ public  class CarmenSanDiego {
 		return archivoExiste(nombreArchivoLadrones);
 	}
 
-	public Partida getPartida(){
-		return this.unaPartida;
-	}
+
 
 	public void generarPartidaXML(String nombreArchivo) throws ParserConfigurationException, TransformerException{
 		
@@ -217,7 +215,7 @@ public  class CarmenSanDiego {
 		}
 	}
 
-	private void iniciarPartidaConString(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado{
+	private Partida iniciarPartidaConString(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado{
 		Policia elPolicia = iniciarJugador(nombreUsuario);
 		String rangoPoliciaString = elPolicia.toStringRango();
 		File archivoPartida = new File("Partidas"+rangoPoliciaString+".xml");
@@ -260,7 +258,8 @@ public  class CarmenSanDiego {
 		ObjetoRobado ObjetoASetear = new ObjetoRobado(elementoPartida.getAttribute("NombreObjeto"),elementoPartida.getAttribute("ValorObjeto"));
 		Policia unPolicia = iniciarJugador(nombreUsuario);
 		BaseDeDatos baseAPasar = new BaseDeDatos((ArrayList<Ladron>)listadoLadrones,(ArrayList<Pais>)listadoPaises);
-		unaPartida= new Partida(unPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
+		Partida unaPartida= new Partida(unPolicia,ladronAPasar,baseAPasar,ObjetoASetear);
+		return unaPartida;
 	}
 
 	private void agregarPistaAEdificios(ArrayList<Edificio> edificios,ArrayList<String> pistas){
