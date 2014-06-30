@@ -37,9 +37,7 @@ public  class CarmenSanDiego {
 	private Partida unaPartida;
 	
 	public  CarmenSanDiego() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
-		levantarPoliciasDelXML();
-		levantarLadronesDelXML();
-		levantarPaisesDelXML();
+		levantarTodosLosDatos();
 		}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -76,16 +74,16 @@ public  class CarmenSanDiego {
 		transformarYEscribirADisco(nombreArchivo, doc);
 		}
 	}
-	public void levantarPoliciasDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-		 levantarAlgoDelXML(nombreArchivoPolicias, Policia.class,listadoPolicias);
+	public void levantarPoliciasDelXML(String nombreArchivo) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+		 levantarAlgoDelXML(nombreArchivo, Policia.class,listadoPolicias);
 	
 	}
-	public void levantarPaisesDelXML() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
-		levantarAlgoDelXML(nombreArchivoPaises, Pais.class, listadoPaises);
+	public void levantarPaisesDelXML(String nombreArchivo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
+		levantarAlgoDelXML(nombreArchivo, Pais.class, listadoPaises);
 	}
 	
-	public void levantarLadronesDelXML() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-		 levantarAlgoDelXML(nombreArchivoLadrones, Ladron.class, listadoLadrones);
+	public void levantarLadronesDelXML(String nombreArchivo) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+		 levantarAlgoDelXML(nombreArchivo, Ladron.class, listadoLadrones);
 	}
 
 	private Document crearDoc() throws ParserConfigurationException{
@@ -104,11 +102,11 @@ public  class CarmenSanDiego {
 		StreamResult result = new StreamResult(archivoDestino);
 		transformer.transform(source, result);
 	}
-	public void bajarPoliciasAXML() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		bajarObjetoAXML(nombreArchivoPolicias, listadoPolicias, Policia.class);
+	public void bajarPoliciasAXML(String nombreArchivo) throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		bajarObjetoAXML(nombreArchivo, listadoPolicias, Policia.class);
 		}
-	public void bajarLadronesAXML() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		bajarObjetoAXML(nombreArchivoLadrones, listadoLadrones,Ladron.class);
+	public void bajarLadronesAXML(String nombreArchivo) throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		bajarObjetoAXML(nombreArchivo, listadoLadrones,Ladron.class);
 	}
 	
 	public void agregarPolicia(Policia unPolicia){
@@ -129,6 +127,7 @@ public  class CarmenSanDiego {
 		for (Policia policia: listadoPolicias){
 			if (unPolicia.equals(policia)){
 				unPolicia = policia;
+				System.out.println("Deberia entrar Aca");
 				return unPolicia;//Devuelvo el policia que ya estaba en el listado
 			}
 		}
@@ -177,8 +176,9 @@ public  class CarmenSanDiego {
 		transformarYEscribirADisco(nombreArchivo, doc);
 		
 	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private <T> T buscarAlgoPorString(String nombreAlgo,List<T> listado,Class clase) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
-		Method metodoGetNombre = clase.getDeclaredMethod("getNombre", null);
+		Method metodoGetNombre = clase.getDeclaredMethod("getNombre");
 		for (T objeto:listado){
 			if (nombreAlgo.equals(metodoGetNombre.invoke(objeto))){
 				T objetoADevolver = objeto;
@@ -187,7 +187,7 @@ public  class CarmenSanDiego {
 		}
 		throw new ErrorObjetoNoEncontrado();
 	}
-	public Ladron buscarLadronPorString(String nombreLadron) throws  IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
+	private Ladron buscarLadronPorString(String nombreLadron) throws  IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
 		return buscarAlgoPorString(nombreLadron, listadoLadrones,Ladron.class);
 	}
 	private Pais buscarPaisPorString(String nombrePais) throws ErrorNoSeEncontroPais, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ErrorObjetoNoEncontrado{
@@ -251,6 +251,15 @@ public  class CarmenSanDiego {
 					Constructor<?> ConstructorHerida = ClaseHerida.getConstructor(String.class);
 					Object unaHeridaObject = ConstructorHerida.newInstance(pista);
 					paisParaAgregar.getEdificios().get(j).setHerida((modelo.heridas.Herida)ClaseHerida.cast(unaHeridaObject));
+					switch (pista){
+					case "HeridaCuchillo":{
+						paisParaAgregar.getEdificios().get(j).setPista("Has sido herido por una cuchillada!");
+					}
+					case "HeridaArmaDeFuego":{
+						paisParaAgregar.getEdificios().get(j).setPista("Has sido herido por un disparo!");
+					}
+					
+					}
 				}
 				pistasDelPais.add(pista);
 			}
@@ -276,10 +285,14 @@ public  class CarmenSanDiego {
 	
 	
 	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
-		levantarLadronesDelXML();
-		levantarPaisesDelXML();
-		levantarPoliciasDelXML();
+		levantarLadronesDelXML(nombreArchivoLadrones);
+		levantarPaisesDelXML(nombreArchivoPaises);
+		levantarPoliciasDelXML(nombreArchivoPolicias);
 		
+	}
+	public void limpiarTodoslosDatos(){
+		listadoLadrones = new ArrayList<Ladron>();
+		listadoPolicias = new ArrayList<Policia>();
 	}
 	
 }
