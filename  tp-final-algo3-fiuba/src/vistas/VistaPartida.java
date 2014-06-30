@@ -115,7 +115,7 @@ public class VistaPartida extends JFrame implements Observer{
 		CiudadActual.setText(NombrePaisActual);
 	}
 	
-	private void updateHora(){
+	private void updateHora() {
 		HorasTiempo = Reloj.HoraDigital(partida.getTiempoRestante());
 		Tiempo.setText(HorasTiempo);
 	}
