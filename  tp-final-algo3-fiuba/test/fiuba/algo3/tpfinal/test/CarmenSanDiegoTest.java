@@ -11,14 +11,13 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.Assert;
 import org.xml.sax.SAXException;
-
-
-
-
-
-
-
-import modelo.*;
+import modelo.CarmenSanDiego;
+import modelo.Coordenadas;
+import modelo.Edificio;
+import modelo.Ladron;
+import modelo.Pais;
+import modelo.Policia;
+import modelo.Trayectoria;
 import modelo.caracteristicas.Cabello;
 import modelo.caracteristicas.Caracteristicas;
 import modelo.caracteristicas.Hobby;
@@ -160,7 +159,8 @@ public class CarmenSanDiegoTest {
 		Carmen.limpiarTodoslosDatos();
 		Carmen.levantarTodosLosDatos();
 		Caracteristicas caracteristicas1=new Caracteristicas(null,null,null,null,null);
-		Ladron unLadron = new Ladron("Tito",caracteristicas1);
+		Ladron unLadron = new Ladron("Nick Brunch",caracteristicas1);
+		Carmen.agregarLadron(unLadron);
 		Assert.assertTrue(Carmen.ladronEstaEnJuego(unLadron));
 		Policia unPolicia = new Policia("Facu",4);
 		Carmen.agregarPolicia(unPolicia);
