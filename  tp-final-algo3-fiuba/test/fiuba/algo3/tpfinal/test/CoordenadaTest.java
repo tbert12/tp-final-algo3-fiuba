@@ -16,7 +16,8 @@ import org.w3c.dom.Node;
 
 public class CoordenadaTest {
 
-	private static final double DELTA = 1e-15;
+	//Margen de error (Lo agrandamos porque son distancias de miles de kilometros)
+	private static final double DELTA = 20;
 	
 	@Test
 	public void CoordenadasObtengoLatitudLongitudQueEspero() {
@@ -29,9 +30,12 @@ public class CoordenadaTest {
 	
 	@Test
 	public void DistanciaEntreCoordenadas() {
-		Coordenadas unaCoordenada = new Coordenadas(4.3,-6.8);
-		Coordenadas otrasCoordenada = new Coordenadas(9,33);
-		int distanciaQueEspero = (int)(Math.sqrt( Math.pow(4.3-9, 2)+Math.pow(-6.8 - 33, 2))*111);
+		Coordenadas unaCoordenada = new Coordenadas(-34.608418,-58.373161);
+		Coordenadas otrasCoordenada = new Coordenadas(41.871941,12.567380);
+		//Destancia esperada de la web
+		//Buenos Aires(-34.608418,-58.373161)
+		//   Italy (41.871941,12.567380)
+		double distanciaQueEspero = 17940;
 		assertEquals(unaCoordenada.DistanciaA(otrasCoordenada),distanciaQueEspero,DELTA);
 	}
 	@Test
