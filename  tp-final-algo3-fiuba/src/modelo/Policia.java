@@ -75,7 +75,7 @@ public class Policia  {
 	public boolean arrestarSospechoso(Ladron LadronAArrestar){
 		if( Sospechoso == null || !Sospechoso.equals(LadronAArrestar) ) return false;
 		addArresto();
-		Sospechoso.arrestar();
+		LadronAArrestar.arrestar();
 		return true;
 	}
 	
