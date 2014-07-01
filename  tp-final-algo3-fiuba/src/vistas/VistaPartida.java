@@ -51,7 +51,8 @@ public class VistaPartida extends JFrame implements Observer{
 	private String RutaImagenPais = "/vistas/imagenes/paises/";
 	private String HorasTiempo;
 	private String NombrePaisActual;
-	private RelojDigital Reloj = new RelojDigital();
+	private RelojDigital Reloj;
+	private Timer timer;
 
 	
 	public VistaPartida(PartidaObservable partida,Juego juego) {
@@ -63,11 +64,22 @@ public class VistaPartida extends JFrame implements Observer{
 		panelMenuEdificios = new PanelEdificios(PanelGeneral,partida);
 		panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida);
 		crearVentana();
-		updateHora();
 		NombrePaisActual = partida.getPaisActual();
+		updateHora();
 		updateCiudadActual();
 		updateImagenPais();
 		mensajeDeBienvenida();
+		Reloj = new RelojDigital();
+		Tiempo.setText(Reloj.ObtenerHoraDigital());
+		timer = new Timer(50, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				HorasTiempo = Reloj.AvanzarUnaHora();
+				Tiempo.setText(HorasTiempo);
+			}
+		});
+		timer.start();
 	}
 
 
@@ -89,6 +101,7 @@ public class VistaPartida extends JFrame implements Observer{
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		updateHora();
 		if (partida.tiempoAgotado()){
 			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
 			partida.finalizarPartida();
@@ -103,7 +116,6 @@ public class VistaPartida extends JFrame implements Observer{
 			juego.cerrarPartida();
 		}
 		
-		updateHora();
 		updateCiudadActual();
 		updateImagenPais();
 		updateTextos();
@@ -118,19 +130,8 @@ public class VistaPartida extends JFrame implements Observer{
 		CiudadActual.setText(NombrePaisActual);
 	}
 	
-	private void updateHora() {
-		Timer timer = new Timer(500, new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				HorasTiempo = Reloj.AvanzarUnaHora();
-				Tiempo.setText(HorasTiempo);
-			}
-		});
-		timer.start(); 
+	private void updateHora() { 
 		Reloj.ActualizarHora(partida.getTiempoRestante());
-		HorasTiempo = Reloj.ObtenerHoraDigital();
-		Tiempo.setText(HorasTiempo);
 	}
 	private void updateImagenPais(){
 		
