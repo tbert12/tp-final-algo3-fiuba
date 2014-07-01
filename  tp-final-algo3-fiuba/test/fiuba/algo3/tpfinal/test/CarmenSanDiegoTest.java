@@ -4,6 +4,7 @@ package fiuba.algo3.tpfinal.test;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -94,7 +95,7 @@ public class CarmenSanDiegoTest {
 		Assert.assertTrue(Carmen.archivoPoliciasExiste());
 	}
 	@Test
-	public void CarmenLevantaXMLConLadrones() throws ErrorAlCargarDatos, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
+	public void CarmenLevantaXMLConLadrones() throws ErrorAlCargarDatos, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, URISyntaxException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Carmen.limpiarTodoslosDatos();
 		Caracteristicas caracteristicas1=new Caracteristicas(null,null,null,null,null);
@@ -118,7 +119,7 @@ public class CarmenSanDiegoTest {
 		Assert.assertTrue(Carmen.ladronEstaEnJuego(LadronDos.getNombre()));
 	}
 	@Test
-	public void CarmenLevantaXMLConPolicias() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ErrorAlCargarDatos{
+	public void CarmenLevantaXMLConPolicias() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ErrorAlCargarDatos, URISyntaxException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Carmen.limpiarTodoslosDatos();
 		Policia unPolicia = new Policia("Facu",4);
@@ -152,7 +153,7 @@ public class CarmenSanDiegoTest {
 		Assert.assertTrue(policiaAIniciar.equals(policiaBase));
 	}
 	@Test
-	public void CarmenArrancaPartida() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ErrorObjetoNoEncontrado, ErrorAlCargarDatos{
+	public void CarmenArrancaPartida() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ErrorObjetoNoEncontrado, ErrorAlCargarDatos, URISyntaxException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Carmen.limpiarTodoslosDatos();
 		Carmen.levantarTodosLosDatos();

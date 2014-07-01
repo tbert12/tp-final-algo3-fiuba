@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,9 +29,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public  class CarmenSanDiego {
-	private static String nombreArchivoPolicias = "RegistroPolicias.xml";
-	private static String nombreArchivoLadrones = "RegistroLadrones.xml";
-	private static String nombreArchivoPaises = "RegistroPaises.xml";
+	private static String nombreRuta = "/modelo.arhivosConfiguracion/";
+	private static String nombreArchivoPolicias = nombreRuta+"RegistroPolicias.xml";
+	private static String nombreArchivoLadrones = nombreRuta+"RegistroLadrones.xml";
+	private static String nombreArchivoPaises = nombreRuta+"RegistroPaises.xml";
 	private static List<Policia> listadoPolicias = new ArrayList<Policia>();
 	private static List<Ladron> listadoLadrones = new ArrayList<Ladron>();
 	private static List<Pais> listadoPaises = new ArrayList<Pais>();
@@ -43,7 +46,7 @@ public  class CarmenSanDiego {
 				| SecurityException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException
 				| InstantiationException | ParserConfigurationException
-				| SAXException | IOException e) {
+				| SAXException | IOException | URISyntaxException e) {
 			
 			throw new ErrorAlCargarDatos();
 		}
@@ -51,8 +54,10 @@ public  class CarmenSanDiego {
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private <T> List<T> levantarAlgoDelXML(String nombreArchivo,Class clase,List<T> listado, String tagALevantar) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
-		File archivo = new File(nombreArchivo);
+	private <T> List<T> levantarAlgoDelXML(String nombreArchivo,Class clase,List<T> listado, String tagALevantar) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, URISyntaxException{
+		URL pathArchivo = CarmenSanDiego.class.getResource(nombreArchivo);
+		System.out.println(pathArchivo);
+		File archivo = new File(pathArchivo.toURI());
 		
 		if (archivo.exists()){
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -82,7 +87,7 @@ public  class CarmenSanDiego {
 		return listadoDuplicado;
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private <T> void bajarObjetoAXML(String nombreArchivo,List<T> listado,Class clase) throws ParserConfigurationException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException{
+	private <T> void bajarObjetoAXML(String nombreArchivo,List<T> listado,Class clase) throws ParserConfigurationException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, URISyntaxException{
 		Document doc = crearDoc();
 		Method metodoSerializarMethod = clase.getDeclaredMethod("serializar",Document.class);
 		for(T objeto: listado){
@@ -96,12 +101,12 @@ public  class CarmenSanDiego {
 		transformarYEscribirADisco(nombreArchivo, doc);
 		}
 	}
-	public void levantarPoliciasDelXML(String nombreArchivo) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+	public void levantarPoliciasDelXML(String nombreArchivo) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, URISyntaxException{
 		levantarAlgoDelXML(nombreArchivo, Policia.class,listadoPolicias,"Policia");
 		 
 	
 	}
-	public void levantarPaisesDelXML(String nombreArchivo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException{
+	public void levantarPaisesDelXML(String nombreArchivo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, URISyntaxException{
 		levantarAlgoDelXML(nombreArchivo, Pais.class, listadoPaises,"Pais");
 	}
 	
@@ -113,7 +118,7 @@ public  class CarmenSanDiego {
 		ArrayList<Ladron> listadoDuplicado = duplicarListado(listadoLadrones, Ladron.class);
 		return listadoDuplicado;
 	}
-	public void levantarLadronesDelXML(String nombreArchivo) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException{
+	public void levantarLadronesDelXML(String nombreArchivo) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, URISyntaxException{
 		levantarAlgoDelXML(nombreArchivoLadrones, Ladron.class, listadoLadrones, "Ladron");
 	}
 	private Document crearDoc() throws ParserConfigurationException{
@@ -122,18 +127,19 @@ public  class CarmenSanDiego {
 		Document doc = db.newDocument();
 		return doc;
 	}
-	private void transformarYEscribirADisco(String nombreArchivo, Document doc) throws TransformerException{
+	private void transformarYEscribirADisco(String nombreArchivo, Document doc) throws TransformerException, URISyntaxException{
+		URL pathArchivo = CarmenSanDiego.class.getResource(nombreArchivo);
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","3");
 		DOMSource source = new DOMSource(doc);
-		File archivoDestino = new File(nombreArchivo);
+		File archivoDestino = new File(pathArchivo.toURI());
 		StreamResult result = new StreamResult(archivoDestino);
 		transformer.transform(source, result);
 	}
 	
-	private void bajarPoliciasAXML(String nombreArchivo) throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+	private void bajarPoliciasAXML(String nombreArchivo) throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, URISyntaxException{
 		bajarObjetoAXML(nombreArchivo, listadoPolicias, Policia.class);
 		}
 	
@@ -144,7 +150,7 @@ public  class CarmenSanDiego {
 		} catch (NoSuchMethodException | SecurityException
 				| IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException | ParserConfigurationException
-				| TransformerException e) {
+				| TransformerException | URISyntaxException e) {
 			throw new ErrorAlCargarDatos();
 		}
 		
@@ -198,7 +204,7 @@ public  class CarmenSanDiego {
 
 
 
-	public void generarPartidaXML(String nombreArchivo) throws ParserConfigurationException, TransformerException{
+	public void generarPartidaXML(String nombreArchivo) throws ParserConfigurationException, TransformerException, URISyntaxException{
 		
 		Document doc = crearDoc();
 		Element elementoPartidas = doc.createElement("Partidas");
@@ -233,15 +239,16 @@ public  class CarmenSanDiego {
 				| InvocationTargetException | ParserConfigurationException
 				| SAXException | IOException | ErrorNoSeEncontroPais
 				| TransformerException | ErrorObjetoNoEncontrado
-				| ErrorNoSeEncontroLadron e) {
+				| ErrorNoSeEncontroLadron | URISyntaxException e) {
 			throw new ErrorAlCargarDatos();
 		}
 	}
 
-	private Partida iniciarPartidaConString(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado{
+	private Partida iniciarPartidaConString(String nombreUsuario) throws ParserConfigurationException, SAXException, IOException, ErrorNoSeEncontroLadron, ErrorNoSeEncontroPais, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, TransformerException, ErrorObjetoNoEncontrado, URISyntaxException{
 		Policia elPolicia = iniciarJugador(nombreUsuario);
 		String rangoPoliciaString = elPolicia.toStringRango();
-		File archivoPartida = new File("Partidas"+rangoPoliciaString+".xml");
+		URL pathArchivo = CarmenSanDiego.class.getResource(nombreRuta+"Partidas"+rangoPoliciaString+".xml");
+		File archivoPartida = new File(pathArchivo.toURI());
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.newDocument();
@@ -297,7 +304,7 @@ public  class CarmenSanDiego {
 	}
 	
 	
-	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException {
+	public void levantarTodosLosDatos() throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, URISyntaxException {
 		levantarLadronesDelXML(nombreArchivoLadrones);
 		levantarPoliciasDelXML(nombreArchivoPolicias);
 		levantarPaisesDelXML(nombreArchivoPaises);
