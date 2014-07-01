@@ -16,11 +16,12 @@
          <PistasPais NombrePais="Cairo" pista0="Algo huele raro aqui" pista1="Hay algo que es muy sospechoso en estos lugares" pista2="Creo que lo que buscas esta aqui"/>
       </Pistas>
    </Partida>
-<Partida NombreLadron='Nick Brunch' NombreObjeto="La gran Moroni" ValorObjeto="Normal">
+<Partida NombreLadron='Nick Brunch' NombreObjeto="La Gran Moroni" ValorObjeto="Normal">
       <Pistas>
-         <PistasPais NombrePais="Moroni" pista0="Me pregunto acerca de los canguros" pista1="Se fue a un pais de Oceania" pista2="HeridaArmaDeFuego"/>
-         <PistasPais NombrePais="Sydney" pista0="Pista4" pista1="Pista5" pista2="Pista6"/>
-	 <PistasPais NombrePais="Montreal" pista0="Pista4" pista1="Pista5" pista2="Pista6"/>
+         <PistasPais NombrePais="Moroni" pista0="Me pregunto acerca de los canguros" pista1="Se fue a un pais de Oceania" pista2="Le gustaban los koalas. Tenia pelo negro"/>
+         <PistasPais NombrePais="Sydney" pista0="La bandera del pais era roja, blanca ,y con una hoja de maple" pista1="Le gustaba el hockey sobre hielo" pista2="Era alpinista"/>
+	 	 <PistasPais NombrePais="Montreal" pista0="Queria subir a la Estatua de la Libertad" pista1="Quiere ver una obra en Broadway.Tenia una linda moto" pista2="Se veia como un hombre rudo"/>
+	 	 <PistasPais NombrePais="New York" pista0="No deberias acercarte mucho" pista1="Cuidado!" pista2="Algo puede salir mal"/>
       </Pistas>
    </Partida>
 </Partidas>

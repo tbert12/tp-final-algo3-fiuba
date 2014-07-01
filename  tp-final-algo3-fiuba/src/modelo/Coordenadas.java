@@ -46,7 +46,6 @@ public class Coordenadas {
 
 	public int DistanciaA(Coordenadas otrasCoordenadas){
 		double distancia = Haversine(otrasCoordenadas);
-		System.out.println(distancia);
 		return (int)(distancia*enKilometros);
 		
 	}
