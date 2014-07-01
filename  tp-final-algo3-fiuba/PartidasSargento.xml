@@ -10,4 +10,14 @@
          <PistasPais NombrePais="Kathmandu" pista0="Ultimamente la ciudad se siente insegura" pista1="Ve con cuidado" pista2="Me parece haber visto lo que buscas, pero no quise indagar mas por miedo a salir herido"/>
       </Pistas>
    </Partida>
+   <Partida NombreLadron='Carmen Sandiego' NombreObjeto="Copa del mundo Fifa" ValorObjeto="Muy Valioso">
+      <Pistas>
+         <PistasPais NombrePais="Buenos Aires" pista0="HeridaArmaDeFuego" pista1="Queria probar unos spring rolls." pista2="HeridaArmaDeFuego"/>
+         <PistasPais NombrePais="Peking" pista0="Queria conocer la iconica Quinta Avenida" pista1="HeridaArmaDeFuego" pista2="Note su pelo castaño un poco opaco."/>
+         <PistasPais NombrePais="New York" pista0="Le preocupaban los disturbios recientes de indole politica que hubieron" pista1="Queria conocer la mas vieja de las siete maravillas mundiales." pista2="Le preocupaba el clima"/>
+         <PistasPais NombrePais="Cairo" pista0="Es el pais con el mayor indice de desarrollo humano." pista1="Un idioma de los que se hablan es el nynorsk.No se movia sin su raqueta de tennis" pista2="HeridaArmaDeFuego"/>
+         <PistasPais NombrePais="Oslo" pista0="Durante la segunda guerra, fue objetivo de conquista por el imperio japones debido a su ubicacion clave" pista1="Es uno de los peores lugares para vivir.No deberia ir en su descapotable" pista2="No sabia que ropa llevar para el clima humedo y seco durante todo el año"/>
+         <PistasPais NombrePais="Port Moresby" pista0="Ultimamente la ciudad se siente insegura" pista1="Ve con cuidado" pista2="Me parece haber visto lo que buscas, pero no quise indagar mas por miedo a salir herido"/>
+      </Pistas>
+   </Partida>
  </Partidas>
