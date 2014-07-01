@@ -1,6 +1,5 @@
 package fiuba.algo3.tpfinal.test;
 
-import static org.junit.Assert.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,22 +22,22 @@ public class ObjetoRobadoTest {
 	
 	@Test
 	public void ValorEsCorrecto() {
-		assertEquals(UnObjeto.getValor(),valor);
+		Assert.assertEquals(UnObjeto.getValor(),valor);
 	}
 
 	@Test
 	public void ValorNoEsCorrecto() {
-		assertNotEquals(UnObjeto.getValor(),"valioso");
+		Assert.assertNotEquals(UnObjeto.getValor(),"valioso");
 	}
 	
 	@Test
 	public void NombreEsCorrecto() {
-		assertEquals(UnObjeto.getNombre(),nombre);
+		Assert.assertEquals(UnObjeto.getNombre(),nombre);
 	}
 
 	@Test
 	public void NombreNoEsCorrecto() {
-		assertNotEquals(UnObjeto.getNombre(),"La ultima cena");
+		Assert.assertNotEquals(UnObjeto.getNombre(),"La ultima cena");
 	}
 	@Test
 	public void testSerializarYCargarObjeto() throws ParserConfigurationException{
