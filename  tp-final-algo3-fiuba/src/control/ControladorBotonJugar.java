@@ -22,7 +22,7 @@ public class ControladorBotonJugar implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String NombreUsuario = vista.getTexto();
-			sonidos.reproducirSonidoBotonJugar();
+			sonidos.reproducirSonidoBoton();
 			
 			if (NombreUsuario == null || NombreUsuario.equals("") ){
 				vista.mostrarError("Ingrese un nombre valido.");

@@ -18,7 +18,7 @@ public class ControladorBotonViajar implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		vista.MostrarPaisesParaViajar();
-		sonidos.reproducirSonidoBotonViajar();
+		sonidos.reproducirSonidoBoton();
 		
 	}
 

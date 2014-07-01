@@ -6,7 +6,7 @@ import javax.swing.JApplet;
 
 public class Sonidos extends Thread {
 
-	private AudioClip sonidoBotonJugar,sonidoBotonViajar,sonidoBotonFiltrar;
+	private AudioClip sonidoBoton,sonidoBotonViajar,sonidoBotonFiltrar;
 	
 	public Sonidos(){
 		crearSonidos();
@@ -14,14 +14,13 @@ public class Sonidos extends Thread {
 
 	private void crearSonidos(){
 	
-		sonidoBotonJugar = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoBotonJugar.wav"));
+		sonidoBoton = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoBoton.wav"));
 		sonidoBotonViajar = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoBotonViajar.wav"));
 		sonidoBotonFiltrar = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoBotonFiltrar.wav"));
 	}
 
-	public void reproducirSonidoBotonJugar(){
-		sonidoBotonJugar.play();
-		//while (sonidoBotonJugar.);
+	public void reproducirSonidoBoton(){
+		sonidoBoton.play();
 	}
 
 	public void reproducirSonidoBotonViajar(){

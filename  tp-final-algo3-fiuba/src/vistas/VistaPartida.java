@@ -61,9 +61,9 @@ public class VistaPartida extends JFrame implements Observer{
 		this.partida = partida;
 		this.partida.addObserver(this);  
 		PanelGeneral = new JPanel();
-		panelMenuParaViajar = new PanelViajar(PanelGeneral,partida);
-		panelMenuEdificios = new PanelEdificios(PanelGeneral,partida);
-		panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida);
+		panelMenuParaViajar = new PanelViajar(PanelGeneral,partida,this.sonidos);
+		panelMenuEdificios = new PanelEdificios(PanelGeneral,partida,this.sonidos);
+		panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida,this.sonidos);
 		crearVentana();
 		NombrePaisActual = partida.getPaisActual();
 		updateCiudadActual();
@@ -259,7 +259,7 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonInvestigar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigar.png")));
 		BotonInvestigar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigarApretado.png")));
 		BotonInvestigar.setBounds(428, 403, 80, 77);
-		BotonInvestigar.addActionListener(new ControladorBotonInvestigar(this));
+		BotonInvestigar.addActionListener(new ControladorBotonInvestigar(this,this.sonidos));
 		PanelGeneral.add(BotonInvestigar);
 		
 		JButton BotonViajar = new JButton("Viajar");

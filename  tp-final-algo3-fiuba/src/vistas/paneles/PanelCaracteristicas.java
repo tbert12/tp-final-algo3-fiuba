@@ -13,20 +13,22 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import control.ControladorBotonBuscar;
+import vistas.Sonidos;
 import vistas.VistaPartida;
 import modelo.PartidaObservable;
 
 public class PanelCaracteristicas {
 	private JPanel PanelGeneral;
-	JLayeredPane MenuCaracteristicas;
-	PartidaObservable partida;
-	Choice choiceSexo,choiceHobby,choiceCabello,choiceSenia,choiceVehiculo;
+	private JLayeredPane MenuCaracteristicas;
+	private PartidaObservable partida;
+	private Choice choiceSexo,choiceHobby,choiceCabello,choiceSenia,choiceVehiculo;
+	private Sonidos sonidos;
 	
 	
-	
-	public PanelCaracteristicas(JPanel PanelGeneral,PartidaObservable partida){
+	public PanelCaracteristicas(JPanel PanelGeneral,PartidaObservable partida,Sonidos sonidos){
 		this.partida = partida;
 		this.PanelGeneral = PanelGeneral;
+		this.sonidos = sonidos;
 		MenuCaracteristicas = new JLayeredPane();
 		MenuCaracteristicas.setBounds(310, 249, 307, 135);
 		this.PanelGeneral.add(MenuCaracteristicas);
@@ -102,7 +104,7 @@ public class PanelCaracteristicas {
 		BotonBuscar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonOKNormal.png")));
 		BotonBuscar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonOKApretado.png")));
 		BotonBuscar.setBounds(225, 55, 81, 46);
-		BotonBuscar.addActionListener(new ControladorBotonBuscar(partida,this));
+		BotonBuscar.addActionListener(new ControladorBotonBuscar(partida,this,this.sonidos));
 		MenuCaracteristicas.add(BotonBuscar);
 		
 	}
