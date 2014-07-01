@@ -2,11 +2,30 @@
 <Partidas>
    <Partida NombreLadron='Ihor Ihorovitch' NombreObjeto="El Obelisco" ValorObjeto="Normal">
       <Pistas>
-         <PistasPais NombrePais="Sydney" pista0="Dijo que iria a aprender Samba" pista1="Pregunto ¿Voce fala portugueis?. No sé a qué se refería" pista2="Dijo algo sobre un mundial de soccer.Tenia un lindo pelo rubio"/>
-         <PistasPais NombrePais="Rio de Janeiro" pista0="Dijo que necesitaba hablar ingles" pista1="Queria conocer la estatua de la libertad" pista2="Se movia en una limusina"/>
+         <PistasPais NombrePais="Sydney" pista0="Dijo que iria a aprender Samba.Llevaba consigo su equipo de Croquet" pista1="Pregunto ¿Voce fala portugueis?. No sé a qué se refería" pista2="Dijo algo sobre un mundial de soccer.Tenia un lindo pelo rubio"/>
+         <PistasPais NombrePais="Rio de Janeiro" pista0="Dijo que necesitaba hablar ingles" pista1="Estaba obsesionado con el jarabe de maple" pista2="Se movia en una limusina"/>
          <PistasPais NombrePais="Montreal" pista0="Su pasion eran las montañas" pista1="Tenia una bandera roja y blanca su avion" pista2="Se refirio al pais como, geograficamente, como con forma de diamante"/>
          <PistasPais NombrePais="Singapore" pista0="Dijo que le gustaria probar la pizza napolitana" pista1="Me pregunto si sabia hablar el idioma Italiano" pista2="Fue a un pais conocido por su forma de bota"/>
          <PistasPais NombrePais="Rome" pista0="Algo huele raro aqui" pista1="Hay algo que es muy sospechoso en estos lugares" pista2="Creo que lo que buscas esta aqui"/>
       </Pistas>
    </Partida>
+     <Partida NombreLadron='Len Bulk' NombreObjeto="Bong Ancestral" ValorObjeto="Normal">
+      <Pistas>
+         <PistasPais NombrePais="Peking" pista0="Tenia la idea de visitar las piramides de Keops" pista1="Tenia un interesante cabello rojo" pista2="Cambio su moneda a Libras Egipcias "/>
+         <PistasPais NombrePais="Cairo" pista0="Estaba preocupado por la crisis actual en el pais" pista1="Queria conocer el partenon. Su descapotable era lindo" pista2="HeridaArmaDeFuego"/>
+         <PistasPais NombrePais="Athens" pista0="Cambio su dinero a Euros" pista1="Su avion tenia una bandera azul,blanca y roja " pista2="Estaba esceptico sobre ciertas comidas del pais"/>
+         <PistasPais NombrePais="Paris" pista0="Se refirio a ver un partido de Basquetball" pista1="Hablando de futbol, dijo que fueron anfitriones del mundial mas concurrido. Su tatuaje era impresionante" pista2="En ese pais, él sería el más flaco de todos"/>
+         <PistasPais NombrePais="New York" pista0="Cuidado, te estas acercando demasiado" pista1="Algo raro esta pasando aqui" pista2="Me parecio ver a quien dices hace dos minutos atras"/>
+      </Pistas>
+   </Partida>
+     <Partida NombreLadron='Fast Eddie B' NombreObjeto="Cuadro presidencial" ValorObjeto="Normal">
+      <Pistas>
+         <PistasPais NombrePais="Budapest" pista0="Estaba encantado con la ecologia del pais." pista1="Queria ver los geiseres. Era un hombre fuerte" pista2="Dijo que se marcharia hacia el norte polar."/>
+         <PistasPais NombrePais="Reykjavík" pista0="Gran fanatico de Gandhi. Se movia arriba de un descapotable" pista1="Me conto la historia del precursor del Taj Mahal" pista2="Le preocupaban las condiciones sanitarias."/>
+         <PistasPais NombrePais="New Delhi" pista0="El avion tenia una bandera roja y blanca" pista1="Aposto al yen" pista2="Le interesaba el cultivo de arroz"/>
+         <PistasPais NombrePais="Tokyo" pista0="Queria probar un 'Choripan'" pista1="Dice que se vivia una situacion financiera tumultuosa en ese pais" pista2="Llevaba unas joyas de origen dudoso"/>
+         <PistasPais NombrePais="Buenos Aires" pista0="Cuidado, te estas acercando demasiado" pista1="Algo raro esta pasando aqui" pista2="Me parecio ver a quien dices hace dos minutos atras"/>
+      </Pistas>
+   </Partida>
+   
 </Partidas>
