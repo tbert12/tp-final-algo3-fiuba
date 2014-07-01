@@ -1,7 +1,5 @@
 package fiuba.algo3.tpfinal.test;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -51,7 +49,7 @@ public class PaisTest {
 	@Test
 	public void testElNombreDelPaisEsCorrecto() {
 		
-		assertEquals( UnPais.getNombre(), nombre );
+		Assert.assertEquals( UnPais.getNombre(), nombre );
 	}	
 	
 	@Test
@@ -68,7 +66,7 @@ public class PaisTest {
 		int i = 0;
 		while( Iterador.hasNext() ){
 			Edificio NombreActual = Iterador.next();
-			assertEquals( NombreActual, edificios[i]);
+			Assert.assertEquals( NombreActual, edificios[i]);
 			i++;
 		}
 	}
@@ -78,7 +76,7 @@ public class PaisTest {
 		Coordenadas otrascoordenadasDelPais = new Coordenadas(0,0);
 		Pais otroPais = new Pais(nombre,edificios,otrascoordenadasDelPais);
 		int distanciaEsperada = 506;
-		assertEquals(UnPais.distanciaAPais(otroPais),distanciaEsperada,0);
+		Assert.assertEquals(UnPais.distanciaAPais(otroPais),distanciaEsperada,0);
 	}
 
 	@Test
@@ -86,8 +84,8 @@ public class PaisTest {
 		String Info = "Informacion del pais";
 		UnPais.setInformacion(Info);
 		
-		assertEquals(UnPais.getInformacion(),Info);
-		assertNotEquals(UnPais.getInformacion(),Info + "Algo Mas");
+		Assert.assertEquals(UnPais.getInformacion(),Info);
+		Assert.assertNotEquals(UnPais.getInformacion(),Info + "Algo Mas");
 	}
 	@Test
 	public void testPersistenciaUnPais() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
