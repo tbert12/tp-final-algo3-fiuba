@@ -65,11 +65,11 @@ public class VistaPartida extends JFrame implements Observer{
 		panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida);
 		crearVentana();
 		NombrePaisActual = partida.getPaisActual();
-		updateHora();
 		updateCiudadActual();
 		updateImagenPais();
 		mensajeDeBienvenida();
 		Reloj = new RelojDigital();
+		updateHora();
 		Tiempo.setText(Reloj.ObtenerHoraDigital());
 		timer = new Timer(50, new ActionListener() {
 			
