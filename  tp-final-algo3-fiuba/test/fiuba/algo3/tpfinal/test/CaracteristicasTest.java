@@ -1,9 +1,12 @@
 package fiuba.algo3.tpfinal.test;
 
-import static org.junit.Assert.*;
+
 import modelo.caracteristicas.*;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+
 
 public class CaracteristicasTest {
 	private Sexo UnSexo = Sexo.MASCULINO;
@@ -15,43 +18,43 @@ public class CaracteristicasTest {
 
 	@Test
 	public void SexoEsCorrecto() {
-		assertEquals(UnaCaracteristica.getSexo(),UnSexo);
+		Assert.assertEquals(UnaCaracteristica.getSexo(),UnSexo);
 	}
 	@Test
 	public void HobbyEsCorrecto() {
-		assertEquals(UnaCaracteristica.getHobby(),UnHobby);
+		Assert.assertEquals(UnaCaracteristica.getHobby(),UnHobby);
 	}
 	@Test
 	public void CabelloEsCorrecto() {
-		assertEquals(UnaCaracteristica.getCabello(),UnCabello);
+		Assert.assertEquals(UnaCaracteristica.getCabello(),UnCabello);
 	}
 	@Test
 	public void SeniaEsCorrecto() {
-		assertEquals(UnaCaracteristica.getSenia(),UnaSenia);
+		Assert.assertEquals(UnaCaracteristica.getSenia(),UnaSenia);
 	}
 	@Test
 	public void VehiculoEsCorrecto() {
-		assertEquals(UnaCaracteristica.getVehiculo(),UnVehiculo);
+		Assert.assertEquals(UnaCaracteristica.getVehiculo(),UnVehiculo);
 	}
 	
 	@Test
 	public void SexoNoEsCorrecto() {
-		assertNotEquals(UnaCaracteristica.getSexo(),Sexo.FEMENINO);
+		Assert.assertNotEquals(UnaCaracteristica.getSexo(),Sexo.FEMENINO);
 	}
 	@Test
 	public void HobbyNoEsCorrecto() {
-		assertNotEquals(UnaCaracteristica.getHobby(),Hobby.ALPINISMO);
+		Assert.assertNotEquals(UnaCaracteristica.getHobby(),Hobby.ALPINISMO);
 	}
 	@Test
 	public void CabelloNoEsCorrecto() {
-		assertNotEquals(UnaCaracteristica.getCabello(),Cabello.ROJO);
+		Assert.assertNotEquals(UnaCaracteristica.getCabello(),Cabello.ROJO);
 	}
 	@Test
 	public void SeniaNoEsCorrecto() {
-		assertNotEquals(UnaCaracteristica.getSenia(),Senia.JOYAS);
+		Assert.assertNotEquals(UnaCaracteristica.getSenia(),Senia.JOYAS);
 	}
 	@Test
 	public void VehiculoNoEsCorrecto() {
-		assertNotEquals(UnaCaracteristica.getVehiculo(),Vehiculo.LIMUSINA);
+		Assert.assertNotEquals(UnaCaracteristica.getVehiculo(),Vehiculo.LIMUSINA);
 	}
 }

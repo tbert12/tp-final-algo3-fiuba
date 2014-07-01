@@ -12,7 +12,6 @@ import modelo.Edificio;
 import modelo.Pais;
 import modelo.Trayectoria;
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
-import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.w3c.dom.Document;
@@ -34,7 +33,7 @@ import org.w3c.dom.Element;
 			ListaPaises.add(Argentina);
 			Trayectoria UnaTrayectoria = new Trayectoria(ListaPaises);
 			
-			assertEquals(UnaTrayectoria.avanzar(),ErrorNoHayMasPaisesParaAvanzar.class);
+			Assert.assertEquals(UnaTrayectoria.avanzar(),ErrorNoHayMasPaisesParaAvanzar.class);
 			
 		}
 			
@@ -45,7 +44,7 @@ import org.w3c.dom.Element;
 			ListaPaises.add(Brasil);
 			Trayectoria UnaTrayectoria = new Trayectoria(ListaPaises);
 			
-			assertEquals(UnaTrayectoria.avanzar(),Brasil);
+			Assert.assertEquals(UnaTrayectoria.avanzar(),Brasil);
 		}
 		
 		@Test
@@ -53,8 +52,8 @@ import org.w3c.dom.Element;
 			ArrayList<Pais> ListaPaises = new ArrayList<Pais>();
 			ListaPaises.add(Argentina);
 			Trayectoria UnaTrayectoria = new Trayectoria(ListaPaises);
-			assertEquals(Argentina, UnaTrayectoria.paisActual());
-			assertEquals(Argentina, UnaTrayectoria.paisFinal());
+			Assert.assertEquals(Argentina, UnaTrayectoria.paisActual());
+			Assert.assertEquals(Argentina, UnaTrayectoria.paisFinal());
 		}
 		@Test
 		public void testSerializarYcargarTrayectoria() throws ParserConfigurationException, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
