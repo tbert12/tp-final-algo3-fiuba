@@ -10,6 +10,7 @@ public class RelojDigital {
 	
 	public void ActualizarHora(int tiempo){
 		this.TiempoInicial = tiempo;
+		if (this.TiempoInicial < 0) this.TiempoInicial = 0;
 	}
 
 	private String obtenerHoraDigitalDespuesde(int cantHoras){
