@@ -29,7 +29,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public  class CarmenSanDiego {
-	private static String nombreRuta = "/modelo.arhivosConfiguracion/";
+	private static String nombreRuta = "/modelo/archivosConfiguracion/";
 	private static String nombreArchivoPolicias = nombreRuta+"RegistroPolicias.xml";
 	private static String nombreArchivoLadrones = nombreRuta+"RegistroLadrones.xml";
 	private static String nombreArchivoPaises = nombreRuta+"RegistroPaises.xml";
@@ -56,7 +56,6 @@ public  class CarmenSanDiego {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private <T> List<T> levantarAlgoDelXML(String nombreArchivo,Class clase,List<T> listado, String tagALevantar) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, URISyntaxException{
 		URL pathArchivo = CarmenSanDiego.class.getResource(nombreArchivo);
-		System.out.println(pathArchivo);
 		File archivo = new File(pathArchivo.toURI());
 		
 		if (archivo.exists()){
@@ -188,17 +187,18 @@ public  class CarmenSanDiego {
 	public Policia iniciarJugador(String unNombre) throws ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ParserConfigurationException, SAXException, IOException, TransformerException{
 		return verSiJugadorYaJugo(unNombre);
 	}
-	private Boolean archivoExiste(String nombreArchivo){
-		File archivo = new File(nombreArchivo);
+	private Boolean archivoExiste(String nombreArchivo) throws URISyntaxException{
+		URL archivoPath = CarmenSanDiego.class.getResource(nombreArchivo);
+		File archivo = new File(archivoPath.toURI());
 		if (archivo.exists()){
 			return true;
 		}
 		return false;
 	}
-	public Boolean archivoPoliciasExiste(){
+	public Boolean archivoPoliciasExiste() throws URISyntaxException{
 		return archivoExiste(nombreArchivoPolicias);
 	}
-	public Boolean archivoLadronesExiste(){
+	public Boolean archivoLadronesExiste() throws URISyntaxException{
 		return archivoExiste(nombreArchivoLadrones);
 	}
 

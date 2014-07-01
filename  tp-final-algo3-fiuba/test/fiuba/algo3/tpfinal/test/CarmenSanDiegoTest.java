@@ -84,7 +84,7 @@ public class CarmenSanDiegoTest {
 	}
 	
 	@Test
-	public void CarmenCreaXMLConPolicias() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException, InstantiationException, SAXException, IOException, ErrorAlCargarDatos{
+	public void CarmenCreaXMLConPolicias() throws ParserConfigurationException, TransformerException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException, InstantiationException, SAXException, IOException, ErrorAlCargarDatos, URISyntaxException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
 		Carmen.limpiarTodoslosDatos();
 		Policia unPolicia = new Policia("Facu",4);
@@ -121,14 +121,9 @@ public class CarmenSanDiegoTest {
 	@Test
 	public void CarmenLevantaXMLConPolicias() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, ErrorAlCargarDatos, URISyntaxException{
 		CarmenSanDiego Carmen = new CarmenSanDiego();
-		Carmen.limpiarTodoslosDatos();
-		Policia unPolicia = new Policia("Facu",4);
-		Carmen.agregarPolicia(unPolicia);
-		Policia otroPolicia = new Policia("Tomy",10);
-		Carmen.agregarPolicia(otroPolicia);
-		Carmen.levantarPoliciasDelXML("pruebaPoliciasXML.xml");
+		Policia unPolicia = new Policia("Tomy",0);
+		Carmen.levantarPoliciasDelXML("/modelo/archivosConfiguracion/RegistroPolicias.xml");
 		Assert.assertTrue(Carmen.policiaEstaEnJuego(unPolicia));
-		Assert.assertTrue(Carmen.policiaEstaEnJuego(otroPolicia));
 	
 	}
 	
