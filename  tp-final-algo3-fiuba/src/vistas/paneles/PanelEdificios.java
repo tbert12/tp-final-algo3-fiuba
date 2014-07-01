@@ -16,11 +16,10 @@ public class PanelEdificios extends PanelTresBotones{
 	
 	private ArrayList<Edificio> EdificiosAMostrar;
 	private BotonParaEdificio BotonUno,BotonDos,BotonTres;
-	private Sonidos sonidos;
 
 	public PanelEdificios(JPanel panel, PartidaObservable partida, Sonidos sonidos) {
-		super(panel, partida);
-		this.sonidos = sonidos;
+		super(panel, partida,sonidos);
+		
 	}
 
 	protected void crearBotones(){

@@ -16,11 +16,9 @@ public class PanelViajar extends PanelTresBotones{
 	
 	private ArrayList<Pais> Paises;
 	private BotonParaPais BotonUno,BotonDos,BotonTres;
-	private Sonidos sonidos;
 	
 	public PanelViajar(JPanel panel, PartidaObservable partida, Sonidos sonidos) {
-		super(panel, partida);
-		this.sonidos = sonidos;
+		super(panel, partida,sonidos);
 	}
 	
 	protected void crearBotones(){
