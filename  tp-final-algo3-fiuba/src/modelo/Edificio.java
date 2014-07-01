@@ -21,7 +21,7 @@ public class Edificio {
 	public Edificio(String UnNombre){
 		this.Nombre = UnNombre;
 		Random random = new Random();
-		String[] Pistas = {"Nunca he visto a la persona que dices","No he visto a nadie como dices","Jamas he visto a esa persona","Lo siento, no","La verdad que no he visto a nadie que responda a eso"};
+		String[] Pistas = {"Nunca he visto a la persona que dices","No he visto a nadie como dices","Jamas he visto a esa persona","Lo siento, no.","La verdad que no he visto a nadie que responda a eso"};
 		this.Pista = Pistas[random.nextInt(Pistas.length-1)];
 		this.VecesVisitado = 0;
 		this.Herida = null;
