@@ -119,7 +119,7 @@ public class VistaPartida extends JFrame implements Observer{
 	}
 	
 	private void updateHora() {
-		Timer timer = new Timer(1000, new ActionListener() {
+		Timer timer = new Timer(500, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
