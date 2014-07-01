@@ -77,7 +77,7 @@ public class PaisTest {
 	public void testLasDistanciasSonCorrectas(){
 		Coordenadas otrascoordenadasDelPais = new Coordenadas(0,0);
 		Pais otroPais = new Pais(nombre,edificios,otrascoordenadasDelPais);
-		int distanciaEsperada = (int) (Math.sqrt(8)*111);
+		int distanciaEsperada = 506;
 		assertEquals(UnPais.distanciaAPais(otroPais),distanciaEsperada,0);
 	}
 

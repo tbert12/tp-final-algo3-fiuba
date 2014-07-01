@@ -128,10 +128,13 @@ public class PartidaJuegoTest {
 		assertEquals(unPolicia.getPais(),Usa);
 		
 		ListaDeEdificios = unaPartida.edificiosAMostrar();
-		//El policia esta en el mismo pais que el ladron, deberia encontrarlo
 		
+		//El policia esta en el mismo pais que el ladron, deberia encontrarlo
 		//si la orden de arresto se emitio el ladron debe ser atrapado
-		assertEquals(unaPartida.visitarEdificio(ListaDeEdificios.get(0)),"Ladron Atrapado");
+		ArrayList<Edificio> EdificiosDondePuedeEstarElLadron = unaPartida.edificiosAMostrar();
+		for (Edificio edificio: EdificiosDondePuedeEstarElLadron){
+			unaPartida.visitarEdificio(edificio);
+		}
 		assertTrue(unaPartida.seTerminoLaPartida());
 		}
 	
