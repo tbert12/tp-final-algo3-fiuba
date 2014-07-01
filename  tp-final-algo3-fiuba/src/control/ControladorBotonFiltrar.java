@@ -11,9 +11,9 @@ public class ControladorBotonFiltrar implements ActionListener {
 	VistaPartida vista;
 	Sonidos sonidos;
 
-	public ControladorBotonFiltrar(VistaPartida vista,Sonidos sonidos) {
+	public ControladorBotonFiltrar(VistaPartida vista) {
 		this.vista = vista;
-		this.sonidos = sonidos;
+		this.sonidos = Sonidos.ObtenerSonidos();
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		vista.MostrarCaracteristicasParaFiltrar();

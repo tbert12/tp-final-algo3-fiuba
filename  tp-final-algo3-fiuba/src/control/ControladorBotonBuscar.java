@@ -13,10 +13,10 @@ public class ControladorBotonBuscar implements ActionListener{
 	private PanelCaracteristicas panel;
 	private Sonidos sonidos;
 	
-	public ControladorBotonBuscar(PartidaObservable partida,PanelCaracteristicas panel,Sonidos sonidos){
+	public ControladorBotonBuscar(PartidaObservable partida,PanelCaracteristicas panel){
 		this.partida = partida;
 		this.panel = panel;
-		this.sonidos = sonidos;
+		this.sonidos = Sonidos.ObtenerSonidos();;
 	}
 	
 	@Override

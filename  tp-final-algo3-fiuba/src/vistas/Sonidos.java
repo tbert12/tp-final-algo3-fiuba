@@ -5,12 +5,20 @@ import javax.swing.JApplet;
 
 public class Sonidos extends Thread {
 
+	private static Sonidos instancia;
 	private AudioClip sonidoBoton,sonidoBotonViajar,sonidoBotonFiltrar,
 					sonidoBotonVisitar,sonidoBienvenida,sonidoExitoso,
 					sonidoFallido,sonidoHeridaCuchillo,sonidoHeridaArma,sonidoReloj;
 	
-	public Sonidos(){
+	private Sonidos(){
 		crearSonidos();
+	}
+	
+	public static Sonidos ObtenerSonidos(){
+		if(instancia == null){
+			instancia = new Sonidos();
+		}
+		return instancia;
 	}
 
 	private void crearSonidos(){

@@ -10,8 +10,8 @@ public class RelojDigital {
 	public int TiempoInicial = 154;
 	public int TiempoTemporal = TiempoInicial;
 	
-	public RelojDigital(Sonidos sonidos) {
-		this.sonidos = sonidos;
+	public RelojDigital() {
+		this.sonidos = Sonidos.ObtenerSonidos();
 	}
 	
 	public void ActualizarHora(int tiempo){

@@ -21,10 +21,8 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel MenuInicial;
 	private JTextField textoNombreUsuario;
 	private Juego unJuego;
-	private Sonidos sonidos;
 	
-	public VentanaPrincipal(Juego unJuego,Sonidos sonido) {
-		this.sonidos = sonido;
+	public VentanaPrincipal(Juego unJuego) {
 		this.unJuego = unJuego;
 		crearVentana();
 		
@@ -65,7 +63,7 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		
 		//controlador
-		final ControladorBotonJugar control = new ControladorBotonJugar(this,this.unJuego,this.sonidos);
+		final ControladorBotonJugar control = new ControladorBotonJugar(this,this.unJuego);
 		
 		textoNombreUsuario = new JTextField();
 		textoNombreUsuario.setBounds(193, 353, 244, 33);

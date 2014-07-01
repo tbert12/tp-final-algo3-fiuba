@@ -12,10 +12,10 @@ public class ControladorViajarAPais implements ActionListener {
 	private BotonParaPais boton;
 	private Sonidos sonidos;
 	
-	public ControladorViajarAPais(PartidaObservable partida, BotonParaPais boton,Sonidos sonidos) {
+	public ControladorViajarAPais(PartidaObservable partida, BotonParaPais boton) {
 		this.partida = partida;
 		this.boton = boton;
-		this.sonidos = sonidos;
+		this.sonidos = Sonidos.ObtenerSonidos();;
 	}
 	
 	@Override

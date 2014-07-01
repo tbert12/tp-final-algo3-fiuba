@@ -13,10 +13,10 @@ public class ControladorBotonJugar implements ActionListener {
 		private Juego juego;
 		private Sonidos sonidos;
 		
-		public ControladorBotonJugar(VentanaPrincipal vista,Juego juego,Sonidos sonidos) {
+		public ControladorBotonJugar(VentanaPrincipal vista,Juego juego) {
 			this.vista = vista;
 			this.juego = juego;
-			this.sonidos = sonidos;
+			this.sonidos = Sonidos.ObtenerSonidos();;
 		}
 
 		@Override

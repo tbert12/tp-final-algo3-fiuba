@@ -5,8 +5,6 @@ import java.util.Observer;
 
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-
-import vistas.Sonidos;
 import modelo.PartidaObservable;
 
 public abstract class PanelTresBotones implements Observer{
@@ -14,10 +12,8 @@ public abstract class PanelTresBotones implements Observer{
 	protected JLayeredPane Panel;
 	protected PartidaObservable partida;
 	protected String FuenteDeBotones = "Stencil";
-	protected Sonidos sonidos;
 	
-	public PanelTresBotones(JPanel panel,PartidaObservable partida,Sonidos sonidos){
-		this.sonidos = sonidos;
+	public PanelTresBotones(JPanel panel,PartidaObservable partida){
 		this.PanelGeneral = panel;
 		Panel = new JLayeredPane();
 		this.partida = partida;

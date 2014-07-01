@@ -10,9 +10,9 @@ public class ControladorBotonViajar implements ActionListener{
 	private VistaPartida vista;
 	private Sonidos sonidos;
 	
-	public ControladorBotonViajar(VistaPartida vista,Sonidos sonidos) {
+	public ControladorBotonViajar(VistaPartida vista) {
 		this.vista = vista;
-		this.sonidos = sonidos;
+		this.sonidos = Sonidos.ObtenerSonidos();
 	}
 	
 	@Override

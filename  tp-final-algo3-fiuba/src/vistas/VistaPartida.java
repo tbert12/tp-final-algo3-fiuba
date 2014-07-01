@@ -53,21 +53,21 @@ public class VistaPartida extends JFrame implements Observer{
 	private Timer timer;
 
 	
-	public VistaPartida(PartidaObservable partida,Juego juego,Sonidos sonidos) {
+	public VistaPartida(PartidaObservable partida,Juego juego) {
 		this.juego = juego;	
-		this.sonidos = sonidos;
+		this.sonidos = Sonidos.ObtenerSonidos();
 		this.partida = partida;
 		this.partida.addObserver(this);  
 		PanelGeneral = new JPanel();
-		panelMenuParaViajar = new PanelViajar(PanelGeneral,partida,this.sonidos);
-		panelMenuEdificios = new PanelEdificios(PanelGeneral,partida,this.sonidos);
-		panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida,this.sonidos);
+		panelMenuParaViajar = new PanelViajar(PanelGeneral,partida);
+		panelMenuEdificios = new PanelEdificios(PanelGeneral,partida);
+		panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida);
 		crearVentana();
 		NombrePaisActual = partida.getPaisActual();
 		updateCiudadActual();
 		updateImagenPais();
 		mensajeDeBienvenida();
-		Reloj = new RelojDigital(this.sonidos);
+		Reloj = new RelojDigital();
 		updateHora();
 		timer = new Timer(200, new HiloDelReloj(Reloj,Tiempo));
 		timer.start();
@@ -260,7 +260,7 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonInvestigar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigar.png")));
 		BotonInvestigar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigarApretado.png")));
 		BotonInvestigar.setBounds(428, 403, 80, 77);
-		BotonInvestigar.addActionListener(new ControladorBotonInvestigar(this,this.sonidos));
+		BotonInvestigar.addActionListener(new ControladorBotonInvestigar(this));
 		PanelGeneral.add(BotonInvestigar);
 		
 		JButton BotonViajar = new JButton("Viajar");
@@ -271,7 +271,7 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonViajar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarNormal.png")));
 		BotonViajar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarApretado.png")));
 		BotonViajar.setBounds(555, 403, 80, 77);
-		BotonViajar.addActionListener(new ControladorBotonViajar(this,this.sonidos));
+		BotonViajar.addActionListener(new ControladorBotonViajar(this));
 		PanelGeneral.add(BotonViajar);
 		
 		JButton BotonFiltrar = new JButton("Filtrar");
@@ -280,7 +280,7 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonFiltrar.setBorderPainted(false);
 		BotonFiltrar.setMargin(new Insets(3, 28, 0, 10));
 		BotonFiltrar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarNormal.png")));
-		BotonFiltrar.addActionListener(new ControladorBotonFiltrar(this,this.sonidos));
+		BotonFiltrar.addActionListener(new ControladorBotonFiltrar(this));
 		BotonFiltrar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarApretado.png")));
 		BotonFiltrar.setBounds(298, 403, 80, 77);
 		PanelGeneral.add(BotonFiltrar);

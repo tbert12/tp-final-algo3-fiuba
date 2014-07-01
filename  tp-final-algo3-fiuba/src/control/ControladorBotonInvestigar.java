@@ -10,9 +10,9 @@ public class ControladorBotonInvestigar implements ActionListener{
 	private VistaPartida vista;
 	private Sonidos sonidos;
 
-	public ControladorBotonInvestigar(VistaPartida vista,Sonidos sonido) {
+	public ControladorBotonInvestigar(VistaPartida vista) {
 		this.vista = vista;
-		this.sonidos = sonido;
+		this.sonidos = Sonidos.ObtenerSonidos();
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

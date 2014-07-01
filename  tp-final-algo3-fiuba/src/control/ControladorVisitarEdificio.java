@@ -13,10 +13,10 @@ public class ControladorVisitarEdificio implements ActionListener {
 	private BotonParaEdificio boton;
 	private Sonidos sonidos;
 	
-	public ControladorVisitarEdificio(PartidaObservable partida, BotonParaEdificio boton,Sonidos sonido) {
+	public ControladorVisitarEdificio(PartidaObservable partida, BotonParaEdificio boton) {
 		this.partida = partida;
 		this.boton = boton;
-		this.sonidos = sonido;
+		this.sonidos = Sonidos.ObtenerSonidos();
 	}
 	
 	@Override

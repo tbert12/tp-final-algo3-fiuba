@@ -20,8 +20,8 @@ public class Juego{
 	Sonidos sonidos;
 	
 	public Juego(){
-		sonidos = new Sonidos();
-		ventanaPrincipal = new VentanaPrincipal(this,this.sonidos);
+		sonidos = Sonidos.ObtenerSonidos();
+		ventanaPrincipal = new VentanaPrincipal(this);
 		
 		try {
 			carmen = new CarmenSanDiego();
@@ -41,7 +41,7 @@ public class Juego{
 		try {
 			partida = carmen.iniciarPartida(string);
 			PartidaObservable partidaObservable = new PartidaObservable(partida);
-			vistaPartida = new VistaPartida(partidaObservable,this,this.sonidos);
+			vistaPartida = new VistaPartida(partidaObservable,this);
 		} catch (ErrorAlCargarDatos e) {
 
 			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego. Contactate con el administrador del sistemas.");
