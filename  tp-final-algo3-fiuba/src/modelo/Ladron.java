@@ -35,7 +35,7 @@ public class Ladron {
 		ArrayList<Edificio> EdificiosdePaisFinal = paisQueElLadronseOculta.getEdificios();
 		int cantidaDeEdificios = EdificiosdePaisFinal.size();
 		Edificio edificioRandomParaEsconderse = EdificiosdePaisFinal.get(random.nextInt(cantidaDeEdificios));
-		edificioRandomParaEsconderse.setLadron();
+		edificioRandomParaEsconderse.setLadron(this);
 	}
 	
 	public String getNombre(){

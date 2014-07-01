@@ -3,6 +3,7 @@ package fiuba.algo3.tpfinal.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+
 import modelo.BaseDeDatos;
 import modelo.Coordenadas;
 import modelo.Edificio;
@@ -25,7 +26,8 @@ public class PartidaJuegoTest {
 	
 	@Test
 	public void TestDeJuegoCaso1() {
-	
+		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
+		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
 		Edificio Bolsa = new Edificio("Bolsa");
 		Edificio Banco = new Edificio("Banco");
 		Edificio Aeropuerto = new Edificio("Aeropuerto");
@@ -43,13 +45,13 @@ public class PartidaJuegoTest {
 		Pais Inglaterra = new Pais(nombreIng,edificiosLDN,coordenadasLondres);
 		
 		Edificio AeropuertoNY = new Edificio("Aeropuerto");
-		AeropuertoNY.setLadron();
+		AeropuertoNY.setLadron(ladron);
 		Edificio[] edificiosNY = {AeropuertoNY};
 		String nombreUsa = "New York";
 		Coordenadas coordenadasNY = new Coordenadas(40.714268,-74.005974);
 		Pais Usa = new Pais(nombreUsa,edificiosNY,coordenadasNY);
 		
-		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.CASTANIO,Senia.TATUAJE,Vehiculo.DESCAPOTABLE);
+		
 		
 		ArrayList<Edificio> ListaDeEdificios;
 		unObjeto = new ObjetoRobado("Bandera Antigua","Poco Valioso");

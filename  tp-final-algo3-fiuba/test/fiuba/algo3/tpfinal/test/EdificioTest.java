@@ -134,7 +134,6 @@ public class EdificioTest {
 		Edificio otroEdificio = new Edificio("Biblioteca");
 		otroEdificio.setPista("Esta es otra pista de prueba");
 		otroEdificio.setHerida(new HeridaArmaDeFuego("Herido por un disparo con arma de fuegos"));
-		otroEdificio.setLadron();
 		UnEdificio.setHerida(new HeridaCuchillo("Herida con arma blanca"));
 		Element edificioSerializado = UnEdificio.serializar(doc);
 		Element otroEdificioSerializado = otroEdificio.serializar(doc);

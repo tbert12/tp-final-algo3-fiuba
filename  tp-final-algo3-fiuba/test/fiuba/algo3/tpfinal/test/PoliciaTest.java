@@ -52,7 +52,7 @@ public class PoliciaTest {
 	
 	public void SumarArrestos(int Cantidad,Policia Jugador){
 		for (int i = 0; i<Cantidad; i++){
-			Jugador.arrestarSospechoso();
+			Jugador.arrestarSospechoso(unLadron);
 		}
 	}
 
@@ -82,7 +82,7 @@ public class PoliciaTest {
 	public void PoliciaEsSargento(){
 		Policia unPolicia = new Policia("Bufarreti", 20);
 		unPolicia.setSospechoso(unLadron);
-		unPolicia.arrestarSospechoso();
+		unPolicia.arrestarSospechoso(unLadron);
 		Assert.assertTrue(unPolicia.getRango() instanceof RangoSargento);
 	}
 	

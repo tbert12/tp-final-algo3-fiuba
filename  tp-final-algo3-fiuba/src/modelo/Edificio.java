@@ -16,7 +16,7 @@ public class Edificio {
 	private String Pista,Nombre;
 	private int VecesVisitado;
 	private Herida Herida;
-	private boolean ContieneLadron;
+	private Ladron LadronContenido;
 	
 	public Edificio(String UnNombre){
 		this.Nombre = UnNombre;
@@ -25,7 +25,7 @@ public class Edificio {
 		this.Pista = Pistas[random.nextInt(Pistas.length-1)];
 		this.VecesVisitado = 0;
 		this.Herida = null;
-		this.ContieneLadron = false;
+		this.LadronContenido = null;
 	}
 	
 	public Edificio copiar(){
@@ -38,8 +38,8 @@ public class Edificio {
 		Herida = UnaHerida;
 	}
 	
-	public void setLadron(){
-		ContieneLadron = true;
+	public void setLadron(Ladron unLadron){
+		LadronContenido = unLadron;
 	}
 	public void setPista(String unaPista){
 		this.Pista = unaPista;
@@ -47,8 +47,8 @@ public class Edificio {
 
 	public String visitar(Policia UnPolicia){
 		this.VecesVisitado++;
-		if (ContieneLadron){
-			if( UnPolicia.arrestarSospechoso()) return "Ladron Atrapado";
+		if (LadronContenido != null){
+			if( UnPolicia.arrestarSospechoso(LadronContenido)) return "Ladron Atrapado";
 			return "No se emitio orden de arresto, el ladron se escapo";
 		}
 		
@@ -128,7 +128,7 @@ public class Edificio {
 	}
 
 	public boolean tieneLadron() {
-		return ContieneLadron;
+		return (LadronContenido!=null);
 	}
 
 	public String getPista() {
