@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Partidas>
+	<Partida NombreLadron='Katherine Drib' NombreObjeto="Cetro Monarca" ValorObjeto="Muy Valioso">
+      <Pistas>
+         <PistasPais NombrePais="London" pista0="Se fue a ver sus origenes, a la antigua Constantinopla" pista1="Odiaba el clima templado continental de esa ciudad" pista2="Queria conocer El Bósforo."/>
+         <PistasPais NombrePais="Istanbul" pista0="Le interesaba encontrar petroleo" pista1="Cambio su moneda al dinar" pista2="HeridaCuchillo"/>
+         <PistasPais NombrePais="Baghdad" pista0="Queria ir a la meca noruega del comercio.Su tatuaje estaba en una zona provocativa." pista1="Le interesaba la globalizacion en esa ciudad." pista2="La ciudad fue fundada por el rey Hadrade.Conocia mucho sobre alpinismo"/>
+         <PistasPais NombrePais="Oslo" pista0="Hablaba sobre ver la Gran Muralla.Su pelo castaño olia bien." pista1="HeridaCuchillo" pista2="HeridaArmaDeFuego"/>
+         <PistasPais NombrePais="Peking" pista0="Es la ciudad mas grande del Nepal" pista1="Su edificacion se eleva a 1400 metros sobre el nivel del mar, sobre un valle en forma de bowl" pista2="Se intereso por la cosecha de maiz.Me gusto su moto"/>
+         <PistasPais NombrePais="Kathmandu" pista0="Ultimamente la ciudad se siente insegura" pista1="Ve con cuidado" pista2="Me parece haber visto lo que buscas, pero no quise indagar mas por miedo a salir herido"/>
+      </Pistas>
+   </Partida>
+ </Partidas>
