@@ -1,5 +1,6 @@
 package vistas;
 
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -28,7 +29,7 @@ import vistas.paneles.PanelEdificios;
 import vistas.paneles.PanelCaracteristicas;
 import vistas.relojdigital.RelojDigital;
 import modelo.PartidaObservable;
-import control.ControladorBotonCaracteristica;
+import control.ControladorBotonFiltrar;
 import control.ControladorBotonViajar;
 import control.ControladorBotonInvestigar;
 import control.Juego;
@@ -45,9 +46,8 @@ public class VistaPartida extends JFrame implements Observer{
 	private PanelViajar panelMenuParaViajar;
 	private PanelEdificios panelMenuEdificios;
 	private PanelCaracteristicas panelMenuCaracteristicas;
-	
+	private Sonidos sonidos;
 	private JLabel TextoInterpool,CiudadActual,Tiempo,ImagenPais,TextoPista,InformacionPais;
-	
 	private String RutaImagenPais = "/vistas/imagenes/paises/";
 	private String HorasTiempo;
 	private String NombrePaisActual;
@@ -55,8 +55,9 @@ public class VistaPartida extends JFrame implements Observer{
 	private Timer timer;
 
 	
-	public VistaPartida(PartidaObservable partida,Juego juego) {
+	public VistaPartida(PartidaObservable partida,Juego juego,Sonidos sonidos) {
 		this.juego = juego;	
+		this.sonidos = sonidos;
 		this.partida = partida;
 		this.partida.addObserver(this);  
 		PanelGeneral = new JPanel();
@@ -269,7 +270,7 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonViajar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarNormal.png")));
 		BotonViajar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarApretado.png")));
 		BotonViajar.setBounds(555, 403, 80, 77);
-		BotonViajar.addActionListener(new ControladorBotonViajar(this));
+		BotonViajar.addActionListener(new ControladorBotonViajar(this,this.sonidos));
 		PanelGeneral.add(BotonViajar);
 		
 		JButton BotonFiltrar = new JButton("Filtrar");
@@ -278,7 +279,7 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonFiltrar.setBorderPainted(false);
 		BotonFiltrar.setMargin(new Insets(3, 28, 0, 10));
 		BotonFiltrar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarNormal.png")));
-		BotonFiltrar.addActionListener(new ControladorBotonCaracteristica(this));
+		BotonFiltrar.addActionListener(new ControladorBotonFiltrar(this,this.sonidos));
 		BotonFiltrar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarApretado.png")));
 		BotonFiltrar.setBounds(298, 403, 80, 77);
 		PanelGeneral.add(BotonFiltrar);

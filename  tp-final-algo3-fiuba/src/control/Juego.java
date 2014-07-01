@@ -5,6 +5,7 @@ import modelo.CarmenSanDiego;
 import modelo.Partida;
 import modelo.PartidaObservable;
 import modelo.excepcion.ErrorAlCargarDatos;
+import vistas.Sonidos;
 import vistas.VentanaPrincipal;
 import vistas.VistaPartida;
 
@@ -16,10 +17,11 @@ public class Juego{
 	CarmenSanDiego carmen;
 	VentanaPrincipal ventanaPrincipal;
 	VistaPartida vistaPartida;
+	Sonidos sonidos;
 	
 	public Juego(){
-		
-		ventanaPrincipal = new VentanaPrincipal(this);
+		sonidos = new Sonidos();
+		ventanaPrincipal = new VentanaPrincipal(this,this.sonidos);
 		
 		try {
 			carmen = new CarmenSanDiego();
@@ -38,7 +40,7 @@ public class Juego{
 		try {
 			partida = carmen.iniciarPartida(string);
 			PartidaObservable partidaObservable = new PartidaObservable(partida);
-			vistaPartida = new VistaPartida(partidaObservable,this);
+			vistaPartida = new VistaPartida(partidaObservable,this,this.sonidos);
 		} catch (ErrorAlCargarDatos e) {
 
 			ventanaPrincipal.mostrarErrorFinal("No se puede iniciar el juego. Contactate con el administrador del sistemas.");

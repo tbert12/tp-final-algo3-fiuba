@@ -5,19 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-
 import java.awt.Font;
 import java.awt.Toolkit;
-
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-
 import java.awt.Color;
-
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-
-import control.ControladorBotonEmpezar;
+import control.ControladorBotonJugar;
 import control.Juego;
 
 public class VentanaPrincipal extends JFrame {
@@ -26,10 +21,10 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel MenuInicial;
 	private JTextField textoNombreUsuario;
 	private Juego unJuego;
-
-
-	public VentanaPrincipal(Juego unJuego) {
-		
+	private Sonidos sonidos;
+	
+	public VentanaPrincipal(Juego unJuego,Sonidos sonido) {
+		this.sonidos = sonido;
 		this.unJuego = unJuego;
 		crearVentana();
 		
@@ -70,7 +65,7 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		
 		//controlador
-		final ControladorBotonEmpezar control = new ControladorBotonEmpezar(this,this.unJuego);
+		final ControladorBotonJugar control = new ControladorBotonJugar(this,this.unJuego,this.sonidos);
 		
 		textoNombreUsuario = new JTextField();
 		textoNombreUsuario.setBounds(193, 353, 244, 33);
@@ -113,6 +108,7 @@ public class VentanaPrincipal extends JFrame {
 		MenuInicial.add(textoNombreUsuario);
 		MenuInicial.add(IconoImagen);
 		MenuInicial.add(Titulo);
+		
 	}
 
 }

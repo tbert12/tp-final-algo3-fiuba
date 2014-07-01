@@ -5,22 +5,24 @@ import java.awt.event.ActionListener;
 
 import com.sun.xml.internal.ws.util.StringUtils;
 
+import vistas.Sonidos;
 import vistas.VentanaPrincipal;
 
-public class ControladorBotonEmpezar implements ActionListener {
+public class ControladorBotonJugar implements ActionListener {
 		private VentanaPrincipal vista;
 		private Juego juego;
+		private Sonidos sonidos;
 		
-		public ControladorBotonEmpezar(VentanaPrincipal vista,Juego juego) {
+		public ControladorBotonJugar(VentanaPrincipal vista,Juego juego,Sonidos sonidos) {
 			this.vista = vista;
 			this.juego = juego;
+			this.sonidos = sonidos;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
 			String NombreUsuario = vista.getTexto();
-			
+			sonidos.reproducirSonidoBotonJugar();
 			
 			if (NombreUsuario == null || NombreUsuario.equals("") ){
 				vista.mostrarError("Ingrese un nombre valido.");
