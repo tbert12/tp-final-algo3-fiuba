@@ -6,8 +6,6 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,6 +25,7 @@ import javax.swing.border.EmptyBorder;
 import vistas.paneles.PanelViajar;
 import vistas.paneles.PanelEdificios;
 import vistas.paneles.PanelCaracteristicas;
+import vistas.relojdigital.HiloDelReloj;
 import vistas.relojdigital.RelojDigital;
 import modelo.PartidaObservable;
 import control.ControladorBotonFiltrar;
@@ -49,7 +48,6 @@ public class VistaPartida extends JFrame implements Observer{
 	private Sonidos sonidos;
 	private JLabel TextoInterpool,CiudadActual,Tiempo,ImagenPais,TextoPista,InformacionPais;
 	private String RutaImagenPais = "/vistas/imagenes/paises/";
-	private String HorasTiempo;
 	private String NombrePaisActual;
 	private RelojDigital Reloj;
 	private Timer timer;
@@ -71,15 +69,7 @@ public class VistaPartida extends JFrame implements Observer{
 		mensajeDeBienvenida();
 		Reloj = new RelojDigital();
 		updateHora();
-		Tiempo.setText(Reloj.ObtenerHoraDigital());
-		timer = new Timer(50, new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				HorasTiempo = Reloj.AvanzarUnaHora();
-				Tiempo.setText(HorasTiempo);
-			}
-		});
+		timer = new Timer(50, new HiloDelReloj(Reloj,Tiempo));
 		timer.start();
 	}
 
