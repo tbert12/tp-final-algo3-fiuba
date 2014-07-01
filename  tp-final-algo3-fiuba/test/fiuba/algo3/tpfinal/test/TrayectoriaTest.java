@@ -4,34 +4,21 @@ package fiuba.algo3.tpfinal.test;
 	
 	import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
-
-
-
-
-
-
 import modelo.Coordenadas;
 import modelo.Edificio;
 import modelo.Pais;
 import modelo.Trayectoria;
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
 import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import static org.mockito.Mockito.*;
 
-	
-	@SuppressWarnings("unused")
 	public class TrayectoriaTest {
 	
 		private Edificio biblioteca = new Edificio("biblioteca");
