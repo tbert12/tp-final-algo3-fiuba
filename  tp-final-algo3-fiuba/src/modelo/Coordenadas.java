@@ -9,13 +9,33 @@ public class Coordenadas {
 	private double longitud;
 	
 	//Un grado de latitud equivale a 111 kilometros
-	private static double enKilometros = 111; 
+	private static double enKilometros = 1.6093; 
 
 	public Coordenadas(double unaLatitud,double unaLongitud){
 		this.latitud = unaLatitud;
 		this.longitud = unaLongitud;
 	}
-	
+	public double Haversine(Coordenadas otrasCoords) {
+        final int R = 6371; 
+        Double lat1 = this.latitud;
+        Double lon1 = this.longitud;
+        Double lat2 = otrasCoords.getLatitud();
+        Double lon2 = otrasCoords.getLongitud();
+        Double latDistance = toRad(lat2-lat1);
+        Double lonDistance = toRad(lon2-lon1);
+        Double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) +
+                   Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                   Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        Double distance = R * c;
+        return distance; 
+  
+ 
+    }
+     
+    private static Double toRad(Double value) {
+        return value * Math.PI / 180;
+    }
 	public double getLatitud(){
 		return latitud;
 	}
@@ -25,10 +45,8 @@ public class Coordenadas {
 	}
 
 	public int DistanciaA(Coordenadas otrasCoordenadas){
-		//Formula de Pitagoras y suponemos Tierra plana
-		double latitudTotal = Math.pow(this.latitud - otrasCoordenadas.getLatitud(), 2);
-		double longitudTotal = Math.pow(this.longitud - otrasCoordenadas.getLongitud(), 2);
-		double distancia = Math.sqrt(latitudTotal + longitudTotal);
+		double distancia = Haversine(otrasCoordenadas);
+		System.out.println(distancia);
 		return (int)(distancia*enKilometros);
 		
 	}
