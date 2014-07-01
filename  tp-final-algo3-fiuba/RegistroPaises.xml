@@ -8,7 +8,7 @@
       <Coordenadas>
          <Coordenadas Latitud="-34.608418" Longitud="-58.373161"/>
       </Coordenadas>
-   <Pais Informacion="Sydeney es la ciudad mas grande y poblada de Australia.Situada al sudeste de Australia, a orillas de la Bahia Jackson,que comprende el puerto de Sidney. En la ciudad se destaca la Opera de Sidney, el puente del puerto de Sidney, y sus playas.De acuerdo a recientes estudios, es la ciudad mas cara de Australia para vivir." Nombre="Sydney">
+   <Pais Informacion="Sydney es la ciudad mas grande y poblada de Australia.Situada al sudeste de Australia, a orillas de la Bahia Jackson,que comprende el puerto de Sidney. En la ciudad se destaca la Opera de Sidney, el puente del puerto de Sidney, y sus playas.De acuerdo a recientes estudios, es la ciudad mas cara de Australia para vivir." Nombre="Sydney">
       <Edificios>
          <Edificio Nombre="Biblioteca" Pista="Veo pasar mucha gente, es probable que no la haya visto"/>
          <Edificio Nombre="Embajada" Pista="No he visto a nadie como dices"/>
