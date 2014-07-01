@@ -18,8 +18,8 @@ import javax.xml.transform.stream.StreamResult;
 import modelo.Ladron;
 import modelo.caracteristicas.*;
 
-import org.junit.After;
 import org.junit.Assert;
+import org.junit.After;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
