@@ -1,14 +1,13 @@
 package vistas;
 
 import java.applet.AudioClip;
-
 import javax.swing.JApplet;
 
 public class Sonidos extends Thread {
 
 	private AudioClip sonidoBoton,sonidoBotonViajar,sonidoBotonFiltrar,
 					sonidoBotonVisitar,sonidoBienvenida,sonidoExitoso,
-					sonidoFallido,sonidoHeridaCuchillo,sonidoHeridaArma;
+					sonidoFallido,sonidoHeridaCuchillo,sonidoHeridaArma,sonidoReloj;
 	
 	public Sonidos(){
 		crearSonidos();
@@ -25,6 +24,7 @@ public class Sonidos extends Thread {
 		sonidoFallido = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoFallido.wav"));
 		sonidoHeridaCuchillo = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoHeridaCuchillo.wav"));
 		sonidoHeridaArma = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoHeridaArma.wav"));
+		sonidoReloj = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoReloj.wav"));
 	}
 
 	public void reproducirSonidoBoton(){
@@ -55,4 +55,16 @@ public class Sonidos extends Thread {
 	public void reproducirSonidoHeridaArma(){
 		sonidoHeridaArma.play();
 	}
+	@SuppressWarnings("static-access")
+	public void pausa(){
+		try {
+			this.sleep(2000);
+		} catch (InterruptedException e) {
+		}
+	}
+
+	public void reproducirSonidoReloj() {
+		sonidoReloj.play();
+	}
 }
+

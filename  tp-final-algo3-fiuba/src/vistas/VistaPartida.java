@@ -67,7 +67,7 @@ public class VistaPartida extends JFrame implements Observer{
 		updateCiudadActual();
 		updateImagenPais();
 		mensajeDeBienvenida();
-		Reloj = new RelojDigital();
+		Reloj = new RelojDigital(this.sonidos);
 		updateHora();
 		timer = new Timer(100, new HiloDelReloj(Reloj,Tiempo));
 		timer.start();
@@ -94,18 +94,22 @@ public class VistaPartida extends JFrame implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		updateHora();
 		if (partida.tiempoAgotado()){
-			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
+			sonidos.pausa();
 			sonidos.reproducirSonidoFallido();
+			
+			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
+			
 			partida.finalizarPartida();
 			//le aviso a la ventana principal que termine
 			juego.cerrarPartida();
 		}
 		
 		if (partida.partidaFinalizada()){
-			mostrarMensaje(partida.getPistaActual(), "Mensaje Interpool");
-			
+			sonidos.pausa();
 			if (partida.ladronArrestado())sonidos.reproducirSonidoExitoso(); 
 			else sonidos.reproducirSonidoFallido();
+			
+			mostrarMensaje(partida.getPistaActual(), "Mensaje Interpool");
 			
 			partida.finalizarPartida();
 			//le aviso a la ventana principal que termine

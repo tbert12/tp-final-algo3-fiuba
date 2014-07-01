@@ -1,12 +1,18 @@
 package vistas.relojdigital;
 
+import vistas.Sonidos;
+
 public class RelojDigital {
 	private String[] Dias = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
 	private int indiceDia = 0;
 	private int TiempoTranscurridoDelDia = 7;
-	
+	private Sonidos sonidos;
 	public int TiempoInicial = 154;
 	public int TiempoTemporal = TiempoInicial;
+	
+	public RelojDigital(Sonidos sonidos) {
+		this.sonidos = sonidos;
+	}
 	
 	public void ActualizarHora(int tiempo){
 		this.TiempoInicial = tiempo;
@@ -29,6 +35,7 @@ public class RelojDigital {
 	public String AvanzarUnaHora() {
 		if (TiempoInicial == TiempoTemporal)return obtenerHoraDigitalDespuesde(0);
 		TiempoTemporal--;
+		sonidos.reproducirSonidoReloj();
 		return obtenerHoraDigitalDespuesde(1);
 	}
 
