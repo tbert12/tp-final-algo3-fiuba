@@ -2,18 +2,18 @@
 <Partidas>
 	<Partida NombreLadron='Ihor Ihorovitch' NombreObjeto="El Canguro Dorado" ValorObjeto="Normal">
       <Pistas>
-         <PistasPais NombrePais="Sydney" pista0="Dijo que iria a aprender Samba.Llevaba consigo su equipo de Croquet" pista1="Pregunto ¿Voce fala portugueis?. No sé a qué se refería" pista2="Dijo algo sobre un mundial de soccer.Tenia un lindo pelo rubio"/>
-         <PistasPais NombrePais="Rio de Janeiro" pista0="Dijo que necesitaba hablar ingles" pista1="Estaba obsesionado con el jarabe de maple" pista2="Se movia en una limusina"/>
-         <PistasPais NombrePais="Montreal" pista0="Su pelo rubio era impactante" pista1="Tenia una bandera roja y blanca su avion" pista2="Se refirio al pais como, geograficamente, como con forma de diamante"/>
-         <PistasPais NombrePais="Singapore" pista0="Dijo que le gustaria probar la pizza napolitana" pista1="Me pregunto si sabia hablar el idioma Italiano" pista2="Fue a un pais conocido por su forma de bota"/>
+         <PistasPais NombrePais="Sydney" pista0="Dijo que iria a aprender Samba.Llevaba consigo su equipo de Croquet" pista1="Pregunto ¿Voce fala portugueis?.Su portugues era muy rudimentario" pista2="Dijo algo sobre un mundial de soccer.Tenia un lindo pelo rubio"/>
+         <PistasPais NombrePais="Rio de Janeiro" pista0="Aposto al dolar canadiense" pista1="Se movia en una limusina" pista2="La bandera de su barco llevaba una hoja de maple"/>
+         <PistasPais NombrePais="Montreal" pista0="Su pelo rubio era impactante. Tenia un solido japones" pista1="Su bandera tiene una luna menguante blanca rodeada de estrellas" pista2="Se refirio al pais como, geograficamente, como con forma de diamante"/>
+         <PistasPais NombrePais="Singapore" pista0="Dijo que le gustaria la vera pizza" pista1="Me pregunto si sabia hablar el idioma Italiano" pista2="Fue a un pais conocido por su forma de bota"/>
          <PistasPais NombrePais="Rome" pista0="Algo huele raro aqui" pista1="Hay algo que es muy sospechoso en estos lugares" pista2="Creo que lo que buscas esta aqui"/>
       </Pistas>
    </Partida>
    <Partida NombreLadron="Len Bulk" NombreObjeto="Bong Ancestral" ValorObjeto="Normal">
       <Pistas>
-         <PistasPais NombrePais="Peking" pista0="Tenia la idea de visitar las piramides de Keops" pista1="Tenia un interesante cabello rojo" pista2="Cambio su moneda a Libras Egipcias "/>
-         <PistasPais NombrePais="Cairo" pista0="Estaba preocupado por la crisis actual en el pais" pista1="Queria conocer el partenon. Su descapotable era lindo" pista2="HeridaArmaDeFuego"/>
-         <PistasPais NombrePais="Athens" pista0="Cambio su dinero a Euros" pista1="Su avion tenia una bandera azul,blanca y roja " pista2="Estaba esceptico sobre ciertas comidas del pais"/>
+         <PistasPais NombrePais="Peking" pista0="Tenia la idea de visitar las piramides de Keops,para evaluar si comprarlas o no" pista1="Tenia un interesante cabello rojo" pista2="Cambio su moneda a Libras Egipcias "/>
+         <PistasPais NombrePais="Cairo" pista0="Queria conocer el partenon. Su descapotable era lindo" pista1="Estaba preocupado por la crisis actual en el pais" pista2="HeridaArmaDeFuego"/>
+         <PistasPais NombrePais="Athens" pista0="Su avion tenia una bandera azul,blanca y roja" pista1="Cambio su dinero a Euros " pista2="Estaba esceptico sobre ciertas comidas del pais"/>
          <PistasPais NombrePais="Paris" pista0="Se refirio a ver un partido de Basquetball" pista1="Hablando de futbol, dijo que fueron anfitriones del mundial mas concurrido. Su tatuaje era impresionante" pista2="En ese pais, él sería el más flaco de todos"/>
          <PistasPais NombrePais="New York" pista0="Cuidado, te estas acercando demasiado" pista1="Algo raro esta pasando aqui" pista2="Me parecio ver a quien dices hace dos minutos atras"/>
       </Pistas>
@@ -25,6 +25,15 @@
          <PistasPais NombrePais="New Delhi" pista0="El avion tenia una bandera roja y blanca" pista1="Aposto al yen" pista2="Le interesaba el cultivo de arroz"/>
          <PistasPais NombrePais="Tokyo" pista0="Queria probar un Choripan" pista1="Dice que se vivia una situacion financiera tumultuosa en ese pais" pista2="Llevaba unas joyas de origen dudoso"/>
          <PistasPais NombrePais="Buenos Aires" pista0="Cuidado, te estas acercando demasiado" pista1="Algo raro esta pasando aqui" pista2="Me parecio ver a quien dices hace dos minutos atras"/>
+      </Pistas>
+  	</Partida>
+  	<Partida NombreLadron="Scar Graynolt" NombreObjeto="Reloj Dorado" ValorObjeto="Normal">
+      <Pistas>
+         <PistasPais NombrePais="Port Moresby" pista0="Estaba emocionado de ver la lucha libre.Su cabello era rojo" pista1="HeridaCuchillo" pista2="Queria probar las clasicas quesadillas"/>
+         <PistasPais NombrePais="Mexico City" pista0="Escalar las ruinas de Macchu Picchu eran su principal motivacion" pista1="Su anillo tenia una inscripcion rara" pista2="Buscaba obtener fama con algun artefacto inca"/>
+         <PistasPais NombrePais="Lima" pista0="Hablaba sobre el catenaccio" pista1="Aposto al euro" pista2="Hablaba sobre un monumento que habia sufrido fallas edilicias"/>
+         <PistasPais NombrePais="Rome" pista0="Queria ir a competir en regatas en los canales de la ciudad" pista1="Queria visitar el Viharamahadevi Park." pista2="El nombre de la ciudad quiere decir 'puerto en el rio Kelani'"/>
+         <PistasPais NombrePais="Colombo" pista0="Cuidado, te estas acercando demasiado" pista1="Algo raro esta pasando aqui" pista2="Me parecio ver a quien dices hace dos minutos atras"/>
       </Pistas>
   	</Partida>
 </Partidas>
