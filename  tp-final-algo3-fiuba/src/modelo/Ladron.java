@@ -142,4 +142,9 @@ public class Ladron {
 			return false;
 		return true;
 	}
+
+	public void reiniciar() {
+		this.Arrestado = false;
+		
+	}
 }

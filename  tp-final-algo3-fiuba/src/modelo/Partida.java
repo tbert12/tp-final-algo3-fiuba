@@ -32,6 +32,7 @@ public class Partida {
 	public void finalizarPartida(){
 		
 		UnPolicia.reiniciar();
+		UnLadron.reiniciar();
 	}
 	
 	public boolean seTerminoLaPartida(){
