@@ -33,6 +33,7 @@ public class Juego{
 	
 	public void iniciar(){
 		ventanaPrincipal.mostrarVentana();
+		sonidos.reproducirSonidoBienvenida();
 	}
 	
 	public void iniciarPartida(String string){
@@ -48,6 +49,7 @@ public class Juego{
 		
 		ventanaPrincipal.ocultarVentana();
 		vistaPartida.mostrarVentana();
+		
 	}
 
 	public void cerrarPartida() {

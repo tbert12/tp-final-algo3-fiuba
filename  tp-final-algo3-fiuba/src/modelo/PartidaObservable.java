@@ -118,4 +118,9 @@ public class PartidaObservable extends Observable {
 	public void finalizarPartida(){
 		unaPartida.finalizarPartida();
 	}
+
+
+	public boolean ladronArrestado() {
+		return unaPartida.ladronAtrapado();
+	}
 }

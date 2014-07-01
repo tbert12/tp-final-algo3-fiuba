@@ -95,6 +95,7 @@ public class VistaPartida extends JFrame implements Observer{
 		updateHora();
 		if (partida.tiempoAgotado()){
 			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
+			sonidos.reproducirSonidoFallido();
 			partida.finalizarPartida();
 			//le aviso a la ventana principal que termine
 			juego.cerrarPartida();
@@ -102,6 +103,10 @@ public class VistaPartida extends JFrame implements Observer{
 		
 		if (partida.partidaFinalizada()){
 			mostrarMensaje(partida.getPistaActual(), "Mensaje Interpool");
+			
+			if (partida.ladronArrestado())sonidos.reproducirSonidoExitoso(); 
+			else sonidos.reproducirSonidoFallido();
+			
 			partida.finalizarPartida();
 			//le aviso a la ventana principal que termine
 			juego.cerrarPartida();
@@ -147,10 +152,12 @@ public class VistaPartida extends JFrame implements Observer{
 			if (pistadeEdificio.equals("HeridaArmaDeFuego")){
 				Mensaje = "Cuidado: <br>";
 				pistadeEdificio = "Has sido herido por un arma de Fuego";
+				sonidos.reproducirSonidoHeridaArma();
 			}
 			if (pistadeEdificio.equals("HeridaCuchillo")){
 				Mensaje = "Cuidado: <br>";
 				pistadeEdificio = "Has sido herido por un arma blanca";
+				sonidos.reproducirSonidoHeridaCuchillo();
 			}
 			TextoPista.setText("<html>" + Mensaje + pistadeEdificio + "</html>");
 			TextoPista.setVisible(true);

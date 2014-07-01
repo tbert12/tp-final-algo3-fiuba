@@ -22,7 +22,7 @@ public class ControladorVisitarEdificio implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		partida.visitarEdificio(boton.getEdificio());
-		sonidos.reproducirSonidoBoton();
+		sonidos.reproducirSonidoBotonVisitarEdificio();
 	}
 
 }
