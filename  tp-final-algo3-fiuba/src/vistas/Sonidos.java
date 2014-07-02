@@ -24,16 +24,16 @@ public class Sonidos extends Thread {
 
 	private void crearSonidos(){
 	
-		sonidoBoton = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoBoton.wav"));
-		sonidoBotonViajar = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoBotonViajar.wav"));
-		sonidoBotonFiltrar = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoBotonFiltrar.wav"));
-		sonidoBotonVisitar = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoBotonVisitar.wav"));
-		sonidoBienvenida = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoBienvenida.wav"));
-		sonidoExitoso = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoExitoso.wav"));
-		sonidoFallido = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoFallido.wav"));
-		sonidoHeridaCuchillo = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoHeridaCuchillo.wav"));
-		sonidoHeridaArma = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoHeridaArma.wav"));
-		sonidoReloj = JApplet.newAudioClip(VentanaPrincipal.class.getResource("/vistas/sonidos/sonidoReloj.wav"));
+		sonidoBoton = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoBoton.wav"));
+		sonidoBotonViajar = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoBotonViajar.wav"));
+		sonidoBotonFiltrar = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoBotonFiltrar.wav"));
+		sonidoBotonVisitar = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoBotonVisitar.wav"));
+		sonidoBienvenida = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoBienvenida.wav"));
+		sonidoExitoso = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoExitoso.wav"));
+		sonidoFallido = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoFallido.wav"));
+		sonidoHeridaCuchillo = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoHeridaCuchillo.wav"));
+		sonidoHeridaArma = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoHeridaArma.wav"));
+		sonidoReloj = JApplet.newAudioClip(getClass().getResource("/vistas/sonidos/sonidoReloj.wav"));
 	}
 
 	public void reproducirSonidoBoton(){

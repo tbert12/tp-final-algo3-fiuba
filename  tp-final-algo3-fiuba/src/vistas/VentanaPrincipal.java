@@ -52,7 +52,7 @@ public class VentanaPrincipal extends JFrame {
 		setVisible(false);
 		setTitle("Carmen SanDiego");
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/vistas/imagenes/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/vistas/imagenes/icono.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		menuInicial = new JPanel();
@@ -100,7 +100,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		JLabel IconoImagen = new JLabel("IconoCS");
 		IconoImagen.setBounds(229, 124, 192, 200);
-		IconoImagen.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/LogoInicio.png")));
+		IconoImagen.setIcon(new ImageIcon(getClass().getResource("/vistas/imagenes/LogoInicio.png")));
 		menuInicial.setLayout(null);
 		menuInicial.add(BotonJugar);
 		menuInicial.add(textoNombreUsuario);

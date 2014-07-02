@@ -198,7 +198,7 @@ public class VistaPartida extends JFrame implements Observer{
 	
 	private void crearVentana(){
 		setVisible(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaPartida.class.getResource("/vistas/imagenes/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/vistas/imagenes/icono.png")));
 		setResizable(false);
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -257,8 +257,8 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonInvestigar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonInvestigar.setBorderPainted(false);
 		BotonInvestigar.setMargin(new Insets(3, 28, 0, 10));
-		BotonInvestigar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigar.png")));
-		BotonInvestigar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigarApretado.png")));
+		BotonInvestigar.setIcon(new ImageIcon(getClass().getResource("/vistas/imagenes/botones/BotonInvestigar.png")));
+		BotonInvestigar.setRolloverIcon(new ImageIcon(getClass().getResource("/vistas/imagenes/botones/BotonInvestigarApretado.png")));
 		BotonInvestigar.setBounds(428, 403, 80, 77);
 		BotonInvestigar.addActionListener(new ControladorBotonInvestigar(this));
 		panelGeneral.add(BotonInvestigar);
@@ -268,8 +268,8 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonViajar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonViajar.setBorderPainted(false);
 		BotonViajar.setMargin(new Insets(3, 28, 0, 10));
-		BotonViajar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarNormal.png")));
-		BotonViajar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarApretado.png")));
+		BotonViajar.setIcon(new ImageIcon(getClass().getResource("/vistas/imagenes/botones/BotonViajarNormal.png")));
+		BotonViajar.setRolloverIcon(new ImageIcon(getClass().getResource("/vistas/imagenes/botones/BotonViajarApretado.png")));
 		BotonViajar.setBounds(555, 403, 80, 77);
 		BotonViajar.addActionListener(new ControladorBotonViajar(this));
 		panelGeneral.add(BotonViajar);
@@ -279,15 +279,15 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonFiltrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		BotonFiltrar.setBorderPainted(false);
 		BotonFiltrar.setMargin(new Insets(3, 28, 0, 10));
-		BotonFiltrar.setIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarNormal.png")));
+		BotonFiltrar.setIcon(new ImageIcon(getClass().getResource("/vistas/imagenes/botones/BotonFiltrarNormal.png")));
 		BotonFiltrar.addActionListener(new ControladorBotonFiltrar(this));
-		BotonFiltrar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarApretado.png")));
+		BotonFiltrar.setRolloverIcon(new ImageIcon(getClass().getResource("/vistas/imagenes/botones/BotonFiltrarApretado.png")));
 		BotonFiltrar.setBounds(298, 403, 80, 77);
 		panelGeneral.add(BotonFiltrar);
 		
 		JLabel FondoConImagen = new JLabel("");
 		FondoConImagen.setForeground(new Color(255, 255, 255));
-		FondoConImagen.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/Fondo.png")));
+		FondoConImagen.setIcon(new ImageIcon(getClass().getResource("/vistas/imagenes/Fondo.png")));
 		FondoConImagen.setBounds(0, 0, 640, 480);
 		panelGeneral.add(FondoConImagen);
 	}
