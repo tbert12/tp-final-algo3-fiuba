@@ -9,11 +9,10 @@
     <property name="build" location="build"/>
 	
 	<path id="classpath">
-		<fileset dir="${build}/lib">
-			<include name="*.jar" />
-		</fileset>
-		<pathelement location="${build}" />
-		<pathelement location="${build}/test" />
+			<fileset dir="${libs}">
+				<include name="*.jar" />
+			</fileset>
+			<pathelement location="${build}" />
 	</path>
 
   <target name="init">
@@ -21,7 +20,6 @@
     <!-- Crear directorio de compilacion utilizado por ANT -->
     <delete dir="build"/>
     <mkdir dir="${build}"/>
-    <mkdir dir="${build}/test"/>
     <mkdir dir="${build}/lib"/>
     <copydir src="${libs}" dest="${build}/lib" includes="**/*.jar " />
     <copydir src="src/vistas/imagenes" dest="${build}/vistas/imagenes"/>
@@ -37,7 +35,7 @@
   </target>
    
   <target name="compileTest" depends="compile">
-    <javac srcdir="${test}" destdir="${build}/test" includeantruntime="true" debug="yes">
+    <javac srcdir="${test}" destdir="${build}" includeantruntime="true" debug="yes">
 		<classpath refid="classpath"/>
     </javac>
   </target>

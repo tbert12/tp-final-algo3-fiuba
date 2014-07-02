@@ -1,4 +1,4 @@
-package fiuba.algo3.tpfinal.test;
+package test;
 
 import java.io.File;
 import java.io.IOException;
