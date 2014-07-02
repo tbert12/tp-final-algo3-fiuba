@@ -27,7 +27,7 @@ public class ObjetoRobadoTest {
 
 	@Test
 	public void ValorNoEsCorrecto() {
-		Assert.assertNotEquals(UnObjeto.getValor(),"valioso");
+		Assert.assertFalse(UnObjeto.getValor().equals("valioso"));
 	}
 	
 	@Test
@@ -37,7 +37,7 @@ public class ObjetoRobadoTest {
 
 	@Test
 	public void NombreNoEsCorrecto() {
-		Assert.assertNotEquals(UnObjeto.getNombre(),"La ultima cena");
+		Assert.assertFalse(UnObjeto.getNombre().equals("La ultima cena"));
 	}
 	@Test
 	public void testSerializarYCargarObjeto() throws ParserConfigurationException{

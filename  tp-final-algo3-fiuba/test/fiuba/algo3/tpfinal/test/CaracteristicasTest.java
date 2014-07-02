@@ -39,22 +39,22 @@ public class CaracteristicasTest {
 	
 	@Test
 	public void SexoNoEsCorrecto() {
-		Assert.assertNotEquals(UnaCaracteristica.getSexo(),Sexo.FEMENINO);
+		Assert.assertFalse(UnaCaracteristica.getSexo().equals(Sexo.FEMENINO));
 	}
 	@Test
 	public void HobbyNoEsCorrecto() {
-		Assert.assertNotEquals(UnaCaracteristica.getHobby(),Hobby.ALPINISMO);
+		Assert.assertFalse(UnaCaracteristica.getHobby().equals(Hobby.ALPINISMO));
 	}
 	@Test
 	public void CabelloNoEsCorrecto() {
-		Assert.assertNotEquals(UnaCaracteristica.getCabello(),Cabello.ROJO);
+		Assert.assertFalse(UnaCaracteristica.getCabello().equals(Cabello.ROJO));
 	}
 	@Test
 	public void SeniaNoEsCorrecto() {
-		Assert.assertNotEquals(UnaCaracteristica.getSenia(),Senia.JOYAS);
+		Assert.assertFalse(UnaCaracteristica.getSenia().equals(Senia.JOYAS));
 	}
 	@Test
 	public void VehiculoNoEsCorrecto() {
-		Assert.assertNotEquals(UnaCaracteristica.getVehiculo(),Vehiculo.LIMUSINA);
+		Assert.assertFalse(UnaCaracteristica.getVehiculo().equals(Vehiculo.LIMUSINA));
 	}
 }

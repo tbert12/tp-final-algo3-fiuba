@@ -85,7 +85,7 @@ public class PaisTest {
 		UnPais.setInformacion(Info);
 		
 		Assert.assertEquals(UnPais.getInformacion(),Info);
-		Assert.assertNotEquals(UnPais.getInformacion(),Info + "Algo Mas");
+		Assert.assertFalse(UnPais.getInformacion().equals(Info + "Algo Mas"));
 	}
 	@Test
 	public void testPersistenciaUnPais() throws ParserConfigurationException, TransformerException, SAXException, IOException, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{

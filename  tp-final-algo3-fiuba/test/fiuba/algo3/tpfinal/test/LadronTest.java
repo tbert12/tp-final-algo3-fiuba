@@ -57,7 +57,7 @@ public class LadronTest {
 	public void LadronNombreNoEsCorrecto() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
-		Assert.assertNotEquals(ladron.getNombre(),"EsteNoEsElNombre");	
+		Assert.assertFalse(ladron.getNombre().equals("EsteNoEsElNombre"));	
 	}
 	
 	@Test
@@ -75,11 +75,11 @@ public class LadronTest {
 	public void LadronCaracteristicasNoSonCorrectas() {
 		Caracteristicas CaracteristicasDelLadron = new Caracteristicas(Sexo.FEMENINO,Hobby.TENNIS,Cabello.NEGRO,Senia.ANILLO,Vehiculo.DESCAPOTABLE);
 		Ladron ladron = new Ladron("NombredeLadron",CaracteristicasDelLadron);
-		Assert.assertNotEquals(ladron.getSexo(),Sexo.MASCULINO);
-		Assert.assertNotEquals(ladron.getHobby(), Hobby.ALPINISMO);
-		Assert.assertNotEquals(ladron.getCabello(),Cabello.ROJO);
-		Assert.assertNotEquals(ladron.getSenia(),Senia.JOYAS);
-		Assert.assertNotEquals(ladron.getVehiculo(),Vehiculo.LIMUSINA);
+		Assert.assertFalse(ladron.getSexo().equals(Sexo.MASCULINO));
+		Assert.assertFalse(ladron.getHobby().equals(Hobby.ALPINISMO));
+		Assert.assertFalse(ladron.getCabello().equals(Cabello.ROJO));
+		Assert.assertFalse(ladron.getSenia().equals(Senia.JOYAS));
+		Assert.assertFalse(ladron.getVehiculo().equals(Vehiculo.LIMUSINA));
 	}
 	
 	@Test
