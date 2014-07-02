@@ -8,14 +8,14 @@ public class HeridaArmaDeFuego implements Herida {
 
 	private String mensaje;
 	
-	public HeridaArmaDeFuego(String UnMensaje) {
-		mensaje = UnMensaje;
+	public HeridaArmaDeFuego(String unMensaje) {
+		mensaje = unMensaje;
 	}
 
 	
 	@Override
-	public void herir(Policia UnPolicia) {
-		UnPolicia.reducirHorasPorHeridaArmaDeFuego();
+	public void herir(Policia unPolicia) {
+		unPolicia.reducirHorasPorHeridaArmaDeFuego();
 	}
 
 	@Override

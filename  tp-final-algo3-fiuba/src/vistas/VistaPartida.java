@@ -39,17 +39,17 @@ public class VistaPartida extends JFrame implements Observer{
 	
 	private PartidaObservable partida;
 	
-	private JPanel PanelGeneral;
+	private JPanel panelGeneral;
 	private Juego juego;
 	
 	private PanelViajar panelMenuParaViajar;
 	private PanelEdificios panelMenuEdificios;
 	private PanelCaracteristicas panelMenuCaracteristicas;
 	private Sonidos sonidos;
-	private JLabel TextoInterpool,CiudadActual,Tiempo,ImagenPais,TextoPista,InformacionPais;
-	private String RutaImagenPais = "/vistas/imagenes/paises/";
-	private String NombrePaisActual;
-	private RelojDigital Reloj;
+	private JLabel textoInterpool,ciudadActual,tiempo,imagenPais,textoPista,informacionPais;
+	private final String rutaImagenPais = "/vistas/imagenes/paises/";
+	private String nombrePaisActual;
+	private RelojDigital reloj;
 	private Timer timer;
 
 	
@@ -58,18 +58,18 @@ public class VistaPartida extends JFrame implements Observer{
 		this.sonidos = Sonidos.ObtenerSonidos();
 		this.partida = partida;
 		this.partida.addObserver(this);  
-		PanelGeneral = new JPanel();
-		panelMenuParaViajar = new PanelViajar(PanelGeneral,partida);
-		panelMenuEdificios = new PanelEdificios(PanelGeneral,partida);
-		panelMenuCaracteristicas = new PanelCaracteristicas(PanelGeneral,partida);
+		panelGeneral = new JPanel();
+		panelMenuParaViajar = new PanelViajar(panelGeneral,partida);
+		panelMenuEdificios = new PanelEdificios(panelGeneral,partida);
+		panelMenuCaracteristicas = new PanelCaracteristicas(panelGeneral,partida);
 		crearVentana();
-		NombrePaisActual = partida.getPaisActual();
+		nombrePaisActual = partida.getPaisActual();
 		updateCiudadActual();
 		updateImagenPais();
 		mensajeDeBienvenida();
-		Reloj = new RelojDigital();
+		reloj = new RelojDigital();
 		updateHora();
-		timer = new Timer(200, new HiloDelReloj(Reloj,Tiempo));
+		timer = new Timer(200, new HiloDelReloj(reloj,tiempo));
 		timer.start();
 	}
 
@@ -79,9 +79,9 @@ public class VistaPartida extends JFrame implements Observer{
 		String rangoDelPolicia = partida.getRangodelPolicia();
 		String ObjetoRobado = partida.getObjetoRobado();
 		String PaisActual = partida.getPaisActual();
-		InformacionPais.setText("<html>Hola, has sido identificado(a) como: " + nombreDelPolicia + 
+		informacionPais.setText("<html>Hola, has sido identificado(a) como: " + nombreDelPolicia + 
 				                "<br><br> Tu rango actual es: " + rangoDelPolicia + ".</html>");
-		TextoInterpool.setText("<html>+++++++++++++NOTICIAS+++++++++++++++<br> "+ 
+		textoInterpool.setText("<html>+++++++++++++NOTICIAS+++++++++++++++<br> "+ 
 				                "Tesoro nacional robado en " + PaisActual + 
 				                ".<br><br> El botin ha sido identificado como: " + ObjetoRobado + 
 				                ".<br>Tu mision:Persigue al ladron desde " + PaisActual +
@@ -126,19 +126,19 @@ public class VistaPartida extends JFrame implements Observer{
 	}
 	
 	private void updateCiudadActual(){
-		NombrePaisActual = partida.getPaisActual();
-		CiudadActual.setText(NombrePaisActual);
+		nombrePaisActual = partida.getPaisActual();
+		ciudadActual.setText(nombrePaisActual);
 	}
 	
 	private void updateHora() { 
-		Reloj.ActualizarHora(partida.getTiempoRestante());
+		reloj.ActualizarHora(partida.getTiempoRestante());
 	}
 	private void updateImagenPais(){
 		
-		URL imagen = VentanaPrincipal.class.getResource(this.RutaImagenPais + this.NombrePaisActual +".jpg");
+		URL imagen = VentanaPrincipal.class.getResource(this.rutaImagenPais + this.nombrePaisActual +".jpg");
 		
 		if (imagen != null){
-			ImagenPais.setIcon(new ImageIcon(VentanaPrincipal.class.getResource(this.RutaImagenPais + this.NombrePaisActual +".jpg")));
+			imagenPais.setIcon(new ImageIcon(VentanaPrincipal.class.getResource(this.rutaImagenPais + this.nombrePaisActual +".jpg")));
 		}
 		
 	}
@@ -147,11 +147,11 @@ public class VistaPartida extends JFrame implements Observer{
 		String pistadeEdificio = partida.getPistaActual() ;
 		ArrayList<String> NombreLadronesFiltrados = partida.nombreDeSospechosos();
 		if (pistadeEdificio == null && NombreLadronesFiltrados == null){
-			TextoInterpool.setVisible(false);
-			TextoPista.setVisible(false);
+			textoInterpool.setVisible(false);
+			textoPista.setVisible(false);
 		}
 		else if (NombreLadronesFiltrados == null){
-			TextoInterpool.setVisible(false);
+			textoInterpool.setVisible(false);
 			String Mensaje = "Pista: <br>";
 			if (pistadeEdificio.equals("HeridaArmaDeFuego")){
 				Mensaje = "Cuidado: <br>";
@@ -163,18 +163,18 @@ public class VistaPartida extends JFrame implements Observer{
 				pistadeEdificio = "Has sido herido por un arma blanca";
 				sonidos.reproducirSonidoHeridaCuchillo();
 			}
-			TextoPista.setText("<html>" + Mensaje + pistadeEdificio + "</html>");
-			TextoPista.setVisible(true);
+			textoPista.setText("<html>" + Mensaje + pistadeEdificio + "</html>");
+			textoPista.setVisible(true);
 		}
 		else if(pistadeEdificio == null){
-			TextoPista.setVisible(false);
-			TextoInterpool.setText("<html>" + generarMensajedeInterpool(NombreLadronesFiltrados) +"</html>");
-			TextoInterpool.setVisible(true);
+			textoPista.setVisible(false);
+			textoInterpool.setText("<html>" + generarMensajedeInterpool(NombreLadronesFiltrados) +"</html>");
+			textoInterpool.setVisible(true);
 		}
 		
 		String InfoPais = partida.getInformacionPaisActual();
 		if (InfoPais != null){
-			InformacionPais.setText("<html>" + InfoPais + "</html>");
+			informacionPais.setText("<html>" + InfoPais + "</html>");
 		}
 	}
 	
@@ -203,54 +203,54 @@ public class VistaPartida extends JFrame implements Observer{
 		setTitle("Carmen Sandiego");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 642, 513);
-		PanelGeneral.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(PanelGeneral);
+		panelGeneral.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panelGeneral);
 		setLocationRelativeTo(null);
-		PanelGeneral.setLayout(null);
+		panelGeneral.setLayout(null);
 		
-		ImagenPais = new JLabel("");
-		ImagenPais.setBackground(Color.BLACK);
-		ImagenPais.setBounds(10, 212, 274, 256);
-		PanelGeneral.add(ImagenPais);
+		imagenPais = new JLabel("");
+		imagenPais.setBackground(Color.BLACK);
+		imagenPais.setBounds(10, 212, 274, 256);
+		panelGeneral.add(imagenPais);
 		
-		InformacionPais = new JLabel("");
-		InformacionPais.setForeground(Color.WHITE);
-		InformacionPais.setFont(new Font("Verdana", Font.PLAIN, 10));
-		InformacionPais.setBackground(Color.BLACK);
-		InformacionPais.setVerticalTextPosition(SwingConstants.TOP);
-		InformacionPais.setVerticalAlignment(SwingConstants.TOP);
-		InformacionPais.setBounds(10, 92, 274, 112);
-		PanelGeneral.add(InformacionPais);
+		informacionPais = new JLabel("");
+		informacionPais.setForeground(Color.WHITE);
+		informacionPais.setFont(new Font("Verdana", Font.PLAIN, 10));
+		informacionPais.setBackground(Color.BLACK);
+		informacionPais.setVerticalTextPosition(SwingConstants.TOP);
+		informacionPais.setVerticalAlignment(SwingConstants.TOP);
+		informacionPais.setBounds(10, 92, 274, 112);
+		panelGeneral.add(informacionPais);
 		
-		CiudadActual = new JLabel();
-		CiudadActual.setHorizontalAlignment(SwingConstants.CENTER);
-		CiudadActual.setFont(new Font("Stencil", Font.PLAIN, 20));
-		CiudadActual.setForeground(new Color(255, 255, 255));
-		CiudadActual.setBounds(9, 18, 275, 25);
-		PanelGeneral.add(CiudadActual);
+		ciudadActual = new JLabel();
+		ciudadActual.setHorizontalAlignment(SwingConstants.CENTER);
+		ciudadActual.setFont(new Font("Stencil", Font.PLAIN, 20));
+		ciudadActual.setForeground(new Color(255, 255, 255));
+		ciudadActual.setBounds(9, 18, 275, 25);
+		panelGeneral.add(ciudadActual);
 		
-		Tiempo = new JLabel();
-		Tiempo.setHorizontalAlignment(SwingConstants.CENTER);
-		Tiempo.setForeground(new Color(255, 255, 255));
-		Tiempo.setFont(new Font("LCD", Font.PLAIN, 18));
-		Tiempo.setBounds(19, 42, 255, 25);
-		PanelGeneral.add(Tiempo);
+		tiempo = new JLabel();
+		tiempo.setHorizontalAlignment(SwingConstants.CENTER);
+		tiempo.setForeground(new Color(255, 255, 255));
+		tiempo.setFont(new Font("LCD", Font.PLAIN, 18));
+		tiempo.setBounds(19, 42, 255, 25);
+		panelGeneral.add(tiempo);
 		
-		TextoPista = new JLabel();
-		TextoPista.setVerticalTextPosition(SwingConstants.TOP);
-		TextoPista.setVerticalAlignment(SwingConstants.TOP);
-		TextoPista.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
-		TextoPista.setForeground(new Color(255, 255, 255));
-		TextoPista.setBounds(310, 24, 307, 214);
-		PanelGeneral.add(TextoPista);
+		textoPista = new JLabel();
+		textoPista.setVerticalTextPosition(SwingConstants.TOP);
+		textoPista.setVerticalAlignment(SwingConstants.TOP);
+		textoPista.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
+		textoPista.setForeground(new Color(255, 255, 255));
+		textoPista.setBounds(310, 24, 307, 214);
+		panelGeneral.add(textoPista);
 		
-		TextoInterpool = new JLabel();
-		TextoInterpool.setVerticalTextPosition(SwingConstants.TOP);
-		TextoInterpool.setVerticalAlignment(SwingConstants.TOP);
-		TextoInterpool.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
-		TextoInterpool.setForeground(new Color(255, 255, 255));
-		TextoInterpool.setBounds(310, 24, 307, 214);
-		PanelGeneral.add(TextoInterpool);
+		textoInterpool = new JLabel();
+		textoInterpool.setVerticalTextPosition(SwingConstants.TOP);
+		textoInterpool.setVerticalAlignment(SwingConstants.TOP);
+		textoInterpool.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
+		textoInterpool.setForeground(new Color(255, 255, 255));
+		textoInterpool.setBounds(310, 24, 307, 214);
+		panelGeneral.add(textoInterpool);
 		
 		JButton BotonInvestigar = new JButton("Edificios");
 		BotonInvestigar.setFocusPainted(false);
@@ -261,7 +261,7 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonInvestigar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonInvestigarApretado.png")));
 		BotonInvestigar.setBounds(428, 403, 80, 77);
 		BotonInvestigar.addActionListener(new ControladorBotonInvestigar(this));
-		PanelGeneral.add(BotonInvestigar);
+		panelGeneral.add(BotonInvestigar);
 		
 		JButton BotonViajar = new JButton("Viajar");
 		BotonViajar.setFocusPainted(false);
@@ -272,7 +272,7 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonViajar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonViajarApretado.png")));
 		BotonViajar.setBounds(555, 403, 80, 77);
 		BotonViajar.addActionListener(new ControladorBotonViajar(this));
-		PanelGeneral.add(BotonViajar);
+		panelGeneral.add(BotonViajar);
 		
 		JButton BotonFiltrar = new JButton("Filtrar");
 		BotonFiltrar.setFocusPainted(false);
@@ -283,13 +283,13 @@ public class VistaPartida extends JFrame implements Observer{
 		BotonFiltrar.addActionListener(new ControladorBotonFiltrar(this));
 		BotonFiltrar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonFiltrarApretado.png")));
 		BotonFiltrar.setBounds(298, 403, 80, 77);
-		PanelGeneral.add(BotonFiltrar);
+		panelGeneral.add(BotonFiltrar);
 		
 		JLabel FondoConImagen = new JLabel("");
 		FondoConImagen.setForeground(new Color(255, 255, 255));
 		FondoConImagen.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/Fondo.png")));
 		FondoConImagen.setBounds(0, 0, 640, 480);
-		PanelGeneral.add(FondoConImagen);
+		panelGeneral.add(FondoConImagen);
 	}
 
 

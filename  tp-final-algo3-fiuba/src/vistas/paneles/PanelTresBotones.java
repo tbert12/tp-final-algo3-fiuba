@@ -8,13 +8,13 @@ import javax.swing.JPanel;
 import modelo.PartidaObservable;
 
 public abstract class PanelTresBotones implements Observer{
-	protected JPanel PanelGeneral;
+	protected JPanel panelGeneral;
 	protected JLayeredPane Panel;
 	protected PartidaObservable partida;
-	protected String FuenteDeBotones = "Stencil";
+	protected String fuenteDeBotones = "Stencil";
 	
 	public PanelTresBotones(JPanel panel,PartidaObservable partida){
-		this.PanelGeneral = panel;
+		this.panelGeneral = panel;
 		Panel = new JLayeredPane();
 		this.partida = partida;
 		partida.addObserver(this);
@@ -26,7 +26,7 @@ public abstract class PanelTresBotones implements Observer{
 	
 	private void darFormaAPanel(){
 		Panel.setBounds(310, 248, 307, 133);
-		PanelGeneral.add(Panel);
+		panelGeneral.add(Panel);
 		Panel.setVisible(false);
 	}
 	

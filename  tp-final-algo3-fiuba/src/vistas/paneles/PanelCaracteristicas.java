@@ -17,26 +17,26 @@ import vistas.VistaPartida;
 import modelo.PartidaObservable;
 
 public class PanelCaracteristicas {
-	private JPanel PanelGeneral;
-	private JLayeredPane MenuCaracteristicas;
+	private JPanel panelGeneral;
+	private JLayeredPane menuCaracteristicas;
 	private PartidaObservable partida;
 	private Choice choiceSexo,choiceHobby,choiceCabello,choiceSenia,choiceVehiculo;
 	
 	
-	public PanelCaracteristicas(JPanel PanelGeneral,PartidaObservable partida){
+	public PanelCaracteristicas(JPanel panelGeneral,PartidaObservable partida){
 		this.partida = partida;
-		this.PanelGeneral = PanelGeneral;
-		MenuCaracteristicas = new JLayeredPane();
-		MenuCaracteristicas.setBounds(310, 249, 307, 135);
-		this.PanelGeneral.add(MenuCaracteristicas);
-		MenuCaracteristicas.setVisible(false);
+		this.panelGeneral = panelGeneral;
+		menuCaracteristicas = new JLayeredPane();
+		menuCaracteristicas.setBounds(310, 249, 307, 135);
+		this.panelGeneral.add(menuCaracteristicas);
+		menuCaracteristicas.setVisible(false);
 		darFormaAVentana();
 	}	
 	
 	
 	private JLabel crearLabel(String stringCaracteristica){
 		JLabel Label = new JLabel(stringCaracteristica + ":");
-		MenuCaracteristicas.add(Label);
+		menuCaracteristicas.add(Label);
 		Label.setFont(new Font("Simplified Arabic Fixed", Font.PLAIN, 15));
 		Label.setForeground(new Color(255, 255, 255));
 		return Label;
@@ -51,17 +51,17 @@ public class PanelCaracteristicas {
 			choice.add(options[i]);
 		}
 		choice.select(0);
-		MenuCaracteristicas.add(choice);
+		menuCaracteristicas.add(choice);
 		return choice;
 	}
 	
 	private void darFormaAVentana(){ 
-		MenuCaracteristicas.setLayout(null);
+		menuCaracteristicas.setLayout(null);
 		
-		JLabel Separador = new JLabel("----------------------------------------------------------------------------");
-		Separador.setForeground(new Color(255, 255, 255));
-		Separador.setBounds(0, 0, 305, 8);
-		MenuCaracteristicas.add(Separador);
+		JLabel separador = new JLabel("----------------------------------------------------------------------------");
+		separador.setForeground(new Color(255, 255, 255));
+		separador.setBounds(0, 0, 305, 8);
+		menuCaracteristicas.add(separador);
 		
 		
 		JLabel LabelSexo = crearLabel("Sexo");
@@ -102,15 +102,15 @@ public class PanelCaracteristicas {
 		BotonBuscar.setRolloverIcon(new ImageIcon(VistaPartida.class.getResource("/vistas/imagenes/botones/BotonOKApretado.png")));
 		BotonBuscar.setBounds(225, 55, 81, 46);
 		BotonBuscar.addActionListener(new ControladorBotonBuscar(partida,this));
-		MenuCaracteristicas.add(BotonBuscar);
+		menuCaracteristicas.add(BotonBuscar);
 		
 	}
 	
 	public void mostrarPanel(){
-		MenuCaracteristicas.setVisible(true);
+		menuCaracteristicas.setVisible(true);
 	}
 	public void ocultarPanel(){
-		MenuCaracteristicas.setVisible(false);
+		menuCaracteristicas.setVisible(false);
 	}
 
 

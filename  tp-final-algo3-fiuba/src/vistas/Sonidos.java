@@ -1,6 +1,7 @@
 package vistas;
 
 import java.applet.AudioClip;
+
 import javax.swing.JApplet;
 
 public class Sonidos extends Thread {
@@ -63,6 +64,7 @@ public class Sonidos extends Thread {
 	public void reproducirSonidoHeridaArma(){
 		sonidoHeridaArma.play();
 	}
+	
 	@SuppressWarnings("static-access")
 	public void pausa(){
 		try {

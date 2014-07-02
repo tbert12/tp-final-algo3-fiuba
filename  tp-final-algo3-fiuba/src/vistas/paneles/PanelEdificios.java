@@ -11,8 +11,8 @@ import modelo.Edificio;
 
 public class PanelEdificios extends PanelTresBotones{
 	
-	private ArrayList<Edificio> EdificiosAMostrar;
-	private BotonParaEdificio BotonUno,BotonDos,BotonTres;
+	private ArrayList<Edificio> edificiosAMostrar;
+	private BotonParaEdificio botonUno,botonDos,botonTres;
 
 	public PanelEdificios(JPanel panel, PartidaObservable partida) {
 		super(panel, partida);
@@ -21,39 +21,39 @@ public class PanelEdificios extends PanelTresBotones{
 
 	protected void crearBotones(){
 		
-		this.BotonUno = new BotonParaEdificio();
-		BotonUno.addActionListener(new ControladorVisitarEdificio(partida, BotonUno));
-		BotonUno.setBounds(10, 11, 287, 30);
-		BotonUno.setFont(new Font(FuenteDeBotones, Font.PLAIN, 18));
-		Panel.add(BotonUno);
+		this.botonUno = new BotonParaEdificio();
+		botonUno.addActionListener(new ControladorVisitarEdificio(partida, botonUno));
+		botonUno.setBounds(10, 11, 287, 30);
+		botonUno.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
+		Panel.add(botonUno);
 		
-		this.BotonDos = new BotonParaEdificio();
-		BotonDos.addActionListener(new ControladorVisitarEdificio(partida, BotonDos));
-		BotonDos.setBounds(10, 49, 287, 32);
-		BotonDos.setFont(new Font(FuenteDeBotones, Font.PLAIN, 18));
-		Panel.add(BotonDos);
+		this.botonDos = new BotonParaEdificio();
+		botonDos.addActionListener(new ControladorVisitarEdificio(partida, botonDos));
+		botonDos.setBounds(10, 49, 287, 32);
+		botonDos.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
+		Panel.add(botonDos);
 		
-		this.BotonTres = new BotonParaEdificio();
-		BotonTres.addActionListener(new ControladorVisitarEdificio(partida, BotonTres));
-		BotonTres.setBounds(10, 90, 287, 32);
-		BotonTres.setFont(new Font(FuenteDeBotones, Font.PLAIN, 18));
-		Panel.add(BotonTres);
+		this.botonTres = new BotonParaEdificio();
+		botonTres.addActionListener(new ControladorVisitarEdificio(partida, botonTres));
+		botonTres.setBounds(10, 90, 287, 32);
+		botonTres.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
+		Panel.add(botonTres);
 
 	}
 	
 	protected void actualizarBotones(){
-		EdificiosAMostrar = partida.getEdificiosAVisitar();
+		edificiosAMostrar = partida.getEdificiosAVisitar();
 		
-		Iterator<Edificio> iterador = EdificiosAMostrar.iterator();
+		Iterator<Edificio> iterador = edificiosAMostrar.iterator();
 		Edificio EdificioUno = iterador.next();
-		this.BotonUno.setText(EdificioUno.getNombre());
-		this.BotonUno.setEdificio(EdificioUno);
+		this.botonUno.setText(EdificioUno.getNombre());
+		this.botonUno.setEdificio(EdificioUno);
 		Edificio EdificioDos = iterador.next();
-		this.BotonDos.setText(EdificioDos.getNombre());
-		this.BotonDos.setEdificio(EdificioDos);
+		this.botonDos.setText(EdificioDos.getNombre());
+		this.botonDos.setEdificio(EdificioDos);
 		Edificio EdificioTres = iterador.next();
-		this.BotonTres.setText(EdificioTres.getNombre());
-		this.BotonTres.setEdificio(EdificioTres);
+		this.botonTres.setText(EdificioTres.getNombre());
+		this.botonTres.setEdificio(EdificioTres);
 	}
 		
 }

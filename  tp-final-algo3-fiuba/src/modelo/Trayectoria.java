@@ -12,22 +12,22 @@ import org.w3c.dom.NodeList;
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
 public class Trayectoria {
 	
-	private Iterator<Pais> IteradorPaisActual;
-	private Pais PaisFinal;
-	private Pais PaisActual;
-	private ArrayList<Pais> Paises;
+	private Iterator<Pais> iteradorPaisActual;
+	private Pais paisFinal;
+	private Pais paisActual;
+	private ArrayList<Pais> paises;
 
-	public Trayectoria (ArrayList<Pais> Paises){
-		this.Paises = Paises;
-		this.IteradorPaisActual = Paises.iterator();
-		this.PaisActual = IteradorPaisActual.next();
-		this.PaisFinal = Paises.get(Paises.size() -1);
+	public Trayectoria (ArrayList<Pais> paises){
+		this.paises = paises;
+		this.iteradorPaisActual = paises.iterator();
+		this.paisActual = iteradorPaisActual.next();
+		this.paisFinal = paises.get(paises.size() -1);
 	}
 	
 	public Pais avanzar() throws ErrorNoHayMasPaisesParaAvanzar{
-		if (IteradorPaisActual.hasNext()){
-			PaisActual = IteradorPaisActual.next();
-			return PaisActual;
+		if (iteradorPaisActual.hasNext()){
+			paisActual = iteradorPaisActual.next();
+			return paisActual;
 		}
 		else {
 			throw new ErrorNoHayMasPaisesParaAvanzar();
@@ -35,26 +35,26 @@ public class Trayectoria {
 	}
 	
 	public Pais paisAnterior(){
-		int indiceAnterior = Paises.indexOf(PaisActual) - 1; 
-		Pais PaisAnterior = Paises.get(indiceAnterior);
+		int indiceAnterior = paises.indexOf(paisActual) - 1; 
+		Pais PaisAnterior = paises.get(indiceAnterior);
 		return PaisAnterior;
 	}
 	
-	public boolean estaEnTrayectoria(Pais UnPais){
+	public boolean estaEnTrayectoria(Pais unPais){
 		
-		return Paises.contains(UnPais);
+		return paises.contains(unPais);
 	}
 	
 	public Pais paisActual(){
-		return PaisActual;
+		return paisActual;
 	}
 	public Pais paisFinal(){
-		return PaisFinal;
+		return paisFinal;
 	}
 	public Element serializar(Document doc){
 		Element elementoTrayectoria = doc.createElement("Trayectoria");
-		for ( int i = 0;i < Paises.size();i++){
-			Element elementoPais = Paises.get(i).serializar(doc);
+		for ( int i = 0;i < paises.size();i++){
+			Element elementoPais = paises.get(i).serializar(doc);
 			elementoTrayectoria.appendChild(elementoPais);
 		}
 		return elementoTrayectoria;
@@ -75,7 +75,7 @@ public class Trayectoria {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Paises == null) ? 0 : Paises.hashCode());
+		result = prime * result + ((paises == null) ? 0 : paises.hashCode());
 		return result;
 	}
 
@@ -88,10 +88,10 @@ public class Trayectoria {
 		if (getClass() != obj.getClass())
 			return false;
 		Trayectoria other = (Trayectoria) obj;
-		if (Paises == null) {
-			if (other.Paises != null)
+		if (paises == null) {
+			if (other.paises != null)
 				return false;
-		} else if (!Paises.equals(other.Paises))
+		} else if (!paises.equals(other.paises))
 			return false;
 		return true;
 	}

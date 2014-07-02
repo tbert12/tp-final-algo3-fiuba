@@ -18,7 +18,7 @@ import control.Juego;
 public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel MenuInicial;
+	private JPanel menuInicial;
 	private JTextField textoNombreUsuario;
 	private Juego unJuego;
 	
@@ -55,14 +55,14 @@ public class VentanaPrincipal extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/vistas/imagenes/icono.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
-		MenuInicial = new JPanel();
-		MenuInicial.setBackground(Color.BLACK);
-		MenuInicial.setForeground(Color.BLACK);
-		MenuInicial.setBorder(null);
-		setContentPane(MenuInicial);
+		menuInicial = new JPanel();
+		menuInicial.setBackground(Color.BLACK);
+		menuInicial.setForeground(Color.BLACK);
+		menuInicial.setBorder(null);
+		setContentPane(menuInicial);
 		setLocationRelativeTo(null);
 		
-		//controlador
+		
 		final ControladorBotonJugar control = new ControladorBotonJugar(this,this.unJuego);
 		
 		textoNombreUsuario = new JTextField();
@@ -101,11 +101,11 @@ public class VentanaPrincipal extends JFrame {
 		JLabel IconoImagen = new JLabel("IconoCS");
 		IconoImagen.setBounds(229, 124, 192, 200);
 		IconoImagen.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/vistas/imagenes/LogoInicio.png")));
-		MenuInicial.setLayout(null);
-		MenuInicial.add(BotonJugar);
-		MenuInicial.add(textoNombreUsuario);
-		MenuInicial.add(IconoImagen);
-		MenuInicial.add(Titulo);
+		menuInicial.setLayout(null);
+		menuInicial.add(BotonJugar);
+		menuInicial.add(textoNombreUsuario);
+		menuInicial.add(IconoImagen);
+		menuInicial.add(Titulo);
 		
 	}
 

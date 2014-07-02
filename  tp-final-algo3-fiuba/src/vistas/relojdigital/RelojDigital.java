@@ -5,36 +5,36 @@ import vistas.Sonidos;
 public class RelojDigital {
 	private String[] Dias = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
 	private int indiceDia = 0;
-	private int TiempoTranscurridoDelDia = 7;
+	private int tiempoTranscurridoDelDia = 7;
 	private Sonidos sonidos;
-	public int TiempoInicial = 154;
-	public int TiempoTemporal = TiempoInicial;
+	public int tiempoInicial = 154;
+	public int tiempoTemporal = tiempoInicial;
 	
 	public RelojDigital() {
 		this.sonidos = Sonidos.ObtenerSonidos();
 	}
 	
 	public void ActualizarHora(int tiempo){
-		this.TiempoInicial = tiempo;
-		if (this.TiempoInicial < 0) this.TiempoInicial = 0;
+		this.tiempoInicial = tiempo;
+		if (this.tiempoInicial < 0) this.tiempoInicial = 0;
 	}
 
 	private String obtenerHoraDigitalDespuesde(int cantHoras){
-		if (cantHoras + this.TiempoTranscurridoDelDia > 24){
+		if (cantHoras + this.tiempoTranscurridoDelDia > 24){
 			indiceDia++;
 			if (indiceDia > 6) indiceDia = 0;
-			this.TiempoTranscurridoDelDia = cantHoras + this.TiempoTranscurridoDelDia - 24;
+			this.tiempoTranscurridoDelDia = cantHoras + this.tiempoTranscurridoDelDia - 24;
 		}
 		else {
-			this.TiempoTranscurridoDelDia = cantHoras + this.TiempoTranscurridoDelDia;
+			this.tiempoTranscurridoDelDia = cantHoras + this.tiempoTranscurridoDelDia;
 		}
-		String tiempoDigital = Dias[indiceDia] + ", " + Integer.toString(this.TiempoTranscurridoDelDia) + ":00 Hs.";
+		String tiempoDigital = Dias[indiceDia] + ", " + Integer.toString(this.tiempoTranscurridoDelDia) + ":00 Hs.";
 		return tiempoDigital;
 	}
 	
 	public String AvanzarUnaHora() {
-		if (TiempoInicial == TiempoTemporal)return obtenerHoraDigitalDespuesde(0);
-		TiempoTemporal--;
+		if (tiempoInicial == tiempoTemporal)return obtenerHoraDigitalDespuesde(0);
+		tiempoTemporal--;
 		sonidos.reproducirSonidoReloj();
 		return obtenerHoraDigitalDespuesde(1);
 	}

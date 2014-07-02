@@ -14,7 +14,7 @@ import modelo.PartidaObservable;
 public class PanelViajar extends PanelTresBotones{
 	
 	private ArrayList<Pais> Paises;
-	private BotonParaPais BotonUno,BotonDos,BotonTres;
+	private BotonParaPais botonUno,botonDos,botonTres;
 	
 	public PanelViajar(JPanel panel, PartidaObservable partida) {
 		super(panel, partida);
@@ -22,23 +22,23 @@ public class PanelViajar extends PanelTresBotones{
 	
 	protected void crearBotones(){
 	
-		this.BotonUno = new BotonParaPais();
-		BotonUno.addActionListener(new ControladorViajarAPais(partida, BotonUno));
-		BotonUno.setBounds(10, 11, 287, 30);
-		BotonUno.setFont(new Font(FuenteDeBotones, Font.PLAIN, 18));
-		Panel.add(BotonUno);
+		this.botonUno = new BotonParaPais();
+		botonUno.addActionListener(new ControladorViajarAPais(partida, botonUno));
+		botonUno.setBounds(10, 11, 287, 30);
+		botonUno.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
+		Panel.add(botonUno);
 		
-		this.BotonDos = new BotonParaPais();
-		BotonDos.addActionListener(new ControladorViajarAPais(partida, BotonDos));
-		BotonDos.setBounds(10, 49, 287, 32);
-		BotonDos.setFont(new Font(FuenteDeBotones, Font.PLAIN, 18));
-		Panel.add(BotonDos);
+		this.botonDos = new BotonParaPais();
+		botonDos.addActionListener(new ControladorViajarAPais(partida, botonDos));
+		botonDos.setBounds(10, 49, 287, 32);
+		botonDos.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
+		Panel.add(botonDos);
 		
-		this.BotonTres = new BotonParaPais();
-		BotonTres.addActionListener(new ControladorViajarAPais(partida, BotonTres));
-		BotonTres.setBounds(10, 90, 287, 32);
-		BotonTres.setFont(new Font(FuenteDeBotones, Font.PLAIN, 18));
-		Panel.add(BotonTres);
+		this.botonTres = new BotonParaPais();
+		botonTres.addActionListener(new ControladorViajarAPais(partida, botonTres));
+		botonTres.setBounds(10, 90, 287, 32);
+		botonTres.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
+		Panel.add(botonTres);
 
 	}
 	
@@ -46,14 +46,14 @@ public class PanelViajar extends PanelTresBotones{
 		Paises = partida.getPaisesAViajar();
 		Iterator<Pais> iterador = Paises.iterator();
 		Pais PaisUno = iterador.next();
-		this.BotonUno.setText(PaisUno.getNombre());
-		this.BotonUno.setPais(PaisUno);
+		this.botonUno.setText(PaisUno.getNombre());
+		this.botonUno.setPais(PaisUno);
 		Pais PaisDos = iterador.next();
-		this.BotonDos.setText(PaisDos.getNombre());
-		this.BotonDos.setPais(PaisDos);
+		this.botonDos.setText(PaisDos.getNombre());
+		this.botonDos.setPais(PaisDos);
 		Pais PaisTres = iterador.next();
-		this.BotonTres.setText(PaisTres.getNombre());
-		this.BotonTres.setPais(PaisTres);
+		this.botonTres.setText(PaisTres.getNombre());
+		this.botonTres.setPais(PaisTres);
 	}
 
 }

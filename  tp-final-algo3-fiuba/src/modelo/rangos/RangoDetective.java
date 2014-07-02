@@ -2,11 +2,11 @@ package modelo.rangos;
 
 public class RangoDetective implements Rango {
 
-	private int VelocidadDeViaje = 1100;
+	private int velocidadDeViaje = 1100;
 
 	@Override
-	public int costoDeViaje(int CantidadKilometros) {
-		return CantidadKilometros/VelocidadDeViaje;
+	public int costoDeViaje(int cantidadKilometros) {
+		return cantidadKilometros/velocidadDeViaje;
 	}
 	
 	public Rango chequeoDeRango(int cantDeArrestos){

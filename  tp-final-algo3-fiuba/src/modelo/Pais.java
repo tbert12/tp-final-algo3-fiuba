@@ -14,41 +14,40 @@ import org.w3c.dom.NodeList;
 
 public class Pais{
 	
-	private String Nombre;
-	private String Informacion;
-	private Edificio[] Edificios;
+	private String nombre;
+	private String informacion;
+	private Edificio[] edificios;
 	private Coordenadas coordenadas;
 	
-	public Pais(String UnNombre,Edificio[] LosEdificios,Coordenadas coordenadas){
-		this.Nombre = UnNombre;
-		this.Edificios = LosEdificios;
+	public Pais(String unNombre,Edificio[] losEdificios,Coordenadas coordenadas){
+		this.nombre = unNombre;
+		this.edificios = losEdificios;
 		this.coordenadas = coordenadas;
-		this.Informacion = "Informacion generica";
+		this.informacion = "Informacion generica";
 	}
 	
 	public String getNombre(){
-		return Nombre;
+		return nombre;
 	}
 	public Pais copiar(){
 		Edificio[] edificiosCopiados = new Edificio[3];
-		for (int i = 0;i<Edificios.length;i++){
-			edificiosCopiados[i] = Edificios[i].copiar();
+		for (int i = 0;i<edificios.length;i++){
+			edificiosCopiados[i] = edificios[i].copiar();
 		}
 		
-		Pais copiaDelPais = new Pais(this.Nombre,edificiosCopiados,this.coordenadas);
-		copiaDelPais.setInformacion(this.Informacion);
+		Pais copiaDelPais = new Pais(this.nombre,edificiosCopiados,this.coordenadas);
+		copiaDelPais.setInformacion(this.informacion);
 		return copiaDelPais;
 	}
 	
-	//Capas Es mejor recibirlo por parametro cuando lo inicializamos.
 	public void setInformacion(String UnaInfo){
-		Informacion = UnaInfo;
+		informacion = UnaInfo;
 	}
 	
 
 
 	public String getInformacion(){
-		return Informacion;
+		return informacion;
 	}
 	
 	public Coordenadas getCoordenadas(){
@@ -65,19 +64,19 @@ public class Pais{
 	public ArrayList<Edificio> getEdificios(){
 		ArrayList<Edificio> ListaEdificios = new ArrayList<Edificio>();
 		
-		for (int i=0; i<Edificios.length; i++){
-			ListaEdificios.add( Edificios[i]);
+		for (int i=0; i<edificios.length; i++){
+			ListaEdificios.add( edificios[i]);
 		}
 		return ListaEdificios;
 	}
 	
 	public Element serializar(Document doc){
 		Element elementoPais = doc.createElement("Pais");
-		elementoPais.setAttribute("Nombre", this.Nombre);
-		elementoPais.setAttribute("Informacion",this.Informacion);
+		elementoPais.setAttribute("Nombre", this.nombre);
+		elementoPais.setAttribute("Informacion",this.informacion);
 		Element elementoEdificios = doc.createElement("Edificios");
 		elementoPais.appendChild(elementoEdificios);
-		for (Edificio edificio: this.Edificios){
+		for (Edificio edificio: this.edificios){
 			elementoEdificios.appendChild(edificio.serializar(doc));
 		}
 		Element elementoCoordenadas=doc.createElement("Coordenadas");
@@ -111,10 +110,10 @@ public class Pais{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Arrays.hashCode(Edificios);
+		result = prime * result + Arrays.hashCode(edificios);
 		result = prime * result
-				+ ((Informacion == null) ? 0 : Informacion.hashCode());
-		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
+				+ ((informacion == null) ? 0 : informacion.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result
 				+ ((coordenadas == null) ? 0 : coordenadas.hashCode());
 		return result;
@@ -129,17 +128,17 @@ public class Pais{
 		if (getClass() != obj.getClass())
 			return false;
 		Pais other = (Pais) obj;
-		if (!Arrays.equals(Edificios, other.Edificios))
+		if (!Arrays.equals(edificios, other.edificios))
 			return false;
-		if (Informacion == null) {
-			if (other.Informacion != null)
+		if (informacion == null) {
+			if (other.informacion != null)
 				return false;
-		} else if (!Informacion.equals(other.Informacion))
+		} else if (!informacion.equals(other.informacion))
 			return false;
-		if (Nombre == null) {
-			if (other.Nombre != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!Nombre.equals(other.Nombre))
+		} else if (!nombre.equals(other.nombre))
 			return false;
 		if (coordenadas == null) {
 			if (other.coordenadas != null)

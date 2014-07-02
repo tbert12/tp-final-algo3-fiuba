@@ -13,70 +13,70 @@ import modelo.heridas.Herida;
 public class Edificio {
 	
 	
-	private String Pista,Nombre;
-	private int VecesVisitado;
-	private Herida Herida;
-	private Ladron LadronContenido;
+	private String pista,nombre;
+	private int vecesVisitado;
+	private Herida herida;
+	private Ladron ladronContenido;
 	
-	public Edificio(String UnNombre){
-		this.Nombre = UnNombre;
+	public Edificio(String unNombre){
+		this.nombre = unNombre;
 		Random random = new Random();
-		String[] Pistas = {"Nunca he visto a la persona que dices","No he visto a nadie como dices","Jamas he visto a esa persona","Lo siento, no.","La verdad que no he visto a nadie que responda a eso"};
-		this.Pista = Pistas[random.nextInt(Pistas.length-1)];
-		this.VecesVisitado = 0;
-		this.Herida = null;
-		this.LadronContenido = null;
+		String[] pistas = {"Nunca he visto a la persona que dices","No he visto a nadie como dices","Jamas he visto a esa persona","Lo siento, no.","La verdad que no he visto a nadie que responda a eso"};
+		this.pista = pistas[random.nextInt(pistas.length-1)];
+		this.vecesVisitado = 0;
+		this.herida = null;
+		this.ladronContenido = null;
 	}
 	
 	public Edificio copiar(){
-		Edificio edificioCopia = new Edificio(this.Nombre);
-		String pistaNueva = this.Pista;
+		Edificio edificioCopia = new Edificio(this.nombre);
+		String pistaNueva = this.pista;
 		edificioCopia.setPista(pistaNueva);
 		return edificioCopia;
 	}
-	public void setHerida(Herida UnaHerida){
-		Herida = UnaHerida;
+	public void setHerida(Herida unaHerida){
+		herida = unaHerida;
 	}
 	
 	public void setLadron(Ladron unLadron){
-		LadronContenido = unLadron;
+		ladronContenido = unLadron;
 	}
 	public void setPista(String unaPista){
-		this.Pista = unaPista;
+		this.pista = unaPista;
 	}
 
-	public String visitar(Policia UnPolicia){
-		this.VecesVisitado++;
-		if (LadronContenido != null){
-			if( UnPolicia.arrestarSospechoso(LadronContenido)) return "Ladron Atrapado";
+	public String visitar(Policia unPolicia){
+		this.vecesVisitado++;
+		if (ladronContenido != null){
+			if( unPolicia.arrestarSospechoso(ladronContenido)) return "Ladron Atrapado";
 			return "No se emitio orden de arresto, el ladron se escapo";
 		}
 		
-		if (this.Herida == null){ 
-			UnPolicia.reducirHorasalVisitar(VecesVisitado);
-			return Pista;
+		if (this.herida == null){ 
+			unPolicia.reducirHorasalVisitar(vecesVisitado);
+			return pista;
 		}
 		else{
-			Herida.herir(UnPolicia);
-			return Herida.mensaje();
+			herida.herir(unPolicia);
+			return herida.mensaje();
 		}
 
 	}
 	public void setearVisitas(int nroVisitas){
-		this.VecesVisitado=nroVisitas;
+		this.vecesVisitado=nroVisitas;
 	}
 	public String getNombre(){
-		return Nombre;
+		return nombre;
 	}
 
 	public Element serializar(Document doc) {
 		Element elementoEdificio = doc.createElement("Edificio");
-		elementoEdificio.setAttribute("Nombre", this.Nombre);
-		elementoEdificio.setAttribute("Pista",this.Pista);
-		if (!(this.Herida == null)){
+		elementoEdificio.setAttribute("Nombre", this.nombre);
+		elementoEdificio.setAttribute("Pista",this.pista);
+		if (!(this.herida == null)){
 		Element elementoHerida = doc.createElement("Herida");
-		elementoHerida.setAttribute("TipoHerida",this.Herida.getClass().getName());
-		elementoHerida.setAttribute("Mensaje",this.Herida.mensaje());
+		elementoHerida.setAttribute("TipoHerida",this.herida.getClass().getName());
+		elementoHerida.setAttribute("Mensaje",this.herida.mensaje());
 		elementoEdificio.appendChild(elementoHerida);
 		}
 		return elementoEdificio;
@@ -106,7 +106,7 @@ public class Edificio {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
 
@@ -119,20 +119,20 @@ public class Edificio {
 		if (getClass() != obj.getClass())
 			return false;
 		Edificio other = (Edificio) obj;
-		if (Nombre == null) {
-			if (other.Nombre != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!Nombre.equals(other.Nombre))
+		} else if (!nombre.equals(other.nombre))
 			return false;
 		return true;
 	}
 
 	public boolean tieneLadron() {
-		return (LadronContenido!=null);
+		return (ladronContenido!=null);
 	}
 
 	public String getPista() {
-		return this.Pista;
+		return this.pista;
 	}
 }
 

@@ -6,25 +6,25 @@ import org.w3c.dom.Node;
 
 public class ObjetoRobado {
 	
-	private String Valor,Nombre;
+	private String valor,nombre;
 	
-	public ObjetoRobado(String UnNombre,String UnValor){
-		this.Nombre = UnNombre;
-		this.Valor = UnValor;
+	public ObjetoRobado(String unNombre,String unValor){
+		this.nombre = unNombre;
+		this.valor = unValor;
 	}
 	
 	public String getValor(){
-		return Valor;
+		return valor;
 	}
 	
 	public String getNombre(){
-		return this.Nombre;
+		return this.nombre;
 	}
 	
 	public Element serializar(Document doc){
 		Element elementoObjeto = doc.createElement("Objeto");
-		elementoObjeto.setAttribute("Nombre",this.Nombre);
-		elementoObjeto.setAttribute("Valor",this.Valor);
+		elementoObjeto.setAttribute("Nombre",this.nombre);
+		elementoObjeto.setAttribute("Valor",this.valor);
 		return elementoObjeto;
 		
 	}
@@ -38,8 +38,8 @@ public class ObjetoRobado {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
-		result = prime * result + ((Valor == null) ? 0 : Valor.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
 		return result;
 	}
 
@@ -52,15 +52,15 @@ public class ObjetoRobado {
 		if (getClass() != obj.getClass())
 			return false;
 		ObjetoRobado other = (ObjetoRobado) obj;
-		if (Nombre == null) {
-			if (other.Nombre != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!Nombre.equals(other.Nombre))
+		} else if (!nombre.equals(other.nombre))
 			return false;
-		if (Valor == null) {
-			if (other.Valor != null)
+		if (valor == null) {
+			if (other.valor != null)
 				return false;
-		} else if (!Valor.equals(other.Valor))
+		} else if (!valor.equals(other.valor))
 			return false;
 		return true;
 	}

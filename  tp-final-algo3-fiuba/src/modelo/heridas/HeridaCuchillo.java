@@ -34,14 +34,14 @@ public class HeridaCuchillo implements Herida {
 
 	private String mensaje;
 	
-	public HeridaCuchillo(String UnMensaje) {
-		mensaje = UnMensaje;
+	public HeridaCuchillo(String unMensaje) {
+		mensaje = unMensaje;
 	}
 	
 	
 	@Override
-	public void herir(Policia UnPolicia) {
-		UnPolicia.reducirHorasPorHeridaCuchillo();
+	public void herir(Policia unPolicia) {
+		unPolicia.reducirHorasPorHeridaCuchillo();
 	}
 
 	@Override

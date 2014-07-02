@@ -8,58 +8,58 @@ import modelo.caracteristicas.Caracteristicas;
 
 public class BaseDeDatos {
 
-	private ArrayList<Ladron> Ladrones;
-	private ArrayList<Pais> Paises;
+	private ArrayList<Ladron> ladrones;
+	private ArrayList<Pais> paises;
 	private final int CANTIDADPOSIBLESDESTINOS;
 	
 	public BaseDeDatos(ArrayList<Ladron> ladrones,ArrayList<Pais> paises){
-		this.Ladrones = ladrones;
-		this.Paises = paises;
+		this.ladrones = ladrones;
+		this.paises = paises;
 		this.CANTIDADPOSIBLESDESTINOS = 3;
 	}
 	
 	public ArrayList<Ladron> filtarPorCaracteristicas(Caracteristicas caracteristicas){
-		ArrayList<Ladron> LadronesCoincidentes = new ArrayList<Ladron>();
-		Iterator<Ladron> Iterador = Ladrones.iterator();
+		ArrayList<Ladron> ladronesCoincidentes = new ArrayList<Ladron>();
+		Iterator<Ladron> Iterador = ladrones.iterator();
 		while (Iterador.hasNext()){
-			Ladron LadronActual = Iterador.next();
-			if (LadronActual.compararCaracteristicas(caracteristicas)){
-				LadronesCoincidentes.add(LadronActual);
+			Ladron ladronActual = Iterador.next();
+			if (ladronActual.compararCaracteristicas(caracteristicas)){
+				ladronesCoincidentes.add(ladronActual);
 			}
 		}
 		
-		return LadronesCoincidentes;
+		return ladronesCoincidentes;
 		
 	}
 	
-	public ArrayList<Pais> posiblesPaisesAViajar(Ladron Ladron, Pais PaisActual){
-		ArrayList<Pais> PosiblesPaises = new ArrayList<Pais>();
-		Pais PaisDestino;
+	public ArrayList<Pais> posiblesPaisesAViajar(Ladron ladron, Pais paisActual){
+		ArrayList<Pais> posiblesPaises = new ArrayList<Pais>();
+		Pais paisDestino;
 		
-		if ( PaisActual.equals( Ladron.paisActual() ) ){
+		if ( paisActual.equals( ladron.paisActual() ) ){
 			//Se le delega al ladron, si no tiene mas para avanzar, devuelve el anterior
 			//Como que vuelva a buscar mas pistas.
-			PaisDestino = Ladron.avanzar();
+			paisDestino = ladron.avanzar();
 		}
-		else if (PaisActual.equals( Ladron.paisAnterior() ) ){
-			PaisDestino = Ladron.paisActual();
+		else if (paisActual.equals( ladron.paisAnterior() ) ){
+			paisDestino = ladron.paisActual();
 		}
 		else {
 			//Hay que hacer volver al pais anterior donde se equivoco
-			PaisDestino = Ladron.paisAnterior();
+			paisDestino = ladron.paisAnterior();
 			 
 		}
-		PosiblesPaises.add(PaisDestino);
+		posiblesPaises.add(paisDestino);
 		
-		while ( PosiblesPaises.size() < this.CANTIDADPOSIBLESDESTINOS ){
-			Pais PaisRandom = Paises.get((int)(Math.random()*Paises.size()));
-			while (Ladron.pasaPor(PaisRandom) || PaisActual.equals(PaisRandom) || PosiblesPaises.contains(PaisRandom)){
-				PaisRandom = Paises.get((int)(Math.random()*Paises.size()));;
+		while ( posiblesPaises.size() < this.CANTIDADPOSIBLESDESTINOS ){
+			Pais paisRandom = paises.get((int)(Math.random()*paises.size()));
+			while (ladron.pasaPor(paisRandom) || paisActual.equals(paisRandom) || posiblesPaises.contains(paisRandom)){
+				paisRandom = paises.get((int)(Math.random()*paises.size()));;
 			}
-			PosiblesPaises.add(PaisRandom);
+			posiblesPaises.add(paisRandom);
 		}
-		Collections.shuffle(PosiblesPaises);
-		return PosiblesPaises;
+		Collections.shuffle(posiblesPaises);
+		return posiblesPaises;
 	}
 	
 }

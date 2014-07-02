@@ -12,23 +12,23 @@ import modelo.caracteristicas.*;
 import modelo.excepcion.ErrorNoHayMasPaisesParaAvanzar;
 
 public class Ladron {
-	private Caracteristicas CaracteristicasDelLadron;
-	private String Nombre;
-	private Trayectoria TrayectoriaDelLadron;
-	private boolean Arrestado;
+	private Caracteristicas caracteristicasDelLadron;
+	private String nombre;
+	private Trayectoria trayectoriaDelLadron;
+	private boolean arrestado;
 	
-	public Ladron(String Nombre,Caracteristicas caracteristicas){
-		this.Nombre = Nombre;
-		this.CaracteristicasDelLadron = caracteristicas;
-		this.Arrestado = false;
+	public Ladron(String nombre,Caracteristicas caracteristicas){
+		this.nombre = nombre;
+		this.caracteristicasDelLadron = caracteristicas;
+		this.arrestado = false;
 	}
 	
 	public Ladron copiar(){
-		Ladron ladronCopiado = new Ladron(this.Nombre,this.CaracteristicasDelLadron);
+		Ladron ladronCopiado = new Ladron(this.nombre,this.caracteristicasDelLadron);
 		return ladronCopiado;
 	}
 	public void addTrayectoria(Trayectoria trayecto){
-		this.TrayectoriaDelLadron = trayecto;
+		this.trayectoriaDelLadron = trayecto;
 		//El ladron se va a esconder en un edificio del trayecto final
 		Random random = new Random();
 		Pais paisQueElLadronseOculta = trayecto.paisFinal();
@@ -39,64 +39,64 @@ public class Ladron {
 	}
 	
 	public String getNombre(){
-		return this.Nombre;
+		return this.nombre;
 	}
 	
 	public Sexo getSexo(){
-		return CaracteristicasDelLadron.getSexo();
+		return caracteristicasDelLadron.getSexo();
 	}
 	
 	public Hobby getHobby(){
-		return CaracteristicasDelLadron.getHobby();
+		return caracteristicasDelLadron.getHobby();
 	}
 	
 	public Cabello getCabello(){
-		return CaracteristicasDelLadron.getCabello();
+		return caracteristicasDelLadron.getCabello();
 	}
 	
 	public Senia getSenia(){
-		return CaracteristicasDelLadron.getSenia();
+		return caracteristicasDelLadron.getSenia();
 	}
 	
 	public Vehiculo getVehiculo(){
-		return CaracteristicasDelLadron.getVehiculo();
+		return caracteristicasDelLadron.getVehiculo();
 	}
 	
 	public Pais paisFinal(){
-		return TrayectoriaDelLadron.paisFinal();
+		return trayectoriaDelLadron.paisFinal();
 	}
 	public boolean compararCaracteristicas(Caracteristicas otrasCaracteriscas){
-		return CaracteristicasDelLadron.compararCon(otrasCaracteriscas);
+		return caracteristicasDelLadron.compararCon(otrasCaracteriscas);
 	}
 	
 	
 	public Pais paisActual(){
-		return this.TrayectoriaDelLadron.paisActual();
+		return this.trayectoriaDelLadron.paisActual();
 	}
 	
 	public Pais paisAnterior(){
-		return TrayectoriaDelLadron.paisAnterior();
+		return trayectoriaDelLadron.paisAnterior();
 	}
 	
 	public boolean pasaPor(Pais pais){
-		return this.TrayectoriaDelLadron.estaEnTrayectoria(pais);
+		return this.trayectoriaDelLadron.estaEnTrayectoria(pais);
 	}
 
 	public Pais avanzar() {
 		try{
-			return this.TrayectoriaDelLadron.avanzar();
+			return this.trayectoriaDelLadron.avanzar();
 		}
 		catch (ErrorNoHayMasPaisesParaAvanzar e){
-			//Devolver un pais anterior al actual, lo necesito en Base
+			
 			return paisAnterior();
 		}
 	}
 	public void arrestar(){
-		Arrestado = true;
+		arrestado = true;
 	}
 	
 	public boolean estaArrestado(){
-		return Arrestado;
+		return arrestado;
 	}
 	public Element serializar(Document doc){
 		Element elementoLadron = doc.createElement("Ladron");
@@ -105,8 +105,8 @@ public class Ladron {
 		//elementoTrayectoria.appendChild(this.TrayectoriaDelLadron.serializar(doc));
 		elementoLadron.appendChild(elementoCaracteristicas);
 		//elementoLadron.appendChild(elementoTrayectoria);
-		elementoCaracteristicas.appendChild(this.CaracteristicasDelLadron.serializar(doc));
-		elementoLadron.setAttribute("Nombre",this.Nombre);
+		elementoCaracteristicas.appendChild(this.caracteristicasDelLadron.serializar(doc));
+		elementoLadron.setAttribute("Nombre",this.nombre);
 		return elementoLadron;
 	}
 	public static Ladron hidratar(Node nodo) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
@@ -122,7 +122,7 @@ public class Ladron {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
 
@@ -135,16 +135,16 @@ public class Ladron {
 		if (getClass() != obj.getClass())
 			return false;
 		Ladron other = (Ladron) obj;
-		if (Nombre == null) {
-			if (other.Nombre != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!Nombre.equals(other.Nombre))
+		} else if (!nombre.equals(other.nombre))
 			return false;
 		return true;
 	}
 
 	public void reiniciar() {
-		this.Arrestado = false;
+		this.arrestado = false;
 		
 	}
 }

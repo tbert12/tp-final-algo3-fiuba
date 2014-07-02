@@ -13,28 +13,28 @@ import org.w3c.dom.Node;
 public class Policia  {
 	
 	
-	private String Nombre;
-	private Rango Rango = new RangoNovato();
-	private int CantidadDeArrestos;
-	private Tiempo Tiempo;
-	private Pais PaisActual;
-	private int HorasSinDormir = 0;
-	private Ladron Sospechoso;
+	private String nombre;
+	private Rango rango;
+	private int cantidadDeArrestos;
+	private Tiempo tiempo;
+	private Pais paisActual;
+	private int horasSinDormir = 0;
+	private Ladron sospechoso;
 
 	//Constantes
-	private final int TiempoLimiteEnHoras = 154;
-	private final int HorasADormir = 8;
-	private final int LimiteHorasDespierto = 15;
-	private final int HorasPorFiltracion = 3;
-	private final int HorasHeridaCuchillo = 2;
-	private final int HorasHeridaArma = 4;
+	private final int tiempoLimiteEnHoras = 154;
+	private final int horasADormir = 8;
+	private final int limiteHorasDespierto = 15;
+	private final int horasPorFiltracion = 3;
+	private final int horasHeridaCuchillo = 2;
+	private final int horasHeridaArma = 4;
 
 
-	public Policia(String Nombre, int CantidadDeArrestos){
-		this.Nombre = Nombre;
-		this.CantidadDeArrestos = CantidadDeArrestos;
-		this.Sospechoso = null;
-		this.Rango = new RangoNovato();
+	public Policia(String nombre, int cantidadDeArrestos){
+		this.nombre = nombre;
+		this.cantidadDeArrestos = cantidadDeArrestos;
+		this.sospechoso = null;
+		this.rango = new RangoNovato();
 		setTiempo();
 		chequeoDeRango();
 		
@@ -42,92 +42,92 @@ public class Policia  {
 	}
 
 	public String getNombre(){
-		return this.Nombre;
+		return this.nombre;
 	}
 	public Rango getRango() {
-		return this.Rango;
+		return this.rango;
 	}
 	
 	private void setTiempo(){
-		this.Tiempo = new Tiempo(this.TiempoLimiteEnHoras);
+		this.tiempo = new Tiempo(this.tiempoLimiteEnHoras);
 	}
-	public void setSospechoso(Ladron UnLadron){
-		Sospechoso = UnLadron;
+	public void setSospechoso(Ladron unLadron){
+		sospechoso = unLadron;
 	}
 	
 	public void setPaisActual(Pais pais){
-		this.PaisActual = pais;
+		this.paisActual = pais;
 	}
 	
 	public Pais getPais(){
-		return this.PaisActual;
+		return this.paisActual;
 	}
 
 	private void addArresto() {
-		CantidadDeArrestos++;
+		cantidadDeArrestos++;
 		chequeoDeRango();		
 	}
 	
 	public void reiniciar(){
 		setTiempo();
-		this.Sospechoso = null;
+		this.sospechoso = null;
 	}
-	public boolean arrestarSospechoso(Ladron LadronAArrestar){
-		if( Sospechoso == null || !Sospechoso.equals(LadronAArrestar) ) return false;
+	public boolean arrestarSospechoso(Ladron ladronAArrestar){
+		if( sospechoso == null || !sospechoso.equals(ladronAArrestar) ) return false;
 		addArresto();
-		LadronAArrestar.arrestar();
+		ladronAArrestar.arrestar();
 		return true;
 	}
 	
 	private void chequeoDeRango(){
-		this.Rango = this.Rango.chequeoDeRango(CantidadDeArrestos);
+		this.rango = this.rango.chequeoDeRango(cantidadDeArrestos);
 	}
 	public int costoDeViaje(int kilometrosAViajar) {
-		return this.Rango.costoDeViaje(kilometrosAViajar);
+		return this.rango.costoDeViaje(kilometrosAViajar);
 	}
 
 	private void reducirHoras(int horas){
-		Tiempo.reducirHoras(horas);
-		HorasSinDormir += horas;
-		if (HorasSinDormir > LimiteHorasDespierto){
+		tiempo.reducirHoras(horas);
+		horasSinDormir += horas;
+		if (horasSinDormir > limiteHorasDespierto){
 			dormir();
-			HorasSinDormir = 0;
+			horasSinDormir = 0;
 		}
 	}
 	
 	private void dormir(){
-		this.Tiempo.reducirHoras(HorasADormir);
+		this.tiempo.reducirHoras(horasADormir);
 	}
 	
 	public void reducirHorasPorFiltracion() {
-		reducirHoras(HorasPorFiltracion);	
+		reducirHoras(horasPorFiltracion);	
 	}
 	
-	public void reducirHorasPorViaje(int CantidadHoras){
-		reducirHoras(CantidadHoras);
+	public void reducirHorasPorViaje(int cantidadHoras){
+		reducirHoras(cantidadHoras);
 	}
 	
-	public void reducirHorasalVisitar(int VecesVisitado){
-		if (VecesVisitado == 1) reducirHoras(1);
-		else if (VecesVisitado == 2) reducirHoras(2);
+	public void reducirHorasalVisitar(int vecesVisitado){
+		if (vecesVisitado == 1) reducirHoras(1);
+		else if (vecesVisitado == 2) reducirHoras(2);
 		else reducirHoras(3);
 	}
 	
 	public void reducirHorasPorHeridaCuchillo(){
-		reducirHoras(HorasHeridaCuchillo);
+		reducirHoras(horasHeridaCuchillo);
 	}
 	
 	public void reducirHorasPorHeridaArmaDeFuego(){
-		reducirHoras(HorasHeridaArma);
+		reducirHoras(horasHeridaArma);
 	}
 	
 	public boolean tiempoAgotado(){
-		return Tiempo.tiempoAgotado();
+		return tiempo.tiempoAgotado();
 	}
 	public Element serializar(Document doc){
 		Element elementoPolicia =doc.createElement("Policia");
-		elementoPolicia.setAttribute("Nombre",this.Nombre);
-		elementoPolicia.setAttribute("Arrestos",""+this.CantidadDeArrestos);
+		elementoPolicia.setAttribute("Nombre",this.nombre);
+		elementoPolicia.setAttribute("Arrestos",""+this.cantidadDeArrestos);
 		return elementoPolicia;
 	}
 		
@@ -145,7 +145,7 @@ public class Policia  {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
 
@@ -158,24 +158,24 @@ public class Policia  {
 		if (getClass() != obj.getClass())
 			return false;
 		Policia other = (Policia) obj;
-		if (Nombre == null) {
-			if (other.Nombre != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!Nombre.equals(other.Nombre))
+		} else if (!nombre.equals(other.nombre))
 			return false;
 		return true;
 	}
 
 	public int getTiempo() {
-		return Tiempo.getHoras();
+		return tiempo.getHoras();
 	}
 
 	public String toStringRango() {
-		return this.Rango.toString();
+		return this.rango.toString();
 	}
 
 	public int getArrestos() {
-		return CantidadDeArrestos;
+		return cantidadDeArrestos;
 	}
 	
 }

@@ -2,20 +2,20 @@ package modelo;
 
 public class Tiempo {
 	
-	private int Horas;
+	private int horas;
 
-	public Tiempo(int CantidadDeHoras){
-		Horas = CantidadDeHoras;
+	public Tiempo(int cantidadDeHoras){
+		horas = cantidadDeHoras;
 	}
-	public void reducirHoras(int CantidadDeHoras){
-		Horas = Horas - CantidadDeHoras;
+	public void reducirHoras(int cantidadDeHoras){
+		horas = horas - cantidadDeHoras;
 	}
 	public int getHoras(){
-		return this.Horas;
+		return this.horas;
 	}
 	
 	public boolean tiempoAgotado(){
-		if (Horas <= 0 ){ 
+		if (horas <= 0 ){ 
 			return true;}
 		return false;
 		
