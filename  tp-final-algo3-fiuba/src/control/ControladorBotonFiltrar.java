@@ -3,7 +3,8 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import vistas.Sonidos;
+import vistas.sonidos.Audios;
+import vistas.sonidos.Sonidos;
 import vistas.VistaPartida;
 
 public class ControladorBotonFiltrar implements ActionListener {
@@ -17,7 +18,7 @@ public class ControladorBotonFiltrar implements ActionListener {
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		vista.MostrarCaracteristicasParaFiltrar();
-		sonidos.reproducirSonidoBoton();
+		sonidos.reproducirSonido(Audios.COMUN);
 		
 	}
 	

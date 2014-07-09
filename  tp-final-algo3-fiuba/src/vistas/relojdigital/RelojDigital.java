@@ -1,6 +1,7 @@
 package vistas.relojdigital;
 
-import vistas.Sonidos;
+import vistas.sonidos.Audios;
+import vistas.sonidos.Sonidos;
 
 public class RelojDigital {
 	private String[] Dias = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
@@ -35,7 +36,7 @@ public class RelojDigital {
 	public String AvanzarUnaHora() {
 		if (tiempoInicial == tiempoTemporal)return obtenerHoraDigitalDespuesde(0);
 		tiempoTemporal--;
-		sonidos.reproducirSonidoReloj();
+		sonidos.reproducirSonido(Audios.RELOJ);
 		return obtenerHoraDigitalDespuesde(1);
 	}
 

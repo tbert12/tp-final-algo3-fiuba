@@ -5,12 +5,10 @@ import modelo.CarmenSanDiego;
 import modelo.Partida;
 import modelo.PartidaObservable;
 import modelo.excepcion.ErrorAlCargarDatos;
-import vistas.Sonidos;
+import vistas.sonidos.Audios;
+import vistas.sonidos.Sonidos;
 import vistas.VentanaPrincipal;
 import vistas.VistaPartida;
-
-
-
 
 public class Juego{
 	
@@ -33,7 +31,7 @@ public class Juego{
 	
 	public void iniciar(){
 		ventanaPrincipal.mostrarVentana();
-		sonidos.reproducirSonidoBienvenida();
+		sonidos.reproducirSonido(Audios.BIENVENIDA);
 	}
 	
 	public void iniciarPartida(String string){

@@ -3,7 +3,8 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import vistas.Sonidos;
+import vistas.sonidos.Audios;
+import vistas.sonidos.Sonidos;
 import vistas.botones.BotonParaEdificio;
 import modelo.PartidaObservable;
 
@@ -22,7 +23,7 @@ public class ControladorVisitarEdificio implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		partida.visitarEdificio(boton.getEdificio());
-		sonidos.reproducirSonidoBotonVisitarEdificio();
+		sonidos.reproducirSonido(Audios.VISITAR);
 	}
 
 }

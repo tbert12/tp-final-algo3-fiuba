@@ -3,7 +3,8 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import vistas.Sonidos;
+import vistas.sonidos.Audios;
+import vistas.sonidos.Sonidos;
 import vistas.botones.BotonParaPais;
 import modelo.PartidaObservable;
 
@@ -21,7 +22,7 @@ public class ControladorViajarAPais implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		partida.ViajarHacia(boton.obtenerPais());
-		sonidos.reproducirSonidoBotonViajar();
+		sonidos.reproducirSonido(Audios.VIAJAR);
 	}
 
 }

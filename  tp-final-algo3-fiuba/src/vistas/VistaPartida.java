@@ -27,6 +27,8 @@ import vistas.paneles.PanelEdificios;
 import vistas.paneles.PanelCaracteristicas;
 import vistas.relojdigital.HiloDelReloj;
 import vistas.relojdigital.RelojDigital;
+import vistas.sonidos.Audios;
+import vistas.sonidos.Sonidos;
 import modelo.PartidaObservable;
 import control.ControladorBotonFiltrar;
 import control.ControladorBotonViajar;
@@ -94,7 +96,7 @@ public class VistaPartida extends JFrame implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		updateHora();
 		if (partida.tiempoAgotado()){
-			sonidos.reproducirSonidoFallido();
+			sonidos.reproducirSonido(Audios.FALLIDO);
 			
 			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
 			
@@ -104,8 +106,8 @@ public class VistaPartida extends JFrame implements Observer{
 		}
 		
 		if (partida.partidaFinalizada()){
-			if (partida.ladronArrestado())sonidos.reproducirSonidoExitoso(); 
-			else sonidos.reproducirSonidoFallido();
+			if (partida.ladronArrestado())sonidos.reproducirSonido(Audios.EXITOSO);
+			else sonidos.reproducirSonido(Audios.FALLIDO);
 			
 			mostrarMensaje(partida.getPistaActual(), "Mensaje Interpool");
 			
@@ -154,12 +156,12 @@ public class VistaPartida extends JFrame implements Observer{
 			if (pistadeEdificio.equals("HeridaArmaDeFuego")){
 				Mensaje = "Cuidado: <br>";
 				pistadeEdificio = "Has sido herido por un arma de Fuego";
-				sonidos.reproducirSonidoHeridaArma();
+				sonidos.reproducirSonido(Audios.ARMA);
 			}
 			if (pistadeEdificio.equals("HeridaCuchillo")){
 				Mensaje = "Cuidado: <br>";
 				pistadeEdificio = "Has sido herido por un arma blanca";
-				sonidos.reproducirSonidoHeridaCuchillo();
+				sonidos.reproducirSonido(Audios.CUCHILLO);
 			}
 			textoPista.setText("<html>" + Mensaje + pistadeEdificio + "</html>");
 			textoPista.setVisible(true);

@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 
 import org.apache.commons.lang3.StringUtils;
 
-import vistas.Sonidos;
+import vistas.sonidos.Audios;
+import vistas.sonidos.Sonidos;
 import vistas.VentanaPrincipal;
 
 public class ControladorBotonJugar implements ActionListener {
@@ -22,7 +23,7 @@ public class ControladorBotonJugar implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String NombreUsuario = vista.getTexto();
-			sonidos.reproducirSonidoBoton();
+			sonidos.reproducirSonido(Audios.COMUN);
 			
 			if (NombreUsuario == null || NombreUsuario.equals("") ){
 				vista.mostrarError("Ingrese un nombre valido.");
