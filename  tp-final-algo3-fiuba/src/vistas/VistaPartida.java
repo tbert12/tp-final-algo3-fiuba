@@ -94,7 +94,6 @@ public class VistaPartida extends JFrame implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		updateHora();
 		if (partida.tiempoAgotado()){
-			sonidos.pausa();
 			sonidos.reproducirSonidoFallido();
 			
 			mostrarMensaje("Tiempo agotado, el ladron se escapo.", "Mensaje Interpool");
@@ -105,7 +104,6 @@ public class VistaPartida extends JFrame implements Observer{
 		}
 		
 		if (partida.partidaFinalizada()){
-			sonidos.pausa();
 			if (partida.ladronArrestado())sonidos.reproducirSonidoExitoso(); 
 			else sonidos.reproducirSonidoFallido();
 			

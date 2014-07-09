@@ -42,13 +42,8 @@ public  class CarmenSanDiego {
 		
 		try {
 			levantarTodosLosDatos();
-		} catch (ClassNotFoundException | NoSuchMethodException
-				| SecurityException | IllegalAccessException
-				| IllegalArgumentException | InvocationTargetException
-				| InstantiationException | ParserConfigurationException
-				| SAXException | IOException | URISyntaxException e) {
-			
-			throw new ErrorAlCargarDatos();
+		} catch (Exception e) {
+			throw new ErrorAlCargarDatos(e);
 		}
 		
 	}
@@ -146,11 +141,8 @@ public  class CarmenSanDiego {
 
 		try {
 			bajarPoliciasAXML(nombreArchivoPolicias);
-		} catch (NoSuchMethodException | SecurityException
-				| IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException | ParserConfigurationException
-				| TransformerException | URISyntaxException e) {
-			throw new ErrorAlCargarDatos();
+		} catch (Exception e) {
+			throw new ErrorAlCargarDatos(e);
 		}
 		
 	}
@@ -233,14 +225,8 @@ public  class CarmenSanDiego {
 	public Partida iniciarPartida(String nombreUsuario) throws ErrorAlCargarDatos{
 		try {
 			return iniciarPartidaConString(nombreUsuario);
-		} catch (ClassNotFoundException | NoSuchMethodException
-				| SecurityException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException | ParserConfigurationException
-				| SAXException | IOException | ErrorNoSeEncontroPais
-				| TransformerException | ErrorObjetoNoEncontrado
-				| ErrorNoSeEncontroLadron | URISyntaxException e) {
-			throw new ErrorAlCargarDatos();
+		} catch (Exception e) {
+			throw new ErrorAlCargarDatos(e);
 		}
 	}
 

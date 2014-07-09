@@ -4,7 +4,7 @@ import java.applet.AudioClip;
 
 import javax.swing.JApplet;
 
-public class Sonidos extends Thread {
+public class Sonidos {
 
 	private static Sonidos instancia;
 	private AudioClip sonidoBoton,sonidoBotonViajar,sonidoBotonFiltrar,
@@ -65,14 +65,6 @@ public class Sonidos extends Thread {
 		sonidoHeridaArma.play();
 	}
 	
-	@SuppressWarnings("static-access")
-	public void pausa(){
-		try {
-			this.sleep(2000);
-		} catch (InterruptedException e) {
-		}
-	}
-
 	public void reproducirSonidoReloj() {
 		sonidoReloj.play();
 	}
