@@ -7,16 +7,16 @@ import javax.swing.JLabel;
 
 public class HiloDelReloj implements ActionListener {
 	private RelojDigital relojDigital;
-	private JLabel labelDondeseMuestraHora;
+	private JLabel label;
 	
 	public HiloDelReloj(RelojDigital reloj,JLabel label){
 		relojDigital = reloj;
-		labelDondeseMuestraHora = label;
+		this.label = label;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		labelDondeseMuestraHora.setText(relojDigital.AvanzarUnaHora());
+		label.setText(relojDigital.avanzarUnaHora());
 	}
 
 }

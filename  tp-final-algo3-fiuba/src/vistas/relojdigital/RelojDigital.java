@@ -1,5 +1,8 @@
 package vistas.relojdigital;
 
+import javax.swing.JLabel;
+import javax.swing.Timer;
+
 import vistas.sonidos.Audios;
 import vistas.sonidos.Sonidos;
 
@@ -8,16 +11,19 @@ public class RelojDigital {
 	private int indiceDia = 0;
 	private int tiempoTranscurridoDelDia = 7;
 	private Sonidos sonidos;
-	public int tiempoInicial = 154;
-	public int tiempoTemporal = tiempoInicial;
+	private int tiempoInicial = 154;
+	private int tiempoTemporal = tiempoInicial;
+	private Timer timer;
 	
-	public RelojDigital() {
+	public RelojDigital(JLabel label) {
 		this.sonidos = Sonidos.ObtenerSonidos();
+		this.timer = new Timer(200, new HiloDelReloj(this,label));
 	}
 	
-	public void ActualizarHora(int tiempo){
+	public void actualizarHora(int tiempo){
 		this.tiempoInicial = tiempo;
 		if (this.tiempoInicial < 0) this.tiempoInicial = 0;
+		timer.start();
 	}
 
 	private String obtenerHoraDigitalDespuesde(int cantHoras){
@@ -33,14 +39,17 @@ public class RelojDigital {
 		return tiempoDigital;
 	}
 	
-	public String AvanzarUnaHora() {
-		if (tiempoInicial == tiempoTemporal)return obtenerHoraDigitalDespuesde(0);
+	public String avanzarUnaHora() {
+		if (tiempoInicial == tiempoTemporal){
+			timer.stop();
+			return obtenerHoraDigital();
+		}
 		tiempoTemporal--;
 		sonidos.reproducirSonido(Audios.RELOJ);
 		return obtenerHoraDigitalDespuesde(1);
 	}
 
-	public String ObtenerHoraDigital() {
+	public String obtenerHoraDigital() {
 		return obtenerHoraDigitalDespuesde(0);
 	}
 }

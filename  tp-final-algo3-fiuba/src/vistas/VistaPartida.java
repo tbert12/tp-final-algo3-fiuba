@@ -19,13 +19,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import vistas.paneles.PanelViajar;
 import vistas.paneles.PanelEdificios;
 import vistas.paneles.PanelCaracteristicas;
-import vistas.relojdigital.HiloDelReloj;
 import vistas.relojdigital.RelojDigital;
 import vistas.sonidos.Audios;
 import vistas.sonidos.Sonidos;
@@ -52,7 +50,7 @@ public class VistaPartida extends JFrame implements Observer{
 	private final String rutaImagenPais = "/vistas/imagenes/paises/";
 	private String nombrePaisActual;
 	private RelojDigital reloj;
-	private Timer timer;
+	//private Timer timer;
 
 	
 	public VistaPartida(PartidaObservable partida,Juego juego) {
@@ -69,10 +67,10 @@ public class VistaPartida extends JFrame implements Observer{
 		updateCiudadActual();
 		updateImagenPais();
 		mensajeDeBienvenida();
-		reloj = new RelojDigital();
+		reloj = new RelojDigital(tiempo);
 		updateHora();
-		timer = new Timer(200, new HiloDelReloj(reloj,tiempo));
-		timer.start();
+		//timer = new Timer(200, new HiloDelReloj(reloj,tiempo));
+		//timer.start();
 	}
 
 
@@ -131,7 +129,7 @@ public class VistaPartida extends JFrame implements Observer{
 	}
 	
 	private void updateHora() { 
-		reloj.ActualizarHora(partida.getTiempoRestante());
+		reloj.actualizarHora(partida.getTiempoRestante());
 	}
 	private void updateImagenPais(){
 		
