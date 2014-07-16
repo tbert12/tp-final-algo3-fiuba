@@ -22,17 +22,31 @@ public class PanelEdificios extends PanelTresBotones{
 	protected void crearBotones(){
 		
 		listaBotones = new ArrayList<BotonParaEdificio>();
+		int cantidadDeBotones = 3;
+		int cordenadaHorizontal = 10;
 		
+		for(int i=0; i < cantidadDeBotones; i++){
+			
+			BotonParaEdificio unBoton = new BotonParaEdificio();
+			unBoton.addActionListener(new ControladorVisitarEdificio(partida, unBoton));
+			unBoton.setBounds(10,cordenadaHorizontal, 287, 32);
+			unBoton.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
+			listaBotones.add(unBoton);
+			Panel.add(unBoton);
+			cordenadaHorizontal += 39;
+			
+		}
+		/*
 		BotonParaEdificio botonUno = new BotonParaEdificio();
 		botonUno.addActionListener(new ControladorVisitarEdificio(partida, botonUno));
-		botonUno.setBounds(10, 11, 287, 30);
+		botonUno.setBounds(10, 10, 287, 32);
 		botonUno.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
 		listaBotones.add(botonUno);
 		Panel.add(botonUno);
 		
 		BotonParaEdificio botonDos = new BotonParaEdificio();
 		botonDos.addActionListener(new ControladorVisitarEdificio(partida, botonDos));
-		botonDos.setBounds(10, 49, 287, 32);
+		botonDos.setBounds(10, 50, 287, 32);
 		botonDos.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
 		listaBotones.add(botonDos);
 		Panel.add(botonDos);
@@ -43,6 +57,7 @@ public class PanelEdificios extends PanelTresBotones{
 		botonTres.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
 		listaBotones.add(botonTres);
 		Panel.add(botonTres);
+		*/
 
 	}
 	

@@ -24,6 +24,21 @@ public class PanelViajar extends PanelTresBotones{
 		
 		listaBotones = new ArrayList<BotonParaPais>();
 		
+		int cantidadDeBotones = 3;
+		int cordenadaHorizontal = 10;
+		
+		for(int i=0; i < cantidadDeBotones; i++){
+			
+			BotonParaPais unBoton = new BotonParaPais();
+			unBoton.addActionListener(new ControladorViajarAPais(partida, unBoton));
+			unBoton.setBounds(10,cordenadaHorizontal, 287, 32);
+			unBoton.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
+			listaBotones.add(unBoton);
+			Panel.add(unBoton);
+			cordenadaHorizontal += 39;
+			
+		}
+		/*
 		BotonParaPais botonUno = new BotonParaPais();
 		botonUno.addActionListener(new ControladorViajarAPais(partida, botonUno));
 		botonUno.setBounds(10, 11, 287, 30);
@@ -44,7 +59,7 @@ public class PanelViajar extends PanelTresBotones{
 		botonTres.setFont(new Font(fuenteDeBotones, Font.PLAIN, 18));
 		listaBotones.add(botonTres);
 		Panel.add(botonTres);
-
+	*/
 	}
 	
 	protected void actualizarBotones(){
